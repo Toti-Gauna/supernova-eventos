@@ -34,7 +34,7 @@ Las portadas locales se resuelven con la base de Vite al mostrarse, incluidos ev
 
 ## Recorrido
 
-1. Explorar el evento destacado y buscar/filtrar en el catálogo.
+1. Explorar el evento destacado y buscar/filtrar en el catálogo. La home muestra tres eventos por página, agrupados en Eventos activos, Eventos próximos y Eventos finalizados, en ese orden. Los filtros y el orden se aplican antes de paginar.
 2. Guardar experiencias en Favoritos, buscarlas y volver a encontrarlas después de un refresh.
 3. Abrir la inscripción fullscreen, confirmar el lugar y revisar el pase con su calendario custom desde Mis eventos.
 4. Entrar a Administración y crear un evento con su propia barra de pasos: información, audiencia, plantilla de email y revisión.
@@ -56,9 +56,9 @@ npm run test:e2e
 
 Playwright usa Chrome local en Windows cuando encuentra su instalación estándar. Se puede configurar `PLAYWRIGHT_CHROME_PATH`; en otros entornos usa Chromium de Playwright. El servidor de desarrollo se inicia automáticamente o se reutiliza en el puerto 5173.
 
-Los veintitrés casos cubren intro en cada refresh, primera pantalla con React bloqueado o GSAP demorado, reducción de movimiento, búsqueda, Favoritos, preferencias, tema claro/oscuro persistido, barra inferior móvil, perfil y sesión demo, controles custom con teclado, TyC opt-in, filtros administrativos con tags y paginado, inscripción con tostadas, pase completo sin scroll en ambos temas, cancelación con acompañantes, wizard, privacidad simulada, importación real XLSX/CSV, header estable desde 320 hasta 2560 px y fechas locales que cruzan medianoche en UTC. Usan personas ficticias y fijan la fecha de los eventos de ejemplo al 7 de octubre de 2026; los casos de intro usan reloj real para GSAP. Las capturas quedan en `test-results/` y el informe en `playwright-report/`.
+Los treinta y dos casos cubren paginado de tres eventos, jerarquía temporal y cambios de fase sin refresh, intro en cada refresh, primera pantalla con React bloqueado o GSAP demorado, reducción de movimiento, búsqueda, Favoritos, preferencias, tema claro/oscuro persistido, barra inferior móvil, perfil y sesión demo, controles custom con teclado, TyC opt-in, filtros administrativos con tags y paginado, inscripción con tostadas, pase completo sin scroll en ambos temas, cancelación con acompañantes, wizard, privacidad simulada, importación real XLSX/CSV, header estable desde 320 hasta 2560 px y fechas locales que cruzan medianoche en UTC. Usan personas ficticias y fijan la fecha de los eventos de ejemplo al 7 de octubre de 2026; los casos de intro usan reloj real para GSAP. Las capturas quedan en `test-results/` y el informe en `playwright-report/`.
 
-Validación: build de producción, veintitrés casos de navegador y revisión visual de ambos temas. [Registro y capturas](docs/validation.md).
+Validación: build de producción, treinta y dos casos de navegador y revisión visual de ambos temas. [Registro y capturas](docs/validation.md).
 
 ## Documentación y agentes
 

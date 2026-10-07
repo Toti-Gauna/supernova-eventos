@@ -8,7 +8,7 @@ import NativeDialog from '../../components/ui/NativeDialog';
 import SupernovaToast from '../../components/ui/SupernovaToast';
 import PersonalTicket from './PersonalTicket';
 import EventMonthCalendar from './EventMonthCalendar';
-import { DEMO_USER } from '../../lib/events';
+import { DEMO_USER, getEventPhase } from '../../lib/events';
 import './registration.css';
 import './theme.css';
 
@@ -31,7 +31,7 @@ export default function RegistrationModal({ event, registration, onClose, onRegi
   const [toastVersion, setToastVersion] = useState(0);
   const [cancelConfirm, setCancelConfirm] = useState(false);
   const available = event.capacity - event.registered;
-  const closed = event.status !== 'published' || new Date(event.endDate).getTime() < Date.now();
+  const closed = event.status !== 'published' || getEventPhase(event) === 'ended';
   const full = available <= 0;
   const maxCompanions = Math.min(event.companions, Math.max(0, available - 1));
   useEffect(() => {

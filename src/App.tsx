@@ -53,7 +53,7 @@ export default function App() {
     const existing = registrations.find(r => r.eventId === event.id);
     if (existing) return existing;
     const current = events.find(e => e.id === event.id);
-    if (!current || !canViewEvent(current) || current.status !== 'published' || new Date(current.endDate).getTime() < Date.now() || current.capacity - current.registered < 1 + companions || companions < 0 || companions > current.companions) return null;
+    if (!current || !canViewEvent(current) || current.status !== 'published' || new Date(current.endDate).getTime() <= Date.now() || current.capacity - current.registered < 1 + companions || companions < 0 || companions > current.companions) return null;
     const registration: Registration = { id: `SN-${crypto.randomUUID().slice(0, 8).toUpperCase()}`, eventId: event.id, name, email, companions, createdAt: new Date().toISOString() };
     setRegistrations(previous => [...previous, registration]);
     setEvents(previous => previous.map(e => e.id === event.id ? { ...e, registered: e.registered + 1 + companions } : e));

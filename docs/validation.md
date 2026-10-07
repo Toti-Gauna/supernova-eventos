@@ -3,7 +3,7 @@
 Validado el 7 de octubre de 2026 con Node 22.23.2 y Chrome local en Windows.
 
 - `npm run build`: TypeScript y build de Vite correctos.
-- **23 casos E2E aprobados**, mediante la suite integrada y ejecuciones dirigidas de primer frame. Los casos de intro usan reloj real para permitir el avance de GSAP; los demás fijan la fecha de los eventos al 7 de octubre de 2026.
+- **32 casos E2E aprobados**: ejecución integrada de 31 casos y ejecución dirigida del caso adicional de transición de fases. Los casos de intro usan reloj real para permitir el avance de GSAP; los demás fijan la fecha de los eventos al 7 de octubre de 2026.
 - 21 capturas de home, catálogo, Favoritos, inscripción fullscreen y toast, pase compacto, administración y filtros, creador con controles custom, perfil, notificaciones e intro. Incluye 1440 × 1100, 1440 × 1000, 1920 × 818, 390 × 844 y 390 × 667; sin errores JavaScript.
 - Home verificada a 320, 390, 768, 1024, 1440, 1920 y 2560 px: sin desbordamiento horizontal.
 - Intro y administración en chunks separados; lector de Excel cargado al importar un XLSX. Fuentes y fotografías servidas localmente.
@@ -15,7 +15,7 @@ Validado el 7 de octubre de 2026 con Node 22.23.2 y Chrome local en Windows.
 ## Flujos comprobados
 
 1. Intro en cada refresh: cierre automático, ausencia de «Saltar intro», Escape, replay, regreso del foco y liberación del contenido. Revisión adicional de movimiento: 3456 ms observados; el planeta se mueve y se pausa fuera de pantalla y durante la intro.
-2. Movimiento reducido, catálogo de seis experiencias y header flotante redondeado al bajar.
+2. Movimiento reducido, catálogo de seis experiencias distribuido en dos páginas de tres y header flotante redondeado al bajar.
 3. Búsqueda vacía, categorías, favoritos y persistencia de preferencias.
 4. Inscripción, términos, acompañante, pase, foco, calendario ICS con horarios UTC correctos, persistencia, vista previa administrativa de solo lectura y cancelación que libera ambas plazas.
 5. Validación del creador, selección desde nómina ficticia, email personalizado, publicación privada y cambio a audiencia de compañía.
@@ -37,6 +37,17 @@ Validado el 7 de octubre de 2026 con Node 22.23.2 y Chrome local en Windows.
 21. Modo claro en notificaciones, perfil, favoritos, tostadas, dashboard, modal de tags y controles del estudio.
 22. Inscripción y pase en modo claro, con validación, calendario y acciones completos sin desbordamiento en escritorio y móvil.
 23. Geometría del header y navegación entre 320 y 2560 px en ambos temas; thumb, track y botones custom del scrollbar.
+24. Seis eventos iniciales distribuidos en dos páginas de tres, con límites Anterior/Siguiente y foco en los resultados al navegar.
+25. Prioridad Activos → Próximos → Finalizados, con tres tarjetas en total por página y exclusión de borradores y privados sin acceso.
+26. Orden por nombre o cupos dentro de cada fase, conservando la jerarquía y reiniciando la página.
+27. Búsqueda, categorías, modalidad, fecha y favoritos aplicados antes de paginar; cambiar un filtro vuelve a la primera página.
+28. Quitar los favoritos de la última página ajusta el paginado al nuevo total, sin dejar una página vacía.
+29. Detalle de finalizados con inscripción cerrada, incluido el instante exacto de fin y el estado `ended` con una fecha futura.
+30. Transición Próximo → Activo → Finalizado al avanzar el reloj del navegador, sin refresh ni cambio del estado persistido.
+31. Paginado por teclado, foco y scroll por debajo del header, sin overflow a 320 y 390 px en modo oscuro.
+32. El mismo recorrido de paginado por teclado y tamaños de pantalla en modo claro.
+
+El build de producción también se revisó bajo `/supernova-eventos/`, en ambos temas a 320, 390 y 1440 px: tres tarjetas por página, fotografías cargadas, jerarquía temporal y consulta de finalizados correctas, sin errores HTTP ni JavaScript.
 
 ## Capturas
 

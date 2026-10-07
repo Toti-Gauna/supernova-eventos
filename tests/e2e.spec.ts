@@ -59,10 +59,11 @@ test('la intro aparece en cada refresh, termina sola y libera navegación y foco
   await expect(page.getByRole('button', { name: 'Volver a vivir el inicio' })).toBeFocused();
 });
 
-test('reduced motion omite la secuencia y la home muestra seis experiencias', async ({ page }, testInfo) => {
+test('reduced motion omite la secuencia y la home muestra tres experiencias por página', async ({ page }, testInfo) => {
   await openDemo(page);
   await expect(page.getByRole('dialog', { name: 'Bienvenido a Supernova Eventos' })).toHaveCount(0);
-  await expect(page.locator('.event-grid article')).toHaveCount(6);
+  await expect(page.locator('.event-grid article')).toHaveCount(3);
+  await expect(page.getByRole('button', { name: 'Página siguiente de eventos', exact: true })).toBeEnabled();
   await expect(page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true })).toBeVisible();
   await capture(page, testInfo, 'desktop-home.png', true);
   await page.getByRole('button', { name: 'Encontrá tu experiencia' }).click();
