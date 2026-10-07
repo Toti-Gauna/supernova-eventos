@@ -2,6 +2,7 @@
 import { ArrowUpRight, Check, Heart, MapPin, Monitor } from 'lucide-react';
 import type { EventItem } from '../types';
 import { formatEventDate } from '../lib/calendar';
+import { publicAssetUrl } from '../lib/assets';
 
 interface Props { event: EventItem; joined: boolean; favorite: boolean; onFavorite: () => void; onOpen: () => void }
 
@@ -12,7 +13,7 @@ export default function EventCard({ event, joined, favorite, onFavorite, onOpen 
 
   return <motion.article className={`event-card category-${categoryClass} ${joined ? 'is-joined' : ''}`} whileHover={reducedMotion ? undefined : { y: -4 }} transition={{ type: 'spring', stiffness: 360, damping: 28 }}>
     <button className="event-cover" onClick={onOpen} aria-label={`Ver ${event.title}`}>
-      <img src={event.image} alt="" loading="lazy" onError={e => { e.currentTarget.style.opacity = '0'; }} />
+      <img src={publicAssetUrl(event.image)} alt="" loading="lazy" onError={e => { e.currentTarget.style.opacity = '0'; }} />
       <span className="cover-shade" />
       <span className="category-badge">{event.category}</span>
       <span className="date-badge"><strong>{formatEventDate(event.date, { day: '2-digit' })}</strong><span>{formatEventDate(event.date, { month: 'short' }).replace('.', '').toUpperCase()}</span></span>

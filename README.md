@@ -20,7 +20,17 @@ npm run build
 npm run preview
 ```
 
-El build ejecuta TypeScript y genera `dist/`. La preview se sirve en [http://127.0.0.1:4173](http://127.0.0.1:4173). No se necesitan credenciales ni variables de entorno para la demo.
+El build ejecuta TypeScript y genera `dist/`. La preview se sirve en [http://127.0.0.1:4173/supernova-eventos/](http://127.0.0.1:4173/supernova-eventos/). No se necesitan credenciales ni variables de entorno para la demo.
+
+## Publicar en GitHub Pages
+
+El workflow [Deploy to GitHub Pages](.github/workflows/deploy-pages.yml) instala las dependencias con `npm ci`, ejecuta el build con Node.js 22 y publica únicamente `dist/`. Se ejecuta con cada push a `main` o manualmente desde la pestaña [Actions](https://github.com/Toti-Gauna/supernova-eventos/actions/workflows/deploy-pages.yml).
+
+En **Settings → Pages → Build and deployment**, la fuente debe ser **GitHub Actions**. No hace falta una rama `gh-pages`, un token personal ni secretos adicionales: el workflow usa `GITHUB_TOKEN` con los permisos de Pages y el entorno `github-pages`.
+
+La dirección de la demo es [https://toti-gauna.github.io/supernova-eventos/](https://toti-gauna.github.io/supernova-eventos/). Vite usa `/supernova-eventos/` para el build y la preview; el servidor de desarrollo conserva `/`. Para revisar el build publicado localmente, abrir [http://127.0.0.1:4173/supernova-eventos/](http://127.0.0.1:4173/supernova-eventos/) después de `npm run build` y `npm run preview`.
+
+Las portadas locales se resuelven con la base de Vite al mostrarse, incluidos eventos y borradores ya guardados. La navegación interna no cambia la URL y no necesita un fallback `404.html`. GitHub Pages aloja este prototipo estático; las inscripciones y los borradores siguen siendo locales y los emails no se envían.
 
 ## Recorrido
 
