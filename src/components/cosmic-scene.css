@@ -1,0 +1,49 @@
+.cosmic-scene.cosmic-installation{position:relative;isolation:isolate;width:100%;height:420px;min-width:0;max-width:590px;margin:0;align-self:center;overflow:visible;pointer-events:auto}
+.cosmic-scene.cosmic-installation::after{display:none}
+.cosmos-label{position:absolute;z-index:2;inset:6px 16px auto 22px;display:flex;align-items:center;gap:9px;font-size:8px;font-weight:500;letter-spacing:1.6px;color:#afa0bf}
+.cosmos-status{width:4px;height:4px;border-radius:50%;background:#d5bcff;box-shadow:0 0 12px #bc92ff65}
+.cosmos-edition{margin-left:auto;color:#877991;font-size:7px;letter-spacing:1.2px}
+.cosmos-art{position:absolute;inset:8px -12px 18px;pointer-events:none}
+.cosmos-map{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.cosmos-atmosphere{position:absolute;inset:0;background:radial-gradient(ellipse at 52% 46%,#9364c221 0,transparent 63%);animation:cosmos-atmosphere 11s ease-in-out infinite}
+.cosmos-corona{animation:cosmos-breathe 9s ease-in-out infinite;transform-origin:305px 222px}
+.cosmos-orbiter{transform-origin:0 0;transform-box:view-box}
+.cosmos-orbiter-primary{animation:cosmos-orbit 26s linear infinite;animation-delay:-3.5s}
+.cosmos-orbiter-secondary{animation:cosmos-orbit-secondary 38s linear infinite}
+.cosmos-surface{transform-origin:305px 222px;animation:cosmos-surface 20s ease-in-out infinite}
+.cosmos-light-drift{transform-origin:305px 222px;animation:cosmos-light 17s ease-in-out infinite}
+.cosmos-rim-light{transform-origin:305px 222px;animation:cosmos-rim 13s ease-in-out infinite}
+.cosmos-core{transform-origin:0 0;transform-box:view-box;animation:cosmos-star 6.5s ease-in-out infinite}
+.cosmos-star-glint{animation:cosmos-glint 8s ease-in-out infinite}
+.cosmos-note{position:absolute;right:1%;bottom:21%;font-size:9px;line-height:1.7;letter-spacing:.1px;color:#a28cb3;text-align:right}
+.cosmos-note strong{font-weight:400;color:#b6a3c8}
+.cosmos-axis{position:absolute;left:2%;bottom:19%;writing-mode:vertical-rl;transform:rotate(180deg);font-size:7px;letter-spacing:2px;color:#867594}
+.cosmos-ticket{position:absolute;z-index:2;bottom:5px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:13px;width:min(320px,85%);min-height:76px;padding:13px 16px;text-align:left;border:1px solid #c7a7ec32;border-radius:15px;background:linear-gradient(120deg,#292033f5,#17131ff7 72%);color:#f5f0e9;box-shadow:0 18px 48px #08060e55,0 1px 0 #dfc5ff10 inset;cursor:pointer;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.cosmos-ticket::before{position:absolute;content:'';height:1px;inset:-1px 15% auto 15%;background:linear-gradient(90deg,transparent,#d8baff77,transparent)}
+.cosmos-ticket:hover{transform:translate(-50%,-3px)}
+.cosmos-ticket:focus-visible{outline:2px solid #d2b5ff;outline-offset:5px}
+.cosmos-ticket-art{display:grid;place-items:center;flex-shrink:0;width:39px;height:42px;border:1px solid #c6a3f127;border-radius:10px;background:linear-gradient(135deg,#a477d925,#35263f55);color:#d7bcf3}
+.cosmos-ticket-art svg{width:21px;height:21px}
+.cosmos-ticket-copy{display:flex;flex-direction:column;gap:5px;min-width:0}
+.cosmos-ticket-kicker{font-size:7px;letter-spacing:1.35px;color:#b4a1c4}
+.cosmos-ticket-copy strong{font-family:Manrope,sans-serif;font-weight:500;font-size:14px;letter-spacing:-.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cosmos-ticket-meta{display:flex;align-items:center;gap:7px;font-size:9px;color:#c1adcf}
+.cosmos-ticket-meta i{display:block;width:2px;height:2px;border-radius:50%;background:#a991bc}
+.cosmos-ticket-arrow{display:grid;place-items:center;flex-shrink:0;margin-left:auto;color:#d9c2ec;transition:transform .25s ease}
+.cosmos-ticket:hover .cosmos-ticket-arrow{transform:translate(2px,-2px)}
+.cosmic-installation[data-active='false'] [data-orbit-motion]{animation-play-state:paused}
+#root[inert] .cosmic-installation [data-orbit-motion]{animation-play-state:paused}
+@keyframes cosmos-breathe{0%,100%{opacity:.65;transform:scale(.98)}50%{opacity:1;transform:scale(1.025)}}
+@keyframes cosmos-orbit{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes cosmos-orbit-secondary{from{transform:rotate(-135deg)}to{transform:rotate(-495deg)}}
+@keyframes cosmos-surface{0%,100%{transform:translate(-4px,-3px) rotate(-8deg);opacity:.6}50%{transform:translate(7px,7px) rotate(8deg);opacity:1}}
+@keyframes cosmos-light{0%,100%{transform:rotate(-5deg) translate(-5px,0);opacity:.6}50%{transform:rotate(13deg) translate(5px,8px);opacity:1}}
+@keyframes cosmos-rim{0%,100%{transform:rotate(-2deg);opacity:.65}50%{transform:rotate(9deg);opacity:1}}
+@keyframes cosmos-star{0%,100%{transform:scale(.91) rotate(-4deg);opacity:.8}50%{transform:scale(1.09) rotate(4deg);opacity:1}}
+@keyframes cosmos-glint{0%,100%{opacity:.2}45%{opacity:.65}60%{opacity:.45}}
+@keyframes cosmos-atmosphere{0%,100%{transform:scale(.96);opacity:.7}50%{transform:scale(1.04);opacity:1}}
+@media(max-width:1150px){.cosmic-scene.cosmic-installation{height:390px}.cosmos-ticket{width:290px;gap:11px;padding:12px 14px}.cosmos-ticket-copy strong{font-size:13px}.cosmos-label{inset-inline:10px}.cosmos-edition{font-size:6px}}
+@media(max-width:900px) and (min-width:701px){.cosmic-scene.cosmic-installation{height:345px}.cosmos-edition{display:none}.cosmos-ticket{width:260px;max-width:94%;padding:12px;gap:10px;min-height:72px}.cosmos-ticket-art{width:34px;height:39px}.cosmos-ticket-copy strong{font-size:12px}.cosmos-note{font-size:8px;bottom:20%}}
+@media(max-width:700px){.cosmic-scene.cosmic-installation{height:340px;max-width:410px;margin:18px auto 8px}.cosmos-art{inset:5px -12px 28px}.cosmos-label{inset:0 10px auto;font-size:6px;letter-spacing:1.2px}.cosmos-edition{font-size:6px}.cosmos-note{font-size:7px;bottom:15%;right:5%}.cosmos-axis{font-size:6px;left:0}.cosmos-ticket{bottom:0;min-height:74px;width:min(292px,90%)}.cosmos-ticket-copy strong{font-size:13px}}
+@media(max-width:360px){.cosmic-scene.cosmic-installation{height:315px}.cosmos-ticket{padding:11px;gap:9px}.cosmos-ticket-copy strong{font-size:12px}.cosmos-ticket-kicker{font-size:6px}.cosmos-ticket-art{width:34px;height:39px}}
+@media(prefers-reduced-motion:reduce){.cosmic-installation [data-orbit-motion]{animation:none}.cosmic-installation .cosmos-ticket,.cosmic-installation .cosmos-ticket-arrow{transition:none}.cosmic-installation .cosmos-ticket:hover{transform:translateX(-50%)}}

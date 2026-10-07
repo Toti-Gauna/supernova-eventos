@@ -1,0 +1,92 @@
+/* A pearl and lavender version of the same immersive registration and moving pass. */
+html[data-theme='light'] .registration-modal { background:radial-gradient(ellipse at 100% 0,#ac89d312,transparent 55%),#f8f7fc; color:#282135; }
+html[data-theme='light'] .modal-close { color:#795590; background:#fffffff0; border-color:#7650b52e; box-shadow:0 3px 12px #4328610a; }
+html[data-theme='light'] .modal-close:hover { background:#f2ebfb; border-color:#7650b560; }
+/* Copy over photographic artwork retains its own contrast. */
+html[data-theme='light'] .registration-art { color:#f7effe; background:#342044; }
+html[data-theme='light'] .registration-category { color:#f6edfd; }
+html[data-theme='light'] .registration-art .eyebrow { color:#ded0ef; }
+html[data-theme='light'] .registration-art h2 { color:#f7effe; }
+html[data-theme='light'] .registration-art p { color:#e0d3eb; }
+html[data-theme='light'] .registration-info small { color:#7c658d; }
+html[data-theme='light'] .registration-info strong { color:#3f304c; }
+html[data-theme='light'] .registration-info>div>span>span,
+html[data-theme='light'] .about-event p { color:#75657f; }
+html[data-theme='light'] .registration-form-panel { border-color:#7650b529; background:radial-gradient(ellipse at 100% 0,#b78fd409,transparent 65%),#ffffff; box-shadow:0 12px 38px #57337509,inset 0 1px #ffffff; }
+html[data-theme='light'] .reservation-number { color:#816793; }
+html[data-theme='light'] .registration-form-heading>span:first-child>svg { color:#7650b5; }
+html[data-theme='light'] .registration-form-heading strong { color:#34273e; }
+html[data-theme='light'] .registration-form-heading>span:last-child { color:#786384; }
+html[data-theme='light'] .registration-form-heading .low-capacity { color:#8e652c!important; }
+html[data-theme='light'] .identity-fields label { color:#665171; }
+html[data-theme='light'] .identity-fields input { border-color:#7650b530; background:#faf8fd; color:#34253f; }
+html[data-theme='light'] .identity-fields input:focus { border-color:#7650b58c; background:#ffffff; }
+html[data-theme='light'] .companion-field { color:#54435f; }
+html[data-theme='light'] .companion-field small { color:#80708b; }
+html[data-theme='light'] .companion-field>div button { background:#7650b508; border-color:#7650b52a; color:#795398; }
+html[data-theme='light'] .companion-field>div button:hover:not(:disabled) { background:#7650b512; }
+html[data-theme='light'] .terms-field,
+html[data-theme='light'] .reservation-total { border-color:#7650b51c; }
+html[data-theme='light'] .terms-field label { color:#685574; }
+html[data-theme='light'] .terms-field summary { color:#795198; }
+html[data-theme='light'] .terms-field details p { color:#7b6788; }
+html[data-theme='light'] .terms-field input[type='checkbox'] { background:#ffffff; border-color:#9475b7; box-shadow:none; }
+html[data-theme='light'] .terms-field input[type='checkbox']::after { border-color:#ffffff; }
+html[data-theme='light'] .terms-field input[type='checkbox']:checked { background:#7650b5; border-color:#7650b5; }
+html[data-theme='light'] .terms-field input[type='checkbox']:focus-visible { outline-color:#7650b599; }
+html[data-theme='light'] .reservation-total { color:#7a6586; }
+html[data-theme='light'] .reservation-total strong { color:#51405f; }
+html[data-theme='light'] .reservation-total small,
+html[data-theme='light'] .registration-secure { color:#80708b; }
+html[data-theme='light'] .form-notice { color:#705c80; }
+html[data-theme='light'] .registration-success { background:radial-gradient(ellipse at 30% 30%,#b190d513,transparent 65%),#f8f7fc; }
+html[data-theme='light'] .success-emblem { border-color:#7650b542; background:radial-gradient(circle at 30% 0,#e4d5f63b,#ffffff60); color:#7650b5; }
+html[data-theme='light'] .success-emblem::before { border-color:#7650b514; }
+html[data-theme='light'] .pass-introduction .eyebrow { color:#846795; }
+html[data-theme='light'] .pass-introduction p { color:#7b6a88; }
+html[data-theme='light'] .success-stars i { background:#ae86d4; box-shadow:0 0 8px #b98eea5c; }
+html[data-theme='light'] .personal-ticket {
+  border-color:#b091ca70;
+  background:radial-gradient(ellipse at 90% 0,#dcc4ee55,transparent 65%),linear-gradient(135deg,#ffffff,#f0e7f9 65%,#f6effb);
+  box-shadow:0 18px 38px #73519713,inset 0 1px #ffffff,inset 0 -1px #aa84c41c;
+}
+html[data-theme='light'] .personal-ticket::before { border-color:#ffffffa6; }
+html[data-theme='light'] .ticket-interactive-light { background:linear-gradient(110deg,transparent 30%,#b797d109 41%,#ffffff99 48%,#a47cc60b 55%,transparent 66%); }
+html[data-theme='light'] .ticket-foil:after { background:linear-gradient(100deg,transparent,#ffffff80,transparent); }
+html[data-theme='light'] .ticket-watermark { color:#7650b509; }
+html[data-theme='light'] .ticket-confirmed { border-color:#3c7e6138; color:#386e52; background:#ffffff40; }
+html[data-theme='light'] .ticket-category { color:#72557f; }
+html[data-theme='light'] .ticket-category i { background:#9a7fae; }
+html[data-theme='light'] .ticket-main h3,
+html[data-theme='light'] .ticket-bottom strong { color:#3c2a4b; }
+html[data-theme='light'] .ticket-datetime small,
+html[data-theme='light'] .ticket-bottom>div:first-child>span { color:#71527f; }
+html[data-theme='light'] .ticket-datetime strong { color:#574260; }
+html[data-theme='light'] .ticket-location,
+html[data-theme='light'] .ticket-bottom small { color:#745681; }
+html[data-theme='light'] .ticket-tear>span { border-color:#9f79bf4d; }
+html[data-theme='light'] .ticket-tear>i { background:#f8f7fc; border-color:#b091ca70; }
+html[data-theme='light'] .ticket-code { color:#785094; }
+html[data-theme='light'] .demo-pass-note { color:#796687; }
+html[data-theme='light'] .cancel-registration { color:#79518f; }
+html[data-theme='light'] .cancel-confirm { border-color:#7650b535; background:#fffffff5; box-shadow:0 15px 50px #5733791f; }
+html[data-theme='light'] .cancel-confirm>span { color:#4b355b; }
+html[data-theme='light'] .cancel-confirm button { border-color:#7650b533; color:#79528e; }
+html[data-theme='light'] .cancel-confirm button:first-of-type { background:#7650b5; border-color:#7650b5; color:#ffffff; }
+html[data-theme='light'] .event-calendar { border-color:#7650b522; background:#ffffffd9; box-shadow:0 8px 30px #69428505; }
+html[data-theme='light'] .calendar-intro .eyebrow { color:#7b608d; }
+html[data-theme='light'] .calendar-month-bar h4 { color:#51405c; }
+html[data-theme='light'] .calendar-month-bar button { color:#80648f; }
+html[data-theme='light'] .calendar-month-bar button:hover:not(:disabled) { background:#7650b50c; }
+html[data-theme='light'] .calendar-reset { color:#7650b5!important; }
+html[data-theme='light'] .calendar-table th { color:#7f6d8d; }
+html[data-theme='light'] .calendar-table time { color:#77627f; }
+html[data-theme='light'] .calendar-table .calendar-event-day time { background:#7650b5; color:#ffffff; box-shadow:0 4px 12px #7650b51c; }
+html[data-theme='light'] .calendar-event-day i { background:#f3e8ff; }
+html[data-theme='light'] .calendar-today:not(.calendar-event-day) time { border-color:#7650b545; color:#79558f; }
+html[data-theme='light'] .calendar-legend { color:#806c8c; }
+html[data-theme='light'] .calendar-legend i { background:#7650b5; }
+html[data-theme='light'] .calendar-event-summary { border-color:#7650b51c; }
+html[data-theme='light'] .calendar-event-icon { border-color:#7650b526; background:#7650b507; color:#7650b5; }
+html[data-theme='light'] .calendar-event-summary strong { color:#65516f; }
+html[data-theme='light'] .calendar-event-summary>div>span { color:#806a8f; }

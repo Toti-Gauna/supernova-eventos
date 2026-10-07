@@ -1,0 +1,187 @@
+<!-- Critical first frame: copy before #root, remove #intro-bootstrap and #intro-bootstrap-style after the first React commit. -->
+<style id="intro-bootstrap-style">
+.cinematic-intro {
+  --intro-bg: #0b0a12;
+  --intro-fg: #f5f0e9;
+  --intro-muted: #b9abca;
+  --intro-caption: #9686a7;
+  --intro-star: #ded7ef;
+  --intro-accent: #d5b7f9;
+  --intro-orbit: #d3b5fd;
+  --intro-orbit-low: #b797e8;
+  --intro-radiance: #dab8ff;
+  --intro-radiance-alt: #bb83f7;
+  --intro-mint: #99c7c3;
+  --intro-point-violet: #ddc1ff;
+  --intro-point-warm: #efe2d3;
+  --intro-point-lilac: #b5a0dc;
+  --intro-nebula-core: #8053b517;
+  --intro-nebula-edge: #44216909;
+  --intro-start-delay: 0s;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  color: var(--intro-fg);
+  background: var(--intro-bg);
+  font-family: Manrope, sans-serif;
+  isolation: isolate;
+  outline: none;
+}
+:root[data-theme='light'] .cinematic-intro {
+  --intro-bg: #f7f5fb;
+  --intro-fg: #20182e;
+  --intro-muted: #6b5b81;
+  --intro-caption: #77618e;
+  --intro-star: #806299;
+  --intro-accent: #8d59c8;
+  --intro-orbit: #9365bf;
+  --intro-orbit-low: #a078c8;
+  --intro-radiance: #ad79e1;
+  --intro-radiance-alt: #ba96df;
+  --intro-mint: #518783;
+  --intro-point-violet: #9260c3;
+  --intro-point-warm: #b79778;
+  --intro-point-lilac: #9379b0;
+  --intro-nebula-core: #bc91e529;
+  --intro-nebula-edge: #d5c3ef16;
+}
+.cinematic-intro::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='.5' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.intro-nebula {
+  position: absolute;
+  width: min(900px, 130vw);
+  aspect-ratio: 1;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, var(--intro-nebula-core), var(--intro-nebula-edge) 42%, transparent 70%);
+}
+.intro-stars { position: absolute; inset: 0; pointer-events: none; }
+.intro-stars i { position: absolute; border-radius: 50%; background: var(--intro-star); }
+.intro-stars i:nth-child(9n) { background: var(--intro-accent); box-shadow: 0 0 10px #b697e52b; }
+.intro-composition {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(520px, calc(100vw - 48px));
+  transform: translateY(-8px);
+}
+.intro-orbital-system { position: relative; width: 100%; height: 330px; }
+.intro-orbital-map { display: block; width: 100%; height: 100%; overflow: visible; }
+.intro-orbital-label {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  color: var(--intro-caption);
+  font-size: 8px;
+  letter-spacing: 2.3px;
+  white-space: nowrap;
+}
+.intro-identity { margin-top: 27px; text-align: center; }
+.intro-wordmark-mask { overflow: hidden; padding-bottom: 13px; margin-bottom: -13px; }
+.intro-wordmark { font-size: 62px; font-weight: 300; line-height: 1.15; letter-spacing: -.065em; white-space: nowrap; }
+.intro-tagline { margin-top: 8px; color: var(--intro-muted); font-size: 15px; font-weight: 400; letter-spacing: -.025em; }
+.intro-caption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 45px;
+  color: var(--intro-caption);
+  font-size: 9px;
+  letter-spacing: 2.2px;
+  white-space: nowrap;
+}
+.intro-caption > span { width: 28px; height: 1px; background: linear-gradient(90deg, transparent, var(--intro-caption)); opacity: .45; }
+.intro-caption > span:last-child { transform: rotate(180deg); }
+.intro-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+/* CSS first frames continue while the lazy GSAP chunk arrives. All cues use
+   the same 3.4-second clock; pending never pretends to be measurable progress. */
+.intro-pending [data-intro='halo'] { animation: intro-pending-halo 3.4s cubic-bezier(.22, 1, .36, 1) var(--intro-start-delay) both; }
+.intro-pending [data-intro='orbits'] { transform-origin: 240px 190px; animation: intro-pending-orbits 3.4s cubic-bezier(.22, 1, .36, 1) var(--intro-start-delay) both; }
+.intro-pending [data-intro='symbol'] { transform-box: fill-box; transform-origin: center; animation: intro-pending-symbol 3.4s cubic-bezier(.22, 1, .36, 1) var(--intro-start-delay) both; }
+.intro-pending [data-intro='radiance'] { transform-box: fill-box; transform-origin: center; animation: intro-pending-radiance 3.4s ease-in-out var(--intro-start-delay) both; }
+.intro-pending [data-intro='point'] { animation: intro-pending-point 3.4s ease-in-out var(--intro-start-delay) both; }
+.intro-pending [data-intro-point='0'] { --intro-point-x: 161px; --intro-point-y: 0px; }
+.intro-pending [data-intro-point='1'] { --intro-point-x: -161px; --intro-point-y: 0px; }
+.intro-pending [data-intro-point='2'] { --intro-point-x: 0px; --intro-point-y: 144px; }
+.intro-pending [data-intro-point='3'] { --intro-point-x: 0px; --intro-point-y: -144px; }
+.intro-pending [data-intro='wordmark'] { animation: intro-pending-wordmark 3.4s cubic-bezier(.22, 1, .36, 1) var(--intro-start-delay) both; }
+.intro-pending [data-intro='tagline'] { animation: intro-pending-tagline 3.4s cubic-bezier(.22, 1, .36, 1) var(--intro-start-delay) both; }
+.intro-pending [data-intro='caption'] { animation: intro-pending-caption 3.4s ease-out var(--intro-start-delay) both; }
+@keyframes intro-pending-halo { 0% { opacity: .2; transform: scale(.85); } 39%, 100% { opacity: 1; transform: scale(1); } }
+@keyframes intro-pending-orbits { 0% { opacity: 0; transform: scale(.84) rotate(-17deg); } 40%, 48% { opacity: 1; transform: scale(1) rotate(0deg); } 80%, 100% { opacity: 1; transform: scale(1) rotate(9deg); } }
+@keyframes intro-pending-symbol { 0%, 30% { opacity: 0; transform: scale(.8); } 50%, 100% { opacity: 1; transform: scale(1); } }
+@keyframes intro-pending-radiance { 0%, 26% { opacity: 0; transform: scale(.55); } 47% { opacity: .75; transform: scale(1); } 71%, 100% { opacity: .27; transform: scale(1.25); } }
+@keyframes intro-pending-point { 0%, 6% { opacity: 0; transform: translate(0, 0); } 10% { opacity: 1; transform: translate(0, 0); } 41% { opacity: 1; transform: translate(var(--intro-point-x, 0px), var(--intro-point-y, 0px)); } 46%, 100% { opacity: 0; transform: translate(var(--intro-point-x, 0px), var(--intro-point-y, 0px)); } }
+@keyframes intro-pending-wordmark { 0%, 33% { opacity: 0; transform: translateY(110%); } 55%, 100% { opacity: 1; transform: translateY(0); } }
+@keyframes intro-pending-tagline { 0%, 43% { opacity: 0; transform: translateY(7px); } 64%, 100% { opacity: 1; transform: translateY(0); } }
+@keyframes intro-pending-caption { 0%, 47% { opacity: 0; } 68%, 100% { opacity: 1; } }
+
+@media(max-width:600px) {
+  .intro-composition { transform: translateY(-5px); }
+  .intro-orbital-system { height: 270px; }
+  .intro-orbital-label { font-size: 7px; letter-spacing: 1.6px; bottom: 4px; }
+  .intro-identity { margin-top: 20px; }
+  .intro-wordmark { font-size: clamp(40px, 11vw, 56px); }
+  .intro-tagline { font-size: 14px; }
+  .intro-caption { font-size: 8px; letter-spacing: 1.5px; gap: 10px; margin-top: 33px; }
+  .intro-caption > span { width: 19px; }
+}
+@media(max-width:380px) { .intro-orbital-system { height: 235px; }.intro-caption { letter-spacing: 1.1px; } }
+@media(max-height:650px) and (min-width:601px) {
+  .intro-orbital-system { height: 255px; }
+  .intro-identity { margin-top: 16px; }
+  .intro-wordmark { font-size: 48px; }
+  .intro-caption { margin-top: 27px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .intro-nebula { opacity: .65; }
+  .intro-pending [data-intro] { animation: none; }
+  .intro-pending [data-intro='point'] { opacity: 0; }
+}
+
+</style>
+<div id="intro-bootstrap" class="cinematic-intro intro-pending" role="status" aria-label="Preparando Supernova">
+  <p class="intro-sr-only">Supernova. Conectá sin límites. Preparando la presentación.</p>
+  <div class="intro-nebula" data-intro="halo" aria-hidden="true"></div>
+  <div class="intro-stars" aria-hidden="true"><i style="left:11%;top:7%;width:2px;height:2px;opacity:0.12"></i><i style="left:48%;top:60%;width:1px;height:1px;opacity:0.185"></i><i style="left:85%;top:12%;width:1px;height:1px;opacity:0.25"></i><i style="left:21%;top:65%;width:1px;height:1px;opacity:0.315"></i><i style="left:58%;top:17%;width:1px;height:1px;opacity:0.38"></i><i style="left:95%;top:70%;width:1px;height:1px;opacity:0.12"></i><i style="left:31%;top:22%;width:1px;height:1px;opacity:0.185"></i><i style="left:68%;top:75%;width:1px;height:1px;opacity:0.25"></i><i style="left:4%;top:27%;width:1px;height:1px;opacity:0.315"></i><i style="left:41%;top:80%;width:2px;height:2px;opacity:0.38"></i><i style="left:78%;top:32%;width:1px;height:1px;opacity:0.12"></i><i style="left:14%;top:85%;width:1px;height:1px;opacity:0.185"></i><i style="left:51%;top:37%;width:1px;height:1px;opacity:0.25"></i><i style="left:88%;top:90%;width:1px;height:1px;opacity:0.315"></i><i style="left:24%;top:42%;width:1px;height:1px;opacity:0.38"></i><i style="left:61%;top:95%;width:1px;height:1px;opacity:0.12"></i><i style="left:98%;top:47%;width:1px;height:1px;opacity:0.185"></i><i style="left:34%;top:100%;width:1px;height:1px;opacity:0.25"></i><i style="left:71%;top:52%;width:2px;height:2px;opacity:0.315"></i><i style="left:7%;top:4%;width:1px;height:1px;opacity:0.38"></i><i style="left:44%;top:57%;width:1px;height:1px;opacity:0.12"></i><i style="left:81%;top:9%;width:1px;height:1px;opacity:0.185"></i><i style="left:17%;top:62%;width:1px;height:1px;opacity:0.25"></i><i style="left:54%;top:14%;width:1px;height:1px;opacity:0.315"></i><i style="left:91%;top:67%;width:1px;height:1px;opacity:0.38"></i><i style="left:27%;top:19%;width:1px;height:1px;opacity:0.12"></i><i style="left:64%;top:72%;width:1px;height:1px;opacity:0.185"></i><i style="left:0%;top:24%;width:2px;height:2px;opacity:0.25"></i><i style="left:37%;top:77%;width:1px;height:1px;opacity:0.315"></i><i style="left:74%;top:29%;width:1px;height:1px;opacity:0.38"></i><i style="left:10%;top:82%;width:1px;height:1px;opacity:0.12"></i><i style="left:47%;top:34%;width:1px;height:1px;opacity:0.185"></i><i style="left:84%;top:87%;width:1px;height:1px;opacity:0.25"></i><i style="left:20%;top:39%;width:1px;height:1px;opacity:0.315"></i><i style="left:57%;top:92%;width:1px;height:1px;opacity:0.38"></i><i style="left:94%;top:44%;width:1px;height:1px;opacity:0.12"></i><i style="left:30%;top:97%;width:2px;height:2px;opacity:0.185"></i><i style="left:67%;top:49%;width:1px;height:1px;opacity:0.25"></i><i style="left:3%;top:1%;width:1px;height:1px;opacity:0.315"></i><i style="left:40%;top:54%;width:1px;height:1px;opacity:0.38"></i><i style="left:77%;top:6%;width:1px;height:1px;opacity:0.12"></i><i style="left:13%;top:59%;width:1px;height:1px;opacity:0.185"></i><i style="left:50%;top:11%;width:1px;height:1px;opacity:0.25"></i><i style="left:87%;top:64%;width:1px;height:1px;opacity:0.315"></i><i style="left:23%;top:16%;width:1px;height:1px;opacity:0.38"></i><i style="left:60%;top:69%;width:2px;height:2px;opacity:0.12"></i></div>
+  <div class="intro-composition" data-intro="composition" aria-hidden="true">
+    <div class="intro-orbital-system">
+      <svg class="intro-orbital-map" viewBox="0 0 480 380" fill="none">
+        <defs>
+          <radialGradient id="intro-bootstrap-radiance"><stop stop-color="var(--intro-radiance)" stop-opacity=".28"/><stop offset=".45" stop-color="var(--intro-radiance-alt)" stop-opacity=".08"/><stop offset="1" stop-color="var(--intro-orbit-low)" stop-opacity="0"/></radialGradient>
+          <linearGradient id="intro-bootstrap-orbit" x1="89" y1="291" x2="391" y2="89" gradientUnits="userSpaceOnUse"><stop stop-color="var(--intro-orbit-low)" stop-opacity=".04"/><stop offset=".45" stop-color="var(--intro-orbit)" stop-opacity=".6"/><stop offset="1" stop-color="var(--intro-orbit-low)" stop-opacity=".08"/></linearGradient>
+        </defs>
+        <circle data-intro="radiance" cx="240" cy="190" r="150" fill="url(#intro-bootstrap-radiance)" opacity=".27"/>
+        <g data-intro="orbits" stroke="url(#intro-bootstrap-orbit)" stroke-width=".8">
+          <ellipse cx="240" cy="190" rx="181" ry="94" transform="rotate(-27 240 190)"/>
+          <ellipse cx="240" cy="190" rx="163" ry="80" transform="rotate(27 240 190)"/>
+          <circle cx="240" cy="190" r="126" stroke="var(--intro-orbit)" stroke-opacity=".1" stroke-dasharray="1 12"/>
+          <path d="M67 270H118M361 112H413" stroke="var(--intro-accent)" stroke-opacity=".22"/>
+          <circle cx="87" cy="271" r="2" fill="var(--intro-accent)" stroke="none"/>
+          <circle cx="392" cy="111" r="2" fill="var(--intro-mint)" stroke="none"/>
+        </g>
+        <g data-intro="point" data-intro-point="0"><circle cx="79" cy="190" r="15" fill="var(--intro-point-violet)" opacity=".035"/><circle cx="79" cy="190" r="5" fill="var(--intro-point-violet)" opacity=".1"/><circle cx="79" cy="190" r="2.2" fill="var(--intro-point-violet)"/></g>
+        <g data-intro="point" data-intro-point="1"><circle cx="401" cy="190" r="15" fill="var(--intro-point-warm)" opacity=".035"/><circle cx="401" cy="190" r="5" fill="var(--intro-point-warm)" opacity=".1"/><circle cx="401" cy="190" r="2.2" fill="var(--intro-point-warm)"/></g>
+        <g data-intro="point" data-intro-point="2"><circle cx="240" cy="46" r="15" fill="var(--intro-mint)" opacity=".035"/><circle cx="240" cy="46" r="5" fill="var(--intro-mint)" opacity=".1"/><circle cx="240" cy="46" r="2.2" fill="var(--intro-mint)"/></g>
+        <g data-intro="point" data-intro-point="3"><circle cx="240" cy="334" r="15" fill="var(--intro-point-lilac)" opacity=".035"/><circle cx="240" cy="334" r="5" fill="var(--intro-point-lilac)" opacity=".1"/><circle cx="240" cy="334" r="2.2" fill="var(--intro-point-lilac)"/></g>
+        <g transform="translate(192 142) scale(2.4)"><g data-intro="symbol"><path d="M20 3c0 12-5 17-17 17 12 0 17 5 17 17 0-12 5-17 17-17C25 20 20 15 20 3Z" fill="var(--intro-accent)"/><circle cx="20" cy="20" r="17" stroke="var(--intro-accent)" stroke-width=".6" opacity=".5"/></g></g>
+      </svg>
+      <span class="intro-orbital-label">CONEXIONES EN ÓRBITA</span>
+    </div>
+    <div class="intro-identity"><div class="intro-wordmark-mask"><div class="intro-wordmark" data-intro="wordmark">supernova</div></div><div class="intro-tagline" data-intro="tagline">conectá sin límites</div></div>
+    <div class="intro-caption" data-intro="caption"><span></span>UN UNIVERSO DE EXPERIENCIAS<span></span></div>
+  </div>
+</div>
+<script>document.getElementById('intro-bootstrap').setAttribute('data-intro-started-at', String(performance.now()));</script>

@@ -1,0 +1,8 @@
+.supernova-toast { position:fixed; z-index:1000; bottom:24px; left:50%; translate:-50% 0; display:flex; align-items:center; gap:12px; width:max-content; max-width:min(520px,calc(100vw - 32px)); padding:12px 12px 12px 14px; border:1px solid #cbb2ff30; border-radius:16px; background:#211a2df2; color:#eee3f6; box-shadow:0 14px 50px #0006,inset 0 1px #ffffff08; backdrop-filter:blur(24px); font-family:'DM Sans',sans-serif; }
+.supernova-toast .toast-symbol { display:grid; place-items:center; flex-shrink:0; width:30px; height:30px; border-radius:9px; background:#cbb2ff10; color:#d2b8f3; }
+.supernova-toast p { margin:0; font-size:12px; line-height:1.6; }
+.supernova-toast button { display:grid; place-items:center; width:32px; height:36px; flex-shrink:0; padding:0; border:0; border-radius:9px; background:none; color:#bca9ce; }
+.supernova-toast button:hover { background:#ffffff08; color:#fff; }
+.supernova-toast-error { border-color:#f1b9bc35; }.supernova-toast-error .toast-symbol { color:#e8b5bc; background:#d1818912; }
+.supernova-toast-success .toast-symbol { color:#b7d6c2; background:#b7d6c212; }
+@media(max-width:700px) { .app-shell>.supernova-toast { bottom:calc(86px + env(safe-area-inset-bottom,0px)); }.supernova-toast { bottom:calc(15px + env(safe-area-inset-bottom,0px)); border-radius:13px; gap:9px; }.supernova-toast p { font-size:12px; } }
