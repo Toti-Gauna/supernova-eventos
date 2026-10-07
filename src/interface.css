@@ -48,7 +48,22 @@
   .site-header .main-nav>button,.site-header.header-floating .main-nav>button { min-height:52px; padding:5px 2px; font-size:10px; gap:5px; flex-direction:column; border-radius:18px; }
   .site-header .main-nav>button.mobile-admin-tab { display:flex; }.site-header .main-nav svg { width:18px; height:18px; }.site-header .nav-active-surface { border-radius:18px; }.site-header .nav-count { display:none; }
   .site-header .header-popover,.site-header.header-floating .header-popover { top:70px; }
-  .hero { padding-top:24px; }.event-section { scroll-margin-top:90px; }
+  .hero { padding-top:18px; }
+  .hero h1 { font-size:clamp(32px,8.7vw,38px); margin:14px 0 12px; }
+  .hero-eyebrow { padding:7px 10px; }
+  .hero-copy>p { line-height:1.65; }
+  .hero-actions { margin-top:18px; }
+  .hero-actions .button { min-height:44px; padding:12px 16px; }
+  .hero-social { display:none; }
+  .hero .cosmic-scene.cosmic-installation { height:74px; max-width:none; margin:16px 0 0; }
+  .hero .cosmos-art { display:none; }
+  .hero .cosmos-ticket { width:100%; min-height:74px; padding:12px 14px; }
+  .experience-divider { height:28px; }
+  .event-section { scroll-margin-top:90px; padding-top:12px; }
+  #experiencias .section-heading { gap:8px; margin-bottom:16px; }
+  #experiencias .section-heading h2 { font-size:25px; line-height:1.25; max-width:none; margin-top:6px; }
+  #experiencias .category-row { margin-top:12px; margin-bottom:10px; }
+  #experiencias .result-info { margin-bottom:12px; }
   .profile-page { padding-top:28px; }.profile-page-heading h1 { font-size:30px; }.profile-page-grid { grid-template-columns:1fr; gap:16px; margin-top:24px; }.profile-details-card,.profile-preferences-card { padding:22px; }.profile-person h2 { font-size:21px; }
   .compact-footer .footer-main { flex-wrap:nowrap; gap:12px; }.compact-footer .footer-main>button { flex-basis:auto; margin-left:auto; font-size:10px; }.compact-footer .footer-bottom { gap:7px; font-size:9px; }
 }
