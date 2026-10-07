@@ -151,6 +151,13 @@ test('wizard valida, publica audiencia privada con email y permite abrirla a la 
   await page.getByLabel('Fecha y hora de fin', { exact: true }).fill('2026-11-25T20:00');
   await page.getByLabel('Acerca de la experiencia').fill('Un encuentro sintético para verificar el flujo completo de publicación de una experiencia.');
   await page.getByRole('button', { name: 'Continuar', exact: true }).click();
+  await expect(page.getByRole('heading', { name: '¿A quiénes vamos a invitar?' })).toBeFocused();
+  await page.locator('.studio-stepper button').first().focus();
+  await page.keyboard.press('Enter');
+  await expect(page.getByRole('heading', { name: 'Todo empieza con una idea.' })).toBeFocused();
+  await page.locator('.studio-stepper button').nth(1).focus();
+  await page.keyboard.press('Enter');
+  await expect(page.getByRole('heading', { name: '¿A quiénes vamos a invitar?' })).toBeFocused();
   await page.getByRole('radio', { name: /Tabla de nómina/ }).click();
   await page.getByRole('button', { name: 'Continuar', exact: true }).click();
   await expect(page.getByText('Seleccioná o importá al menos una persona para continuar.', { exact: true })).toBeVisible();
