@@ -16,11 +16,11 @@ export function downloadFile(content: string, fileName: string, mime: string) {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 const icsEscape = (value: string) => value.replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/,/g, '\\,').replace(/;/g, '\\;').replace(/\r/g, '');
-export function downloadCalendar(event: EventItem) {
+export function downloadCalendar(event: EventItem, sessionId?: string) {
   const stamp = (date: string) => new Date(date).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
   const content = [
     'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Supernova//Eventos//ES', 'CALSCALE:GREGORIAN',
-    'BEGIN:VEVENT', `UID:${event.id}@supernova.demo`, `DTSTAMP:${stamp(new Date().toISOString())}`,
+    'BEGIN:VEVENT', `UID:${icsEscape(sessionId ? `${event.id}-${sessionId}` : event.id)}@supernova.demo`, `DTSTAMP:${stamp(new Date().toISOString())}`,
     `DTSTART:${stamp(event.date)}`, `DTEND:${stamp(event.endDate)}`, `SUMMARY:${icsEscape(event.title)}`,
     `DESCRIPTION:${icsEscape(event.subtitle)}`, `LOCATION:${icsEscape(event.location)}`,
     'END:VEVENT', 'END:VCALENDAR', '',

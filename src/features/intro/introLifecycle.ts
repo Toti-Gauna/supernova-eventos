@@ -1,33 +1,56 @@
-import { useLayoutEffect, useRef, type RefObject } from 'react';
+import { useLayoutEffect, type RefObject } from 'react';
 
-// The small bootstrap and the lazy scene share a clock, so loading the scene
-// never restarts the opening or momentarily replaces it with a plain logo.
-let startedAt: number | undefined;
+export const INTRO_DURATION_MS = 3600;
+export const INTRO_DEADLINE_MS = 4000;
+export const INTRO_REDUCED_MS = 150;
 
-export function getIntroElapsedSeconds() {
-  const bootstrapStartedAt = Number(document.getElementById('intro-bootstrap')?.getAttribute('data-intro-started-at'));
-  if (startedAt === undefined) {
-    startedAt = bootstrapStartedAt > 0 ? bootstrapStartedAt : performance.now();
-  }
-  return Math.max(0, (performance.now() - startedAt) / 1000);
+// The host preserves bootstrap time before its HTML is removed. Passing it
+// explicitly also keeps Suspense and StrictMode cleanup from resetting replay.
+export function getIntroElapsedSeconds(startedAtMs: number) {
+  return Math.max(0, (performance.now() - startedAtMs) / 1000);
 }
 
-export function resetIntroClock() {
-  startedAt = undefined;
+/** A lazy chunk or a late WebGL frame can never extend the opening. */
+export function useIntroDeadline(startedAtMs: number, onComplete: () => void, durationMs = INTRO_DEADLINE_MS) {
+  useLayoutEffect(() => {
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const elapsedMs = getIntroElapsedSeconds(startedAtMs) * 1000;
+    // The HTML already supplies the static first frame. A mounted reduced
+    // overlay must release now, leaving room for React's commit on slower CPUs.
+    if (preference.matches) {
+      onComplete();
+      return;
+    }
+    const remainingMs = Math.max(0, durationMs - elapsedMs);
+    const timer = window.setTimeout(onComplete, remainingMs);
+    const handlePreferenceChange = (event: MediaQueryListEvent) => {
+      if (event.matches) onComplete();
+    };
+    preference.addEventListener('change', handlePreferenceChange);
+    return () => {
+      window.clearTimeout(timer);
+      preference.removeEventListener('change', handlePreferenceChange);
+    };
+  }, [durationMs, onComplete, startedAtMs]);
 }
 
-/** Keep pending and cinematic stages equally accessible, including StrictMode. */
-export function useIntroIsolation(stageRef: RefObject<HTMLDivElement | null>, onEscape: () => void) {
-  const previousFocusRef = useRef<HTMLElement | null>(null);
+let isolationSession: { startedAtMs: number; previousFocus: HTMLElement | null } | undefined;
+
+/** Preserve one focus return target across Suspense and StrictMode handoffs. */
+export function useIntroIsolation(stageRef: RefObject<HTMLDivElement | null>, onEscape: () => void, startedAtMs: number) {
 
   useLayoutEffect(() => {
     const stage = stageRef.current;
     if (!stage) return;
 
     const activeElement = document.activeElement;
-    if (activeElement instanceof HTMLElement && !stage.contains(activeElement)) {
-      previousFocusRef.current = activeElement;
+    if (!isolationSession || isolationSession.startedAtMs !== startedAtMs) {
+      isolationSession = {
+        startedAtMs,
+        previousFocus: activeElement instanceof HTMLElement && !activeElement.closest('[data-cinematic-intro]') ? activeElement : null,
+      };
     }
+    const session = isolationSession;
 
     const appRoot = document.getElementById('root');
     const wasInert = appRoot?.inert ?? false;
@@ -62,8 +85,8 @@ export function useIntroIsolation(stageRef: RefObject<HTMLDivElement | null>, on
       }
       queueMicrotask(() => {
         if (document.querySelector('[data-cinematic-intro]')) return;
-        resetIntroClock();
-        const previousFocus = previousFocusRef.current;
+        if (isolationSession === session) isolationSession = undefined;
+        const previousFocus = session.previousFocus;
         if (previousFocus?.isConnected && previousFocus !== document.body) {
           previousFocus.focus({ preventScroll: true });
         } else {
@@ -71,5 +94,5 @@ export function useIntroIsolation(stageRef: RefObject<HTMLDivElement | null>, on
         }
       });
     };
-  }, [onEscape, stageRef]);
+  }, [onEscape, stageRef, startedAtMs]);
 }

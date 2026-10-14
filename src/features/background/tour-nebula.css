@@ -1,0 +1,92 @@
+/* Exact Tour image, glow, timings and particle positions; one persistent host. */
+#tour-nebula-backdrop { display: none; }
+html:is([data-experience='3d'], [data-experience='hybrid']) #tour-nebula-backdrop {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  isolation: isolate;
+  pointer-events: none;
+  background: #020205;
+}
+html:is([data-experience='3d'], [data-experience='hybrid']) #root { position: relative; z-index: 1; }
+#tour-nebula-backdrop .tour-nebula-layers {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+  animation: tour-nebula-drift 18s ease-in-out infinite;
+}
+#tour-nebula-backdrop .tour-nebula-parallax {
+  position: absolute;
+  inset: 0;
+}
+#tour-nebula-backdrop .tour-nebula-image {
+  position: absolute;
+  inset: -4%;
+  width: 108%;
+  height: 108%;
+  max-width: none;
+  object-fit: cover;
+  filter: brightness(.85) saturate(1.05);
+  transform: scale(1.02);
+  animation: tour-nebula-zoom-in 2s cubic-bezier(.4, 0, .2, 1) both;
+}
+#tour-nebula-backdrop .tour-nebula-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 100%, rgba(124, 58, 237, .45) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 15% 60%, rgba(99, 46, 180, .25) 0%, transparent 50%),
+    radial-gradient(ellipse 40% 55% at 88% 65%, rgba(236, 72, 153, .2) 0%, transparent 50%);
+  animation: tour-nebula-breathe 5s ease-in-out infinite alternate;
+}
+#tour-nebula-backdrop .tour-nebula-stars,
+#tour-nebula-backdrop .tour-nebula-particles { position: absolute; inset: 0; width: 100%; height: 100%; }
+#tour-nebula-backdrop .tour-nebula-stars > circle { fill: #fff; }
+#tour-nebula-backdrop .tour-nebula-particle {
+  position: absolute;
+  width: .4rem;
+  height: .4rem;
+  border-radius: 999px;
+  opacity: .45;
+  animation: tour-nebula-particle-float 7s ease-in-out infinite;
+}
+#tour-nebula-backdrop .tour-nebula-particle[data-tone='violet'] { background: #a855f7; box-shadow: 0 0 .8rem #a855f7; }
+#tour-nebula-backdrop .tour-nebula-particle[data-tone='magenta'] { background: #ec4899; box-shadow: 0 0 .8rem #ec4899; }
+#tour-nebula-backdrop .tour-nebula-particle[data-tone='cyan'] { background: #06b6d4; box-shadow: 0 0 .8rem #06b6d4; }
+#tour-nebula-backdrop .tour-nebula-particle[data-tone='pink'] { background: #f472b6; box-shadow: 0 0 .8rem #f472b6; }
+#tour-nebula-backdrop .tour-nebula-particle-1 { top: 18%; left: 12%; animation-duration: 6s; }
+#tour-nebula-backdrop .tour-nebula-particle-2 { top: 30%; right: 14%; animation-duration: 5s; animation-delay: -1.5s; }
+#tour-nebula-backdrop .tour-nebula-particle-3 { bottom: 22%; left: 18%; animation-duration: 7s; animation-delay: -2.5s; }
+#tour-nebula-backdrop .tour-nebula-particle-4 { bottom: 28%; right: 20%; animation-duration: 5.5s; animation-delay: -.8s; }
+#tour-nebula-backdrop .tour-nebula-particle-5 { top: 48%; left: 8%; animation-duration: 8s; animation-delay: -3.5s; }
+#tour-nebula-backdrop .tour-nebula-particle-6 { top: 60%; right: 9%; animation-duration: 4.5s; animation-delay: -2s; }
+#tour-nebula-backdrop .tour-nebula-particle-7 { top: 12%; left: 50%; animation-duration: 6.5s; animation-delay: -3s; }
+#tour-nebula-backdrop .tour-nebula-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(2, 2, 5, .12), rgba(2, 2, 5, .22) 55%, rgba(2, 2, 5, .42));
+}
+#tour-nebula-backdrop:not([data-motion='running']) .tour-nebula-layers,
+#tour-nebula-backdrop:not([data-motion='running']) .tour-nebula-image,
+#tour-nebula-backdrop:not([data-motion='running']) .tour-nebula-glow,
+#tour-nebula-backdrop:not([data-motion='running']) .tour-nebula-particle,
+html:not([data-experience='3d']):not([data-experience='hybrid']) #tour-nebula-backdrop * { animation-play-state: paused !important; }
+
+@keyframes tour-nebula-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+  25% { transform: translate3d(-2.8%, 2.2%, 0) scale(1.055) rotate(.45deg); }
+  50% { transform: translate3d(-2%, -1.8%, 0) scale(1.07) rotate(-.3deg); }
+  75% { transform: translate3d(2%, 1.2%, 0) scale(1.045) rotate(.2deg); }
+}
+@keyframes tour-nebula-zoom-in { from { transform: scale(1.08); } to { transform: scale(1.02); } }
+@keyframes tour-nebula-breathe { from { opacity: .55; transform: scale(1); } to { opacity: 1; transform: scale(1.06); } }
+@keyframes tour-nebula-particle-float {
+  0%, 100% { transform: translateY(-28px) translateX(0); opacity: .2; }
+  33% { transform: translateY(8px) translateX(10px); opacity: .65; }
+  66% { transform: translateY(22px) translateX(-8px); opacity: .45; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #tour-nebula-backdrop * { animation-play-state: paused !important; }
+}

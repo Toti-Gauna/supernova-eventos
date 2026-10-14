@@ -1,0 +1,39 @@
+{
+  "beforeReactNormalMs": 3609,
+  "beforeReactReducedMs": 161,
+  "beforeReactEscapeMs": 82,
+  "manropeAvailableBeforeReact": true,
+  "mobileArtwork320And390": true,
+  "frameSamples": [
+    {
+      "targetMs": 1100,
+      "elapsedMs": 1127,
+      "universeStatus": "loading",
+      "staticSkyOpacity": "1",
+      "identityOpacity": "1"
+    },
+    {
+      "targetMs": 1800,
+      "elapsedMs": 2066,
+      "universeStatus": "ready",
+      "staticSkyOpacity": "0.975772",
+      "identityOpacity": "0.9603"
+    },
+    {
+      "targetMs": 2750,
+      "elapsedMs": 2839,
+      "universeStatus": "ready",
+      "staticSkyOpacity": "0",
+      "identityOpacity": "0"
+    }
+  ],
+  "normalOpeningReleaseMs": 3666,
+  "lateSceneDoesNotRestoreSVG": true,
+  "pendingChunkReleaseMs": 3669,
+  "replayKeepsSectionAndFocus": true,
+  "reducedReplayMs": 178,
+  "reducedPreferenceReleaseMs": 88,
+  "pageErrors": [],
+  "browserVersion": "155.0.8059.40",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+}

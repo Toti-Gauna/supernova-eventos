@@ -1,0 +1,5 @@
+.back-button { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:44px; margin:0 0 16px; padding:8px 0; border:0; border-radius:8px; background:transparent; color:var(--muted); font-size:12px; }
+.back-button:hover { color:var(--accent); }
+html[data-theme='light'] .app-shell[data-universe-enabled] .back-button { color:#c2b2d0; }
+.my-events>.back-button { display:flex; width:fit-content; }
+@media(max-width:700px) { .back-button { margin-bottom:12px; } }

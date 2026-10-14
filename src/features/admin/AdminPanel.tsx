@@ -1,14 +1,19 @@
+import PassCheckInDialog from '../qr/PassCheckInDialog';
 import { useEffect, useRef, useState } from 'react';
 import type { FormEvent, KeyboardEvent } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
-import { ArrowDownToLine, ArrowRight, CalendarDays, CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, Copy, Edit3, Eye, Globe2, ListFilter, LockKeyhole, MoreHorizontal, Plus, RotateCcw, Search, Sparkles, Ticket, Trash2, Users, X } from 'lucide-react';
+import { ArrowDownToLine, ArrowRight, CalendarDays, CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, Copy, Edit3, Eye, Globe2, ListFilter, LockKeyhole, MoreHorizontal, Plus, QrCode, RotateCcw, Search, Sparkles, Ticket, Trash2, Users, X } from 'lucide-react';
 import type { EventItem, EventStatus, Registration } from '../../types';
 import { readStorage } from '../../lib/storage';
 import { publicAssetUrl } from '../../lib/assets';
+import BackButton from '../../components/ui/BackButton';
+import { EventQRDialog } from '../../features/qr';
+import { getEventSessions, withEventSessions } from '../../lib/eventSessions';
 import NativeDialog from '../../components/ui/NativeDialog';
 import SupernovaSelect from '../../components/ui/SupernovaSelect';
 import SupernovaDatePicker from '../../components/ui/SupernovaDatePicker';
 import EventWizard from './EventWizard';
+import UniverseSurface from '../universe/UniverseSurface';
 import type { SavedEventDraft } from './EventWizard';
 import { clearSavedDraft, DRAFT_KEY, exportRegistrations, formatEventDate, newEvent, statusLabels, toLocalDateTime } from './admin.helpers';
 import './admin.css';
@@ -24,6 +29,7 @@ interface AdminPanelProps {
   onPreview: (event: EventItem) => void;
   notify: (message: string) => void;
   onWizardChange?: (active: boolean) => void;
+  onBack?: () => void;
 }
 interface WizardSession { initial: EventItem; editing: boolean; initialStep?: number }
 interface DashboardFilters { query: string; status: EventStatus | 'all'; audience: 'all' | 'company' | 'private'; dateFrom: string; dateTo: string }
@@ -48,7 +54,7 @@ function savedDraft(): SavedEventDraft | null {
   return draft && draft.event && typeof draft.event.id === 'string' && typeof draft.event.title === 'string' ? draft : null;
 }
 
-export default function AdminPanel({ events, registrations = [], onCreate, onUpdate, onPreview, notify, onWizardChange }: AdminPanelProps) {
+export default function AdminPanel({ events, registrations = [], onCreate, onUpdate, onPreview, notify, onWizardChange, onBack }: AdminPanelProps) {
   const [draftFilters, setDraftFilters] = useState<DashboardFilters>({ ...emptyFilters });
   const [appliedFilters, setAppliedFilters] = useState<DashboardFilters>({ ...emptyFilters });
   const [moreFilters, setMoreFilters] = useState(false);
@@ -56,23 +62,25 @@ export default function AdminPanel({ events, registrations = [], onCreate, onUpd
   const [wizard, setWizard] = useState<WizardSession | null>(null);
   const [storedDraft, setStoredDraft] = useState<SavedEventDraft | null>(savedDraft);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const [qrEventId, setQrEventId] = useState<string>();
+  const [checkingPass, setCheckingPass] = useState(false);
+  const qrEvent = events.find(event => event.id === qrEventId);
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(10);
   const reducedMotion = useReducedMotion();
   const menuTrigger = useRef<HTMLButtonElement | null>(null);
   const filterSearch = useRef<HTMLInputElement | null>(null);
   const filtersDialogTrigger = useRef<HTMLButtonElement | null>(null);
-  const wizardChangeCallback = useRef(onWizardChange);
-  wizardChangeCallback.current = onWizardChange;
   const wizardIsActive = Boolean(wizard);
   const normalizedQuery = normalizeText(appliedFilters.query);
   const filteredEvents = events.filter(event => {
-    const localDate = toLocalDateTime(event.date).slice(0, 10);
+    const dateMatches = (!appliedFilters.dateFrom && !appliedFilters.dateTo) || getEventSessions(event).some(session => {
+      const localDate = toLocalDateTime(session.date).slice(0, 10);
+      return Boolean(localDate) && (!appliedFilters.dateFrom || localDate >= appliedFilters.dateFrom) && (!appliedFilters.dateTo || localDate <= appliedFilters.dateTo);
+    });
     return (appliedFilters.status === 'all' || event.status === appliedFilters.status)
       && (appliedFilters.audience === 'all' || event.isPrivate === (appliedFilters.audience === 'private'))
-      && ((!appliedFilters.dateFrom && !appliedFilters.dateTo) || Boolean(localDate))
-      && (!appliedFilters.dateFrom || localDate >= appliedFilters.dateFrom)
-      && (!appliedFilters.dateTo || localDate <= appliedFilters.dateTo)
+      && dateMatches
       && normalizeText(event.title).includes(normalizedQuery);
   });
   const published = filteredEvents.filter(event => event.status === 'published');
@@ -89,7 +97,6 @@ export default function AdminPanel({ events, registrations = [], onCreate, onUpd
   const visibleEvents = filteredEvents.slice(safePage * pageSize, safePage * pageSize + pageSize);
 
   useEffect(() => { onWizardChange?.(wizardIsActive); }, [wizardIsActive, onWizardChange]);
-  useEffect(() => () => { wizardChangeCallback.current?.(false); }, []);
 
   function updateFilter<K extends FilterKey>(key: K, value: DashboardFilters[K]) { setDraftFilters(current => ({ ...current, [key]: value })); }
   function applyFilters(submit: FormEvent<HTMLFormElement>) {
@@ -165,7 +172,9 @@ export default function AdminPanel({ events, registrations = [], onCreate, onUpd
   }
 
   function duplicateEvent(event: EventItem) {
-    onCreate({ ...structuredClone(event), id: crypto.randomUUID(), title: `${event.title} · copia`, registered: 0, featured: false, status: 'draft' });
+    const id = crypto.randomUUID();
+    const copy = { ...structuredClone(event), id, title: `${event.title} · copia`, registered: 0, featured: false, status: 'draft' as const };
+    onCreate(withEventSessions(copy, getEventSessions(event).map((session, index) => ({ ...session, id: `${id}:${index ? crypto.randomUUID() : 'main'}`, registered: 0 }))));
     setOpenMenu(null);
     notify('Experiencia duplicada como borrador. Podés editarla antes de publicar.');
   }
@@ -181,10 +190,13 @@ export default function AdminPanel({ events, registrations = [], onCreate, onUpd
   if (wizard) return <section className="admin-panel is-studio-session"><EventWizard initial={wizard.initial} editing={wizard.editing} initialStep={wizard.initialStep} onClose={closeWizard} onSave={saveEvent} onPreview={onPreview} /></section>;
 
   return <motion.section className="admin-panel admin-dashboard" initial={{ opacity: 0, y: reducedMotion ? 0 : 10 }} animate={{ opacity: 1, y: 0 }}>
-    <header className="dashboard-heading"><h1>Administrar experiencias</h1><div className="dashboard-heading-actions">
+    {onBack && <BackButton onBack={onBack} />}
+    <header className="dashboard-heading compact-section-heading compact-ship-heading planet-left">
+      <UniverseSurface side="left" compact />
+      <div className="compact-heading-content"><div className="compact-heading-copy"><h1>Administrar experiencias</h1></div><div className="dashboard-heading-actions"><button className="button secondary" type="button" onClick={() => setCheckingPass(true)}><QrCode size={17} />Registrar pase</button>
       <button type="button" className="admin-outline-button" onClick={() => exportData()}><ArrowDownToLine size={16} /><span>Exportar inscripciones</span></button>
-      <button type="button" className="admin-primary-button" onClick={() => startWizard()}><Plus size={17} />Crear experiencia</button>
-    </div></header>
+      <button type="button" className="admin-primary-button" data-universe-target="studio" onClick={() => startWizard()}><Plus size={17} />Crear experiencia</button>
+    </div></div></header>
 
     <form className="dashboard-filters" aria-label="Filtros de experiencias" onSubmit={applyFilters}>
       <div className="dashboard-filters-main">
@@ -208,18 +220,20 @@ export default function AdminPanel({ events, registrations = [], onCreate, onUpd
       <div className="dashboard-metric"><span className="dashboard-metric-icon pink"><Ticket size={18} /></span><div><span>Ocupación de cupos</span><strong>{occupancy}<em>%</em></strong></div></div>
       <div className="dashboard-metric"><span className="dashboard-metric-icon amber"><Sparkles size={18} /></span><div><span>Borradores</span><strong>{drafts.length.toString().padStart(2, '0')}</strong></div></div>
     </div>
-    {storedDraft && <div className="dashboard-resume-draft"><Edit3 size={16} /><div><strong>Borrador sin terminar</strong><span>{storedDraft.event.title || 'Tu nueva experiencia'}</span></div><button type="button" onClick={resumeDraft}>Seguir creando<ArrowRight size={14} /></button><button type="button" className="dashboard-discard-draft" aria-label="Descartar borrador automático" onClick={discardDraft}><Trash2 size={15} /></button></div>}
+    {storedDraft && <div className="dashboard-resume-draft"><Edit3 size={16} /><div><strong>Borrador sin terminar</strong><span>{storedDraft.event.title || 'Tu nueva experiencia'}</span></div><button type="button" data-universe-target="studio" onClick={resumeDraft}>Seguir creando<ArrowRight size={14} /></button><button type="button" className="dashboard-discard-draft" aria-label="Descartar borrador automático" onClick={discardDraft}><Trash2 size={15} /></button></div>}
 
     <div className="admin-events-section dashboard-table-section">
       <div className="admin-table-wrap"><table className="admin-event-table"><thead><tr><th>EXPERIENCIA</th><th>FECHA</th><th>AUDIENCIA</th><th>INSCRIPCIONES</th><th>ESTADO</th><th><span className="admin-visually-hidden">Acciones</span></th></tr></thead><tbody>{visibleEvents.map(event => {
         const percentage = event.capacity ? Math.min(100, event.registered / event.capacity * 100) : 0;
-        return <motion.tr key={event.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: reducedMotion ? 0 : .15 }}><td><div className="admin-event-cell"><img src={publicAssetUrl(event.image)} alt="" /><div><button type="button" onClick={() => onPreview(event)}>{event.title}</button><span>{event.category}<i />{event.mode}</span></div></div></td><td><span className="admin-table-date">{formatEventDate(event.date)}</span><small>{new Date(event.date).toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' })} h</small></td><td><span className="admin-table-audience">{event.isPrivate ? <LockKeyhole size={13} /> : <Globe2 size={14} />}{event.isPrivate ? 'Privada' : 'Compañía'}</span>{event.isPrivate && <small>{event.audience?.people.length || 0} invitados</small>}</td><td><span className="admin-table-registration"><strong>{event.registered}</strong><span> / {event.capacity}</span></span><span className={`admin-table-progress ${percentage >= 90 ? 'is-almost-full' : ''}`}><span style={{ width: `${percentage}%` }} /></span></td><td><span className={`admin-status-badge ${event.status}`}>{event.status === 'published' && <span />}{statusLabels[event.status]}</span></td><td><div className="admin-row-actions"><button type="button" aria-label={`Vista previa de ${event.title}`} title="Vista previa" onClick={() => onPreview(event)}><Eye size={16} /></button><button type="button" aria-label={`Editar ${event.title}`} title="Editar experiencia" onClick={() => startWizard(event)}><Edit3 size={16} /></button><div className="admin-event-menu"><button type="button" aria-label={`Más acciones para ${event.title}`} aria-expanded={openMenu === event.id} aria-haspopup="menu" onClick={click => { menuTrigger.current = click.currentTarget; setOpenMenu(openMenu === event.id ? null : event.id); }}><MoreHorizontal size={19} /></button><AnimatePresence>{openMenu === event.id && <motion.div className="admin-row-dropdown" role="menu" aria-label={`Acciones de ${event.title}`} onKeyDown={handleMenuKey} initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}><button type="button" role="menuitem" onClick={() => duplicateEvent(event)}><Copy size={15} />Duplicar como borrador</button><button type="button" role="menuitem" onClick={() => exportData(event.id)}><ArrowDownToLine size={15} />Exportar inscripciones</button></motion.div>}</AnimatePresence></div></div></td></motion.tr>;
+        return <motion.tr key={event.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: reducedMotion ? 0 : .15 }}><td><div className="admin-event-cell"><img src={publicAssetUrl(event.image)} alt="" /><div><button type="button" onClick={() => onPreview(event)}>{event.title}</button><span>{event.category}<i />{event.mode}</span></div></div></td><td><span className="admin-table-date">{formatEventDate(event.date)}</span><small>{new Date(event.date).toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' })} h{getEventSessions(event).length > 1 && ` · ${getEventSessions(event).length} funciones`}</small></td><td><span className="admin-table-audience">{event.isPrivate ? <LockKeyhole size={13} /> : <Globe2 size={14} />}{event.isPrivate ? 'Privada' : 'Compañía'}</span>{event.isPrivate && <small>{event.audience?.people.length || 0} invitados</small>}</td><td><span className="admin-table-registration"><strong>{event.registered}</strong><span> / {event.capacity}</span></span><span className={`admin-table-progress ${percentage >= 90 ? 'is-almost-full' : ''}`}><span style={{ width: `${percentage}%` }} /></span></td><td><span className={`admin-status-badge ${event.status}`}>{event.status === 'published' && <span />}{statusLabels[event.status]}</span></td><td><div className="admin-row-actions"><button type="button" aria-label={`QR de ${event.title}`} title="Compartir QR" onClick={() => setQrEventId(event.id)}><QrCode size={16} /></button><button type="button" aria-label={`Vista previa de ${event.title}`} title="Vista previa" onClick={() => onPreview(event)}><Eye size={16} /></button><button type="button" aria-label={`Editar ${event.title}`} title="Editar experiencia" onClick={() => startWizard(event)}><Edit3 size={16} /></button><div className="admin-event-menu"><button type="button" aria-label={`Más acciones para ${event.title}`} aria-expanded={openMenu === event.id} aria-haspopup="menu" onClick={click => { menuTrigger.current = click.currentTarget; setOpenMenu(openMenu === event.id ? null : event.id); }}><MoreHorizontal size={19} /></button><AnimatePresence>{openMenu === event.id && <motion.div className="admin-row-dropdown" role="menu" aria-label={`Acciones de ${event.title}`} onKeyDown={handleMenuKey} initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}><button type="button" role="menuitem" onClick={() => duplicateEvent(event)}><Copy size={15} />Duplicar como borrador</button><button type="button" role="menuitem" onClick={() => exportData(event.id)}><ArrowDownToLine size={15} />Exportar inscripciones</button></motion.div>}</AnimatePresence></div></div></td></motion.tr>;
       })}</tbody></table></div>
       {!visibleEvents.length && <div className="dashboard-table-empty"><Search size={23} /><h2>{events.length ? 'No encontramos experiencias.' : 'Creá tu primera experiencia.'}</h2><p>{events.length ? 'Probá con otro nombre o ajustá los filtros.' : 'Tu próximo encuentro empieza con una idea.'}</p><button type="button" className="admin-outline-button" onClick={events.length ? resetFilters : () => startWizard()}>{events.length ? 'Reiniciar filtros' : 'Crear experiencia'}<ArrowRight size={14} /></button></div>}
       <div className="dashboard-pagination"><span className="dashboard-results-count" role="status">{filteredEvents.length ? `${safePage * pageSize + 1}–${Math.min((safePage + 1) * pageSize, filteredEvents.length)} de ${filteredEvents.length} experiencias` : '0 experiencias'}</span><div className="dashboard-pagination-controls"><div className="dashboard-page-size-field"><label htmlFor="dashboard-page-size">Filas por página</label><SupernovaSelect id="dashboard-page-size" label="Filas por página" value={String(pageSize)} options={[{ value: '5', label: '5' }, { value: '10', label: '10' }]} onChange={value => { setPageSize(Number(value)); setPage(0); }} className="dashboard-page-size" /></div><div className="dashboard-page-buttons"><button type="button" aria-label="Página anterior" disabled={safePage === 0} onClick={() => setPage(safePage - 1)}><ChevronLeft size={17} /><span>Anterior</span></button><span aria-label={`Página ${safePage + 1} de ${pageCount}`}>{safePage + 1} / {pageCount}</span><button type="button" aria-label="Página siguiente" disabled={safePage >= pageCount - 1} onClick={() => setPage(safePage + 1)}><span>Siguiente</span><ChevronRight size={17} /></button></div></div></div>
     </div>
     <span className="dashboard-demo-note"><CheckCircle2 size={12} />Datos de demostración</span>
 
+    {checkingPass && <PassCheckInDialog events={events} registrations={registrations} onClose={() => setCheckingPass(false)} />}
+    {qrEvent && <EventQRDialog event={qrEvent} onClose={() => setQrEventId(undefined)} />}
     {filtersDialog && <NativeDialog className="admin-filter-dialog" labelledBy="admin-filter-dialog-title" onClose={closeFilterDetails}><motion.div className="dashboard-filter-modal" initial={{ opacity: 0, y: reducedMotion ? 0 : 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}><div className="dashboard-filter-modal-heading"><span><ListFilter size={19} /><h2 id="admin-filter-dialog-title">Filtros aplicados</h2></span><button type="button" aria-label="Cerrar filtros" onClick={closeFilterDetails}><X size={18} /></button></div><p>{filteredEvents.length} {filteredEvents.length === 1 ? 'experiencia coincide' : 'experiencias coinciden'} con esta búsqueda.</p><div className="dashboard-filter-modal-list">{filterKeys.map(key => <div key={key}><span>{filterLabels[key]}</span><strong>{displayFilterValue(key, appliedFilters[key])}</strong>{isFilterActive(key, appliedFilters[key]) ? <button type="button" aria-label={`Quitar filtro ${filterLabels[key]}`} onClick={() => removeFilter(key)}><X size={14} />Quitar</button> : <small>Sin filtro</small>}</div>)}</div><div className="dashboard-filter-modal-actions"><button type="button" onClick={resetFilters} disabled={!activeFilterKeys.length}><RotateCcw size={14} />Reiniciar todos</button><button className="admin-primary-button" type="button" onClick={closeFilterDetails}>Listo</button></div></motion.div></NativeDialog>}
   </motion.section>;
 }

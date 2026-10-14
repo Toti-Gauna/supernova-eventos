@@ -1,0 +1,6 @@
+.hybrid-fallback-planet { position:absolute; width:180px; aspect-ratio:1; object-fit:cover; right:14%; top:24%; border-radius:50%; }
+html[data-experience='hybrid'] .universe-host { background:transparent; }
+html[data-experience='hybrid'] .cosmos-ticket { border-color:#c7afe032; background:#0c0915b5; backdrop-filter:blur(14px); }
+html[data-experience='hybrid'] .cosmos-ticket:hover { background:#171024d9; }
+html[data-experience='hybrid'] .universe-host[data-universe-status='ready'] .universe-fallback { opacity:0; }
+@media(max-width:700px) { .hybrid-fallback-planet { width:120px; right:20%; top:46%; } }

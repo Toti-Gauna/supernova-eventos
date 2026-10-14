@@ -79,7 +79,7 @@ async function chooseOrder(page: Page, label: string) {
   await page.getByRole('option', { name: label, exact: true }).click();
 }
 
-test('las seis experiencias iniciales se distribuyen en dos páginas de tres', async ({ page }) => {
+test('las seis próximas experiencias y el archivo se distribuyen en tres páginas', async ({ page }) => {
   await openCatalog(page, false);
   await expectTitles(page, ['Supernova Sessions', 'Un respiro para vos', 'El futuro empieza acá']);
   await expect(page.locator('.event-phase-group h3')).toHaveText(['Eventos próximos']);
@@ -90,8 +90,12 @@ test('las seis experiencias iniciales se distribuyen en dos páginas de tres', a
   await expectCurrentPage(page, 2);
   await expectTitles(page, ['Conexiones que importan', 'Laboratorio de ideas', 'Fuera de la rutina']);
   await expect(page.locator('#catalog-result-list')).toBeFocused();
+  await page.getByRole('button', { name: 'Página siguiente de eventos', exact: true }).click();
+  await expectCurrentPage(page, 3);
+  await expectTitles(page, ['Bajo la misma órbita']);
+  await expect(page.locator('.event-phase-group h3')).toHaveText(['Eventos finalizados']);
   await expect(page.getByRole('button', { name: 'Página siguiente de eventos', exact: true })).toBeDisabled();
-  await expect(pageButton(page, 3)).toHaveCount(0);
+  await expect(pageButton(page, 4)).toHaveCount(0);
 });
 
 test('la jerarquía temporal comparte un límite global de tres y conserva los permisos', async ({ page }) => {
@@ -199,7 +203,7 @@ test('los finalizados se pueden consultar con inscripción cerrada, incluso al t
     await cover.click();
     const modal = page.getByRole('dialog');
     await expect(modal.getByRole('heading', { name: title, exact: true })).toBeVisible();
-    await expect(modal.getByText('La inscripción para este evento está cerrada.', { exact: true })).toBeVisible();
+    await expect(modal.getByText('La inscripción para esta función está cerrada.', { exact: true })).toBeVisible();
     await expect(modal.getByRole('button', { name: 'Confirmar mi lugar', exact: true })).toHaveCount(0);
     await page.keyboard.press('Escape');
     await expect(modal).toHaveCount(0);

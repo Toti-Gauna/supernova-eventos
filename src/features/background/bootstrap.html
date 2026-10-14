@@ -1,0 +1,27 @@
+<div id="tour-nebula-backdrop" aria-hidden="true" data-motion="running" data-star-count="60" data-frame="0">
+  <div class="tour-nebula-layers">
+    <div class="tour-nebula-parallax">
+      <img class="tour-nebula-image" src="%BASE_URL%images/tour/fondo-principal.png" width="1672" height="941" alt="" draggable="false" fetchpriority="high">
+    </div>
+    <div class="tour-nebula-glow"></div>
+    <svg class="tour-nebula-stars" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="none" focusable="false"></svg>
+    <div class="tour-nebula-particles">
+      <span class="tour-nebula-particle tour-nebula-particle-1" data-tone="violet"></span>
+      <span class="tour-nebula-particle tour-nebula-particle-2" data-tone="magenta"></span>
+      <span class="tour-nebula-particle tour-nebula-particle-3" data-tone="cyan"></span>
+      <span class="tour-nebula-particle tour-nebula-particle-4" data-tone="violet"></span>
+      <span class="tour-nebula-particle tour-nebula-particle-5" data-tone="magenta"></span>
+      <span class="tour-nebula-particle tour-nebula-particle-6" data-tone="cyan"></span>
+      <span class="tour-nebula-particle tour-nebula-particle-7" data-tone="pink"></span>
+    </div>
+  </div>
+  <div class="tour-nebula-shade"></div>
+</div>
+<script>
+(() => {
+  const backdrop = document.getElementById('tour-nebula-backdrop');
+  let paused = false;
+  try { paused = JSON.parse(localStorage.getItem('supernova-universe-motion-v1') || 'false') === true; } catch {}
+  backdrop.dataset.motion = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'reduced' : document.hidden || paused ? 'paused' : 'running';
+})();
+</script>

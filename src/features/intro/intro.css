@@ -1,21 +1,15 @@
+/* Keep the honest loading state black even if the app's CSS has not arrived. */
+html:has(#intro-bootstrap), body:has(#intro-bootstrap) { background: #020205; }
 .cinematic-intro {
-  --intro-bg: #0b0a12;
+  --intro-bg: #020205;
   --intro-fg: #f5f0e9;
   --intro-muted: #b9abca;
-  --intro-caption: #9686a7;
+  --intro-caption: #aaa0b5;
   --intro-star: #ded7ef;
   --intro-accent: #d5b7f9;
-  --intro-orbit: #d3b5fd;
-  --intro-orbit-low: #b797e8;
-  --intro-radiance: #dab8ff;
-  --intro-radiance-alt: #bb83f7;
-  --intro-mint: #99c7c3;
-  --intro-point-violet: #ddc1ff;
-  --intro-point-warm: #efe2d3;
-  --intro-point-lilac: #b5a0dc;
-  --intro-nebula-core: #8053b517;
-  --intro-nebula-edge: #44216909;
   --intro-start-delay: 0s;
+  --intro-handoff-delay: 0s;
+  --intro-handoff-duration: .2s;
   position: fixed;
   inset: 0;
   z-index: 10000;
@@ -23,53 +17,22 @@
   display: grid;
   place-items: center;
   color: var(--intro-fg);
-  background: var(--intro-bg);
+  background: transparent;
   font-family: Manrope, sans-serif;
   isolation: isolate;
   outline: none;
 }
-:root[data-theme='light'] .cinematic-intro {
-  --intro-bg: #f7f5fb;
-  --intro-fg: #20182e;
-  --intro-muted: #6b5b81;
-  --intro-caption: #77618e;
-  --intro-star: #806299;
-  --intro-accent: #8d59c8;
-  --intro-orbit: #9365bf;
-  --intro-orbit-low: #a078c8;
-  --intro-radiance: #ad79e1;
-  --intro-radiance-alt: #ba96df;
-  --intro-mint: #518783;
-  --intro-point-violet: #9260c3;
-  --intro-point-warm: #b79778;
-  --intro-point-lilac: #9379b0;
-  --intro-nebula-core: #bc91e529;
-  --intro-nebula-edge: #d5c3ef16;
-}
-.cinematic-intro::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: .025;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='.5' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-.intro-nebula {
-  position: absolute;
-  width: min(900px, 130vw);
-  aspect-ratio: 1;
-  pointer-events: none;
-  border-radius: 50%;
-  background: radial-gradient(ellipse, var(--intro-nebula-core), var(--intro-nebula-edge) 42%, transparent 70%);
-}
-.intro-stars { position: absolute; inset: 0; pointer-events: none; }
+.intro-static-sky { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; }
+.intro-backdrop { position: absolute; inset: 0; background: var(--intro-bg); }
+.intro-stars { position: absolute; inset: 0; }
 .intro-stars i { position: absolute; border-radius: 50%; background: var(--intro-star); }
-.intro-stars i:nth-child(9n) { background: var(--intro-accent); box-shadow: 0 0 10px #b697e52b; }
+.intro-stars i:nth-child(9n) { background: var(--intro-accent); }
 .intro-composition {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: min(520px, calc(100vw - 48px));
+  width: min(560px, calc(100vw - 48px));
   transform: translateY(-8px);
 }
 .intro-orbital-system { position: relative; width: 100%; height: 330px; }
@@ -85,8 +48,10 @@
   white-space: nowrap;
 }
 .intro-identity { margin-top: 27px; text-align: center; }
+.intro-brand-lockup { width: 100%; }
 .intro-wordmark-mask { overflow: hidden; padding-bottom: 13px; margin-bottom: -13px; }
-.intro-wordmark { font-size: 62px; font-weight: 300; line-height: 1.15; letter-spacing: -.065em; white-space: nowrap; }
+.intro-wordmark { display: flex; align-items: center; justify-content: center; gap: 16px; font-size: 62px; font-weight: 300; line-height: 1.15; letter-spacing: -.065em; white-space: nowrap; }
+.intro-brand-symbol { width: 42px; height: 42px; flex: none; color: #d5b7f9; }
 .intro-tagline { margin-top: 8px; color: var(--intro-muted); font-size: 15px; font-weight: 400; letter-spacing: -.025em; }
 .intro-caption {
   display: flex;
@@ -103,28 +68,54 @@
 .intro-caption > span:last-child { transform: rotate(180deg); }
 .intro-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
-/* CSS first frames continue while the lazy GSAP chunk arrives. All cues use
-   the same 3.4-second clock; pending never pretends to be measurable progress. */
-.intro-pending [data-intro='halo'] { animation: intro-pending-halo 3.4s cubic-bezier(.22, 1, .36, 1) var(--intro-start-delay) both; }
-.intro-pending [data-intro='orbits'] { transform-origin: 240px 190px; animation: intro-pending-orbits 3.4s cubic-bezier(.22, 1, .36, 1) var(--intro-start-delay) both; }
-.intro-pending [data-intro='symbol'] { transform-box: fill-box; transform-origin: center; animation: intro-pending-symbol 3.4s cubic-bezier(.22, 1, .36, 1) var(--intro-start-delay) both; }
-.intro-pending [data-intro='radiance'] { transform-box: fill-box; transform-origin: center; animation: intro-pending-radiance 3.4s ease-in-out var(--intro-start-delay) both; }
-.intro-pending [data-intro='point'] { animation: intro-pending-point 3.4s ease-in-out var(--intro-start-delay) both; }
-.intro-pending [data-intro-point='0'] { --intro-point-x: 161px; --intro-point-y: 0px; }
-.intro-pending [data-intro-point='1'] { --intro-point-x: -161px; --intro-point-y: 0px; }
-.intro-pending [data-intro-point='2'] { --intro-point-x: 0px; --intro-point-y: 144px; }
-.intro-pending [data-intro-point='3'] { --intro-point-x: 0px; --intro-point-y: -144px; }
-.intro-pending [data-intro='wordmark'] { animation: intro-pending-wordmark 3.4s cubic-bezier(.22, 1, .36, 1) var(--intro-start-delay) both; }
-.intro-pending [data-intro='tagline'] { animation: intro-pending-tagline 3.4s cubic-bezier(.22, 1, .36, 1) var(--intro-start-delay) both; }
-.intro-pending [data-intro='caption'] { animation: intro-pending-caption 3.4s ease-out var(--intro-start-delay) both; }
-@keyframes intro-pending-halo { 0% { opacity: .2; transform: scale(.85); } 39%, 100% { opacity: 1; transform: scale(1); } }
-@keyframes intro-pending-orbits { 0% { opacity: 0; transform: scale(.84) rotate(-17deg); } 40%, 48% { opacity: 1; transform: scale(1) rotate(0deg); } 80%, 100% { opacity: 1; transform: scale(1) rotate(9deg); } }
-@keyframes intro-pending-symbol { 0%, 30% { opacity: 0; transform: scale(.8); } 50%, 100% { opacity: 1; transform: scale(1); } }
-@keyframes intro-pending-radiance { 0%, 26% { opacity: 0; transform: scale(.55); } 47% { opacity: .75; transform: scale(1); } 71%, 100% { opacity: .27; transform: scale(1.25); } }
-@keyframes intro-pending-point { 0%, 6% { opacity: 0; transform: translate(0, 0); } 10% { opacity: 1; transform: translate(0, 0); } 41% { opacity: 1; transform: translate(var(--intro-point-x, 0px), var(--intro-point-y, 0px)); } 46%, 100% { opacity: 0; transform: translate(var(--intro-point-x, 0px), var(--intro-point-y, 0px)); } }
-@keyframes intro-pending-wordmark { 0%, 33% { opacity: 0; transform: translateY(110%); } 55%, 100% { opacity: 1; transform: translateY(0); } }
-@keyframes intro-pending-tagline { 0%, 43% { opacity: 0; transform: translateY(7px); } 64%, 100% { opacity: 1; transform: translateY(0); } }
-@keyframes intro-pending-caption { 0%, 47% { opacity: 0; } 68%, 100% { opacity: 1; } }
+/* The renderer holds the SVG map pose through 1.2 s. Transfer its aligned map
+   during 1.0–1.2 s, then let the single Earth begin the camera's zoom.
+   Fade parents only: GSAP owns the child transforms/opacity. */
+.intro-revealing .intro-static-sky,
+.intro-revealing .intro-orbital-system { animation: intro-handoff var(--intro-handoff-duration) ease-in-out var(--intro-handoff-delay) both; }
+@keyframes intro-handoff { from { opacity: 1; } to { opacity: 0; } }
+
+/* Same finite first-frame choreography while the animation chunk is pending. */
+.intro-pending [data-intro='orbits'] { transform-origin: 240px 185px; animation: intro-pending-orbits 3.6s cubic-bezier(.22, 1, .36, 1) var(--intro-start-delay) both; }
+.intro-pending [data-intro='radiance'] { animation: intro-pending-radiance 3.6s ease-in-out var(--intro-start-delay) both; }
+.intro-pending [data-intro='wordmark'] { animation: intro-pending-wordmark 3.6s cubic-bezier(.22, 1, .36, 1) var(--intro-start-delay) both; }
+.intro-pending [data-intro='tagline'] { animation: intro-pending-tagline 3.6s cubic-bezier(.22, 1, .36, 1) var(--intro-start-delay) both; }
+.intro-pending [data-intro='caption'] { animation: intro-pending-caption 3.6s ease-out var(--intro-start-delay) both; }
+.intro-pending [data-intro='identity'] { animation: intro-pending-identity 3.6s ease-in-out var(--intro-start-delay) both; }
+.intro-pending [data-intro='composition'] { animation: intro-pending-composition 3.6s ease-in var(--intro-start-delay) both; }
+.intro-pending { animation: intro-pending-exit 3.6s ease-in-out var(--intro-start-delay) both; }
+@keyframes intro-pending-orbits { 0% { opacity: .72; transform: rotate(-2deg); } 33%, 100% { opacity: 1; transform: rotate(0deg); } }
+@keyframes intro-pending-radiance { 0% { opacity: .7; } 33%, 100% { opacity: 1; } }
+@keyframes intro-pending-wordmark { 0%, 10% { opacity: 0; transform: translateY(65%); } 28%, 100% { opacity: 1; transform: translateY(0); } }
+@keyframes intro-pending-tagline { 0%, 19% { opacity: 0; transform: translateY(6px); } 36%, 100% { opacity: 1; transform: translateY(0); } }
+@keyframes intro-pending-caption { 0%, 26% { opacity: 0; } 44%, 100% { opacity: 1; } }
+@keyframes intro-pending-identity { 0%, 53% { opacity: 1; transform: translateY(0); } 74%, 100% { opacity: 0; transform: translateY(-8px); } }
+@keyframes intro-pending-composition { 0%, 78% { opacity: 1; } 89%, 100% { opacity: 0; } }
+@keyframes intro-pending-exit { 0%, 90% { opacity: 1; } 100% { opacity: 0; } }
+
+/* HTML must release its fullscreen art without React. The loading note does
+   not imply the not-yet-mounted application can already be used. */
+#intro-bootstrap { animation: intro-bootstrap-release 3.6s linear both; }
+#intro-bootstrap-note {
+  position: fixed;
+  z-index: 9999;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: calc(100vw - 48px);
+  margin: 0;
+  color: #aaa0b5;
+  background: #020205;
+  font: 12px/1.5 Manrope, sans-serif;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  animation: intro-bootstrap-note 3.6s linear both;
+}
+#intro-bootstrap-note span { display: block; font-size: 10px; color: #84798e; margin-top: 4px; }
+@keyframes intro-bootstrap-release { 0%, 95% { opacity: 1; } 100% { opacity: 0; pointer-events: none; visibility: hidden; } }
+@keyframes intro-bootstrap-note { 0%, 99.9% { opacity: 0; } 100% { opacity: 1; } }
 
 @media(max-width:600px) {
   .intro-composition { transform: translateY(-5px); }
@@ -132,6 +123,7 @@
   .intro-orbital-label { font-size: 7px; letter-spacing: 1.6px; bottom: 4px; }
   .intro-identity { margin-top: 20px; }
   .intro-wordmark { font-size: clamp(40px, 11vw, 56px); }
+  .intro-brand-symbol { width: 31px; height: 31px; }
   .intro-tagline { font-size: 14px; }
   .intro-caption { font-size: 8px; letter-spacing: 1.5px; gap: 10px; margin-top: 33px; }
   .intro-caption > span { width: 19px; }
@@ -144,7 +136,12 @@
   .intro-caption { margin-top: 27px; }
 }
 @media(prefers-reduced-motion:reduce) {
-  .intro-nebula { opacity: .65; }
-  .intro-pending [data-intro] { animation: none; }
-  .intro-pending [data-intro='point'] { opacity: 0; }
+  .intro-pending, .intro-pending [data-intro] { animation: none; }
+  .intro-revealing .intro-static-sky, .intro-revealing .intro-orbital-system { animation-duration: .15s; animation-delay: 0s; }
+  #intro-bootstrap { animation: intro-bootstrap-release .15s linear both; }
+  #intro-bootstrap-note { animation-duration: .15s; }
 }
+
+/* Spatial versions share the persistent Tour sky across intro and application. */
+html:is([data-experience='3d'], [data-experience='hybrid']) .cinematic-intro .intro-backdrop { background: transparent; }
+html:is([data-experience='3d'], [data-experience='hybrid']) .cinematic-intro .intro-stars { display: none; }

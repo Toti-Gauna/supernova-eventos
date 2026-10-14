@@ -1,10 +1,23 @@
 import type { EventItem } from '../types';
 
+export const DEMO_ARCHIVE_MIGRATION_KEY = 'supernova-demo-archive-v1';
+export const ARCHIVED_EVENT: EventItem = {
+  id: 'shared-orbit', title: 'Bajo la misma órbita', subtitle: 'Un encuentro que nos dejó más cerca.',
+  category: 'Comunidad', image: '/images/community.jpg', date: '2026-10-04T18:00:00-03:00', endDate: '2026-10-04T21:00:00-03:00',
+  location: 'Campus Telefónica · Buenos Aires', mode: 'Presencial', capacity: 120, registered: 96,
+  description: 'Compartimos una tarde de conversaciones, música y nuevas conexiones entre equipos. Esta experiencia ficticia ya finalizó: podés volver a ver sus detalles y descubrir los próximos encuentros del universo Supernova.',
+  host: 'Cultura y Comunidad', featured: false, isPrivate: false, status: 'ended', companions: 1, terms: '',
+};
+
 export const INITIAL_EVENTS: EventItem[] = [
   {
     id: 'supernova-sessions', title: 'Supernova Sessions', subtitle: 'Una noche. Muchas conexiones.',
-    category: 'Música', image: '/images/concert.jpg', date: '2026-10-23T19:00:00-03:00', endDate: '2026-10-23T23:00:00-03:00',
-    location: 'Terraza Movistar · Buenos Aires', mode: 'Presencial', capacity: 240, registered: 186,
+    category: 'Música', image: '/images/concert.jpg', date: '2026-10-23T19:00:00-03:00', endDate: '2026-10-24T23:00:00-03:00',
+    location: 'Terraza Movistar · Buenos Aires', mode: 'Presencial', capacity: 480, registered: 186,
+    sessions: [
+      { id: 'supernova-sessions:main', name: 'Viernes', date: '2026-10-23T19:00:00-03:00', endDate: '2026-10-23T23:00:00-03:00', doorsDate: '2026-10-23T18:00:00-03:00', capacity: 240, registered: 186 },
+      { id: 'supernova-sessions:saturday', name: 'Sábado', date: '2026-10-24T21:00:00-03:00', endDate: '2026-10-24T23:00:00-03:00', doorsDate: '2026-10-24T20:00:00-03:00', capacity: 240, registered: 0 },
+    ],
     description: 'Cuando cae el sol, las mejores conexiones empiezan. Te invitamos a una noche de música en vivo, un DJ set especialmente curado y algo rico para compartir en nuestra terraza. Vení a encontrarte con el equipo fuera de la rutina y a llevarte un recuerdo que siga sonando.\n\nTu entrada incluye acceso al show, una bebida de bienvenida y todas las ganas de pasarla bien. Podés venir con un acompañante.',
     host: 'Equipo de Experiencias', featured: true, isPrivate: false, status: 'published', companions: 1,
     terms: 'Evento exclusivo para colaboradores de Telefónica y un acompañante por persona. Al inscribirte aceptás el registro fotográfico del evento. Si no podés asistir, liberá tu lugar desde Mis eventos.',
@@ -44,4 +57,13 @@ export const INITIAL_EVENTS: EventItem[] = [
     description: 'Un día al aire libre para movernos, respirar y compartir. Senderismo de dificultad baja, almuerzo en equipo y momentos para disfrutar la naturaleza. Incluye traslado desde el campus. Podés venir con un acompañante.',
     host: 'Equipo de Experiencias', featured: false, isPrivate: false, status: 'published', companions: 1, terms: 'La actividad está sujeta a condiciones meteorológicas. Usá calzado cómodo y avisá al equipo si necesitás alguna adaptación.',
   },
+  ARCHIVED_EVENT,
 ];
+
+/** Adds the archive once when the demo seed is present, preserving every saved event. */
+export function withDemoArchive(events: EventItem[], alreadyMigrated: boolean): EventItem[] {
+  if (alreadyMigrated || events.some(event => event.id === ARCHIVED_EVENT.id)) return events;
+  const seedIds = INITIAL_EVENTS.filter(event => event.id !== ARCHIVED_EVENT.id).map(event => event.id);
+  if (!seedIds.every(id => events.some(event => event.id === id))) return events;
+  return [...events, ARCHIVED_EVENT];
+}

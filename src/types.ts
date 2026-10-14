@@ -2,6 +2,15 @@ export type EventCategory = 'Música' | 'Bienestar' | 'Tecnología' | 'Comunidad
 export type EventStatus = 'published' | 'draft' | 'ended';
 export interface AudiencePerson { id: string; name: string; email: string; department: string }
 export interface EmailTemplate { subject: string; heading: string; body: string; buttonText: string; accentColor: string }
+export interface EventSession {
+  id: string;
+  name?: string;
+  date: string;
+  endDate: string;
+  doorsDate?: string;
+  capacity: number;
+  registered: number;
+}
 export interface EventItem {
   id: string;
   title: string;
@@ -23,8 +32,11 @@ export interface EventItem {
   terms: string;
   audience?: { mode: 'all' | 'payroll' | 'excel'; people: AudiencePerson[] };
   emailTemplate?: EmailTemplate;
+  sessions?: EventSession[];
 }
 export interface Registration {
   id: string; eventId: string; name: string; email: string; companions: number; createdAt: string;
+  sessionId?: string;
+  sessionSnapshot?: EventSession;
 }
 export type AppView = 'explore' | 'registrations' | 'favorites' | 'admin' | 'profile';

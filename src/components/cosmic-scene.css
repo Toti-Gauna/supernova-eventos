@@ -47,3 +47,14 @@
 @media(max-width:700px){.cosmic-scene.cosmic-installation{height:340px;max-width:410px;margin:18px auto 8px}.cosmos-art{inset:5px -12px 28px}.cosmos-label{inset:0 10px auto;font-size:6px;letter-spacing:1.2px}.cosmos-edition{font-size:6px}.cosmos-note{font-size:7px;bottom:15%;right:5%}.cosmos-axis{font-size:6px;left:0}.cosmos-ticket{bottom:0;min-height:74px;width:min(292px,90%)}.cosmos-ticket-copy strong{font-size:13px}}
 @media(max-width:360px){.cosmic-scene.cosmic-installation{height:315px}.cosmos-ticket{padding:11px;gap:9px}.cosmos-ticket-copy strong{font-size:12px}.cosmos-ticket-kicker{font-size:6px}.cosmos-ticket-art{width:34px;height:39px}}
 @media(prefers-reduced-motion:reduce){.cosmic-installation [data-orbit-motion]{animation:none}.cosmic-installation .cosmos-ticket,.cosmic-installation .cosmos-ticket-arrow{transition:none}.cosmic-installation .cosmos-ticket:hover{transform:translateX(-50%)}}
+
+.hero.hero-compact.hero-orbital .cosmic-scene.cosmic-installation { height:230px; min-height:230px; max-width:none; margin:0; }
+.app-shell[data-universe-enabled] .hero.hero-orbital .cosmos-ticket { display:none; }
+@media(max-width:700px) {
+  html[data-experience] .app-shell[data-universe-enabled] .hero.hero-compact.hero-orbital .cosmic-scene.cosmic-installation { height:52px; min-height:52px; margin:0; }
+  .hero.hero-orbital .cosmos-art { inset:0 -12px 12px; }
+  .hero.hero-compact.hero-orbital .cosmos-ticket { bottom:0; left:auto; right:0; width:44px; min-height:44px; height:44px; padding:0; border-radius:50%; transform:none; justify-content:center; }
+  .hero.hero-orbital .cosmos-ticket:hover { transform:translateY(-2px); }
+  .hero.hero-orbital :is(.cosmos-ticket-art,.cosmos-ticket-copy) { display:none; }
+  .hero.hero-orbital .cosmos-ticket-arrow { margin:0; }
+}

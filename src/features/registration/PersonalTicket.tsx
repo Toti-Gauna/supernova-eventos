@@ -4,6 +4,8 @@ import type { PointerEvent } from 'react';
 import type { EventItem, Registration } from '../../types';
 import Brand from '../../components/Brand';
 import { formatEventDate } from '../../lib/calendar';
+import InlinePassQR from '../qr/InlinePassQR';
+import './ticket-qr.css';
 
 export default function PersonalTicket({ event, pass }: { event: EventItem; pass: Registration }) {
   const reduced = useReducedMotion();
@@ -31,8 +33,10 @@ export default function PersonalTicket({ event, pass }: { event: EventItem; pass
       <motion.div className="ticket-content" style={{ x: reduced ? 0 : contentX, y: reduced ? 0 : contentY, z: reduced ? 0 : 14 }}>
       <div className="ticket-top"><Brand compact /><span className="ticket-confirmed"><Check size={12} /> CONFIRMADO</span></div>
       <div className="ticket-main"><span className="ticket-category">{event.category} <i /> {event.mode}</span><h3>{event.title}</h3>
-        <div className="ticket-datetime"><span><small>FECHA</small><strong>{formatEventDate(event.date)}</strong></span><span><small>HORA</small><strong>{formatEventDate(event.date, { hour: '2-digit', minute: '2-digit', hour12: false })} h</strong></span></div>
-        <span className="ticket-location"><MapPin size={14} />{event.location}</span>
+        <div className="ticket-details-row"><div>
+          <div className="ticket-datetime"><span><small>FECHA</small><strong>{formatEventDate(event.date)}</strong></span><span><small>HORA</small><strong>{formatEventDate(event.date, { hour: '2-digit', minute: '2-digit', hour12: false })} h</strong></span></div>
+          <span className="ticket-location"><MapPin size={14} />{event.location}</span>
+        </div><InlinePassQR event={event} pass={pass} /></div>
       </div>
       <div className="ticket-tear" aria-hidden="true"><i /><span /><i /></div>
       <div className="ticket-bottom"><div><span>ESTE MOMENTO ES PARA</span><strong>{pass.name}</strong><small>{pass.companions ? `Vos + ${pass.companions} acompañante${pass.companions > 1 ? 's' : ''}` : 'Pase individual'}</small></div><div className="ticket-code"><Ticket size={26} /><span>{pass.id}</span></div></div>

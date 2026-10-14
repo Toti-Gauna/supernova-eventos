@@ -1,15 +1,19 @@
-import { useCallback, useLayoutEffect, useRef } from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 import { createPortal } from 'react-dom';
+import { useUniversePresentation } from '../universe/presentation';
 import IntroArtwork from './IntroArtwork';
-import { getIntroElapsedSeconds, useIntroIsolation } from './introLifecycle';
+import { useIntroHandoff } from './introHandoff';
+import { getIntroElapsedSeconds, INTRO_DURATION_MS, useIntroDeadline, useIntroIsolation } from './introLifecycle';
 import './intro.css';
 
 interface IntroLoadingProps {
   onComplete: () => void;
+  variant?: '3d' | 'hybrid';
 }
 
-/** The same orbital scene is already visible while the animation chunk loads. */
-export default function IntroLoading({ onComplete }: IntroLoadingProps) {
+/** The same solar first frame remains visible while the GSAP chunk loads. */
+export default function IntroLoading({ onComplete, variant = '3d' }: IntroLoadingProps) {
+  const { status, introStartedAtMs } = useUniversePresentation();
   const stageRef = useRef<HTMLDivElement>(null);
   const onCompleteRef = useRef(onComplete);
   const completedRef = useRef(false);
@@ -19,27 +23,19 @@ export default function IntroLoading({ onComplete }: IntroLoadingProps) {
     completedRef.current = true;
     onCompleteRef.current();
   }, []);
-  useIntroIsolation(stageRef, complete);
+  useIntroIsolation(stageRef, complete, introStartedAtMs);
+  useIntroDeadline(introStartedAtMs, complete, INTRO_DURATION_MS);
 
-  useLayoutEffect(() => {
-    const elapsed = getIntroElapsedSeconds();
-    stageRef.current?.style.setProperty('--intro-start-delay', `${-Math.min(elapsed, 2.35)}s`);
-    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let reducedTimer: ReturnType<typeof setTimeout> | undefined;
-    if (preference.matches) reducedTimer = setTimeout(complete, Math.max(0, 150 - elapsed * 1000));
-    const handlePreferenceChange = (event: MediaQueryListEvent) => {
-      if (event.matches) complete();
-    };
-    preference.addEventListener('change', handlePreferenceChange);
-    return () => {
-      if (reducedTimer !== undefined) clearTimeout(reducedTimer);
-      preference.removeEventListener('change', handlePreferenceChange);
-    };
-  }, [complete]);
+  const startDelay = useMemo(() => `${-getIntroElapsedSeconds(introStartedAtMs)}s`, [introStartedAtMs]);
+  const handoffStyle = useIntroHandoff(status, introStartedAtMs);
+  const style = {
+    ...handoffStyle,
+    '--intro-start-delay': startDelay,
+  };
 
   return createPortal(
-    <div ref={stageRef} className="cinematic-intro intro-pending" data-cinematic-intro tabIndex={-1} role="dialog" aria-modal="true" aria-label="Bienvenido a Supernova Eventos" aria-describedby="intro-loading-description">
-      <p id="intro-loading-description" className="intro-sr-only">Supernova. Conectá sin límites. Cargando la presentación. Presioná Escape para continuar.</p>
+    <div ref={stageRef} className={`cinematic-intro intro-pending ${status === 'ready' ? 'intro-revealing' : ''}`} style={style} data-cinematic-intro data-intro-variant={variant} data-intro-started-at={introStartedAtMs} data-intro-universe-status={status} tabIndex={-1} role="dialog" aria-modal="true" aria-label="Bienvenido a Supernova Eventos" aria-describedby="intro-loading-description">
+      <p id="intro-loading-description" className="intro-sr-only">Supernova. Conectá sin límites. Preparando la experiencia. Presioná Escape para continuar.</p>
       <IntroArtwork />
     </div>,
     document.body,

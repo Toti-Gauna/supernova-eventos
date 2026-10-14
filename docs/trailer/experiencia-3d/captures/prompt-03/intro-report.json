@@ -1,0 +1,895 @@
+{
+  "recordedAt": "2026-10-09T14:38:17.354Z",
+  "captureMode": "Animaciones y reloj reales; sin animations:disabled ni freeze.",
+  "hotUpdates": [],
+  "beforeReactNormalMs": 3604,
+  "beforeReactReducedMs": 157,
+  "beforeReactEscapeMs": 59,
+  "manropeAvailableBeforeReact": true,
+  "mobileArtwork320And390": true,
+  "openings": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "releaseMs": 3623,
+      "samples": [
+        {
+          "targetMs": 1100,
+          "elapsedMs": 1395,
+          "universeStatus": "ready",
+          "staticSkyOpacity": "0.991847",
+          "identityOpacity": "1",
+          "file": "solar-live-1100-1440.png"
+        },
+        {
+          "targetMs": 1800,
+          "elapsedMs": 1813,
+          "universeStatus": "ready",
+          "staticSkyOpacity": "0.032477",
+          "identityOpacity": "1",
+          "file": "solar-live-1800-1440.png"
+        },
+        {
+          "targetMs": 2750,
+          "elapsedMs": 2811,
+          "universeStatus": "ready",
+          "staticSkyOpacity": "0",
+          "identityOpacity": "0",
+          "file": "solar-live-2750-1440.png"
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "releaseMs": 3623,
+      "samples": [
+        {
+          "targetMs": 1100,
+          "elapsedMs": 1149,
+          "universeStatus": "loading",
+          "staticSkyOpacity": "1",
+          "identityOpacity": "1",
+          "file": "solar-live-1100-390.png"
+        },
+        {
+          "targetMs": 1800,
+          "elapsedMs": 1818,
+          "universeStatus": "ready",
+          "staticSkyOpacity": "0.0259488",
+          "identityOpacity": "1",
+          "file": "solar-live-1800-390.png"
+        },
+        {
+          "targetMs": 2750,
+          "elapsedMs": 2804,
+          "universeStatus": "ready",
+          "staticSkyOpacity": "0",
+          "identityOpacity": "0",
+          "file": "solar-live-2750-390.png"
+        }
+      ]
+    }
+  ],
+  "lateSceneDoesNotRestoreSVG": true,
+  "pendingChunkReleaseMs": 3655,
+  "replayKeepsSectionAndFocus": true,
+  "reducedReplayMs": 28,
+  "reducedPreferenceReleaseMs": 33,
+  "liveJourneys": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "journeys": [
+        {
+          "file": "viaje-mis-eventos-mid-1440.png",
+          "before": {
+            "atMs": 3772.9000000059605,
+            "width": 1440,
+            "height": 900,
+            "dpr": 1,
+            "destination": "section:explore",
+            "reason": "navigate",
+            "request": 2,
+            "travelling": false,
+            "camera": [
+              -3.467,
+              -1.726,
+              14.387
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "explore",
+            "trail": 0,
+            "quality": "balanced",
+            "calls": 6,
+            "triangles": 8768,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "intermediate": {
+            "atMs": 4131.29999999702,
+            "width": 1440,
+            "height": 900,
+            "dpr": 1,
+            "destination": "section:registrations",
+            "reason": "navigate",
+            "request": 3,
+            "travelling": true,
+            "camera": [
+              0.952,
+              -0.292,
+              13.14
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "explore,registrations",
+            "trail": 32,
+            "quality": "balanced",
+            "calls": 6,
+            "triangles": 492,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "afterCapture": {
+            "atMs": 4252.0999999940395,
+            "width": 1440,
+            "height": 900,
+            "dpr": 1,
+            "destination": "section:registrations",
+            "reason": "navigate",
+            "request": 3,
+            "travelling": true,
+            "camera": [
+              0.952,
+              -0.292,
+              13.14
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "explore,registrations",
+            "trail": 32,
+            "quality": "balanced",
+            "calls": 5,
+            "triangles": 96,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "arrival": {
+            "atMs": 4714.20000000298,
+            "width": 1440,
+            "height": 900,
+            "dpr": 1,
+            "destination": "section:registrations",
+            "reason": "navigate",
+            "request": 3,
+            "travelling": false,
+            "camera": [
+              21.298,
+              0.69,
+              2.48
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "registrations",
+            "trail": 0,
+            "quality": "balanced",
+            "calls": 6,
+            "triangles": 9268,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "sampleFromObservedTravelMs": 231.79999999701977
+        },
+        {
+          "file": "viaje-favoritos-mid-1440.png",
+          "before": {
+            "atMs": 4722.20000000298,
+            "width": 1440,
+            "height": 900,
+            "dpr": 1,
+            "destination": "section:registrations",
+            "reason": "navigate",
+            "request": 3,
+            "travelling": false,
+            "camera": [
+              21.298,
+              0.69,
+              2.48
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "registrations",
+            "trail": 0,
+            "quality": "balanced",
+            "calls": 6,
+            "triangles": 9268,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "intermediate": {
+            "atMs": 5028.0999999940395,
+            "width": 1440,
+            "height": 900,
+            "dpr": 1,
+            "destination": "section:favorites",
+            "reason": "navigate",
+            "request": 4,
+            "travelling": true,
+            "camera": [
+              14.835,
+              1.375,
+              2.485
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "favorites,registrations",
+            "trail": 32,
+            "quality": "balanced",
+            "calls": 4,
+            "triangles": 0,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "afterCapture": {
+            "atMs": 5106.70000000298,
+            "width": 1440,
+            "height": 900,
+            "dpr": 1,
+            "destination": "section:favorites",
+            "reason": "navigate",
+            "request": 4,
+            "travelling": true,
+            "camera": [
+              11.057,
+              1.585,
+              2.379
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "favorites,registrations",
+            "trail": 32,
+            "quality": "balanced",
+            "calls": 4,
+            "triangles": 0,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "arrival": {
+            "atMs": 5650.5,
+            "width": 1440,
+            "height": 900,
+            "dpr": 1,
+            "destination": "section:favorites",
+            "reason": "navigate",
+            "request": 4,
+            "travelling": false,
+            "camera": [
+              -28.34,
+              -2.577,
+              -2.634
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "favorites",
+            "trail": 0,
+            "quality": "balanced",
+            "calls": 6,
+            "triangles": 9160,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "sampleFromObservedTravelMs": 221.3999999910593
+        },
+        {
+          "file": "viaje-evento-mid-1440.png",
+          "before": {
+            "atMs": 6609.5999999940395,
+            "width": 1440,
+            "height": 900,
+            "dpr": 1,
+            "destination": "section:explore",
+            "reason": "navigate",
+            "request": 5,
+            "travelling": false,
+            "camera": [
+              -3.467,
+              -1.726,
+              14.387
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "explore",
+            "trail": 0,
+            "quality": "balanced",
+            "calls": 6,
+            "triangles": 8768,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "intermediate": {
+            "atMs": 7015.5,
+            "width": 1440,
+            "height": 900,
+            "dpr": 1,
+            "destination": "event:supernova-sessions",
+            "reason": "open-event",
+            "request": 6,
+            "travelling": true,
+            "camera": [
+              6.457,
+              -5.253,
+              7.028
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "event-supernova-sessions,explore",
+            "trail": 32,
+            "quality": "balanced",
+            "calls": 4,
+            "triangles": 0,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "afterCapture": {
+            "atMs": 7181.5999999940395,
+            "width": 1440,
+            "height": 900,
+            "dpr": 1,
+            "destination": "event:supernova-sessions",
+            "reason": "open-event",
+            "request": 6,
+            "travelling": true,
+            "camera": [
+              6.457,
+              -5.253,
+              7.028
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "event-supernova-sessions,explore",
+            "trail": 32,
+            "quality": "balanced",
+            "calls": 7,
+            "triangles": 8524,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "arrival": {
+            "atMs": 7467.70000000298,
+            "width": 1440,
+            "height": 900,
+            "dpr": 1,
+            "destination": "event:supernova-sessions",
+            "reason": "open-event",
+            "request": 6,
+            "travelling": false,
+            "camera": [
+              21.864,
+              -18.646,
+              -5.454
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "event-supernova-sessions",
+            "trail": 0,
+            "quality": "balanced",
+            "calls": 6,
+            "triangles": 8524,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "sampleFromObservedTravelMs": 232.29999999701977
+        },
+        {
+          "file": "abordaje-nave-mid-1440.png",
+          "before": {
+            "atMs": 8738.59999999404,
+            "width": 1440,
+            "height": 900,
+            "dpr": 1,
+            "destination": "section:admin",
+            "reason": "navigate",
+            "request": 8,
+            "travelling": false,
+            "camera": [
+              14.171,
+              14.213,
+              -13.381
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "admin",
+            "trail": 0,
+            "quality": "balanced",
+            "calls": 8,
+            "triangles": 2652,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "intermediate": {
+            "atMs": 9119.20000000298,
+            "width": 1440,
+            "height": 900,
+            "dpr": 1,
+            "destination": "studio",
+            "reason": "open-studio",
+            "request": 9,
+            "travelling": true,
+            "camera": [
+              12.136,
+              13.03,
+              -15.897
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "admin",
+            "trail": 32,
+            "quality": "balanced",
+            "calls": 12,
+            "triangles": 2940,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "afterCapture": {
+            "atMs": 9320.40000000596,
+            "width": 1440,
+            "height": 900,
+            "dpr": 1,
+            "destination": "studio",
+            "reason": "open-studio",
+            "request": 9,
+            "travelling": true,
+            "camera": [
+              7.563,
+              10.371,
+              -22.135
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "admin",
+            "trail": 32,
+            "quality": "balanced",
+            "calls": 12,
+            "triangles": 2940,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "arrival": {
+            "atMs": 9913.29999999702,
+            "width": 1440,
+            "height": 900,
+            "dpr": 1,
+            "destination": "studio",
+            "reason": "open-studio",
+            "request": 9,
+            "travelling": false,
+            "camera": [
+              4,
+              8.3,
+              -30.2
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "admin",
+            "trail": 0,
+            "quality": "balanced",
+            "calls": 6,
+            "triangles": 288,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "sampleFromObservedTravelMs": 228.90000000596046
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "journeys": [
+        {
+          "file": "viaje-mis-eventos-mid-390.png",
+          "before": {
+            "atMs": 3910.8999999910593,
+            "width": 390,
+            "height": 844,
+            "dpr": 1,
+            "destination": "section:explore",
+            "reason": "navigate",
+            "request": 2,
+            "travelling": false,
+            "camera": [
+              -0.069,
+              1.457,
+              24.286
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "explore",
+            "trail": 0,
+            "quality": "balanced",
+            "calls": 6,
+            "triangles": 8768,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "intermediate": {
+            "atMs": 4223,
+            "width": 390,
+            "height": 844,
+            "dpr": 1,
+            "destination": "section:registrations",
+            "reason": "navigate",
+            "request": 3,
+            "travelling": true,
+            "camera": [
+              8.101,
+              3.734,
+              20.839
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "explore,registrations",
+            "trail": 32,
+            "quality": "balanced",
+            "calls": 4,
+            "triangles": 0,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "afterCapture": {
+            "atMs": 4277.199999988079,
+            "width": 390,
+            "height": 844,
+            "dpr": 1,
+            "destination": "section:registrations",
+            "reason": "navigate",
+            "request": 3,
+            "travelling": true,
+            "camera": [
+              8.101,
+              3.734,
+              20.839
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "explore,registrations",
+            "trail": 32,
+            "quality": "balanced",
+            "calls": 4,
+            "triangles": 0,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "arrival": {
+            "atMs": 4639.399999991059,
+            "width": 390,
+            "height": 844,
+            "dpr": 1,
+            "destination": "section:registrations",
+            "reason": "navigate",
+            "request": 3,
+            "travelling": false,
+            "camera": [
+              25.926,
+              1.248,
+              13.864
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "registrations",
+            "trail": 0,
+            "quality": "balanced",
+            "calls": 6,
+            "triangles": 9268,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "sampleFromObservedTravelMs": 215.90000000596046
+        },
+        {
+          "file": "viaje-favoritos-mid-390.png",
+          "before": {
+            "atMs": 4646.79999999702,
+            "width": 390,
+            "height": 844,
+            "dpr": 1,
+            "destination": "section:registrations",
+            "reason": "navigate",
+            "request": 3,
+            "travelling": false,
+            "camera": [
+              25.926,
+              1.248,
+              13.864
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "registrations",
+            "trail": 0,
+            "quality": "balanced",
+            "calls": 6,
+            "triangles": 9268,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "intermediate": {
+            "atMs": 4921.699999988079,
+            "width": 390,
+            "height": 844,
+            "dpr": 1,
+            "destination": "section:favorites",
+            "reason": "navigate",
+            "request": 4,
+            "travelling": true,
+            "camera": [
+              15.032,
+              2.175,
+              13.535
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "favorites,registrations",
+            "trail": 32,
+            "quality": "balanced",
+            "calls": 4,
+            "triangles": 0,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "afterCapture": {
+            "atMs": 4976.79999999702,
+            "width": 390,
+            "height": 844,
+            "dpr": 1,
+            "destination": "section:favorites",
+            "reason": "navigate",
+            "request": 4,
+            "travelling": true,
+            "camera": [
+              15.032,
+              2.175,
+              13.535
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "favorites,registrations",
+            "trail": 32,
+            "quality": "balanced",
+            "calls": 4,
+            "triangles": 0,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "arrival": {
+            "atMs": 5357.199999988079,
+            "width": 390,
+            "height": 844,
+            "dpr": 1,
+            "destination": "section:favorites",
+            "reason": "navigate",
+            "request": 4,
+            "travelling": false,
+            "camera": [
+              -24.068,
+              -1.663,
+              7.875
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "favorites",
+            "trail": 0,
+            "quality": "balanced",
+            "calls": 6,
+            "triangles": 9160,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "sampleFromObservedTravelMs": 226
+        },
+        {
+          "file": "viaje-evento-mid-390.png",
+          "before": {
+            "atMs": 6104.5999999940395,
+            "width": 390,
+            "height": 844,
+            "dpr": 1,
+            "destination": "section:explore",
+            "reason": "navigate",
+            "request": 5,
+            "travelling": false,
+            "camera": [
+              -0.069,
+              1.457,
+              24.286
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "explore",
+            "trail": 0,
+            "quality": "balanced",
+            "calls": 6,
+            "triangles": 8768,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "intermediate": {
+            "atMs": 6456.5999999940395,
+            "width": 390,
+            "height": 844,
+            "dpr": 1,
+            "destination": "event:supernova-sessions",
+            "reason": "open-event",
+            "request": 6,
+            "travelling": true,
+            "camera": [
+              14.378,
+              -7.747,
+              8.214
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "event-supernova-sessions,explore",
+            "trail": 32,
+            "quality": "balanced",
+            "calls": 4,
+            "triangles": 0,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "afterCapture": {
+            "atMs": 6531.5,
+            "width": 390,
+            "height": 844,
+            "dpr": 1,
+            "destination": "event:supernova-sessions",
+            "reason": "open-event",
+            "request": 6,
+            "travelling": true,
+            "camera": [
+              14.378,
+              -7.747,
+              8.214
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "event-supernova-sessions,explore",
+            "trail": 32,
+            "quality": "balanced",
+            "calls": 6,
+            "triangles": 8512,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "arrival": {
+            "atMs": 6736.699999988079,
+            "width": 390,
+            "height": 844,
+            "dpr": 1,
+            "destination": "event:supernova-sessions",
+            "reason": "open-event",
+            "request": 6,
+            "travelling": false,
+            "camera": [
+              21.951,
+              -19.32,
+              -2.948
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "event-supernova-sessions",
+            "trail": 0,
+            "quality": "balanced",
+            "calls": 6,
+            "triangles": 8524,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "sampleFromObservedTravelMs": 222.40000000596046
+        },
+        {
+          "file": "abordaje-nave-mid-390.png",
+          "before": {
+            "atMs": 7900.399999991059,
+            "width": 390,
+            "height": 844,
+            "dpr": 1,
+            "destination": "section:admin",
+            "reason": "navigate",
+            "request": 8,
+            "travelling": false,
+            "camera": [
+              22.169,
+              19.885,
+              1.257
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "admin",
+            "trail": 0,
+            "quality": "balanced",
+            "calls": 8,
+            "triangles": 2652,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "intermediate": {
+            "atMs": 9173.199999988079,
+            "width": 390,
+            "height": 844,
+            "dpr": 1,
+            "destination": "studio",
+            "reason": "open-studio",
+            "request": 9,
+            "travelling": true,
+            "camera": [
+              16.465,
+              16.248,
+              -7.337
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "admin",
+            "trail": 32,
+            "quality": "balanced",
+            "calls": 12,
+            "triangles": 2940,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "afterCapture": {
+            "atMs": 9279.39999999106,
+            "width": 390,
+            "height": 844,
+            "dpr": 1,
+            "destination": "studio",
+            "reason": "open-studio",
+            "request": 9,
+            "travelling": true,
+            "camera": [
+              16.465,
+              16.248,
+              -7.337
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "admin",
+            "trail": 32,
+            "quality": "balanced",
+            "calls": 12,
+            "triangles": 2940,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "arrival": {
+            "atMs": 9657.699999988079,
+            "width": 390,
+            "height": 844,
+            "dpr": 1,
+            "destination": "studio",
+            "reason": "open-studio",
+            "request": 9,
+            "travelling": false,
+            "camera": [
+              4,
+              8.3,
+              -30.2
+            ],
+            "canvasCount": 1,
+            "visibleBodies": "admin",
+            "trail": 0,
+            "quality": "balanced",
+            "calls": 6,
+            "triangles": 288,
+            "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "contextLost": false
+          },
+          "sampleFromObservedTravelMs": 216.5
+        }
+      ]
+    }
+  ],
+  "cpu4x": {
+    "cpuSlowdownRate": 4,
+    "replayReleaseMs": 3528,
+    "reducedReplayReleaseMs": 187,
+    "scrollPreserved": true,
+    "sameCanvas": true,
+    "focusRestored": true,
+    "note": "CPU emulada sobre replay con recursos ya cargados. No representa GPU ni teléfono físico."
+  },
+  "escapeBeforeReady": {
+    "releaseAfterEscapeMs": 45,
+    "rendererReadyAtEscape": false,
+    "navigationUsableBeforeRenderer": true,
+    "lateRendererUsesCurrentDestination": true
+  },
+  "failedIntroChunk": {
+    "rejectedChunkRequests": 1,
+    "initialReleaseMs": 810,
+    "replayFocusRestored": true,
+    "navigationUsable": true,
+    "sameCanvas": true,
+    "expectedPageErrors": []
+  },
+  "pageErrors": [],
+  "browserVersion": "155.0.8059.40",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+}

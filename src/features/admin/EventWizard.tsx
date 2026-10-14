@@ -9,8 +9,9 @@ import AudienceStep from './AudienceStep';
 import EmailStep from './EmailStep';
 import EmailPreview from './EmailPreview';
 import SupernovaSelect from '../../components/ui/SupernovaSelect';
-import SupernovaDatePicker from '../../components/ui/SupernovaDatePicker';
-import { categories, clearSavedDraft, defaultEmail, DRAFT_KEY, formatEventDate, fromLocalDateTime, toLocalDateTime, validateStep } from './admin.helpers';
+import EventSessionsEditor from './EventSessionsEditor';
+import { getEventSessions } from '../../lib/eventSessions';
+import { categories, clearSavedDraft, defaultEmail, DRAFT_KEY, formatEventDate, validateStep } from './admin.helpers';
 
 export interface SavedEventDraft { event: EventItem; editing: boolean; savedAt: string; step: number }
 interface EventWizardProps {
@@ -63,25 +64,48 @@ export default function EventWizard({ initial, editing, initialStep = 0, onClose
   const pendingFocus = useRef<'heading' | 'error' | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const coverInput = useRef<HTMLInputElement>(null);
+  const latestDraft = useRef({ event, editing, step });
+  const draftFinished = useRef(false);
+  latestDraft.current = { event, editing, step };
+
+  function persistDraft() {
+    if (draftFinished.current) return true;
+    return writeStorage(DRAFT_KEY, { ...latestDraft.current, savedAt: new Date().toISOString() } satisfies SavedEventDraft);
+  }
+
+  function closeWizard() {
+    if (!persistDraft()) { setSaveState('failed'); return; }
+    onClose();
+  }
 
   useEffect(() => { sectionRef.current?.querySelector<HTMLElement>('.studio-heading h1')?.focus({ preventScroll: true }); }, []);
 
   useEffect(() => {
     setSaveState('saving');
     const timer = window.setTimeout(() => {
-      const saved = writeStorage(DRAFT_KEY, { event, editing, savedAt: new Date().toISOString(), step } satisfies SavedEventDraft);
+      const saved = persistDraft();
       setSaveState(saved ? 'saved' : 'failed');
       if (saved) setSavedAt(new Date());
     }, 600);
     return () => window.clearTimeout(timer);
   }, [event, step, editing]);
 
+  useEffect(() => {
+    const flush = () => { persistDraft(); };
+    window.addEventListener('pagehide', flush);
+    return () => { window.removeEventListener('pagehide', flush); flush(); };
+  }, []);
+
   function focusStep() {
     if (!pendingFocus.current) return;
-    const selector = pendingFocus.current === 'error' ? '[aria-invalid="true"], [role="alert"]' : '.wizard-section-heading h2';
+    const intent = pendingFocus.current;
+    const selector = intent === 'error' ? '[aria-invalid="true"], [role="alert"]' : '.wizard-section-heading h2';
     const target = sectionRef.current?.querySelector<HTMLElement>(selector);
-    if (target) { if (!target.matches('input, select, textarea, button')) target.tabIndex = -1; target.focus({ preventScroll: pendingFocus.current !== 'error' }); }
+    if (target) { if (!target.matches('input, select, textarea, button')) target.tabIndex = -1; target.focus({ preventScroll: intent !== 'error' }); }
     pendingFocus.current = null;
+    // The new step has its final height now; scrolling the previous taller step
+    // fights browser anchoring and can keep its sticky action bar moving.
+    if (intent === 'heading') sectionRef.current?.scrollIntoView({ behavior: reducedMotion ? 'instant' : 'smooth', block: 'start' });
   }
 
   function updateField<K extends keyof EventItem>(key: K, value: EventItem[K]) {
@@ -107,7 +131,6 @@ export default function EventWizard({ initial, editing, initialStep = 0, onClose
     setErrors({});
     pendingFocus.current = 'heading';
     setStep(target);
-    sectionRef.current?.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
   }
 
   async function uploadCover(file?: File) {
@@ -121,28 +144,32 @@ export default function EventWizard({ initial, editing, initialStep = 0, onClose
   }
 
   function saveDraft() {
+    if (draftFinished.current) return;
+    draftFinished.current = true;
     clearSavedDraft();
     onSave({ ...event, title: event.title.trim() || 'Evento sin título', status: 'draft' }, editing);
   }
 
   function publishEvent() {
+    if (draftFinished.current) return;
     for (let index = 0; index < 3; index += 1) {
       const nextErrors = validateStep(event, index);
       if (Object.keys(nextErrors).length) { setErrors(nextErrors); pendingFocus.current = 'error'; setStep(index); return; }
     }
     if (Date.parse(event.endDate) <= Date.now()) { setErrors({ endDate: 'Para publicar, elegí una fecha de finalización futura.' }); pendingFocus.current = 'error'; setStep(0); return; }
     setPublishing(true);
+    draftFinished.current = true;
     clearSavedDraft();
     onSave({ ...event, title: event.title.trim(), isPrivate: event.audience?.mode !== 'all', status: 'published' }, editing);
   }
 
   const audienceLabel = event.audience?.mode === 'all' ? 'Toda la compañía' : `${event.audience?.people.length || 0} personas seleccionadas`;
-  const capacityLabel = `${event.capacity.toLocaleString('es-AR')} lugares`;
+  const capacityLabel = `${getEventSessions(event).length > 1 ? `${getEventSessions(event).length} funciones · ` : ''}${event.capacity.toLocaleString('es-AR')} lugares`;
   const completedSections = [0, 1, 2].filter(index => !Object.keys(validateStep(event, index)).length).length;
 
   return <motion.div className="event-wizard" initial={{ opacity: 0 }} animate={{ opacity: 1 }} ref={sectionRef}>
     <header className="studio-header">
-      <button className="admin-back-button studio-back" type="button" aria-label="Volver a eventos" title="Volver a eventos" onClick={onClose}><ArrowLeft size={19} /><span>Volver a eventos</span></button>
+      <button className="admin-back-button studio-back" type="button" aria-label="Volver a eventos" title="Volver a eventos" onClick={closeWizard}><ArrowLeft size={19} /><span>Volver a eventos</span></button>
       <nav className="wizard-stepper studio-stepper" aria-label="Pasos para crear el evento">{steps.map((item, index) => <button type="button" key={item.title} className={`wizard-step ${index === step ? 'is-current' : ''} ${index < step ? 'is-completed' : ''}`} onClick={() => goToStep(index)} aria-label={`${item.shortTitle === item.title ? item.title : `${item.shortTitle}: ${item.title}`}. ${item.detail}`} title={item.title} aria-current={index === step ? 'step' : undefined}>{index === step && <motion.span className="wizard-step-highlight" layoutId="wizard-active-step" transition={reducedMotion ? { duration: 0 } : { type: 'spring', stiffness: 380, damping: 35 }} />}<span className="wizard-step-number" aria-hidden="true">{index < step ? <Check size={14} /> : String(index + 1).padStart(2, '0')}</span><span className="studio-step-label"><strong>{item.shortTitle}</strong></span></button>)}</nav>
       <span className={`wizard-save-status studio-save-status ${saveState === 'failed' ? 'has-error' : ''}`} role="status" title={savedAt ? `Guardado local a las ${savedAt.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' })}` : 'El borrador se guarda en este navegador'}>{saveState === 'saved' ? <CheckCircle2 size={15} /> : <Clock3 size={15} />}<span>{saveState === 'saving' ? 'Guardando…' : saveState === 'saved' ? 'Borrador guardado' : 'No se pudo guardar'}</span></span>
     </header>
@@ -158,8 +185,8 @@ export default function EventWizard({ initial, editing, initialStep = 0, onClose
             <Field id="event-subtitle" label="Una frase para inspirar" helper="La bajada que va a acompañar el nombre." ><input id="event-subtitle" aria-describedby="event-subtitle-helper" placeholder="Pequeños encuentros. Grandes conexiones." maxLength={180} value={event.subtitle} onChange={change => updateField('subtitle', change.target.value)} /></Field>
             <div className="admin-form-grid"><Field id="event-category" label="Categoría" required><SupernovaSelect id="event-category" label="Categoría" required value={event.category} options={categories.map(category => ({ value: category, label: category }))} onChange={value => updateField('category', value as EventItem['category'])} /></Field><Field id="event-mode" label="Modalidad" required><SupernovaSelect id="event-mode" label="Modalidad" required value={event.mode} options={['Presencial', 'Online', 'Híbrido'].map(mode => ({ value: mode, label: mode }))} onChange={value => updateField('mode', value as EventItem['mode'])} /></Field></div>
             <Field id="event-location" label={event.mode === 'Online' ? 'Enlace de acceso o plataforma' : 'Ubicación del evento'} required error={errors.location}><input id="event-location" placeholder={event.mode === 'Online' ? 'https://… o nombre de la plataforma' : 'Lugar, dirección y ciudad'} maxLength={250} value={event.location} onChange={change => updateField('location', change.target.value)} aria-invalid={!!errors.location} aria-describedby={errors.location ? 'event-location-error' : undefined} /></Field>
-            <div className="admin-form-grid"><Field id="event-start" label="Fecha y hora de inicio" required error={errors.date}><SupernovaDatePicker id="event-start" label="Fecha y hora de inicio" mode="datetime" required value={toLocalDateTime(event.date)} onChange={value => updateField('date', fromLocalDateTime(value))} aria-invalid={!!errors.date} aria-describedby={errors.date ? 'event-start-error' : undefined} /></Field><Field id="event-end" label="Fecha y hora de fin" required error={errors.endDate}><SupernovaDatePicker id="event-end" label="Fecha y hora de fin" mode="datetime" required value={toLocalDateTime(event.endDate)} onChange={value => updateField('endDate', fromLocalDateTime(value))} aria-invalid={!!errors.endDate} aria-describedby={errors.endDate ? 'event-end-error' : undefined} /></Field></div>
-            <div className="admin-form-grid"><Field id="event-capacity" label="Cupo total" required error={errors.capacity}><input id="event-capacity" type="number" min={Math.max(1, event.registered)} max={100000} value={event.capacity} onChange={change => updateField('capacity', Number(change.target.value))} aria-invalid={!!errors.capacity} aria-describedby={errors.capacity ? 'event-capacity-error' : undefined} /></Field><Field id="event-companions" label="Acompañantes por persona" helper="0 para inscripciones individuales." error={errors.companions}><input id="event-companions" type="number" min={0} max={5} value={event.companions} onChange={change => updateField('companions', Number(change.target.value))} aria-invalid={!!errors.companions} aria-describedby={errors.companions ? 'event-companions-error' : undefined} /></Field></div>
+            <EventSessionsEditor event={event} errors={errors} onChange={value => { setEvent(value); setErrors({}); }} />
+            <Field id="event-companions" label="Acompañantes por persona" helper="0 para inscripciones individuales." error={errors.companions}><input id="event-companions" type="number" min={0} max={5} value={event.companions} onChange={change => updateField('companions', Number(change.target.value))} aria-invalid={!!errors.companions} aria-describedby={errors.companions ? 'event-companions-error' : undefined} /></Field>
             <Field id="event-description" label="Acerca de la experiencia" required error={errors.description}><textarea id="event-description" rows={5} placeholder="¿Qué hace especial a este encuentro? Contá qué van a vivir, descubrir o compartir." maxLength={5000} value={event.description} onChange={change => updateField('description', change.target.value)} aria-invalid={!!errors.description} aria-describedby={errors.description ? 'event-description-error' : undefined} /></Field>
             <Field id="event-host" label="Organiza"><input id="event-host" placeholder="Equipo Supernova" value={event.host} maxLength={100} onChange={change => updateField('host', change.target.value)} /></Field>
             <div className="wizard-terms-setting"><label className="admin-feature-toggle wizard-terms-toggle"><span><ShieldCheck size={18} /><span><strong>Términos y condiciones</strong><small>{termsEnabled ? 'La inscripción requiere aceptar tus condiciones.' : 'Activá esta opción si la experiencia necesita condiciones.'}</small></span></span><input type="checkbox" role="switch" aria-label="Activar términos y condiciones" checked={termsEnabled} onChange={change => { setTermsEnabled(change.target.checked); updateField('terms', change.target.checked ? termsDraft : ''); }} /><span className="admin-switch" /></label>{termsEnabled && <Field id="event-terms" label="Condiciones de participación" helper="Las personas deberán aceptarlas antes de inscribirse."><textarea id="event-terms" aria-describedby="event-terms-helper" rows={3} placeholder="Condiciones de participación, cancelaciones o información importante…" maxLength={5000} value={event.terms} onChange={change => { setTermsDraft(change.target.value); updateField('terms', change.target.value); }} /></Field>}</div>

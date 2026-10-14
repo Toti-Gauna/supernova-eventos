@@ -1,5 +1,7 @@
 # Storyboard · conexiones en órbita
 
+Registro histórico de la intro anterior al universo 3D. El storyboard solar vigente está en [02-implementado.md](experiencia-3d/02-implementado.md); la verificación de cierre está en [03-cierre.md](experiencia-3d/03-cierre.md).
+
 ## Brief
 
 Audiencia: colaboradores y administradores. Intro de marca en la app. Timeline de 3,4 segundos, sin sonido ni indicadores de progreso. El host la monta en cada refresh y permite repetirla desde el footer. Por pedido explícito del usuario, no tiene botón «Saltar intro»; Escape sigue disponible.

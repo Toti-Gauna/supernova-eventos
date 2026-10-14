@@ -80,3 +80,5 @@
 .admin-feature-toggle:has(input:focus-visible){outline:2px solid #ccb2ff80;outline-offset:3px}
 .admin-feature-toggle>.admin-switch{pointer-events:none}
 @media(max-width:700px){.is-studio-session .wizard-actions{bottom:max(8px,env(safe-area-inset-bottom));margin:0 6px 8px;border-radius:11px;padding:10px}.is-studio-session .studio-content{padding-bottom:10px}.is-studio-session .admin-form-field .supernova-control{min-height:48px;font-size:16px}.wizard-terms-toggle>span:first-child{max-width:calc(100% - 56px)}.explorer-filter-field{min-width:0;width:100%}}
+.wizard-actions .admin-primary-button:hover{transform:none}
+@media(prefers-reduced-motion:reduce){.admin-primary-button:hover,.admin-outline-button:hover{transform:none}}

@@ -1,4 +1,5 @@
 import type { AudiencePerson, EmailTemplate, EventItem, Registration } from '../../types';
+import { getRegistrationSession, validateEventSessions } from '../../lib/eventSessions';
 
 export const DRAFT_KEY = 'supernova:event-builder:v1';
 export const categories: EventItem['category'][] = ['Música', 'Bienestar', 'Tecnología', 'Comunidad', 'Aprendizaje'];
@@ -80,10 +81,11 @@ export function exportRegistrations(events: EventItem[], registrations: Registra
     const safe = /^[=+\-@]/.test(original) ? `'${original}` : original;
     return `"${safe.replace(/"/g, '""')}"`;
   };
-  const rows = [['Evento', 'Nombre', 'Email', 'Acompañantes', 'Fecha de inscripción'], ...registrations.map(registration => [
-    events.find(event => event.id === registration.eventId)?.title || registration.eventId,
-    registration.name, registration.email, registration.companions, registration.createdAt,
-  ])];
+  const rows = [['Evento', 'Función', 'Inicio', 'Puertas', 'Nombre', 'Email', 'Acompañantes', 'Fecha de inscripción'], ...registrations.map(registration => {
+    const event = events.find(item => item.id === registration.eventId);
+    const session = event ? getRegistrationSession(event, registration) : registration.sessionSnapshot;
+    return [event?.title || registration.eventId, session?.name || session?.id || 'Función principal', session?.date || '', session?.doorsDate || '', registration.name, registration.email, registration.companions, registration.createdAt];
+  })];
   downloadFile('supernova-inscripciones.csv', '\uFEFF' + rows.map(row => row.map(csvCell).join(';')).join('\r\n'));
 }
 
@@ -178,9 +180,7 @@ export function validateStep(event: EventItem, step: number): Record<string, str
     if (event.title.trim().length < 3) errors.title = 'Dale un nombre de al menos 3 caracteres.';
     if (!event.location.trim()) errors.location = 'Indicá la ubicación o el enlace de acceso.';
     if (event.description.trim().length < 20) errors.description = 'Contá un poco más: al menos 20 caracteres.';
-    if (!event.date || Number.isNaN(Date.parse(event.date))) errors.date = 'Elegí una fecha de inicio válida.';
-    if (!event.endDate || Number.isNaN(Date.parse(event.endDate)) || Date.parse(event.endDate) <= Date.parse(event.date)) errors.endDate = 'El fin debe ser posterior al inicio.';
-    if (!Number.isInteger(event.capacity) || event.capacity < Math.max(1, event.registered) || event.capacity > 100000) errors.capacity = `El cupo debe ser entero, entre ${Math.max(1, event.registered)} y 100.000.`;
+    Object.assign(errors, validateEventSessions(event));
     if (!Number.isInteger(event.companions) || event.companions < 0 || event.companions > 5) errors.companions = 'Elegí entre 0 y 5 acompañantes.';
   }
   if (step === 1 && event.audience?.mode !== 'all' && !event.audience?.people.length) errors.audience = 'Seleccioná o importá al menos una persona para continuar.';

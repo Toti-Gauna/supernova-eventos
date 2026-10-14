@@ -1,4 +1,4 @@
-﻿import { useEffect, useId, useRef, useState, type PointerEvent } from 'react';
+import { useEffect, useId, useRef, useState, type PointerEvent } from 'react';
 import { motion, useInView, useReducedMotion, useSpring } from 'motion/react';
 import { ArrowUpRight, AudioLines } from 'lucide-react';
 import type { EventItem } from '../types';
@@ -44,7 +44,7 @@ export default function CosmicScene({ onExplore, featured }: { onExplore: () => 
     </g>
   </g>;
 
-  return <motion.div ref={root} className="cosmic-scene cosmic-installation" data-active={active} initial={reduced ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: .9, delay: .18 }} onPointerMove={move} onPointerLeave={() => { x.set(0); y.set(0); }}>
+  return <motion.div ref={root} className="cosmic-scene cosmic-installation" data-universe-surface="" data-active={active} initial={reduced ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: .9, delay: .18 }} onPointerMove={move} onPointerLeave={() => { x.set(0); y.set(0); }}>
     <motion.div className="cosmos-art" style={{ x: reduced ? 0 : x, y: reduced ? 0 : y }} aria-hidden="true">
       <div className="cosmos-atmosphere" data-orbit-motion />
       <svg className="cosmos-map" viewBox="0 0 600 480" fill="none">

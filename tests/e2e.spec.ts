@@ -66,7 +66,7 @@ test('reduced motion omite la secuencia y la home muestra tres experiencias por 
   await expect(page.getByRole('button', { name: 'Página siguiente de eventos', exact: true })).toBeEnabled();
   await expect(page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true })).toBeVisible();
   await capture(page, testInfo, 'desktop-home.png', true);
-  await page.getByRole('button', { name: 'Encontrá tu experiencia' }).click();
+  await page.getByRole('button', { name: 'Ver eventos', exact: true }).click();
   await expect(page.locator('header')).toHaveClass(/header-floating/);
   const radius = await page.locator('.header-surface').evaluate((element) => Number.parseFloat(getComputedStyle(element).borderRadius));
   expect(radius).toBeGreaterThan(20);
@@ -335,9 +335,9 @@ test('header centrado en pantallas grandes y hero compacto en el primer viewport
     const originalBrand = await page.locator('.brand-button').boundingBox();
     expect(Math.abs(header!.x + header!.width / 2 - width / 2)).toBeLessThan(2);
     expect(Math.abs(nav!.x + nav!.width / 2 - width / 2)).toBeLessThan(2);
-    await expect(page.getByRole('button', { name: 'Encontrá tu experiencia' })).toBeInViewport();
+    await expect(page.getByRole('button', { name: 'Ver eventos', exact: true })).toBeInViewport();
     expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
-    await page.getByRole('button', { name: 'Encontrá tu experiencia' }).click();
+    await page.getByRole('button', { name: 'Ver eventos', exact: true }).click();
     await expect(page.locator('header')).toHaveClass(/header-floating/);
     const floating = await page.locator('.header-inner').boundingBox();
     expect(Math.abs(floating!.x + floating!.width / 2 - width / 2)).toBeLessThan(2);

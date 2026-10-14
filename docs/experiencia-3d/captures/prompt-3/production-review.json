@@ -1,0 +1,374 @@
+{
+  "baseURL": "http://127.0.0.1:4173/supernova-eventos/",
+  "browser": "155.0.8059.40",
+  "checks": [
+    {
+      "theme": "dark",
+      "width": 1440,
+      "destination": "section:registrations",
+      "sameCanvas": true,
+      "firstFrameFont": {
+        "loaded": true,
+        "preload": "http://127.0.0.1:4173/supernova-eventos/assets/manrope-latin-400-normal-PaqtzbVb.woff2"
+      },
+      "canvasCount": 1,
+      "webgl": true,
+      "overflow": false,
+      "black": true,
+      "images": []
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "destination": "section:favorites",
+      "sameCanvas": true,
+      "firstFrameFont": {
+        "loaded": true,
+        "preload": "http://127.0.0.1:4173/supernova-eventos/assets/manrope-latin-400-normal-PaqtzbVb.woff2"
+      },
+      "canvasCount": 1,
+      "webgl": true,
+      "overflow": false,
+      "black": true,
+      "images": []
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "destination": "section:explore",
+      "sameCanvas": true,
+      "firstFrameFont": {
+        "loaded": true,
+        "preload": "http://127.0.0.1:4173/supernova-eventos/assets/manrope-latin-400-normal-PaqtzbVb.woff2"
+      },
+      "canvasCount": 1,
+      "webgl": true,
+      "overflow": false,
+      "black": true,
+      "images": [
+        {
+          "url": "http://127.0.0.1:4173/supernova-eventos/images/concert.jpg",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:4173/supernova-eventos/images/wellness.jpg",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:4173/supernova-eventos/images/innovation.jpg",
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "destination": "section:registrations",
+      "sameCanvas": true,
+      "firstFrameFont": {
+        "loaded": true,
+        "preload": "http://127.0.0.1:4173/supernova-eventos/assets/manrope-latin-400-normal-PaqtzbVb.woff2"
+      },
+      "canvasCount": 1,
+      "webgl": true,
+      "overflow": false,
+      "black": true,
+      "images": []
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "destination": "section:favorites",
+      "sameCanvas": true,
+      "firstFrameFont": {
+        "loaded": true,
+        "preload": "http://127.0.0.1:4173/supernova-eventos/assets/manrope-latin-400-normal-PaqtzbVb.woff2"
+      },
+      "canvasCount": 1,
+      "webgl": true,
+      "overflow": false,
+      "black": true,
+      "images": []
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "destination": "section:explore",
+      "sameCanvas": true,
+      "firstFrameFont": {
+        "loaded": true,
+        "preload": "http://127.0.0.1:4173/supernova-eventos/assets/manrope-latin-400-normal-PaqtzbVb.woff2"
+      },
+      "canvasCount": 1,
+      "webgl": true,
+      "overflow": false,
+      "black": true,
+      "images": [
+        {
+          "url": "http://127.0.0.1:4173/supernova-eventos/images/concert.jpg",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:4173/supernova-eventos/images/wellness.jpg",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:4173/supernova-eventos/images/innovation.jpg",
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "destination": "section:registrations",
+      "sameCanvas": true,
+      "firstFrameFont": {
+        "loaded": true,
+        "preload": "http://127.0.0.1:4173/supernova-eventos/assets/manrope-latin-400-normal-PaqtzbVb.woff2"
+      },
+      "canvasCount": 1,
+      "webgl": true,
+      "overflow": false,
+      "black": true,
+      "images": []
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "destination": "section:favorites",
+      "sameCanvas": true,
+      "firstFrameFont": {
+        "loaded": true,
+        "preload": "http://127.0.0.1:4173/supernova-eventos/assets/manrope-latin-400-normal-PaqtzbVb.woff2"
+      },
+      "canvasCount": 1,
+      "webgl": true,
+      "overflow": false,
+      "black": true,
+      "images": []
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "destination": "section:explore",
+      "sameCanvas": true,
+      "firstFrameFont": {
+        "loaded": true,
+        "preload": "http://127.0.0.1:4173/supernova-eventos/assets/manrope-latin-400-normal-PaqtzbVb.woff2"
+      },
+      "canvasCount": 1,
+      "webgl": true,
+      "overflow": false,
+      "black": true,
+      "images": [
+        {
+          "url": "http://127.0.0.1:4173/supernova-eventos/images/concert.jpg",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:4173/supernova-eventos/images/wellness.jpg",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:4173/supernova-eventos/images/innovation.jpg",
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "destination": "section:registrations",
+      "sameCanvas": true,
+      "firstFrameFont": {
+        "loaded": true,
+        "preload": "http://127.0.0.1:4173/supernova-eventos/assets/manrope-latin-400-normal-PaqtzbVb.woff2"
+      },
+      "canvasCount": 1,
+      "webgl": true,
+      "overflow": false,
+      "black": true,
+      "images": []
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "destination": "section:favorites",
+      "sameCanvas": true,
+      "firstFrameFont": {
+        "loaded": true,
+        "preload": "http://127.0.0.1:4173/supernova-eventos/assets/manrope-latin-400-normal-PaqtzbVb.woff2"
+      },
+      "canvasCount": 1,
+      "webgl": true,
+      "overflow": false,
+      "black": true,
+      "images": []
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "destination": "section:explore",
+      "sameCanvas": true,
+      "firstFrameFont": {
+        "loaded": true,
+        "preload": "http://127.0.0.1:4173/supernova-eventos/assets/manrope-latin-400-normal-PaqtzbVb.woff2"
+      },
+      "canvasCount": 1,
+      "webgl": true,
+      "overflow": false,
+      "black": true,
+      "images": [
+        {
+          "url": "http://127.0.0.1:4173/supernova-eventos/images/concert.jpg",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:4173/supernova-eventos/images/wellness.jpg",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:4173/supernova-eventos/images/innovation.jpg",
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "destination": "section:registrations",
+      "sameCanvas": true,
+      "firstFrameFont": {
+        "loaded": true,
+        "preload": "http://127.0.0.1:4173/supernova-eventos/assets/manrope-latin-400-normal-PaqtzbVb.woff2"
+      },
+      "canvasCount": 1,
+      "webgl": true,
+      "overflow": false,
+      "black": true,
+      "images": []
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "destination": "section:favorites",
+      "sameCanvas": true,
+      "firstFrameFont": {
+        "loaded": true,
+        "preload": "http://127.0.0.1:4173/supernova-eventos/assets/manrope-latin-400-normal-PaqtzbVb.woff2"
+      },
+      "canvasCount": 1,
+      "webgl": true,
+      "overflow": false,
+      "black": true,
+      "images": []
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "destination": "section:explore",
+      "sameCanvas": true,
+      "firstFrameFont": {
+        "loaded": true,
+        "preload": "http://127.0.0.1:4173/supernova-eventos/assets/manrope-latin-400-normal-PaqtzbVb.woff2"
+      },
+      "canvasCount": 1,
+      "webgl": true,
+      "overflow": false,
+      "black": true,
+      "images": [
+        {
+          "url": "http://127.0.0.1:4173/supernova-eventos/images/concert.jpg",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:4173/supernova-eventos/images/wellness.jpg",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:4173/supernova-eventos/images/innovation.jpg",
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "destination": "section:registrations",
+      "sameCanvas": true,
+      "firstFrameFont": {
+        "loaded": true,
+        "preload": "http://127.0.0.1:4173/supernova-eventos/assets/manrope-latin-400-normal-PaqtzbVb.woff2"
+      },
+      "canvasCount": 1,
+      "webgl": true,
+      "overflow": false,
+      "black": true,
+      "images": []
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "destination": "section:favorites",
+      "sameCanvas": true,
+      "firstFrameFont": {
+        "loaded": true,
+        "preload": "http://127.0.0.1:4173/supernova-eventos/assets/manrope-latin-400-normal-PaqtzbVb.woff2"
+      },
+      "canvasCount": 1,
+      "webgl": true,
+      "overflow": false,
+      "black": true,
+      "images": []
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "destination": "section:explore",
+      "sameCanvas": true,
+      "firstFrameFont": {
+        "loaded": true,
+        "preload": "http://127.0.0.1:4173/supernova-eventos/assets/manrope-latin-400-normal-PaqtzbVb.woff2"
+      },
+      "canvasCount": 1,
+      "webgl": true,
+      "overflow": false,
+      "black": true,
+      "images": [
+        {
+          "url": "http://127.0.0.1:4173/supernova-eventos/images/concert.jpg",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:4173/supernova-eventos/images/wellness.jpg",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:4173/supernova-eventos/images/innovation.jpg",
+          "loaded": true
+        }
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "httpErrors": [],
+  "failedRequests": [],
+  "recovery": {
+    "entryRequests": [
+      "http://127.0.0.1:4173/supernova-eventos/assets/UniverseExperience-1xd_XYnw.js",
+      "http://127.0.0.1:4173/supernova-eventos/assets/UniverseExperience-CqHYttHq.js"
+    ],
+    "expectedFailures": [
+      {
+        "url": "http://127.0.0.1:4173/supernova-eventos/assets/UniverseExperience-1xd_XYnw.js",
+        "error": "net::ERR_FAILED"
+      }
+    ],
+    "pageErrors": [],
+    "destination": "section:favorites",
+    "favorites": [
+      "supernova-sessions"
+    ]
+  }
+}

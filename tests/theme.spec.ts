@@ -8,10 +8,14 @@ async function openDemo(page: Page) {
 }
 
 async function expectLightSurface(locator: Locator) {
-  const color = await locator.evaluate(element => {
+  await expect(locator).toBeVisible();
+  const sampleColor = () => locator.evaluate(element => {
     const styles = getComputedStyle(element);
     return styles.backgroundColor === 'rgba(0, 0, 0, 0)' ? styles.backgroundImage.match(/rgba?\([^)]+\)/)?.[0] ?? styles.backgroundColor : styles.backgroundColor;
   });
+  // AnimatePresence can replace the exiting page while a locator is evaluated.
+  await expect.poll(async () => (await sampleColor()).match(/[\d.]+/g)?.length ?? 0).toBeGreaterThanOrEqual(3);
+  const color = await sampleColor();
   const channels = color.match(/[\d.]+/g)?.map(Number) ?? [];
   expect(channels.length, `Fondo visible: ${color}`).toBeGreaterThanOrEqual(3);
   expect(Math.min(...channels.slice(0, 3)), `Superficie clara: ${color}`).toBeGreaterThan(230);
@@ -24,24 +28,31 @@ test('la escena orbital está en el HTML inicial incluso antes de descargar Reac
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   const bootstrap = page.locator('#intro-bootstrap');
   await expect(bootstrap).toBeVisible();
-  await expect(bootstrap.locator('svg')).toBeVisible();
+  await expect(bootstrap.locator('.intro-orbital-map')).toBeVisible();
   await expect(page.locator('#root')).toBeEmpty();
   await expect(bootstrap).not.toContainText(/UN PUNTO DE ENCUENTRO|SUPERNOVA \/ EXPERIENCIAS|HECHO PARA CONECTAR|ESTAMOS MÁS CERCA/);
 });
 
 test('la intro pendiente mantiene animación, aislamiento y Escape mientras llega el chunk', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'no-preference' });
+  const start = new Date('2026-10-09T15:00:00Z');
+  await page.clock.install({ time: start });
+  await page.clock.pauseAt(start);
   let release!: () => void;
   const pending = new Promise<void>(resolve => { release = resolve; });
   await page.route('**/src/features/intro/CinematicIntro.tsx*', async route => { await pending; await route.continue(); });
   await page.goto('/', { waitUntil: 'domcontentloaded' });
+  // Advance lazy-host retries without spending the opening's four-second budget.
+  await expect.poll(async () => { await page.clock.runFor(10); return page.locator('[data-cinematic-intro].intro-pending').count(); }, { timeout:15000, intervals:[50] }).toBe(1);
   const intro = page.getByRole('dialog', { name: 'Bienvenido a Supernova Eventos' });
   await expect(intro).toBeVisible();
   await expect(intro).toHaveClass(/intro-pending/);
+  await page.clock.runFor(250);
   await expect(intro.locator('.intro-orbital-map')).toBeVisible();
   await expect(page.locator('.intro-loading,#intro-bootstrap')).toHaveCount(0);
   expect(await page.locator('#root').evaluate(element => element.inert)).toBe(true);
   await page.keyboard.press('Escape');
+  await page.clock.runFor(500);
   await expect(intro).toHaveCount(0);
   release();
   await expect(page.getByRole('heading', { name: /Salí de la rutina/ })).toBeVisible();
@@ -63,7 +74,7 @@ test('oscuro inicial ignora el tema del sistema y el usuario conserva su elecci�
   await expect(page.getByRole('heading', { name: /Salí de la rutina/ })).toBeVisible();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
   expect(await page.locator('html').evaluate(element => getComputedStyle(element).colorScheme)).toBe('light');
-  await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute('content', '#f8f7fc');
+  await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute('content', '#020205');
   await page.getByRole('button', { name: 'Activar modo oscuro' }).click();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   await page.reload();

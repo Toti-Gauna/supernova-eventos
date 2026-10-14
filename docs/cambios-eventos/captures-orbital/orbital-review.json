@@ -1,0 +1,3669 @@
+{
+  "baseURL": "http://127.0.0.1:4173/supernova-eventos/",
+  "recordedAt": "2026-10-10T00:41:42.171Z",
+  "browser": "155.0.8059.40",
+  "checks": [
+    {
+      "version": "3d",
+      "width": 1440,
+      "theme": "dark",
+      "initial": {
+        "width": 1440,
+        "height": 900,
+        "theme": "dark",
+        "experience": "3d",
+        "overflow": false,
+        "hero": {
+          "x": 80,
+          "y": 76,
+          "width": 1280,
+          "height": 581.28125,
+          "right": 1360,
+          "bottom": 657.28125
+        },
+        "search": {
+          "x": 80,
+          "y": 235.28125,
+          "width": 532.328125,
+          "height": 48,
+          "right": 612.328125,
+          "bottom": 283.28125
+        },
+        "preview": {
+          "x": 80,
+          "y": 295.28125,
+          "width": 532.328125,
+          "height": 282,
+          "right": 612.328125,
+          "bottom": 577.28125
+        },
+        "planet": {
+          "x": 703.71875,
+          "y": 148.234375,
+          "width": 606.890625,
+          "height": 384.8125,
+          "right": 1310.609375,
+          "bottom": 533.046875
+        },
+        "catalog": {
+          "x": 80,
+          "y": 657.28125,
+          "width": 1280,
+          "height": 787.5,
+          "right": 1360,
+          "bottom": 1444.78125
+        },
+        "previews": [
+          {
+            "state": "upcoming",
+            "title": "Supernova Sessions"
+          },
+          {
+            "state": "upcoming",
+            "title": "Un respiro para vos"
+          },
+          {
+            "state": "ended",
+            "title": "Bajo la misma órbita"
+          }
+        ],
+        "canvas": {
+          "engine": "three.js r186"
+        },
+        "badImages": []
+      },
+      "persistentCanvas": true,
+      "catalogFocus": true,
+      "floatingHeader": true,
+      "additionalTitles": [
+        "Conexiones que importan",
+        "Laboratorio de ideas",
+        "Fuera de la rutina"
+      ]
+    },
+    {
+      "version": "3d",
+      "width": 1440,
+      "theme": "light",
+      "initial": {
+        "width": 1440,
+        "height": 900,
+        "theme": "light",
+        "experience": "3d",
+        "overflow": false,
+        "hero": {
+          "x": 80,
+          "y": 76,
+          "width": 1280,
+          "height": 581.28125,
+          "right": 1360,
+          "bottom": 657.28125
+        },
+        "search": {
+          "x": 80,
+          "y": 235.28125,
+          "width": 532.328125,
+          "height": 48,
+          "right": 612.328125,
+          "bottom": 283.28125
+        },
+        "preview": {
+          "x": 80,
+          "y": 295.28125,
+          "width": 532.328125,
+          "height": 282,
+          "right": 612.328125,
+          "bottom": 577.28125
+        },
+        "planet": {
+          "x": 703.71875,
+          "y": 148.234375,
+          "width": 606.890625,
+          "height": 384.8125,
+          "right": 1310.609375,
+          "bottom": 533.046875
+        },
+        "catalog": {
+          "x": 80,
+          "y": 657.28125,
+          "width": 1280,
+          "height": 787.5,
+          "right": 1360,
+          "bottom": 1444.78125
+        },
+        "previews": [
+          {
+            "state": "upcoming",
+            "title": "Supernova Sessions"
+          },
+          {
+            "state": "upcoming",
+            "title": "Un respiro para vos"
+          },
+          {
+            "state": "ended",
+            "title": "Bajo la misma órbita"
+          }
+        ],
+        "canvas": {
+          "engine": "three.js r186"
+        },
+        "badImages": []
+      },
+      "persistentCanvas": true,
+      "catalogFocus": true,
+      "floatingHeader": true,
+      "additionalTitles": null
+    },
+    {
+      "version": "3d",
+      "width": 390,
+      "theme": "dark",
+      "initial": {
+        "width": 390,
+        "height": 844,
+        "theme": "dark",
+        "experience": "3d",
+        "overflow": false,
+        "hero": {
+          "x": 20,
+          "y": 64,
+          "width": 350,
+          "height": 508,
+          "right": 370,
+          "bottom": 572
+        },
+        "search": {
+          "x": 20,
+          "y": 214,
+          "width": 350,
+          "height": 44,
+          "right": 370,
+          "bottom": 258
+        },
+        "preview": {
+          "x": 20,
+          "y": 268,
+          "width": 350,
+          "height": 238,
+          "right": 370,
+          "bottom": 506
+        },
+        "planet": {
+          "x": 214.40625,
+          "y": 74,
+          "width": 161.578125,
+          "height": 109.203125,
+          "right": 375.984375,
+          "bottom": 183.203125
+        },
+        "catalog": {
+          "x": 20,
+          "y": 572,
+          "width": 350,
+          "height": 1570.3125,
+          "right": 370,
+          "bottom": 2142.3125
+        },
+        "previews": [
+          {
+            "state": "upcoming",
+            "title": "Supernova Sessions"
+          },
+          {
+            "state": "upcoming",
+            "title": "Un respiro para vos"
+          },
+          {
+            "state": "ended",
+            "title": "Bajo la misma órbita"
+          }
+        ],
+        "canvas": {
+          "engine": "three.js r186"
+        },
+        "badImages": []
+      },
+      "persistentCanvas": true,
+      "catalogFocus": true,
+      "floatingHeader": true,
+      "additionalTitles": null
+    },
+    {
+      "version": "3d",
+      "width": 390,
+      "theme": "light",
+      "initial": {
+        "width": 390,
+        "height": 844,
+        "theme": "light",
+        "experience": "3d",
+        "overflow": false,
+        "hero": {
+          "x": 20,
+          "y": 64,
+          "width": 350,
+          "height": 508,
+          "right": 370,
+          "bottom": 572
+        },
+        "search": {
+          "x": 20,
+          "y": 214,
+          "width": 350,
+          "height": 44,
+          "right": 370,
+          "bottom": 258
+        },
+        "preview": {
+          "x": 20,
+          "y": 268,
+          "width": 350,
+          "height": 238,
+          "right": 370,
+          "bottom": 506
+        },
+        "planet": {
+          "x": 214.40625,
+          "y": 74,
+          "width": 161.578125,
+          "height": 109.203125,
+          "right": 375.984375,
+          "bottom": 183.203125
+        },
+        "catalog": {
+          "x": 20,
+          "y": 572,
+          "width": 350,
+          "height": 1570.3125,
+          "right": 370,
+          "bottom": 2142.3125
+        },
+        "previews": [
+          {
+            "state": "upcoming",
+            "title": "Supernova Sessions"
+          },
+          {
+            "state": "upcoming",
+            "title": "Un respiro para vos"
+          },
+          {
+            "state": "ended",
+            "title": "Bajo la misma órbita"
+          }
+        ],
+        "canvas": {
+          "engine": "three.js r186"
+        },
+        "badImages": []
+      },
+      "persistentCanvas": true,
+      "catalogFocus": true,
+      "floatingHeader": true,
+      "additionalTitles": null
+    },
+    {
+      "version": "3d",
+      "width": 320,
+      "theme": "dark",
+      "initial": {
+        "width": 320,
+        "height": 667,
+        "theme": "dark",
+        "experience": "3d",
+        "overflow": false,
+        "hero": {
+          "x": 20,
+          "y": 64,
+          "width": 280,
+          "height": 508,
+          "right": 300,
+          "bottom": 572
+        },
+        "search": {
+          "x": 20,
+          "y": 214,
+          "width": 280,
+          "height": 44,
+          "right": 300,
+          "bottom": 258
+        },
+        "preview": {
+          "x": 20,
+          "y": 268,
+          "width": 280,
+          "height": 238,
+          "right": 300,
+          "bottom": 506
+        },
+        "planet": {
+          "x": 176.4375,
+          "y": 74,
+          "width": 128.3125,
+          "height": 109.203125,
+          "right": 304.75,
+          "bottom": 183.203125
+        },
+        "catalog": {
+          "x": 20,
+          "y": 572,
+          "width": 280,
+          "height": 1601.5625,
+          "right": 300,
+          "bottom": 2173.5625
+        },
+        "previews": [
+          {
+            "state": "upcoming",
+            "title": "Supernova Sessions"
+          },
+          {
+            "state": "upcoming",
+            "title": "Un respiro para vos"
+          },
+          {
+            "state": "ended",
+            "title": "Bajo la misma órbita"
+          }
+        ],
+        "canvas": {
+          "engine": "three.js r186"
+        },
+        "badImages": []
+      },
+      "persistentCanvas": true,
+      "catalogFocus": true,
+      "floatingHeader": true,
+      "additionalTitles": null
+    },
+    {
+      "version": "3d",
+      "width": 320,
+      "theme": "light",
+      "initial": {
+        "width": 320,
+        "height": 667,
+        "theme": "light",
+        "experience": "3d",
+        "overflow": false,
+        "hero": {
+          "x": 20,
+          "y": 64,
+          "width": 280,
+          "height": 508,
+          "right": 300,
+          "bottom": 572
+        },
+        "search": {
+          "x": 20,
+          "y": 214,
+          "width": 280,
+          "height": 44,
+          "right": 300,
+          "bottom": 258
+        },
+        "preview": {
+          "x": 20,
+          "y": 268,
+          "width": 280,
+          "height": 238,
+          "right": 300,
+          "bottom": 506
+        },
+        "planet": {
+          "x": 176.4375,
+          "y": 74,
+          "width": 128.3125,
+          "height": 109.203125,
+          "right": 304.75,
+          "bottom": 183.203125
+        },
+        "catalog": {
+          "x": 20,
+          "y": 572,
+          "width": 280,
+          "height": 1601.5625,
+          "right": 300,
+          "bottom": 2173.5625
+        },
+        "previews": [
+          {
+            "state": "upcoming",
+            "title": "Supernova Sessions"
+          },
+          {
+            "state": "upcoming",
+            "title": "Un respiro para vos"
+          },
+          {
+            "state": "ended",
+            "title": "Bajo la misma órbita"
+          }
+        ],
+        "canvas": {
+          "engine": "three.js r186"
+        },
+        "badImages": []
+      },
+      "persistentCanvas": true,
+      "catalogFocus": true,
+      "floatingHeader": true,
+      "additionalTitles": null
+    },
+    {
+      "version": "3d",
+      "width": 1920,
+      "theme": "dark",
+      "initial": {
+        "width": 1920,
+        "height": 900,
+        "theme": "dark",
+        "experience": "3d",
+        "overflow": false,
+        "hero": {
+          "x": 320,
+          "y": 76,
+          "width": 1280,
+          "height": 581.28125,
+          "right": 1600,
+          "bottom": 657.28125
+        },
+        "search": {
+          "x": 320,
+          "y": 235.28125,
+          "width": 532.328125,
+          "height": 48,
+          "right": 852.328125,
+          "bottom": 283.28125
+        },
+        "preview": {
+          "x": 320,
+          "y": 295.28125,
+          "width": 532.328125,
+          "height": 282,
+          "right": 852.328125,
+          "bottom": 577.28125
+        },
+        "planet": {
+          "x": 943.71875,
+          "y": 148.234375,
+          "width": 606.890625,
+          "height": 384.8125,
+          "right": 1550.609375,
+          "bottom": 533.046875
+        },
+        "catalog": {
+          "x": 320,
+          "y": 657.28125,
+          "width": 1280,
+          "height": 787.5,
+          "right": 1600,
+          "bottom": 1444.78125
+        },
+        "previews": [
+          {
+            "state": "upcoming",
+            "title": "Supernova Sessions"
+          },
+          {
+            "state": "upcoming",
+            "title": "Un respiro para vos"
+          },
+          {
+            "state": "ended",
+            "title": "Bajo la misma órbita"
+          }
+        ],
+        "canvas": {
+          "engine": "three.js r186"
+        },
+        "badImages": []
+      },
+      "persistentCanvas": true,
+      "catalogFocus": true,
+      "floatingHeader": true,
+      "additionalTitles": null
+    },
+    {
+      "version": "hibrida",
+      "width": 1440,
+      "theme": "dark",
+      "initial": {
+        "width": 1440,
+        "height": 900,
+        "theme": "dark",
+        "experience": "hybrid",
+        "overflow": false,
+        "hero": {
+          "x": 80,
+          "y": 76,
+          "width": 1280,
+          "height": 581.28125,
+          "right": 1360,
+          "bottom": 657.28125
+        },
+        "search": {
+          "x": 80,
+          "y": 235.28125,
+          "width": 532.328125,
+          "height": 48,
+          "right": 612.328125,
+          "bottom": 283.28125
+        },
+        "preview": {
+          "x": 80,
+          "y": 295.28125,
+          "width": 532.328125,
+          "height": 282,
+          "right": 612.328125,
+          "bottom": 577.28125
+        },
+        "planet": {
+          "x": 703.71875,
+          "y": 148.234375,
+          "width": 606.890625,
+          "height": 384.8125,
+          "right": 1310.609375,
+          "bottom": 533.046875
+        },
+        "catalog": {
+          "x": 80,
+          "y": 657.28125,
+          "width": 1280,
+          "height": 787.5,
+          "right": 1360,
+          "bottom": 1444.78125
+        },
+        "previews": [
+          {
+            "state": "upcoming",
+            "title": "Supernova Sessions"
+          },
+          {
+            "state": "upcoming",
+            "title": "Un respiro para vos"
+          },
+          {
+            "state": "ended",
+            "title": "Bajo la misma órbita"
+          }
+        ],
+        "canvas": {
+          "engine": "three.js r186",
+          "hybridCue": "false",
+          "hybridArtwork": "explore",
+          "hybridStage": "illustrated",
+          "hybridFrames": "1",
+          "hybridCalls": "6",
+          "hybridTriangles": "6",
+          "hybridFrameloop": "demand",
+          "hybridGeometries": "6",
+          "hybridTextures": "3",
+          "hybridPrograms": "2",
+          "hybridSpheres": "0"
+        },
+        "badImages": []
+      },
+      "persistentCanvas": true,
+      "catalogFocus": true,
+      "floatingHeader": true,
+      "additionalTitles": [
+        "Conexiones que importan",
+        "Laboratorio de ideas",
+        "Fuera de la rutina"
+      ]
+    },
+    {
+      "version": "hibrida",
+      "width": 1440,
+      "theme": "light",
+      "initial": {
+        "width": 1440,
+        "height": 900,
+        "theme": "light",
+        "experience": "hybrid",
+        "overflow": false,
+        "hero": {
+          "x": 80,
+          "y": 76,
+          "width": 1280,
+          "height": 581.28125,
+          "right": 1360,
+          "bottom": 657.28125
+        },
+        "search": {
+          "x": 80,
+          "y": 235.28125,
+          "width": 532.328125,
+          "height": 48,
+          "right": 612.328125,
+          "bottom": 283.28125
+        },
+        "preview": {
+          "x": 80,
+          "y": 295.28125,
+          "width": 532.328125,
+          "height": 282,
+          "right": 612.328125,
+          "bottom": 577.28125
+        },
+        "planet": {
+          "x": 703.71875,
+          "y": 148.234375,
+          "width": 606.890625,
+          "height": 384.8125,
+          "right": 1310.609375,
+          "bottom": 533.046875
+        },
+        "catalog": {
+          "x": 80,
+          "y": 657.28125,
+          "width": 1280,
+          "height": 787.5,
+          "right": 1360,
+          "bottom": 1444.78125
+        },
+        "previews": [
+          {
+            "state": "upcoming",
+            "title": "Supernova Sessions"
+          },
+          {
+            "state": "upcoming",
+            "title": "Un respiro para vos"
+          },
+          {
+            "state": "ended",
+            "title": "Bajo la misma órbita"
+          }
+        ],
+        "canvas": {
+          "engine": "three.js r186",
+          "hybridCue": "false",
+          "hybridArtwork": "explore",
+          "hybridStage": "illustrated",
+          "hybridFrames": "1",
+          "hybridCalls": "6",
+          "hybridTriangles": "6",
+          "hybridFrameloop": "demand",
+          "hybridGeometries": "6",
+          "hybridTextures": "3",
+          "hybridPrograms": "2",
+          "hybridSpheres": "0"
+        },
+        "badImages": []
+      },
+      "persistentCanvas": true,
+      "catalogFocus": true,
+      "floatingHeader": true,
+      "additionalTitles": null
+    },
+    {
+      "version": "hibrida",
+      "width": 390,
+      "theme": "dark",
+      "initial": {
+        "width": 390,
+        "height": 844,
+        "theme": "dark",
+        "experience": "hybrid",
+        "overflow": false,
+        "hero": {
+          "x": 20,
+          "y": 64,
+          "width": 350,
+          "height": 508,
+          "right": 370,
+          "bottom": 572
+        },
+        "search": {
+          "x": 20,
+          "y": 214,
+          "width": 350,
+          "height": 44,
+          "right": 370,
+          "bottom": 258
+        },
+        "preview": {
+          "x": 20,
+          "y": 268,
+          "width": 350,
+          "height": 238,
+          "right": 370,
+          "bottom": 506
+        },
+        "planet": {
+          "x": 214.40625,
+          "y": 74,
+          "width": 161.578125,
+          "height": 109.203125,
+          "right": 375.984375,
+          "bottom": 183.203125
+        },
+        "catalog": {
+          "x": 20,
+          "y": 572,
+          "width": 350,
+          "height": 1570.3125,
+          "right": 370,
+          "bottom": 2142.3125
+        },
+        "previews": [
+          {
+            "state": "upcoming",
+            "title": "Supernova Sessions"
+          },
+          {
+            "state": "upcoming",
+            "title": "Un respiro para vos"
+          },
+          {
+            "state": "ended",
+            "title": "Bajo la misma órbita"
+          }
+        ],
+        "canvas": {
+          "engine": "three.js r186",
+          "hybridCue": "false",
+          "hybridArtwork": "explore",
+          "hybridStage": "illustrated",
+          "hybridFrames": "1",
+          "hybridCalls": "6",
+          "hybridTriangles": "6",
+          "hybridFrameloop": "demand",
+          "hybridGeometries": "6",
+          "hybridTextures": "3",
+          "hybridPrograms": "2",
+          "hybridSpheres": "0"
+        },
+        "badImages": []
+      },
+      "persistentCanvas": true,
+      "catalogFocus": true,
+      "floatingHeader": true,
+      "additionalTitles": null
+    },
+    {
+      "version": "hibrida",
+      "width": 390,
+      "theme": "light",
+      "initial": {
+        "width": 390,
+        "height": 844,
+        "theme": "light",
+        "experience": "hybrid",
+        "overflow": false,
+        "hero": {
+          "x": 20,
+          "y": 64,
+          "width": 350,
+          "height": 508,
+          "right": 370,
+          "bottom": 572
+        },
+        "search": {
+          "x": 20,
+          "y": 214,
+          "width": 350,
+          "height": 44,
+          "right": 370,
+          "bottom": 258
+        },
+        "preview": {
+          "x": 20,
+          "y": 268,
+          "width": 350,
+          "height": 238,
+          "right": 370,
+          "bottom": 506
+        },
+        "planet": {
+          "x": 214.40625,
+          "y": 74,
+          "width": 161.578125,
+          "height": 109.203125,
+          "right": 375.984375,
+          "bottom": 183.203125
+        },
+        "catalog": {
+          "x": 20,
+          "y": 572,
+          "width": 350,
+          "height": 1570.3125,
+          "right": 370,
+          "bottom": 2142.3125
+        },
+        "previews": [
+          {
+            "state": "upcoming",
+            "title": "Supernova Sessions"
+          },
+          {
+            "state": "upcoming",
+            "title": "Un respiro para vos"
+          },
+          {
+            "state": "ended",
+            "title": "Bajo la misma órbita"
+          }
+        ],
+        "canvas": {
+          "engine": "three.js r186",
+          "hybridCue": "false",
+          "hybridArtwork": "explore",
+          "hybridStage": "illustrated",
+          "hybridFrames": "1",
+          "hybridCalls": "6",
+          "hybridTriangles": "6",
+          "hybridFrameloop": "demand",
+          "hybridGeometries": "6",
+          "hybridTextures": "3",
+          "hybridPrograms": "2",
+          "hybridSpheres": "0"
+        },
+        "badImages": []
+      },
+      "persistentCanvas": true,
+      "catalogFocus": true,
+      "floatingHeader": true,
+      "additionalTitles": null
+    },
+    {
+      "version": "hibrida",
+      "width": 320,
+      "theme": "dark",
+      "initial": {
+        "width": 320,
+        "height": 667,
+        "theme": "dark",
+        "experience": "hybrid",
+        "overflow": false,
+        "hero": {
+          "x": 20,
+          "y": 64,
+          "width": 280,
+          "height": 508,
+          "right": 300,
+          "bottom": 572
+        },
+        "search": {
+          "x": 20,
+          "y": 214,
+          "width": 280,
+          "height": 44,
+          "right": 300,
+          "bottom": 258
+        },
+        "preview": {
+          "x": 20,
+          "y": 268,
+          "width": 280,
+          "height": 238,
+          "right": 300,
+          "bottom": 506
+        },
+        "planet": {
+          "x": 176.4375,
+          "y": 74,
+          "width": 128.3125,
+          "height": 109.203125,
+          "right": 304.75,
+          "bottom": 183.203125
+        },
+        "catalog": {
+          "x": 20,
+          "y": 572,
+          "width": 280,
+          "height": 1601.5625,
+          "right": 300,
+          "bottom": 2173.5625
+        },
+        "previews": [
+          {
+            "state": "upcoming",
+            "title": "Supernova Sessions"
+          },
+          {
+            "state": "upcoming",
+            "title": "Un respiro para vos"
+          },
+          {
+            "state": "ended",
+            "title": "Bajo la misma órbita"
+          }
+        ],
+        "canvas": {
+          "engine": "three.js r186",
+          "hybridCue": "false",
+          "hybridArtwork": "explore",
+          "hybridStage": "illustrated",
+          "hybridFrames": "1",
+          "hybridCalls": "6",
+          "hybridTriangles": "6",
+          "hybridFrameloop": "demand",
+          "hybridGeometries": "6",
+          "hybridTextures": "3",
+          "hybridPrograms": "2",
+          "hybridSpheres": "0"
+        },
+        "badImages": []
+      },
+      "persistentCanvas": true,
+      "catalogFocus": true,
+      "floatingHeader": true,
+      "additionalTitles": null
+    },
+    {
+      "version": "hibrida",
+      "width": 320,
+      "theme": "light",
+      "initial": {
+        "width": 320,
+        "height": 667,
+        "theme": "light",
+        "experience": "hybrid",
+        "overflow": false,
+        "hero": {
+          "x": 20,
+          "y": 64,
+          "width": 280,
+          "height": 508,
+          "right": 300,
+          "bottom": 572
+        },
+        "search": {
+          "x": 20,
+          "y": 214,
+          "width": 280,
+          "height": 44,
+          "right": 300,
+          "bottom": 258
+        },
+        "preview": {
+          "x": 20,
+          "y": 268,
+          "width": 280,
+          "height": 238,
+          "right": 300,
+          "bottom": 506
+        },
+        "planet": {
+          "x": 176.4375,
+          "y": 74,
+          "width": 128.3125,
+          "height": 109.203125,
+          "right": 304.75,
+          "bottom": 183.203125
+        },
+        "catalog": {
+          "x": 20,
+          "y": 572,
+          "width": 280,
+          "height": 1601.5625,
+          "right": 300,
+          "bottom": 2173.5625
+        },
+        "previews": [
+          {
+            "state": "upcoming",
+            "title": "Supernova Sessions"
+          },
+          {
+            "state": "upcoming",
+            "title": "Un respiro para vos"
+          },
+          {
+            "state": "ended",
+            "title": "Bajo la misma órbita"
+          }
+        ],
+        "canvas": {
+          "engine": "three.js r186",
+          "hybridCue": "false",
+          "hybridArtwork": "explore",
+          "hybridStage": "illustrated",
+          "hybridFrames": "1",
+          "hybridCalls": "6",
+          "hybridTriangles": "6",
+          "hybridFrameloop": "demand",
+          "hybridGeometries": "6",
+          "hybridTextures": "3",
+          "hybridPrograms": "2",
+          "hybridSpheres": "0"
+        },
+        "badImages": []
+      },
+      "persistentCanvas": true,
+      "catalogFocus": true,
+      "floatingHeader": true,
+      "additionalTitles": null
+    },
+    {
+      "version": "hibrida",
+      "width": 1920,
+      "theme": "dark",
+      "initial": {
+        "width": 1920,
+        "height": 900,
+        "theme": "dark",
+        "experience": "hybrid",
+        "overflow": false,
+        "hero": {
+          "x": 320,
+          "y": 76,
+          "width": 1280,
+          "height": 581.28125,
+          "right": 1600,
+          "bottom": 657.28125
+        },
+        "search": {
+          "x": 320,
+          "y": 235.28125,
+          "width": 532.328125,
+          "height": 48,
+          "right": 852.328125,
+          "bottom": 283.28125
+        },
+        "preview": {
+          "x": 320,
+          "y": 295.28125,
+          "width": 532.328125,
+          "height": 282,
+          "right": 852.328125,
+          "bottom": 577.28125
+        },
+        "planet": {
+          "x": 943.71875,
+          "y": 148.234375,
+          "width": 606.890625,
+          "height": 384.8125,
+          "right": 1550.609375,
+          "bottom": 533.046875
+        },
+        "catalog": {
+          "x": 320,
+          "y": 657.28125,
+          "width": 1280,
+          "height": 787.5,
+          "right": 1600,
+          "bottom": 1444.78125
+        },
+        "previews": [
+          {
+            "state": "upcoming",
+            "title": "Supernova Sessions"
+          },
+          {
+            "state": "upcoming",
+            "title": "Un respiro para vos"
+          },
+          {
+            "state": "ended",
+            "title": "Bajo la misma órbita"
+          }
+        ],
+        "canvas": {
+          "engine": "three.js r186",
+          "hybridCue": "false",
+          "hybridArtwork": "explore",
+          "hybridStage": "illustrated",
+          "hybridFrames": "1",
+          "hybridCalls": "6",
+          "hybridTriangles": "6",
+          "hybridFrameloop": "demand",
+          "hybridGeometries": "6",
+          "hybridTextures": "3",
+          "hybridPrograms": "2",
+          "hybridSpheres": "0"
+        },
+        "badImages": []
+      },
+      "persistentCanvas": true,
+      "catalogFocus": true,
+      "floatingHeader": true,
+      "additionalTitles": null
+    },
+    {
+      "version": "original",
+      "width": 1440,
+      "theme": "dark",
+      "initial": {
+        "width": 1440,
+        "height": 900,
+        "theme": "dark",
+        "experience": "original",
+        "overflow": false,
+        "hero": {
+          "x": 80,
+          "y": 76,
+          "width": 1280,
+          "height": 302,
+          "right": 1360,
+          "bottom": 378
+        },
+        "search": null,
+        "preview": null,
+        "planet": null,
+        "catalog": {
+          "x": 80,
+          "y": 378,
+          "width": 1280,
+          "height": 787.5,
+          "right": 1360,
+          "bottom": 1165.5
+        },
+        "previews": [],
+        "canvas": null,
+        "badImages": []
+      },
+      "persistentCanvas": true,
+      "catalogFocus": true,
+      "floatingHeader": true,
+      "additionalTitles": null
+    },
+    {
+      "version": "original",
+      "width": 1440,
+      "theme": "light",
+      "initial": {
+        "width": 1440,
+        "height": 900,
+        "theme": "light",
+        "experience": "original",
+        "overflow": false,
+        "hero": {
+          "x": 80,
+          "y": 76,
+          "width": 1280,
+          "height": 302,
+          "right": 1360,
+          "bottom": 378
+        },
+        "search": null,
+        "preview": null,
+        "planet": null,
+        "catalog": {
+          "x": 80,
+          "y": 378,
+          "width": 1280,
+          "height": 787.5,
+          "right": 1360,
+          "bottom": 1165.5
+        },
+        "previews": [],
+        "canvas": null,
+        "badImages": []
+      },
+      "persistentCanvas": true,
+      "catalogFocus": true,
+      "floatingHeader": true,
+      "additionalTitles": null
+    },
+    {
+      "version": "original",
+      "width": 320,
+      "theme": "dark",
+      "initial": {
+        "width": 320,
+        "height": 667,
+        "theme": "dark",
+        "experience": "original",
+        "overflow": false,
+        "hero": {
+          "x": 20,
+          "y": 64,
+          "width": 280,
+          "height": 270.28125,
+          "right": 300,
+          "bottom": 334.28125
+        },
+        "search": null,
+        "preview": null,
+        "planet": null,
+        "catalog": {
+          "x": 20,
+          "y": 334.28125,
+          "width": 280,
+          "height": 1660.5625,
+          "right": 300,
+          "bottom": 1994.84375
+        },
+        "previews": [],
+        "canvas": null,
+        "badImages": []
+      },
+      "persistentCanvas": true,
+      "catalogFocus": true,
+      "floatingHeader": true,
+      "additionalTitles": null
+    },
+    {
+      "version": "original",
+      "width": 320,
+      "theme": "light",
+      "initial": {
+        "width": 320,
+        "height": 667,
+        "theme": "light",
+        "experience": "original",
+        "overflow": false,
+        "hero": {
+          "x": 20,
+          "y": 64,
+          "width": 280,
+          "height": 270.28125,
+          "right": 300,
+          "bottom": 334.28125
+        },
+        "search": null,
+        "preview": null,
+        "planet": null,
+        "catalog": {
+          "x": 20,
+          "y": 334.28125,
+          "width": 280,
+          "height": 1660.5625,
+          "right": 300,
+          "bottom": 1994.84375
+        },
+        "previews": [],
+        "canvas": null,
+        "badImages": []
+      },
+      "persistentCanvas": true,
+      "catalogFocus": true,
+      "floatingHeader": true,
+      "additionalTitles": null
+    }
+  ],
+  "captures": [
+    {
+      "file": "3d-dark-1440-hero.png",
+      "width": 1440,
+      "height": 900,
+      "theme": "dark",
+      "experience": "3d",
+      "overflow": false,
+      "hero": {
+        "x": 80,
+        "y": 76,
+        "width": 1280,
+        "height": 581.28125,
+        "right": 1360,
+        "bottom": 657.28125
+      },
+      "search": {
+        "x": 80,
+        "y": 235.28125,
+        "width": 532.328125,
+        "height": 48,
+        "right": 612.328125,
+        "bottom": 283.28125
+      },
+      "preview": {
+        "x": 80,
+        "y": 295.28125,
+        "width": 532.328125,
+        "height": 282,
+        "right": 612.328125,
+        "bottom": 577.28125
+      },
+      "planet": {
+        "x": 703.71875,
+        "y": 148.234375,
+        "width": 606.890625,
+        "height": 384.8125,
+        "right": 1310.609375,
+        "bottom": 533.046875
+      },
+      "catalog": {
+        "x": 80,
+        "y": 657.28125,
+        "width": 1280,
+        "height": 787.5,
+        "right": 1360,
+        "bottom": 1444.78125
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186"
+      },
+      "badImages": []
+    },
+    {
+      "file": "3d-dark-1440-catalogo.png",
+      "width": 1440,
+      "height": 900,
+      "theme": "dark",
+      "experience": "3d",
+      "overflow": false,
+      "hero": {
+        "x": 80,
+        "y": -483,
+        "width": 1280,
+        "height": 581.28125,
+        "right": 1360,
+        "bottom": 98.28125
+      },
+      "search": {
+        "x": 80,
+        "y": -323.71875,
+        "width": 532.328125,
+        "height": 48,
+        "right": 612.328125,
+        "bottom": -275.71875
+      },
+      "preview": {
+        "x": 80,
+        "y": -263.71875,
+        "width": 532.328125,
+        "height": 282,
+        "right": 612.328125,
+        "bottom": 18.28125
+      },
+      "planet": {
+        "x": 703.71875,
+        "y": -410.765625,
+        "width": 606.890625,
+        "height": 384.8125,
+        "right": 1310.609375,
+        "bottom": -25.953125
+      },
+      "catalog": {
+        "x": 80,
+        "y": 98.28125,
+        "width": 1280,
+        "height": 787.5,
+        "right": 1360,
+        "bottom": 885.78125
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186"
+      },
+      "badImages": []
+    },
+    {
+      "file": "3d-dark-1440-mas-eventos.png",
+      "width": 1440,
+      "height": 900,
+      "theme": "dark",
+      "experience": "3d",
+      "overflow": false,
+      "hero": {
+        "x": 80,
+        "y": -747,
+        "width": 1280,
+        "height": 581.28125,
+        "right": 1360,
+        "bottom": -165.71875
+      },
+      "search": {
+        "x": 80,
+        "y": -587.71875,
+        "width": 532.328125,
+        "height": 48,
+        "right": 612.328125,
+        "bottom": -539.71875
+      },
+      "preview": {
+        "x": 80,
+        "y": -527.71875,
+        "width": 532.328125,
+        "height": 282,
+        "right": 612.328125,
+        "bottom": -245.71875
+      },
+      "planet": {
+        "x": 703.71875,
+        "y": -674.765625,
+        "width": 606.890625,
+        "height": 384.8125,
+        "right": 1310.609375,
+        "bottom": -289.953125
+      },
+      "catalog": {
+        "x": 80,
+        "y": -165.71875,
+        "width": 1280,
+        "height": 787.5,
+        "right": 1360,
+        "bottom": 621.78125
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186"
+      },
+      "badImages": []
+    },
+    {
+      "file": "3d-light-1440-hero.png",
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "experience": "3d",
+      "overflow": false,
+      "hero": {
+        "x": 80,
+        "y": 76,
+        "width": 1280,
+        "height": 581.28125,
+        "right": 1360,
+        "bottom": 657.28125
+      },
+      "search": {
+        "x": 80,
+        "y": 235.28125,
+        "width": 532.328125,
+        "height": 48,
+        "right": 612.328125,
+        "bottom": 283.28125
+      },
+      "preview": {
+        "x": 80,
+        "y": 295.28125,
+        "width": 532.328125,
+        "height": 282,
+        "right": 612.328125,
+        "bottom": 577.28125
+      },
+      "planet": {
+        "x": 703.71875,
+        "y": 148.234375,
+        "width": 606.890625,
+        "height": 384.8125,
+        "right": 1310.609375,
+        "bottom": 533.046875
+      },
+      "catalog": {
+        "x": 80,
+        "y": 657.28125,
+        "width": 1280,
+        "height": 787.5,
+        "right": 1360,
+        "bottom": 1444.78125
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186"
+      },
+      "badImages": []
+    },
+    {
+      "file": "3d-light-1440-catalogo.png",
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "experience": "3d",
+      "overflow": false,
+      "hero": {
+        "x": 80,
+        "y": -483,
+        "width": 1280,
+        "height": 581.28125,
+        "right": 1360,
+        "bottom": 98.28125
+      },
+      "search": {
+        "x": 80,
+        "y": -323.71875,
+        "width": 532.328125,
+        "height": 48,
+        "right": 612.328125,
+        "bottom": -275.71875
+      },
+      "preview": {
+        "x": 80,
+        "y": -263.71875,
+        "width": 532.328125,
+        "height": 282,
+        "right": 612.328125,
+        "bottom": 18.28125
+      },
+      "planet": {
+        "x": 703.71875,
+        "y": -410.765625,
+        "width": 606.890625,
+        "height": 384.8125,
+        "right": 1310.609375,
+        "bottom": -25.953125
+      },
+      "catalog": {
+        "x": 80,
+        "y": 98.28125,
+        "width": 1280,
+        "height": 787.5,
+        "right": 1360,
+        "bottom": 885.78125
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186"
+      },
+      "badImages": []
+    },
+    {
+      "file": "3d-dark-390-hero.png",
+      "width": 390,
+      "height": 844,
+      "theme": "dark",
+      "experience": "3d",
+      "overflow": false,
+      "hero": {
+        "x": 20,
+        "y": 64,
+        "width": 350,
+        "height": 508,
+        "right": 370,
+        "bottom": 572
+      },
+      "search": {
+        "x": 20,
+        "y": 214,
+        "width": 350,
+        "height": 44,
+        "right": 370,
+        "bottom": 258
+      },
+      "preview": {
+        "x": 20,
+        "y": 268,
+        "width": 350,
+        "height": 238,
+        "right": 370,
+        "bottom": 506
+      },
+      "planet": {
+        "x": 214.40625,
+        "y": 74,
+        "width": 161.578125,
+        "height": 109.203125,
+        "right": 375.984375,
+        "bottom": 183.203125
+      },
+      "catalog": {
+        "x": 20,
+        "y": 572,
+        "width": 350,
+        "height": 1570.3125,
+        "right": 370,
+        "bottom": 2142.3125
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186"
+      },
+      "badImages": []
+    },
+    {
+      "file": "3d-dark-390-catalogo.png",
+      "width": 390,
+      "height": 844,
+      "theme": "dark",
+      "experience": "3d",
+      "overflow": false,
+      "hero": {
+        "x": 20,
+        "y": -418,
+        "width": 350,
+        "height": 508,
+        "right": 370,
+        "bottom": 90
+      },
+      "search": {
+        "x": 20,
+        "y": -268,
+        "width": 350,
+        "height": 44,
+        "right": 370,
+        "bottom": -224
+      },
+      "preview": {
+        "x": 20,
+        "y": -214,
+        "width": 350,
+        "height": 238,
+        "right": 370,
+        "bottom": 24
+      },
+      "planet": {
+        "x": 214.40625,
+        "y": -408,
+        "width": 161.578125,
+        "height": 109.203125,
+        "right": 375.984375,
+        "bottom": -298.796875
+      },
+      "catalog": {
+        "x": 20,
+        "y": 90,
+        "width": 350,
+        "height": 1570.3125,
+        "right": 370,
+        "bottom": 1660.3125
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186"
+      },
+      "badImages": []
+    },
+    {
+      "file": "3d-light-390-hero.png",
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "experience": "3d",
+      "overflow": false,
+      "hero": {
+        "x": 20,
+        "y": 64,
+        "width": 350,
+        "height": 508,
+        "right": 370,
+        "bottom": 572
+      },
+      "search": {
+        "x": 20,
+        "y": 214,
+        "width": 350,
+        "height": 44,
+        "right": 370,
+        "bottom": 258
+      },
+      "preview": {
+        "x": 20,
+        "y": 268,
+        "width": 350,
+        "height": 238,
+        "right": 370,
+        "bottom": 506
+      },
+      "planet": {
+        "x": 214.40625,
+        "y": 74,
+        "width": 161.578125,
+        "height": 109.203125,
+        "right": 375.984375,
+        "bottom": 183.203125
+      },
+      "catalog": {
+        "x": 20,
+        "y": 572,
+        "width": 350,
+        "height": 1570.3125,
+        "right": 370,
+        "bottom": 2142.3125
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186"
+      },
+      "badImages": []
+    },
+    {
+      "file": "3d-light-390-catalogo.png",
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "experience": "3d",
+      "overflow": false,
+      "hero": {
+        "x": 20,
+        "y": -418,
+        "width": 350,
+        "height": 508,
+        "right": 370,
+        "bottom": 90
+      },
+      "search": {
+        "x": 20,
+        "y": -268,
+        "width": 350,
+        "height": 44,
+        "right": 370,
+        "bottom": -224
+      },
+      "preview": {
+        "x": 20,
+        "y": -214,
+        "width": 350,
+        "height": 238,
+        "right": 370,
+        "bottom": 24
+      },
+      "planet": {
+        "x": 214.40625,
+        "y": -408,
+        "width": 161.578125,
+        "height": 109.203125,
+        "right": 375.984375,
+        "bottom": -298.796875
+      },
+      "catalog": {
+        "x": 20,
+        "y": 90,
+        "width": 350,
+        "height": 1570.3125,
+        "right": 370,
+        "bottom": 1660.3125
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186"
+      },
+      "badImages": []
+    },
+    {
+      "file": "3d-dark-320-hero.png",
+      "width": 320,
+      "height": 667,
+      "theme": "dark",
+      "experience": "3d",
+      "overflow": false,
+      "hero": {
+        "x": 20,
+        "y": 64,
+        "width": 280,
+        "height": 508,
+        "right": 300,
+        "bottom": 572
+      },
+      "search": {
+        "x": 20,
+        "y": 214,
+        "width": 280,
+        "height": 44,
+        "right": 300,
+        "bottom": 258
+      },
+      "preview": {
+        "x": 20,
+        "y": 268,
+        "width": 280,
+        "height": 238,
+        "right": 300,
+        "bottom": 506
+      },
+      "planet": {
+        "x": 176.4375,
+        "y": 74,
+        "width": 128.3125,
+        "height": 109.203125,
+        "right": 304.75,
+        "bottom": 183.203125
+      },
+      "catalog": {
+        "x": 20,
+        "y": 572,
+        "width": 280,
+        "height": 1601.5625,
+        "right": 300,
+        "bottom": 2173.5625
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186"
+      },
+      "badImages": []
+    },
+    {
+      "file": "3d-dark-320-catalogo.png",
+      "width": 320,
+      "height": 667,
+      "theme": "dark",
+      "experience": "3d",
+      "overflow": false,
+      "hero": {
+        "x": 20,
+        "y": -418,
+        "width": 280,
+        "height": 508,
+        "right": 300,
+        "bottom": 90
+      },
+      "search": {
+        "x": 20,
+        "y": -268,
+        "width": 280,
+        "height": 44,
+        "right": 300,
+        "bottom": -224
+      },
+      "preview": {
+        "x": 20,
+        "y": -214,
+        "width": 280,
+        "height": 238,
+        "right": 300,
+        "bottom": 24
+      },
+      "planet": {
+        "x": 176.4375,
+        "y": -408,
+        "width": 128.3125,
+        "height": 109.203125,
+        "right": 304.75,
+        "bottom": -298.796875
+      },
+      "catalog": {
+        "x": 20,
+        "y": 90,
+        "width": 280,
+        "height": 1601.5625,
+        "right": 300,
+        "bottom": 1691.5625
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186"
+      },
+      "badImages": []
+    },
+    {
+      "file": "3d-light-320-hero.png",
+      "width": 320,
+      "height": 667,
+      "theme": "light",
+      "experience": "3d",
+      "overflow": false,
+      "hero": {
+        "x": 20,
+        "y": 64,
+        "width": 280,
+        "height": 508,
+        "right": 300,
+        "bottom": 572
+      },
+      "search": {
+        "x": 20,
+        "y": 214,
+        "width": 280,
+        "height": 44,
+        "right": 300,
+        "bottom": 258
+      },
+      "preview": {
+        "x": 20,
+        "y": 268,
+        "width": 280,
+        "height": 238,
+        "right": 300,
+        "bottom": 506
+      },
+      "planet": {
+        "x": 176.4375,
+        "y": 74,
+        "width": 128.3125,
+        "height": 109.203125,
+        "right": 304.75,
+        "bottom": 183.203125
+      },
+      "catalog": {
+        "x": 20,
+        "y": 572,
+        "width": 280,
+        "height": 1601.5625,
+        "right": 300,
+        "bottom": 2173.5625
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186"
+      },
+      "badImages": []
+    },
+    {
+      "file": "3d-light-320-catalogo.png",
+      "width": 320,
+      "height": 667,
+      "theme": "light",
+      "experience": "3d",
+      "overflow": false,
+      "hero": {
+        "x": 20,
+        "y": -418,
+        "width": 280,
+        "height": 508,
+        "right": 300,
+        "bottom": 90
+      },
+      "search": {
+        "x": 20,
+        "y": -268,
+        "width": 280,
+        "height": 44,
+        "right": 300,
+        "bottom": -224
+      },
+      "preview": {
+        "x": 20,
+        "y": -214,
+        "width": 280,
+        "height": 238,
+        "right": 300,
+        "bottom": 24
+      },
+      "planet": {
+        "x": 176.4375,
+        "y": -408,
+        "width": 128.3125,
+        "height": 109.203125,
+        "right": 304.75,
+        "bottom": -298.796875
+      },
+      "catalog": {
+        "x": 20,
+        "y": 90,
+        "width": 280,
+        "height": 1601.5625,
+        "right": 300,
+        "bottom": 1691.5625
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186"
+      },
+      "badImages": []
+    },
+    {
+      "file": "3d-dark-1920-hero.png",
+      "width": 1920,
+      "height": 900,
+      "theme": "dark",
+      "experience": "3d",
+      "overflow": false,
+      "hero": {
+        "x": 320,
+        "y": 76,
+        "width": 1280,
+        "height": 581.28125,
+        "right": 1600,
+        "bottom": 657.28125
+      },
+      "search": {
+        "x": 320,
+        "y": 235.28125,
+        "width": 532.328125,
+        "height": 48,
+        "right": 852.328125,
+        "bottom": 283.28125
+      },
+      "preview": {
+        "x": 320,
+        "y": 295.28125,
+        "width": 532.328125,
+        "height": 282,
+        "right": 852.328125,
+        "bottom": 577.28125
+      },
+      "planet": {
+        "x": 943.71875,
+        "y": 148.234375,
+        "width": 606.890625,
+        "height": 384.8125,
+        "right": 1550.609375,
+        "bottom": 533.046875
+      },
+      "catalog": {
+        "x": 320,
+        "y": 657.28125,
+        "width": 1280,
+        "height": 787.5,
+        "right": 1600,
+        "bottom": 1444.78125
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186"
+      },
+      "badImages": []
+    },
+    {
+      "file": "3d-dark-1920-catalogo.png",
+      "width": 1920,
+      "height": 900,
+      "theme": "dark",
+      "experience": "3d",
+      "overflow": false,
+      "hero": {
+        "x": 320,
+        "y": -483,
+        "width": 1280,
+        "height": 581.28125,
+        "right": 1600,
+        "bottom": 98.28125
+      },
+      "search": {
+        "x": 320,
+        "y": -323.71875,
+        "width": 532.328125,
+        "height": 48,
+        "right": 852.328125,
+        "bottom": -275.71875
+      },
+      "preview": {
+        "x": 320,
+        "y": -263.71875,
+        "width": 532.328125,
+        "height": 282,
+        "right": 852.328125,
+        "bottom": 18.28125
+      },
+      "planet": {
+        "x": 943.71875,
+        "y": -410.765625,
+        "width": 606.890625,
+        "height": 384.8125,
+        "right": 1550.609375,
+        "bottom": -25.953125
+      },
+      "catalog": {
+        "x": 320,
+        "y": 98.28125,
+        "width": 1280,
+        "height": 787.5,
+        "right": 1600,
+        "bottom": 885.78125
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186"
+      },
+      "badImages": []
+    },
+    {
+      "file": "hybrid-dark-1440-hero.png",
+      "width": 1440,
+      "height": 900,
+      "theme": "dark",
+      "experience": "hybrid",
+      "overflow": false,
+      "hero": {
+        "x": 80,
+        "y": 76,
+        "width": 1280,
+        "height": 581.28125,
+        "right": 1360,
+        "bottom": 657.28125
+      },
+      "search": {
+        "x": 80,
+        "y": 235.28125,
+        "width": 532.328125,
+        "height": 48,
+        "right": 612.328125,
+        "bottom": 283.28125
+      },
+      "preview": {
+        "x": 80,
+        "y": 295.28125,
+        "width": 532.328125,
+        "height": 282,
+        "right": 612.328125,
+        "bottom": 577.28125
+      },
+      "planet": {
+        "x": 703.71875,
+        "y": 148.234375,
+        "width": 606.890625,
+        "height": 384.8125,
+        "right": 1310.609375,
+        "bottom": 533.046875
+      },
+      "catalog": {
+        "x": 80,
+        "y": 657.28125,
+        "width": 1280,
+        "height": 787.5,
+        "right": 1360,
+        "bottom": 1444.78125
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "hybridStage": "illustrated",
+        "hybridFrames": "1",
+        "hybridCalls": "6",
+        "hybridTriangles": "6",
+        "hybridFrameloop": "demand",
+        "hybridGeometries": "6",
+        "hybridTextures": "3",
+        "hybridPrograms": "2",
+        "hybridSpheres": "0"
+      },
+      "badImages": []
+    },
+    {
+      "file": "hybrid-dark-1440-catalogo.png",
+      "width": 1440,
+      "height": 900,
+      "theme": "dark",
+      "experience": "hybrid",
+      "overflow": false,
+      "hero": {
+        "x": 80,
+        "y": -483,
+        "width": 1280,
+        "height": 581.28125,
+        "right": 1360,
+        "bottom": 98.28125
+      },
+      "search": {
+        "x": 80,
+        "y": -323.71875,
+        "width": 532.328125,
+        "height": 48,
+        "right": 612.328125,
+        "bottom": -275.71875
+      },
+      "preview": {
+        "x": 80,
+        "y": -263.71875,
+        "width": 532.328125,
+        "height": 282,
+        "right": 612.328125,
+        "bottom": 18.28125
+      },
+      "planet": {
+        "x": 703.71875,
+        "y": -410.765625,
+        "width": 606.890625,
+        "height": 384.8125,
+        "right": 1310.609375,
+        "bottom": -25.953125
+      },
+      "catalog": {
+        "x": 80,
+        "y": 98.28125,
+        "width": 1280,
+        "height": 787.5,
+        "right": 1360,
+        "bottom": 885.78125
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "hybridStage": "illustrated",
+        "hybridFrames": "2",
+        "hybridCalls": "6",
+        "hybridTriangles": "6",
+        "hybridFrameloop": "demand",
+        "hybridGeometries": "6",
+        "hybridTextures": "3",
+        "hybridPrograms": "2",
+        "hybridSpheres": "0"
+      },
+      "badImages": []
+    },
+    {
+      "file": "hybrid-dark-1440-mas-eventos.png",
+      "width": 1440,
+      "height": 900,
+      "theme": "dark",
+      "experience": "hybrid",
+      "overflow": false,
+      "hero": {
+        "x": 80,
+        "y": -747,
+        "width": 1280,
+        "height": 581.28125,
+        "right": 1360,
+        "bottom": -165.71875
+      },
+      "search": {
+        "x": 80,
+        "y": -587.71875,
+        "width": 532.328125,
+        "height": 48,
+        "right": 612.328125,
+        "bottom": -539.71875
+      },
+      "preview": {
+        "x": 80,
+        "y": -527.71875,
+        "width": 532.328125,
+        "height": 282,
+        "right": 612.328125,
+        "bottom": -245.71875
+      },
+      "planet": {
+        "x": 703.71875,
+        "y": -674.765625,
+        "width": 606.890625,
+        "height": 384.8125,
+        "right": 1310.609375,
+        "bottom": -289.953125
+      },
+      "catalog": {
+        "x": 80,
+        "y": -165.71875,
+        "width": 1280,
+        "height": 787.5,
+        "right": 1360,
+        "bottom": 621.78125
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "hybridStage": "illustrated",
+        "hybridFrames": "3",
+        "hybridCalls": "3",
+        "hybridTriangles": "0",
+        "hybridFrameloop": "demand",
+        "hybridGeometries": "6",
+        "hybridTextures": "3",
+        "hybridPrograms": "2",
+        "hybridSpheres": "0"
+      },
+      "badImages": []
+    },
+    {
+      "file": "hybrid-light-1440-hero.png",
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "experience": "hybrid",
+      "overflow": false,
+      "hero": {
+        "x": 80,
+        "y": 76,
+        "width": 1280,
+        "height": 581.28125,
+        "right": 1360,
+        "bottom": 657.28125
+      },
+      "search": {
+        "x": 80,
+        "y": 235.28125,
+        "width": 532.328125,
+        "height": 48,
+        "right": 612.328125,
+        "bottom": 283.28125
+      },
+      "preview": {
+        "x": 80,
+        "y": 295.28125,
+        "width": 532.328125,
+        "height": 282,
+        "right": 612.328125,
+        "bottom": 577.28125
+      },
+      "planet": {
+        "x": 703.71875,
+        "y": 148.234375,
+        "width": 606.890625,
+        "height": 384.8125,
+        "right": 1310.609375,
+        "bottom": 533.046875
+      },
+      "catalog": {
+        "x": 80,
+        "y": 657.28125,
+        "width": 1280,
+        "height": 787.5,
+        "right": 1360,
+        "bottom": 1444.78125
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "hybridStage": "illustrated",
+        "hybridFrames": "1",
+        "hybridCalls": "6",
+        "hybridTriangles": "6",
+        "hybridFrameloop": "demand",
+        "hybridGeometries": "6",
+        "hybridTextures": "3",
+        "hybridPrograms": "2",
+        "hybridSpheres": "0"
+      },
+      "badImages": []
+    },
+    {
+      "file": "hybrid-light-1440-catalogo.png",
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "experience": "hybrid",
+      "overflow": false,
+      "hero": {
+        "x": 80,
+        "y": -483,
+        "width": 1280,
+        "height": 581.28125,
+        "right": 1360,
+        "bottom": 98.28125
+      },
+      "search": {
+        "x": 80,
+        "y": -323.71875,
+        "width": 532.328125,
+        "height": 48,
+        "right": 612.328125,
+        "bottom": -275.71875
+      },
+      "preview": {
+        "x": 80,
+        "y": -263.71875,
+        "width": 532.328125,
+        "height": 282,
+        "right": 612.328125,
+        "bottom": 18.28125
+      },
+      "planet": {
+        "x": 703.71875,
+        "y": -410.765625,
+        "width": 606.890625,
+        "height": 384.8125,
+        "right": 1310.609375,
+        "bottom": -25.953125
+      },
+      "catalog": {
+        "x": 80,
+        "y": 98.28125,
+        "width": 1280,
+        "height": 787.5,
+        "right": 1360,
+        "bottom": 885.78125
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "hybridStage": "illustrated",
+        "hybridFrames": "2",
+        "hybridCalls": "6",
+        "hybridTriangles": "6",
+        "hybridFrameloop": "demand",
+        "hybridGeometries": "6",
+        "hybridTextures": "3",
+        "hybridPrograms": "2",
+        "hybridSpheres": "0"
+      },
+      "badImages": []
+    },
+    {
+      "file": "hybrid-dark-390-hero.png",
+      "width": 390,
+      "height": 844,
+      "theme": "dark",
+      "experience": "hybrid",
+      "overflow": false,
+      "hero": {
+        "x": 20,
+        "y": 64,
+        "width": 350,
+        "height": 508,
+        "right": 370,
+        "bottom": 572
+      },
+      "search": {
+        "x": 20,
+        "y": 214,
+        "width": 350,
+        "height": 44,
+        "right": 370,
+        "bottom": 258
+      },
+      "preview": {
+        "x": 20,
+        "y": 268,
+        "width": 350,
+        "height": 238,
+        "right": 370,
+        "bottom": 506
+      },
+      "planet": {
+        "x": 214.40625,
+        "y": 74,
+        "width": 161.578125,
+        "height": 109.203125,
+        "right": 375.984375,
+        "bottom": 183.203125
+      },
+      "catalog": {
+        "x": 20,
+        "y": 572,
+        "width": 350,
+        "height": 1570.3125,
+        "right": 370,
+        "bottom": 2142.3125
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "hybridStage": "illustrated",
+        "hybridFrames": "1",
+        "hybridCalls": "6",
+        "hybridTriangles": "6",
+        "hybridFrameloop": "demand",
+        "hybridGeometries": "6",
+        "hybridTextures": "3",
+        "hybridPrograms": "2",
+        "hybridSpheres": "0"
+      },
+      "badImages": []
+    },
+    {
+      "file": "hybrid-dark-390-catalogo.png",
+      "width": 390,
+      "height": 844,
+      "theme": "dark",
+      "experience": "hybrid",
+      "overflow": false,
+      "hero": {
+        "x": 20,
+        "y": -418,
+        "width": 350,
+        "height": 508,
+        "right": 370,
+        "bottom": 90
+      },
+      "search": {
+        "x": 20,
+        "y": -268,
+        "width": 350,
+        "height": 44,
+        "right": 370,
+        "bottom": -224
+      },
+      "preview": {
+        "x": 20,
+        "y": -214,
+        "width": 350,
+        "height": 238,
+        "right": 370,
+        "bottom": 24
+      },
+      "planet": {
+        "x": 214.40625,
+        "y": -408,
+        "width": 161.578125,
+        "height": 109.203125,
+        "right": 375.984375,
+        "bottom": -298.796875
+      },
+      "catalog": {
+        "x": 20,
+        "y": 90,
+        "width": 350,
+        "height": 1570.3125,
+        "right": 370,
+        "bottom": 1660.3125
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "hybridStage": "illustrated",
+        "hybridFrames": "2",
+        "hybridCalls": "3",
+        "hybridTriangles": "0",
+        "hybridFrameloop": "demand",
+        "hybridGeometries": "6",
+        "hybridTextures": "3",
+        "hybridPrograms": "2",
+        "hybridSpheres": "0"
+      },
+      "badImages": []
+    },
+    {
+      "file": "hybrid-light-390-hero.png",
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "experience": "hybrid",
+      "overflow": false,
+      "hero": {
+        "x": 20,
+        "y": 64,
+        "width": 350,
+        "height": 508,
+        "right": 370,
+        "bottom": 572
+      },
+      "search": {
+        "x": 20,
+        "y": 214,
+        "width": 350,
+        "height": 44,
+        "right": 370,
+        "bottom": 258
+      },
+      "preview": {
+        "x": 20,
+        "y": 268,
+        "width": 350,
+        "height": 238,
+        "right": 370,
+        "bottom": 506
+      },
+      "planet": {
+        "x": 214.40625,
+        "y": 74,
+        "width": 161.578125,
+        "height": 109.203125,
+        "right": 375.984375,
+        "bottom": 183.203125
+      },
+      "catalog": {
+        "x": 20,
+        "y": 572,
+        "width": 350,
+        "height": 1570.3125,
+        "right": 370,
+        "bottom": 2142.3125
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "hybridStage": "illustrated",
+        "hybridFrames": "1",
+        "hybridCalls": "6",
+        "hybridTriangles": "6",
+        "hybridFrameloop": "demand",
+        "hybridGeometries": "6",
+        "hybridTextures": "3",
+        "hybridPrograms": "2",
+        "hybridSpheres": "0"
+      },
+      "badImages": []
+    },
+    {
+      "file": "hybrid-light-390-catalogo.png",
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "experience": "hybrid",
+      "overflow": false,
+      "hero": {
+        "x": 20,
+        "y": -418,
+        "width": 350,
+        "height": 508,
+        "right": 370,
+        "bottom": 90
+      },
+      "search": {
+        "x": 20,
+        "y": -268,
+        "width": 350,
+        "height": 44,
+        "right": 370,
+        "bottom": -224
+      },
+      "preview": {
+        "x": 20,
+        "y": -214,
+        "width": 350,
+        "height": 238,
+        "right": 370,
+        "bottom": 24
+      },
+      "planet": {
+        "x": 214.40625,
+        "y": -408,
+        "width": 161.578125,
+        "height": 109.203125,
+        "right": 375.984375,
+        "bottom": -298.796875
+      },
+      "catalog": {
+        "x": 20,
+        "y": 90,
+        "width": 350,
+        "height": 1570.3125,
+        "right": 370,
+        "bottom": 1660.3125
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "hybridStage": "illustrated",
+        "hybridFrames": "2",
+        "hybridCalls": "3",
+        "hybridTriangles": "0",
+        "hybridFrameloop": "demand",
+        "hybridGeometries": "6",
+        "hybridTextures": "3",
+        "hybridPrograms": "2",
+        "hybridSpheres": "0"
+      },
+      "badImages": []
+    },
+    {
+      "file": "hybrid-dark-320-hero.png",
+      "width": 320,
+      "height": 667,
+      "theme": "dark",
+      "experience": "hybrid",
+      "overflow": false,
+      "hero": {
+        "x": 20,
+        "y": 64,
+        "width": 280,
+        "height": 508,
+        "right": 300,
+        "bottom": 572
+      },
+      "search": {
+        "x": 20,
+        "y": 214,
+        "width": 280,
+        "height": 44,
+        "right": 300,
+        "bottom": 258
+      },
+      "preview": {
+        "x": 20,
+        "y": 268,
+        "width": 280,
+        "height": 238,
+        "right": 300,
+        "bottom": 506
+      },
+      "planet": {
+        "x": 176.4375,
+        "y": 74,
+        "width": 128.3125,
+        "height": 109.203125,
+        "right": 304.75,
+        "bottom": 183.203125
+      },
+      "catalog": {
+        "x": 20,
+        "y": 572,
+        "width": 280,
+        "height": 1601.5625,
+        "right": 300,
+        "bottom": 2173.5625
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "hybridStage": "illustrated",
+        "hybridFrames": "1",
+        "hybridCalls": "6",
+        "hybridTriangles": "6",
+        "hybridFrameloop": "demand",
+        "hybridGeometries": "6",
+        "hybridTextures": "3",
+        "hybridPrograms": "2",
+        "hybridSpheres": "0"
+      },
+      "badImages": []
+    },
+    {
+      "file": "hybrid-dark-320-catalogo.png",
+      "width": 320,
+      "height": 667,
+      "theme": "dark",
+      "experience": "hybrid",
+      "overflow": false,
+      "hero": {
+        "x": 20,
+        "y": -418,
+        "width": 280,
+        "height": 508,
+        "right": 300,
+        "bottom": 90
+      },
+      "search": {
+        "x": 20,
+        "y": -268,
+        "width": 280,
+        "height": 44,
+        "right": 300,
+        "bottom": -224
+      },
+      "preview": {
+        "x": 20,
+        "y": -214,
+        "width": 280,
+        "height": 238,
+        "right": 300,
+        "bottom": 24
+      },
+      "planet": {
+        "x": 176.4375,
+        "y": -408,
+        "width": 128.3125,
+        "height": 109.203125,
+        "right": 304.75,
+        "bottom": -298.796875
+      },
+      "catalog": {
+        "x": 20,
+        "y": 90,
+        "width": 280,
+        "height": 1601.5625,
+        "right": 300,
+        "bottom": 1691.5625
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "hybridStage": "illustrated",
+        "hybridFrames": "3",
+        "hybridCalls": "3",
+        "hybridTriangles": "0",
+        "hybridFrameloop": "demand",
+        "hybridGeometries": "6",
+        "hybridTextures": "3",
+        "hybridPrograms": "2",
+        "hybridSpheres": "0"
+      },
+      "badImages": []
+    },
+    {
+      "file": "hybrid-light-320-hero.png",
+      "width": 320,
+      "height": 667,
+      "theme": "light",
+      "experience": "hybrid",
+      "overflow": false,
+      "hero": {
+        "x": 20,
+        "y": 64,
+        "width": 280,
+        "height": 508,
+        "right": 300,
+        "bottom": 572
+      },
+      "search": {
+        "x": 20,
+        "y": 214,
+        "width": 280,
+        "height": 44,
+        "right": 300,
+        "bottom": 258
+      },
+      "preview": {
+        "x": 20,
+        "y": 268,
+        "width": 280,
+        "height": 238,
+        "right": 300,
+        "bottom": 506
+      },
+      "planet": {
+        "x": 176.4375,
+        "y": 74,
+        "width": 128.3125,
+        "height": 109.203125,
+        "right": 304.75,
+        "bottom": 183.203125
+      },
+      "catalog": {
+        "x": 20,
+        "y": 572,
+        "width": 280,
+        "height": 1601.5625,
+        "right": 300,
+        "bottom": 2173.5625
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "hybridStage": "illustrated",
+        "hybridFrames": "1",
+        "hybridCalls": "6",
+        "hybridTriangles": "6",
+        "hybridFrameloop": "demand",
+        "hybridGeometries": "6",
+        "hybridTextures": "3",
+        "hybridPrograms": "2",
+        "hybridSpheres": "0"
+      },
+      "badImages": []
+    },
+    {
+      "file": "hybrid-light-320-catalogo.png",
+      "width": 320,
+      "height": 667,
+      "theme": "light",
+      "experience": "hybrid",
+      "overflow": false,
+      "hero": {
+        "x": 20,
+        "y": -418,
+        "width": 280,
+        "height": 508,
+        "right": 300,
+        "bottom": 90
+      },
+      "search": {
+        "x": 20,
+        "y": -268,
+        "width": 280,
+        "height": 44,
+        "right": 300,
+        "bottom": -224
+      },
+      "preview": {
+        "x": 20,
+        "y": -214,
+        "width": 280,
+        "height": 238,
+        "right": 300,
+        "bottom": 24
+      },
+      "planet": {
+        "x": 176.4375,
+        "y": -408,
+        "width": 128.3125,
+        "height": 109.203125,
+        "right": 304.75,
+        "bottom": -298.796875
+      },
+      "catalog": {
+        "x": 20,
+        "y": 90,
+        "width": 280,
+        "height": 1601.5625,
+        "right": 300,
+        "bottom": 1691.5625
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "hybridStage": "illustrated",
+        "hybridFrames": "2",
+        "hybridCalls": "3",
+        "hybridTriangles": "0",
+        "hybridFrameloop": "demand",
+        "hybridGeometries": "6",
+        "hybridTextures": "3",
+        "hybridPrograms": "2",
+        "hybridSpheres": "0"
+      },
+      "badImages": []
+    },
+    {
+      "file": "hybrid-dark-1920-hero.png",
+      "width": 1920,
+      "height": 900,
+      "theme": "dark",
+      "experience": "hybrid",
+      "overflow": false,
+      "hero": {
+        "x": 320,
+        "y": 76,
+        "width": 1280,
+        "height": 581.28125,
+        "right": 1600,
+        "bottom": 657.28125
+      },
+      "search": {
+        "x": 320,
+        "y": 235.28125,
+        "width": 532.328125,
+        "height": 48,
+        "right": 852.328125,
+        "bottom": 283.28125
+      },
+      "preview": {
+        "x": 320,
+        "y": 295.28125,
+        "width": 532.328125,
+        "height": 282,
+        "right": 852.328125,
+        "bottom": 577.28125
+      },
+      "planet": {
+        "x": 943.71875,
+        "y": 148.234375,
+        "width": 606.890625,
+        "height": 384.8125,
+        "right": 1550.609375,
+        "bottom": 533.046875
+      },
+      "catalog": {
+        "x": 320,
+        "y": 657.28125,
+        "width": 1280,
+        "height": 787.5,
+        "right": 1600,
+        "bottom": 1444.78125
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "hybridStage": "illustrated",
+        "hybridFrames": "1",
+        "hybridCalls": "6",
+        "hybridTriangles": "6",
+        "hybridFrameloop": "demand",
+        "hybridGeometries": "6",
+        "hybridTextures": "3",
+        "hybridPrograms": "2",
+        "hybridSpheres": "0"
+      },
+      "badImages": []
+    },
+    {
+      "file": "hybrid-dark-1920-catalogo.png",
+      "width": 1920,
+      "height": 900,
+      "theme": "dark",
+      "experience": "hybrid",
+      "overflow": false,
+      "hero": {
+        "x": 320,
+        "y": -483,
+        "width": 1280,
+        "height": 581.28125,
+        "right": 1600,
+        "bottom": 98.28125
+      },
+      "search": {
+        "x": 320,
+        "y": -323.71875,
+        "width": 532.328125,
+        "height": 48,
+        "right": 852.328125,
+        "bottom": -275.71875
+      },
+      "preview": {
+        "x": 320,
+        "y": -263.71875,
+        "width": 532.328125,
+        "height": 282,
+        "right": 852.328125,
+        "bottom": 18.28125
+      },
+      "planet": {
+        "x": 943.71875,
+        "y": -410.765625,
+        "width": 606.890625,
+        "height": 384.8125,
+        "right": 1550.609375,
+        "bottom": -25.953125
+      },
+      "catalog": {
+        "x": 320,
+        "y": 98.28125,
+        "width": 1280,
+        "height": 787.5,
+        "right": 1600,
+        "bottom": 885.78125
+      },
+      "previews": [
+        {
+          "state": "upcoming",
+          "title": "Supernova Sessions"
+        },
+        {
+          "state": "upcoming",
+          "title": "Un respiro para vos"
+        },
+        {
+          "state": "ended",
+          "title": "Bajo la misma órbita"
+        }
+      ],
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "hybridStage": "illustrated",
+        "hybridFrames": "2",
+        "hybridCalls": "6",
+        "hybridTriangles": "6",
+        "hybridFrameloop": "demand",
+        "hybridGeometries": "6",
+        "hybridTextures": "3",
+        "hybridPrograms": "2",
+        "hybridSpheres": "0"
+      },
+      "badImages": []
+    },
+    {
+      "file": "original-dark-1440-hero.png",
+      "width": 1440,
+      "height": 900,
+      "theme": "dark",
+      "experience": "original",
+      "overflow": false,
+      "hero": {
+        "x": 80,
+        "y": 76,
+        "width": 1280,
+        "height": 302,
+        "right": 1360,
+        "bottom": 378
+      },
+      "search": null,
+      "preview": null,
+      "planet": null,
+      "catalog": {
+        "x": 80,
+        "y": 378,
+        "width": 1280,
+        "height": 787.5,
+        "right": 1360,
+        "bottom": 1165.5
+      },
+      "previews": [],
+      "canvas": null,
+      "badImages": []
+    },
+    {
+      "file": "original-dark-1440-catalogo.png",
+      "width": 1440,
+      "height": 900,
+      "theme": "dark",
+      "experience": "original",
+      "overflow": false,
+      "hero": {
+        "x": 80,
+        "y": -204,
+        "width": 1280,
+        "height": 302,
+        "right": 1360,
+        "bottom": 98
+      },
+      "search": null,
+      "preview": null,
+      "planet": null,
+      "catalog": {
+        "x": 80,
+        "y": 98,
+        "width": 1280,
+        "height": 787.5,
+        "right": 1360,
+        "bottom": 885.5
+      },
+      "previews": [],
+      "canvas": null,
+      "badImages": []
+    },
+    {
+      "file": "original-light-1440-hero.png",
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "experience": "original",
+      "overflow": false,
+      "hero": {
+        "x": 80,
+        "y": 76,
+        "width": 1280,
+        "height": 302,
+        "right": 1360,
+        "bottom": 378
+      },
+      "search": null,
+      "preview": null,
+      "planet": null,
+      "catalog": {
+        "x": 80,
+        "y": 378,
+        "width": 1280,
+        "height": 787.5,
+        "right": 1360,
+        "bottom": 1165.5
+      },
+      "previews": [],
+      "canvas": null,
+      "badImages": []
+    },
+    {
+      "file": "original-light-1440-catalogo.png",
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "experience": "original",
+      "overflow": false,
+      "hero": {
+        "x": 80,
+        "y": -204,
+        "width": 1280,
+        "height": 302,
+        "right": 1360,
+        "bottom": 98
+      },
+      "search": null,
+      "preview": null,
+      "planet": null,
+      "catalog": {
+        "x": 80,
+        "y": 98,
+        "width": 1280,
+        "height": 787.5,
+        "right": 1360,
+        "bottom": 885.5
+      },
+      "previews": [],
+      "canvas": null,
+      "badImages": []
+    },
+    {
+      "file": "original-dark-320-hero.png",
+      "width": 320,
+      "height": 667,
+      "theme": "dark",
+      "experience": "original",
+      "overflow": false,
+      "hero": {
+        "x": 20,
+        "y": 64,
+        "width": 280,
+        "height": 270.28125,
+        "right": 300,
+        "bottom": 334.28125
+      },
+      "search": null,
+      "preview": null,
+      "planet": null,
+      "catalog": {
+        "x": 20,
+        "y": 334.28125,
+        "width": 280,
+        "height": 1660.5625,
+        "right": 300,
+        "bottom": 1994.84375
+      },
+      "previews": [],
+      "canvas": null,
+      "badImages": []
+    },
+    {
+      "file": "original-dark-320-catalogo.png",
+      "width": 320,
+      "height": 667,
+      "theme": "dark",
+      "experience": "original",
+      "overflow": false,
+      "hero": {
+        "x": 20,
+        "y": -180,
+        "width": 280,
+        "height": 270.28125,
+        "right": 300,
+        "bottom": 90.28125
+      },
+      "search": null,
+      "preview": null,
+      "planet": null,
+      "catalog": {
+        "x": 20,
+        "y": 90.28125,
+        "width": 280,
+        "height": 1660.5625,
+        "right": 300,
+        "bottom": 1750.84375
+      },
+      "previews": [],
+      "canvas": null,
+      "badImages": []
+    },
+    {
+      "file": "original-light-320-hero.png",
+      "width": 320,
+      "height": 667,
+      "theme": "light",
+      "experience": "original",
+      "overflow": false,
+      "hero": {
+        "x": 20,
+        "y": 64,
+        "width": 280,
+        "height": 270.28125,
+        "right": 300,
+        "bottom": 334.28125
+      },
+      "search": null,
+      "preview": null,
+      "planet": null,
+      "catalog": {
+        "x": 20,
+        "y": 334.28125,
+        "width": 280,
+        "height": 1660.5625,
+        "right": 300,
+        "bottom": 1994.84375
+      },
+      "previews": [],
+      "canvas": null,
+      "badImages": []
+    },
+    {
+      "file": "original-light-320-catalogo.png",
+      "width": 320,
+      "height": 667,
+      "theme": "light",
+      "experience": "original",
+      "overflow": false,
+      "hero": {
+        "x": 20,
+        "y": -180,
+        "width": 280,
+        "height": 270.28125,
+        "right": 300,
+        "bottom": 90.28125
+      },
+      "search": null,
+      "preview": null,
+      "planet": null,
+      "catalog": {
+        "x": 20,
+        "y": 90.28125,
+        "width": 280,
+        "height": 1660.5625,
+        "right": 300,
+        "bottom": 1750.84375
+      },
+      "previews": [],
+      "canvas": null,
+      "badImages": []
+    }
+  ],
+  "errors": [],
+  "failedRequests": []
+}

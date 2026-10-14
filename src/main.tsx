@@ -9,13 +9,13 @@ import '@fontsource/manrope/latin-500.css';
 import '@fontsource/manrope/latin-600.css';
 import '@fontsource/manrope/latin-700.css';
 import '@fontsource/manrope/latin-800.css';
-import App from './App';
+import VersionRouter from './versions/VersionRouter';
+import TourNebulaBackdrop from './features/background/TourNebulaBackdrop';
 import './styles.css';
 import './layout.css';
 import './interface.css';
 import './theme.css';
 import './components/ui/theme.css';
-import './features/intro/intro.css';
 import './scrollbars.css';
 
-ReactDOM.createRoot(document.getElementById('root')!).render(<React.StrictMode><App /></React.StrictMode>);
+ReactDOM.createRoot(document.getElementById('root')!).render(<React.StrictMode><TourNebulaBackdrop /><VersionRouter /></React.StrictMode>);

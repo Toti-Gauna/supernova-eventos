@@ -1,0 +1,735 @@
+{
+  "recordedAt": "2026-10-09T18:11:14.934Z",
+  "clock": "Reloj Playwright pausado y avanzado para capturar poses reproducibles; no son mediciones de rendimiento.",
+  "captures": [
+    {
+      "file": "carga-1440-0100ms.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "time": 100,
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridRequest": "2",
+        "hybridDestination": "explore",
+        "hybridMotion": "animated",
+        "hybridCamera": "-3.467,-1.726,14.387",
+        "hybridHero": "1034.90,293.20,390.60",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "universeTrailCount": "0",
+        "hybridStage": "illustrated",
+        "hybridFrames": "2",
+        "hybridCalls": "6",
+        "hybridTriangles": "6",
+        "hybridFrameloop": "continuous",
+        "hybridGeometries": "6",
+        "hybridTextures": "3",
+        "hybridPrograms": "2",
+        "hybridSpheres": "0"
+      },
+      "intro": true,
+      "loaderPlanet": [
+        772.1052631578948,
+        320.6858552631579,
+        24.315789473684212
+      ],
+      "projection": [
+        1034.9,
+        293.2,
+        390.6
+      ],
+      "camera": "-3.467,-1.726,14.387"
+    },
+    {
+      "file": "carga-1440-1000ms.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "time": 1000,
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridRequest": "3",
+        "hybridDestination": "explore",
+        "hybridMotion": "animated",
+        "hybridCamera": "-9.214,-22.868,231.111",
+        "hybridHero": "772.11,320.69,24.32",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "universeTrailCount": "0",
+        "hybridStage": "illustrated",
+        "hybridFrames": "41",
+        "hybridCalls": "17",
+        "hybridTriangles": "28",
+        "hybridFrameloop": "continuous",
+        "hybridGeometries": "20",
+        "hybridTextures": "14",
+        "hybridPrograms": "2",
+        "hybridSpheres": "0",
+        "hybridFrameSamples": "16,16,16,16,16,16,16,16,16,16,16,16,16"
+      },
+      "intro": true,
+      "loaderPlanet": [
+        772.1052631578948,
+        320.6858552631579,
+        24.315789473684212
+      ],
+      "projection": [
+        772.11,
+        320.69,
+        24.32
+      ],
+      "camera": "-9.214,-22.868,231.111"
+    },
+    {
+      "file": "carga-1440-1400ms.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "time": 1400,
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridRequest": "3",
+        "hybridDestination": "explore",
+        "hybridMotion": "animated",
+        "hybridCamera": "-9.214,-22.868,231.111",
+        "hybridHero": "772.11,320.69,24.32",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "universeTrailCount": "32",
+        "hybridStage": "illustrated",
+        "hybridFrames": "66",
+        "hybridCalls": "18",
+        "hybridTriangles": "28",
+        "hybridFrameloop": "continuous",
+        "hybridGeometries": "21",
+        "hybridTextures": "14",
+        "hybridPrograms": "3",
+        "hybridSpheres": "0",
+        "hybridFrameSamples": "16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16"
+      },
+      "intro": true,
+      "loaderPlanet": [
+        772.1052631578948,
+        320.6858552631579,
+        24.315789473684212
+      ],
+      "projection": [
+        772.11,
+        320.69,
+        24.32
+      ],
+      "camera": "-9.214,-22.868,231.111"
+    },
+    {
+      "file": "carga-1440-1800ms.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "time": 1800,
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridRequest": "3",
+        "hybridDestination": "explore",
+        "hybridMotion": "animated",
+        "hybridCamera": "-9.214,-22.868,231.111",
+        "hybridHero": "772.11,320.69,24.32",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "universeTrailCount": "32",
+        "hybridStage": "illustrated",
+        "hybridFrames": "91",
+        "hybridCalls": "18",
+        "hybridTriangles": "28",
+        "hybridFrameloop": "continuous",
+        "hybridGeometries": "21",
+        "hybridTextures": "14",
+        "hybridPrograms": "3",
+        "hybridSpheres": "0",
+        "hybridFrameSamples": "16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16"
+      },
+      "intro": true,
+      "loaderPlanet": [
+        772.1052631578948,
+        320.6858552631579,
+        24.315789473684212
+      ],
+      "projection": [
+        772.11,
+        320.69,
+        24.32
+      ],
+      "camera": "-9.214,-22.868,231.111"
+    },
+    {
+      "file": "carga-1440-2150ms.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "time": 2150,
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridRequest": "3",
+        "hybridDestination": "explore",
+        "hybridMotion": "animated",
+        "hybridCamera": "-9.117,-22.510,220.498",
+        "hybridHero": "774.04,316.58,25.49",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "universeTrailCount": "32",
+        "hybridStage": "illustrated",
+        "hybridFrames": "112",
+        "hybridCalls": "21",
+        "hybridTriangles": "34",
+        "hybridFrameloop": "continuous",
+        "hybridGeometries": "21",
+        "hybridTextures": "14",
+        "hybridPrograms": "3",
+        "hybridSpheres": "0",
+        "hybridFrameSamples": "16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16"
+      },
+      "intro": true,
+      "loaderPlanet": [
+        772.1052631578948,
+        320.6858552631579,
+        24.315789473684212
+      ],
+      "projection": [
+        774.04,
+        316.58,
+        25.49
+      ],
+      "camera": "-9.117,-22.510,220.498"
+    },
+    {
+      "file": "carga-1440-2500ms.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "time": 2500,
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridRequest": "3",
+        "hybridDestination": "explore",
+        "hybridMotion": "animated",
+        "hybridCamera": "-7.271,-15.720,90.387",
+        "hybridHero": "825.13,222.71,62.17",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "universeTrailCount": "32",
+        "hybridStage": "illustrated",
+        "hybridFrames": "134",
+        "hybridCalls": "10",
+        "hybridTriangles": "12",
+        "hybridFrameloop": "continuous",
+        "hybridGeometries": "21",
+        "hybridTextures": "14",
+        "hybridPrograms": "3",
+        "hybridSpheres": "0",
+        "hybridFrameSamples": "16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16"
+      },
+      "intro": true,
+      "loaderPlanet": [
+        772.1052631578948,
+        320.6858552631579,
+        24.315789473684212
+      ],
+      "projection": [
+        825.13,
+        222.71,
+        62.17
+      ],
+      "camera": "-7.271,-15.720,90.387"
+    },
+    {
+      "file": "carga-1440-2850ms.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "time": 2850,
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridRequest": "3",
+        "hybridDestination": "explore",
+        "hybridMotion": "animated",
+        "hybridCamera": "-4.432,-5.278,22.939",
+        "hybridHero": "972.52,149.28,244.98",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "universeTrailCount": "32",
+        "hybridStage": "illustrated",
+        "hybridFrames": "156",
+        "hybridCalls": "7",
+        "hybridTriangles": "6",
+        "hybridFrameloop": "continuous",
+        "hybridGeometries": "21",
+        "hybridTextures": "14",
+        "hybridPrograms": "3",
+        "hybridSpheres": "0",
+        "hybridFrameSamples": "16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16"
+      },
+      "intro": true,
+      "loaderPlanet": [
+        772.1052631578948,
+        320.6858552631579,
+        24.315789473684212
+      ],
+      "projection": [
+        972.52,
+        149.28,
+        244.98
+      ],
+      "camera": "-4.432,-5.278,22.939"
+    },
+    {
+      "file": "carga-1440-3250ms.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "time": 3250,
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridRequest": "3",
+        "hybridDestination": "explore",
+        "hybridMotion": "animated",
+        "hybridCamera": "-3.467,-1.728,14.390",
+        "hybridHero": "1034.88,293.10,390.52",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "universeTrailCount": "32",
+        "hybridStage": "illustrated",
+        "hybridFrames": "181",
+        "hybridCalls": "7",
+        "hybridTriangles": "6",
+        "hybridFrameloop": "continuous",
+        "hybridGeometries": "21",
+        "hybridTextures": "14",
+        "hybridPrograms": "3",
+        "hybridSpheres": "0",
+        "hybridFrameSamples": "16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16"
+      },
+      "intro": true,
+      "loaderPlanet": [
+        772.1052631578948,
+        320.6858552631579,
+        24.315789473684212
+      ],
+      "projection": [
+        1034.88,
+        293.1,
+        390.52
+      ],
+      "camera": "-3.467,-1.728,14.390"
+    },
+    {
+      "file": "carga-1440-3650ms.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "time": 3650,
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridRequest": "4",
+        "hybridDestination": "explore",
+        "hybridMotion": "animated",
+        "hybridCamera": "-3.467,-1.726,14.387",
+        "hybridHero": "1034.90,293.20,390.60",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "universeTrailCount": "0",
+        "hybridStage": "illustrated",
+        "hybridFrames": "206",
+        "hybridCalls": "6",
+        "hybridTriangles": "6",
+        "hybridFrameloop": "continuous",
+        "hybridGeometries": "21",
+        "hybridTextures": "14",
+        "hybridPrograms": "3",
+        "hybridSpheres": "0",
+        "hybridFrameSamples": "16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16"
+      },
+      "intro": false,
+      "loaderPlanet": null,
+      "projection": [
+        1034.9,
+        293.2,
+        390.6
+      ],
+      "camera": "-3.467,-1.726,14.387"
+    },
+    {
+      "file": "carga-390-0100ms.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "time": 100,
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridRequest": "2",
+        "hybridDestination": "explore",
+        "hybridMotion": "animated",
+        "hybridCamera": "-0.069,1.457,24.286",
+        "hybridHero": "198.50,495.51,217.00",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "universeTrailCount": "0",
+        "hybridStage": "illustrated",
+        "hybridFrames": "1",
+        "hybridCalls": "6",
+        "hybridTriangles": "6",
+        "hybridFrameloop": "demand",
+        "hybridGeometries": "6",
+        "hybridTextures": "3",
+        "hybridPrograms": "2",
+        "hybridSpheres": "0"
+      },
+      "intro": true,
+      "loaderPlanet": [
+        237.6315789473684,
+        323.3807565789474,
+        19.894736842105264
+      ],
+      "projection": [
+        198.5,
+        495.51,
+        217
+      ],
+      "camera": "-0.069,1.457,24.286"
+    },
+    {
+      "file": "carga-390-1000ms.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "time": 1000,
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridRequest": "3",
+        "hybridDestination": "explore",
+        "hybridMotion": "animated",
+        "hybridCamera": "-9.214,-21.315,264.893",
+        "hybridHero": "237.63,323.38,19.89",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "universeTrailCount": "0",
+        "hybridStage": "illustrated",
+        "hybridFrames": "39",
+        "hybridCalls": "4",
+        "hybridTriangles": "2",
+        "hybridFrameloop": "continuous",
+        "hybridGeometries": "7",
+        "hybridTextures": "4",
+        "hybridPrograms": "2",
+        "hybridSpheres": "0",
+        "hybridFrameSamples": "16,16,16,16,16,16,16,16,16,16,16,16,16"
+      },
+      "intro": true,
+      "loaderPlanet": [
+        237.6315789473684,
+        323.3807565789474,
+        19.894736842105264
+      ],
+      "projection": [
+        237.63,
+        323.38,
+        19.89
+      ],
+      "camera": "-9.214,-21.315,264.893"
+    },
+    {
+      "file": "carga-390-1400ms.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "time": 1400,
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridRequest": "3",
+        "hybridDestination": "explore",
+        "hybridMotion": "animated",
+        "hybridCamera": "-9.214,-21.315,264.893",
+        "hybridHero": "237.63,323.38,19.89",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "universeTrailCount": "32",
+        "hybridStage": "illustrated",
+        "hybridFrames": "64",
+        "hybridCalls": "5",
+        "hybridTriangles": "2",
+        "hybridFrameloop": "continuous",
+        "hybridGeometries": "8",
+        "hybridTextures": "4",
+        "hybridPrograms": "3",
+        "hybridSpheres": "0",
+        "hybridFrameSamples": "16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16"
+      },
+      "intro": true,
+      "loaderPlanet": [
+        237.6315789473684,
+        323.3807565789474,
+        19.894736842105264
+      ],
+      "projection": [
+        237.63,
+        323.38,
+        19.89
+      ],
+      "camera": "-9.214,-21.315,264.893"
+    },
+    {
+      "file": "carga-390-1800ms.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "time": 1800,
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridRequest": "3",
+        "hybridDestination": "explore",
+        "hybridMotion": "animated",
+        "hybridCamera": "-9.214,-21.315,264.893",
+        "hybridHero": "237.63,323.38,19.89",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "universeTrailCount": "32",
+        "hybridStage": "illustrated",
+        "hybridFrames": "89",
+        "hybridCalls": "5",
+        "hybridTriangles": "2",
+        "hybridFrameloop": "continuous",
+        "hybridGeometries": "8",
+        "hybridTextures": "4",
+        "hybridPrograms": "3",
+        "hybridSpheres": "0",
+        "hybridFrameSamples": "16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16"
+      },
+      "intro": true,
+      "loaderPlanet": [
+        237.6315789473684,
+        323.3807565789474,
+        19.894736842105264
+      ],
+      "projection": [
+        237.63,
+        323.38,
+        19.89
+      ],
+      "camera": "-9.214,-21.315,264.893"
+    },
+    {
+      "file": "carga-390-2150ms.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "time": 2150,
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridRequest": "3",
+        "hybridDestination": "explore",
+        "hybridMotion": "animated",
+        "hybridCamera": "-8.966,-20.697,248.250",
+        "hybridHero": "239.26,319.82,21.23",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "universeTrailCount": "32",
+        "hybridStage": "illustrated",
+        "hybridFrames": "110",
+        "hybridCalls": "20",
+        "hybridTriangles": "32",
+        "hybridFrameloop": "continuous",
+        "hybridGeometries": "9",
+        "hybridTextures": "5",
+        "hybridPrograms": "3",
+        "hybridSpheres": "0",
+        "hybridFrameSamples": "16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16"
+      },
+      "intro": true,
+      "loaderPlanet": [
+        237.6315789473684,
+        323.3807565789474,
+        19.894736842105264
+      ],
+      "projection": [
+        239.26,
+        319.82,
+        21.23
+      ],
+      "camera": "-8.966,-20.697,248.250"
+    },
+    {
+      "file": "carga-390-2500ms.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "time": 2500,
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridRequest": "3",
+        "hybridDestination": "explore",
+        "hybridMotion": "animated",
+        "hybridCamera": "-5.735,-12.651,106.714",
+        "hybridHero": "260.86,276.71,49.38",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "universeTrailCount": "32",
+        "hybridStage": "illustrated",
+        "hybridFrames": "132",
+        "hybridCalls": "10",
+        "hybridTriangles": "12",
+        "hybridFrameloop": "continuous",
+        "hybridGeometries": "21",
+        "hybridTextures": "14",
+        "hybridPrograms": "3",
+        "hybridSpheres": "0",
+        "hybridFrameSamples": "16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16"
+      },
+      "intro": true,
+      "loaderPlanet": [
+        237.6315789473684,
+        323.3807565789474,
+        19.894736842105264
+      ],
+      "projection": [
+        260.86,
+        276.71,
+        49.38
+      ],
+      "camera": "-5.735,-12.651,106.714"
+    },
+    {
+      "file": "carga-390-2850ms.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "time": 2850,
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridRequest": "3",
+        "hybridDestination": "explore",
+        "hybridMotion": "animated",
+        "hybridCamera": "-3.330,-6.662,56.925",
+        "hybridHero": "266.68,278.58,92.58",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "universeTrailCount": "32",
+        "hybridStage": "illustrated",
+        "hybridFrames": "154",
+        "hybridCalls": "7",
+        "hybridTriangles": "6",
+        "hybridFrameloop": "continuous",
+        "hybridGeometries": "21",
+        "hybridTextures": "14",
+        "hybridPrograms": "3",
+        "hybridSpheres": "0",
+        "hybridFrameSamples": "16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16"
+      },
+      "intro": true,
+      "loaderPlanet": [
+        237.6315789473684,
+        323.3807565789474,
+        19.894736842105264
+      ],
+      "projection": [
+        266.68,
+        278.58,
+        92.58
+      ],
+      "camera": "-3.330,-6.662,56.925"
+    },
+    {
+      "file": "carga-390-3250ms.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "time": 3250,
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridRequest": "3",
+        "hybridDestination": "explore",
+        "hybridMotion": "animated",
+        "hybridCamera": "-0.262,0.977,25.538",
+        "hybridHero": "207.56,468.91,206.36",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "universeTrailCount": "32",
+        "hybridStage": "illustrated",
+        "hybridFrames": "179",
+        "hybridCalls": "7",
+        "hybridTriangles": "6",
+        "hybridFrameloop": "continuous",
+        "hybridGeometries": "21",
+        "hybridTextures": "14",
+        "hybridPrograms": "3",
+        "hybridSpheres": "0",
+        "hybridFrameSamples": "16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16"
+      },
+      "intro": true,
+      "loaderPlanet": [
+        237.6315789473684,
+        323.3807565789474,
+        19.894736842105264
+      ],
+      "projection": [
+        207.56,
+        468.91,
+        206.36
+      ],
+      "camera": "-0.262,0.977,25.538"
+    },
+    {
+      "file": "carga-390-3650ms.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "time": 3650,
+      "canvas": {
+        "engine": "three.js r186",
+        "hybridRequest": "4",
+        "hybridDestination": "explore",
+        "hybridMotion": "animated",
+        "hybridCamera": "-0.069,1.457,24.286",
+        "hybridHero": "198.50,495.51,217.00",
+        "hybridCue": "false",
+        "hybridArtwork": "explore",
+        "universeTrailCount": "0",
+        "hybridStage": "illustrated",
+        "hybridFrames": "204",
+        "hybridCalls": "6",
+        "hybridTriangles": "6",
+        "hybridFrameloop": "continuous",
+        "hybridGeometries": "7",
+        "hybridTextures": "14",
+        "hybridPrograms": "3",
+        "hybridSpheres": "0",
+        "hybridFrameSamples": "16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16"
+      },
+      "intro": false,
+      "loaderPlanet": null,
+      "projection": [
+        198.5,
+        495.51,
+        217
+      ],
+      "camera": "-0.069,1.457,24.286"
+    }
+  ],
+  "errors": []
+}

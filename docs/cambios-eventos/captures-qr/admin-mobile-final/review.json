@@ -1,0 +1,337 @@
+{
+  "browser": "155.0.8059.40",
+  "date": "2026-10-09",
+  "rows": [
+    {
+      "version": "original",
+      "width": 320,
+      "theme": "dark",
+      "captures": [
+        "original-320-dark-qr-admin.png"
+      ],
+      "userQR": null,
+      "adminQR": "http://127.0.0.1:5173/original/?evento=supernova-sessions&funcion=supernova-sessions%3Asaturday",
+      "admin": {
+        "horizontalOverflow": false,
+        "actions": [
+          {
+            "label": "Volver",
+            "top": 579.734375,
+            "bottom": 623.734375,
+            "completeInViewport": true
+          },
+          {
+            "label": "Descargar QR",
+            "top": 579.734375,
+            "bottom": 623.734375,
+            "completeInViewport": true
+          }
+        ],
+        "actionsInViewport": true
+      }
+    },
+    {
+      "version": "original",
+      "width": 320,
+      "theme": "light",
+      "captures": [
+        "original-320-light-funciones.png",
+        "original-320-light-pase.png",
+        "original-320-light-qr-admin.png"
+      ],
+      "userQR": null,
+      "adminQR": "http://127.0.0.1:5173/original/?evento=supernova-sessions&funcion=supernova-sessions%3Asaturday",
+      "pass": {
+        "horizontalOverflow": false,
+        "verticalOverflow": false,
+        "calendar": {
+          "x": 16,
+          "y": 269.953125,
+          "width": 288,
+          "height": 230.390625,
+          "right": 304,
+          "bottom": 500.34375
+        },
+        "actions": [
+          {
+            "label": "Agregar a mi calendarioGuardar fecha",
+            "x": 16,
+            "y": 509.34375,
+            "width": 89.328125,
+            "height": 48,
+            "right": 105.328125,
+            "bottom": 557.34375
+          },
+          {
+            "label": "Descargar pase",
+            "x": 115.328125,
+            "y": 509.34375,
+            "width": 89.34375,
+            "height": 48,
+            "right": 204.671875,
+            "bottom": 557.34375
+          },
+          {
+            "label": "Ver mi QR",
+            "x": 214.671875,
+            "y": 509.34375,
+            "width": 89.328125,
+            "height": 48,
+            "right": 304,
+            "bottom": 557.34375
+          }
+        ],
+        "back": {
+          "x": 234.25,
+          "y": 625,
+          "width": 69.75,
+          "height": 28,
+          "right": 304,
+          "bottom": 653
+        },
+        "actionsInViewport": true,
+        "backOverlapsAction": false
+      },
+      "admin": {
+        "horizontalOverflow": false,
+        "actions": [
+          {
+            "label": "Volver",
+            "top": 579.734375,
+            "bottom": 623.734375,
+            "completeInViewport": true
+          },
+          {
+            "label": "Descargar QR",
+            "top": 579.734375,
+            "bottom": 623.734375,
+            "completeInViewport": true
+          }
+        ],
+        "actionsInViewport": true
+      }
+    },
+    {
+      "version": "3d",
+      "width": 320,
+      "theme": "dark",
+      "captures": [
+        "3d-320-dark-qr-admin.png"
+      ],
+      "userQR": null,
+      "adminQR": "http://127.0.0.1:5173/3d/?evento=supernova-sessions&funcion=supernova-sessions%3Asaturday",
+      "admin": {
+        "horizontalOverflow": false,
+        "actions": [
+          {
+            "label": "Volver",
+            "top": 579.734375,
+            "bottom": 623.734375,
+            "completeInViewport": true
+          },
+          {
+            "label": "Descargar QR",
+            "top": 579.734375,
+            "bottom": 623.734375,
+            "completeInViewport": true
+          }
+        ],
+        "actionsInViewport": true
+      }
+    },
+    {
+      "version": "3d",
+      "width": 320,
+      "theme": "light",
+      "captures": [
+        "3d-320-light-funciones.png",
+        "3d-320-light-pase.png",
+        "3d-320-light-qr-admin.png"
+      ],
+      "userQR": null,
+      "adminQR": "http://127.0.0.1:5173/3d/?evento=supernova-sessions&funcion=supernova-sessions%3Asaturday",
+      "pass": {
+        "horizontalOverflow": false,
+        "verticalOverflow": false,
+        "calendar": {
+          "x": 16,
+          "y": 269.953125,
+          "width": 288,
+          "height": 230.390625,
+          "right": 304,
+          "bottom": 500.34375
+        },
+        "actions": [
+          {
+            "label": "Agregar a mi calendarioGuardar fecha",
+            "x": 16,
+            "y": 509.34375,
+            "width": 89.328125,
+            "height": 48,
+            "right": 105.328125,
+            "bottom": 557.34375
+          },
+          {
+            "label": "Descargar pase",
+            "x": 115.328125,
+            "y": 509.34375,
+            "width": 89.34375,
+            "height": 48,
+            "right": 204.671875,
+            "bottom": 557.34375
+          },
+          {
+            "label": "Ver mi QR",
+            "x": 214.671875,
+            "y": 509.34375,
+            "width": 89.328125,
+            "height": 48,
+            "right": 304,
+            "bottom": 557.34375
+          }
+        ],
+        "back": {
+          "x": 234.25,
+          "y": 625,
+          "width": 69.75,
+          "height": 28,
+          "right": 304,
+          "bottom": 653
+        },
+        "actionsInViewport": true,
+        "backOverlapsAction": false
+      },
+      "admin": {
+        "horizontalOverflow": false,
+        "actions": [
+          {
+            "label": "Volver",
+            "top": 579.734375,
+            "bottom": 623.734375,
+            "completeInViewport": true
+          },
+          {
+            "label": "Descargar QR",
+            "top": 579.734375,
+            "bottom": 623.734375,
+            "completeInViewport": true
+          }
+        ],
+        "actionsInViewport": true
+      }
+    },
+    {
+      "version": "hibrida",
+      "width": 320,
+      "theme": "dark",
+      "captures": [
+        "hibrida-320-dark-qr-admin.png"
+      ],
+      "userQR": null,
+      "adminQR": "http://127.0.0.1:5173/hibrida/?evento=supernova-sessions&funcion=supernova-sessions%3Asaturday",
+      "admin": {
+        "horizontalOverflow": false,
+        "actions": [
+          {
+            "label": "Volver",
+            "top": 579.734375,
+            "bottom": 623.734375,
+            "completeInViewport": true
+          },
+          {
+            "label": "Descargar QR",
+            "top": 579.734375,
+            "bottom": 623.734375,
+            "completeInViewport": true
+          }
+        ],
+        "actionsInViewport": true
+      }
+    },
+    {
+      "version": "hibrida",
+      "width": 320,
+      "theme": "light",
+      "captures": [
+        "hibrida-320-light-funciones.png",
+        "hibrida-320-light-pase.png",
+        "hibrida-320-light-qr-admin.png"
+      ],
+      "userQR": null,
+      "adminQR": "http://127.0.0.1:5173/hibrida/?evento=supernova-sessions&funcion=supernova-sessions%3Asaturday",
+      "pass": {
+        "horizontalOverflow": false,
+        "verticalOverflow": false,
+        "calendar": {
+          "x": 16,
+          "y": 269.953125,
+          "width": 288,
+          "height": 230.390625,
+          "right": 304,
+          "bottom": 500.34375
+        },
+        "actions": [
+          {
+            "label": "Agregar a mi calendarioGuardar fecha",
+            "x": 16,
+            "y": 509.34375,
+            "width": 89.328125,
+            "height": 48,
+            "right": 105.328125,
+            "bottom": 557.34375
+          },
+          {
+            "label": "Descargar pase",
+            "x": 115.328125,
+            "y": 509.34375,
+            "width": 89.34375,
+            "height": 48,
+            "right": 204.671875,
+            "bottom": 557.34375
+          },
+          {
+            "label": "Ver mi QR",
+            "x": 214.671875,
+            "y": 509.34375,
+            "width": 89.328125,
+            "height": 48,
+            "right": 304,
+            "bottom": 557.34375
+          }
+        ],
+        "back": {
+          "x": 234.25,
+          "y": 625,
+          "width": 69.75,
+          "height": 28,
+          "right": 304,
+          "bottom": 653
+        },
+        "actionsInViewport": true,
+        "backOverlapsAction": false
+      },
+      "admin": {
+        "horizontalOverflow": false,
+        "actions": [
+          {
+            "label": "Volver",
+            "top": 579.734375,
+            "bottom": 623.734375,
+            "completeInViewport": true
+          },
+          {
+            "label": "Descargar QR",
+            "top": 579.734375,
+            "bottom": 623.734375,
+            "completeInViewport": true
+          }
+        ],
+        "actionsInViewport": true
+      }
+    }
+  ],
+  "errors": [],
+  "httpErrors": [],
+  "failedRequests": [],
+  "elapsedMs": 66979
+}

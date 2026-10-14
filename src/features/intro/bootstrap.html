@@ -1,23 +1,16 @@
-<!-- Critical first frame: copy before #root, remove #intro-bootstrap and #intro-bootstrap-style after the first React commit. -->
-<style id="intro-bootstrap-style">
+<!-- Critical solar first frame. Capture its clock/dismissal before removal; copy this entire block before #root. -->
+<style id="intro-bootstrap-style">/* Keep the honest loading state black even if the app's CSS has not arrived. */
+html:has(#intro-bootstrap), body:has(#intro-bootstrap) { background: #020205; }
 .cinematic-intro {
-  --intro-bg: #0b0a12;
+  --intro-bg: #020205;
   --intro-fg: #f5f0e9;
   --intro-muted: #b9abca;
-  --intro-caption: #9686a7;
+  --intro-caption: #aaa0b5;
   --intro-star: #ded7ef;
   --intro-accent: #d5b7f9;
-  --intro-orbit: #d3b5fd;
-  --intro-orbit-low: #b797e8;
-  --intro-radiance: #dab8ff;
-  --intro-radiance-alt: #bb83f7;
-  --intro-mint: #99c7c3;
-  --intro-point-violet: #ddc1ff;
-  --intro-point-warm: #efe2d3;
-  --intro-point-lilac: #b5a0dc;
-  --intro-nebula-core: #8053b517;
-  --intro-nebula-edge: #44216909;
   --intro-start-delay: 0s;
+  --intro-handoff-delay: 0s;
+  --intro-handoff-duration: .65s;
   position: fixed;
   inset: 0;
   z-index: 10000;
@@ -25,53 +18,22 @@
   display: grid;
   place-items: center;
   color: var(--intro-fg);
-  background: var(--intro-bg);
+  background: transparent;
   font-family: Manrope, sans-serif;
   isolation: isolate;
   outline: none;
 }
-:root[data-theme='light'] .cinematic-intro {
-  --intro-bg: #f7f5fb;
-  --intro-fg: #20182e;
-  --intro-muted: #6b5b81;
-  --intro-caption: #77618e;
-  --intro-star: #806299;
-  --intro-accent: #8d59c8;
-  --intro-orbit: #9365bf;
-  --intro-orbit-low: #a078c8;
-  --intro-radiance: #ad79e1;
-  --intro-radiance-alt: #ba96df;
-  --intro-mint: #518783;
-  --intro-point-violet: #9260c3;
-  --intro-point-warm: #b79778;
-  --intro-point-lilac: #9379b0;
-  --intro-nebula-core: #bc91e529;
-  --intro-nebula-edge: #d5c3ef16;
-}
-.cinematic-intro::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: .025;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='.5' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-.intro-nebula {
-  position: absolute;
-  width: min(900px, 130vw);
-  aspect-ratio: 1;
-  pointer-events: none;
-  border-radius: 50%;
-  background: radial-gradient(ellipse, var(--intro-nebula-core), var(--intro-nebula-edge) 42%, transparent 70%);
-}
-.intro-stars { position: absolute; inset: 0; pointer-events: none; }
+.intro-static-sky { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; }
+.intro-backdrop { position: absolute; inset: 0; background: var(--intro-bg); }
+.intro-stars { position: absolute; inset: 0; }
 .intro-stars i { position: absolute; border-radius: 50%; background: var(--intro-star); }
-.intro-stars i:nth-child(9n) { background: var(--intro-accent); box-shadow: 0 0 10px #b697e52b; }
+.intro-stars i:nth-child(9n) { background: var(--intro-accent); }
 .intro-composition {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: min(520px, calc(100vw - 48px));
+  width: min(560px, calc(100vw - 48px));
   transform: translateY(-8px);
 }
 .intro-orbital-system { position: relative; width: 100%; height: 330px; }
@@ -87,8 +49,10 @@
   white-space: nowrap;
 }
 .intro-identity { margin-top: 27px; text-align: center; }
+.intro-brand-lockup { width: 100%; }
 .intro-wordmark-mask { overflow: hidden; padding-bottom: 13px; margin-bottom: -13px; }
-.intro-wordmark { font-size: 62px; font-weight: 300; line-height: 1.15; letter-spacing: -.065em; white-space: nowrap; }
+.intro-wordmark { display: flex; align-items: center; justify-content: center; gap: 16px; font-size: 62px; font-weight: 300; line-height: 1.15; letter-spacing: -.065em; white-space: nowrap; }
+.intro-brand-symbol { width: 42px; height: 42px; flex: none; color: #d5b7f9; }
 .intro-tagline { margin-top: 8px; color: var(--intro-muted); font-size: 15px; font-weight: 400; letter-spacing: -.025em; }
 .intro-caption {
   display: flex;
@@ -105,28 +69,53 @@
 .intro-caption > span:last-child { transform: rotate(180deg); }
 .intro-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
-/* CSS first frames continue while the lazy GSAP chunk arrives. All cues use
-   the same 3.4-second clock; pending never pretends to be measurable progress. */
-.intro-pending [data-intro='halo'] { animation: intro-pending-halo 3.4s cubic-bezier(.22, 1, .36, 1) var(--intro-start-delay) both; }
-.intro-pending [data-intro='orbits'] { transform-origin: 240px 190px; animation: intro-pending-orbits 3.4s cubic-bezier(.22, 1, .36, 1) var(--intro-start-delay) both; }
-.intro-pending [data-intro='symbol'] { transform-box: fill-box; transform-origin: center; animation: intro-pending-symbol 3.4s cubic-bezier(.22, 1, .36, 1) var(--intro-start-delay) both; }
-.intro-pending [data-intro='radiance'] { transform-box: fill-box; transform-origin: center; animation: intro-pending-radiance 3.4s ease-in-out var(--intro-start-delay) both; }
-.intro-pending [data-intro='point'] { animation: intro-pending-point 3.4s ease-in-out var(--intro-start-delay) both; }
-.intro-pending [data-intro-point='0'] { --intro-point-x: 161px; --intro-point-y: 0px; }
-.intro-pending [data-intro-point='1'] { --intro-point-x: -161px; --intro-point-y: 0px; }
-.intro-pending [data-intro-point='2'] { --intro-point-x: 0px; --intro-point-y: 144px; }
-.intro-pending [data-intro-point='3'] { --intro-point-x: 0px; --intro-point-y: -144px; }
-.intro-pending [data-intro='wordmark'] { animation: intro-pending-wordmark 3.4s cubic-bezier(.22, 1, .36, 1) var(--intro-start-delay) both; }
-.intro-pending [data-intro='tagline'] { animation: intro-pending-tagline 3.4s cubic-bezier(.22, 1, .36, 1) var(--intro-start-delay) both; }
-.intro-pending [data-intro='caption'] { animation: intro-pending-caption 3.4s ease-out var(--intro-start-delay) both; }
-@keyframes intro-pending-halo { 0% { opacity: .2; transform: scale(.85); } 39%, 100% { opacity: 1; transform: scale(1); } }
-@keyframes intro-pending-orbits { 0% { opacity: 0; transform: scale(.84) rotate(-17deg); } 40%, 48% { opacity: 1; transform: scale(1) rotate(0deg); } 80%, 100% { opacity: 1; transform: scale(1) rotate(9deg); } }
-@keyframes intro-pending-symbol { 0%, 30% { opacity: 0; transform: scale(.8); } 50%, 100% { opacity: 1; transform: scale(1); } }
-@keyframes intro-pending-radiance { 0%, 26% { opacity: 0; transform: scale(.55); } 47% { opacity: .75; transform: scale(1); } 71%, 100% { opacity: .27; transform: scale(1.25); } }
-@keyframes intro-pending-point { 0%, 6% { opacity: 0; transform: translate(0, 0); } 10% { opacity: 1; transform: translate(0, 0); } 41% { opacity: 1; transform: translate(var(--intro-point-x, 0px), var(--intro-point-y, 0px)); } 46%, 100% { opacity: 0; transform: translate(var(--intro-point-x, 0px), var(--intro-point-y, 0px)); } }
-@keyframes intro-pending-wordmark { 0%, 33% { opacity: 0; transform: translateY(110%); } 55%, 100% { opacity: 1; transform: translateY(0); } }
-@keyframes intro-pending-tagline { 0%, 43% { opacity: 0; transform: translateY(7px); } 64%, 100% { opacity: 1; transform: translateY(0); } }
-@keyframes intro-pending-caption { 0%, 47% { opacity: 0; } 68%, 100% { opacity: 1; } }
+/* Fade parents only: GSAP owns the child transforms/opacity. Reveal the world
+   after its first rendered frame, on the shared bootstrap clock. */
+.intro-revealing .intro-static-sky,
+.intro-revealing .intro-orbital-system { animation: intro-handoff var(--intro-handoff-duration) ease-in-out var(--intro-handoff-delay) both; }
+@keyframes intro-handoff { from { opacity: 1; } to { opacity: 0; } }
+
+/* Same finite first-frame choreography while the animation chunk is pending. */
+.intro-pending [data-intro='orbits'] { transform-origin: 240px 185px; animation: intro-pending-orbits 3.6s cubic-bezier(.22, 1, .36, 1) var(--intro-start-delay) both; }
+.intro-pending [data-intro='radiance'] { animation: intro-pending-radiance 3.6s ease-in-out var(--intro-start-delay) both; }
+.intro-pending [data-intro='wordmark'] { animation: intro-pending-wordmark 3.6s cubic-bezier(.22, 1, .36, 1) var(--intro-start-delay) both; }
+.intro-pending [data-intro='tagline'] { animation: intro-pending-tagline 3.6s cubic-bezier(.22, 1, .36, 1) var(--intro-start-delay) both; }
+.intro-pending [data-intro='caption'] { animation: intro-pending-caption 3.6s ease-out var(--intro-start-delay) both; }
+.intro-pending [data-intro='identity'] { animation: intro-pending-identity 3.6s ease-in-out var(--intro-start-delay) both; }
+.intro-pending [data-intro='composition'] { animation: intro-pending-composition 3.6s ease-in var(--intro-start-delay) both; }
+.intro-pending { animation: intro-pending-exit 3.6s ease-in-out var(--intro-start-delay) both; }
+@keyframes intro-pending-orbits { 0% { opacity: .72; transform: rotate(-2deg); } 33%, 100% { opacity: 1; transform: rotate(0deg); } }
+@keyframes intro-pending-radiance { 0% { opacity: .7; } 33%, 100% { opacity: 1; } }
+@keyframes intro-pending-wordmark { 0%, 10% { opacity: 0; transform: translateY(65%); } 28%, 100% { opacity: 1; transform: translateY(0); } }
+@keyframes intro-pending-tagline { 0%, 19% { opacity: 0; transform: translateY(6px); } 36%, 100% { opacity: 1; transform: translateY(0); } }
+@keyframes intro-pending-caption { 0%, 26% { opacity: 0; } 44%, 100% { opacity: 1; } }
+@keyframes intro-pending-identity { 0%, 53% { opacity: 1; transform: translateY(0); } 74%, 100% { opacity: 0; transform: translateY(-8px); } }
+@keyframes intro-pending-composition { 0%, 78% { opacity: 1; } 89%, 100% { opacity: 0; } }
+@keyframes intro-pending-exit { 0%, 90% { opacity: 1; } 100% { opacity: 0; } }
+
+/* HTML must release its fullscreen art without React. The loading note does
+   not imply the not-yet-mounted application can already be used. */
+#intro-bootstrap { animation: intro-bootstrap-release 3.6s linear both; }
+#intro-bootstrap-note {
+  position: fixed;
+  z-index: 9999;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: calc(100vw - 48px);
+  margin: 0;
+  color: #aaa0b5;
+  background: #020205;
+  font: 12px/1.5 Manrope, sans-serif;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  animation: intro-bootstrap-note 3.6s linear both;
+}
+#intro-bootstrap-note span { display: block; font-size: 10px; color: #84798e; margin-top: 4px; }
+@keyframes intro-bootstrap-release { 0%, 95% { opacity: 1; } 100% { opacity: 0; pointer-events: none; visibility: hidden; } }
+@keyframes intro-bootstrap-note { 0%, 99.9% { opacity: 0; } 100% { opacity: 1; } }
 
 @media(max-width:600px) {
   .intro-composition { transform: translateY(-5px); }
@@ -134,6 +123,7 @@
   .intro-orbital-label { font-size: 7px; letter-spacing: 1.6px; bottom: 4px; }
   .intro-identity { margin-top: 20px; }
   .intro-wordmark { font-size: clamp(40px, 11vw, 56px); }
+  .intro-brand-symbol { width: 31px; height: 31px; }
   .intro-tagline { font-size: 14px; }
   .intro-caption { font-size: 8px; letter-spacing: 1.5px; gap: 10px; margin-top: 33px; }
   .intro-caption > span { width: 19px; }
@@ -146,42 +136,54 @@
   .intro-caption { margin-top: 27px; }
 }
 @media(prefers-reduced-motion:reduce) {
-  .intro-nebula { opacity: .65; }
-  .intro-pending [data-intro] { animation: none; }
-  .intro-pending [data-intro='point'] { opacity: 0; }
+  .intro-pending, .intro-pending [data-intro] { animation: none; }
+  .intro-revealing .intro-static-sky, .intro-revealing .intro-orbital-system { animation-duration: .15s; animation-delay: 0s; }
+  #intro-bootstrap { animation: intro-bootstrap-release .15s linear both; }
+  #intro-bootstrap-note { animation-duration: .15s; }
 }
 
-</style>
+/* Spatial versions share the persistent Tour sky across intro and application. */
+html:is([data-experience='3d'], [data-experience='hybrid']) .cinematic-intro .intro-backdrop { background: transparent; }
+html:is([data-experience='3d'], [data-experience='hybrid']) .cinematic-intro .intro-stars { display: none; }</style>
 <div id="intro-bootstrap" class="cinematic-intro intro-pending" role="status" aria-label="Preparando Supernova">
-  <p class="intro-sr-only">Supernova. Conectá sin límites. Preparando la presentación.</p>
-  <div class="intro-nebula" data-intro="halo" aria-hidden="true"></div>
-  <div class="intro-stars" aria-hidden="true"><i style="left:11%;top:7%;width:2px;height:2px;opacity:0.12"></i><i style="left:48%;top:60%;width:1px;height:1px;opacity:0.185"></i><i style="left:85%;top:12%;width:1px;height:1px;opacity:0.25"></i><i style="left:21%;top:65%;width:1px;height:1px;opacity:0.315"></i><i style="left:58%;top:17%;width:1px;height:1px;opacity:0.38"></i><i style="left:95%;top:70%;width:1px;height:1px;opacity:0.12"></i><i style="left:31%;top:22%;width:1px;height:1px;opacity:0.185"></i><i style="left:68%;top:75%;width:1px;height:1px;opacity:0.25"></i><i style="left:4%;top:27%;width:1px;height:1px;opacity:0.315"></i><i style="left:41%;top:80%;width:2px;height:2px;opacity:0.38"></i><i style="left:78%;top:32%;width:1px;height:1px;opacity:0.12"></i><i style="left:14%;top:85%;width:1px;height:1px;opacity:0.185"></i><i style="left:51%;top:37%;width:1px;height:1px;opacity:0.25"></i><i style="left:88%;top:90%;width:1px;height:1px;opacity:0.315"></i><i style="left:24%;top:42%;width:1px;height:1px;opacity:0.38"></i><i style="left:61%;top:95%;width:1px;height:1px;opacity:0.12"></i><i style="left:98%;top:47%;width:1px;height:1px;opacity:0.185"></i><i style="left:34%;top:100%;width:1px;height:1px;opacity:0.25"></i><i style="left:71%;top:52%;width:2px;height:2px;opacity:0.315"></i><i style="left:7%;top:4%;width:1px;height:1px;opacity:0.38"></i><i style="left:44%;top:57%;width:1px;height:1px;opacity:0.12"></i><i style="left:81%;top:9%;width:1px;height:1px;opacity:0.185"></i><i style="left:17%;top:62%;width:1px;height:1px;opacity:0.25"></i><i style="left:54%;top:14%;width:1px;height:1px;opacity:0.315"></i><i style="left:91%;top:67%;width:1px;height:1px;opacity:0.38"></i><i style="left:27%;top:19%;width:1px;height:1px;opacity:0.12"></i><i style="left:64%;top:72%;width:1px;height:1px;opacity:0.185"></i><i style="left:0%;top:24%;width:2px;height:2px;opacity:0.25"></i><i style="left:37%;top:77%;width:1px;height:1px;opacity:0.315"></i><i style="left:74%;top:29%;width:1px;height:1px;opacity:0.38"></i><i style="left:10%;top:82%;width:1px;height:1px;opacity:0.12"></i><i style="left:47%;top:34%;width:1px;height:1px;opacity:0.185"></i><i style="left:84%;top:87%;width:1px;height:1px;opacity:0.25"></i><i style="left:20%;top:39%;width:1px;height:1px;opacity:0.315"></i><i style="left:57%;top:92%;width:1px;height:1px;opacity:0.38"></i><i style="left:94%;top:44%;width:1px;height:1px;opacity:0.12"></i><i style="left:30%;top:97%;width:2px;height:2px;opacity:0.185"></i><i style="left:67%;top:49%;width:1px;height:1px;opacity:0.25"></i><i style="left:3%;top:1%;width:1px;height:1px;opacity:0.315"></i><i style="left:40%;top:54%;width:1px;height:1px;opacity:0.38"></i><i style="left:77%;top:6%;width:1px;height:1px;opacity:0.12"></i><i style="left:13%;top:59%;width:1px;height:1px;opacity:0.185"></i><i style="left:50%;top:11%;width:1px;height:1px;opacity:0.25"></i><i style="left:87%;top:64%;width:1px;height:1px;opacity:0.315"></i><i style="left:23%;top:16%;width:1px;height:1px;opacity:0.38"></i><i style="left:60%;top:69%;width:2px;height:2px;opacity:0.12"></i></div>
-  <div class="intro-composition" data-intro="composition" aria-hidden="true">
-    <div class="intro-orbital-system">
-      <svg class="intro-orbital-map" viewBox="0 0 480 380" fill="none">
-        <defs>
-          <radialGradient id="intro-bootstrap-radiance"><stop stop-color="var(--intro-radiance)" stop-opacity=".28"/><stop offset=".45" stop-color="var(--intro-radiance-alt)" stop-opacity=".08"/><stop offset="1" stop-color="var(--intro-orbit-low)" stop-opacity="0"/></radialGradient>
-          <linearGradient id="intro-bootstrap-orbit" x1="89" y1="291" x2="391" y2="89" gradientUnits="userSpaceOnUse"><stop stop-color="var(--intro-orbit-low)" stop-opacity=".04"/><stop offset=".45" stop-color="var(--intro-orbit)" stop-opacity=".6"/><stop offset="1" stop-color="var(--intro-orbit-low)" stop-opacity=".08"/></linearGradient>
-        </defs>
-        <circle data-intro="radiance" cx="240" cy="190" r="150" fill="url(#intro-bootstrap-radiance)" opacity=".27"/>
-        <g data-intro="orbits" stroke="url(#intro-bootstrap-orbit)" stroke-width=".8">
-          <ellipse cx="240" cy="190" rx="181" ry="94" transform="rotate(-27 240 190)"/>
-          <ellipse cx="240" cy="190" rx="163" ry="80" transform="rotate(27 240 190)"/>
-          <circle cx="240" cy="190" r="126" stroke="var(--intro-orbit)" stroke-opacity=".1" stroke-dasharray="1 12"/>
-          <path d="M67 270H118M361 112H413" stroke="var(--intro-accent)" stroke-opacity=".22"/>
-          <circle cx="87" cy="271" r="2" fill="var(--intro-accent)" stroke="none"/>
-          <circle cx="392" cy="111" r="2" fill="var(--intro-mint)" stroke="none"/>
-        </g>
-        <g data-intro="point" data-intro-point="0"><circle cx="79" cy="190" r="15" fill="var(--intro-point-violet)" opacity=".035"/><circle cx="79" cy="190" r="5" fill="var(--intro-point-violet)" opacity=".1"/><circle cx="79" cy="190" r="2.2" fill="var(--intro-point-violet)"/></g>
-        <g data-intro="point" data-intro-point="1"><circle cx="401" cy="190" r="15" fill="var(--intro-point-warm)" opacity=".035"/><circle cx="401" cy="190" r="5" fill="var(--intro-point-warm)" opacity=".1"/><circle cx="401" cy="190" r="2.2" fill="var(--intro-point-warm)"/></g>
-        <g data-intro="point" data-intro-point="2"><circle cx="240" cy="46" r="15" fill="var(--intro-mint)" opacity=".035"/><circle cx="240" cy="46" r="5" fill="var(--intro-mint)" opacity=".1"/><circle cx="240" cy="46" r="2.2" fill="var(--intro-mint)"/></g>
-        <g data-intro="point" data-intro-point="3"><circle cx="240" cy="334" r="15" fill="var(--intro-point-lilac)" opacity=".035"/><circle cx="240" cy="334" r="5" fill="var(--intro-point-lilac)" opacity=".1"/><circle cx="240" cy="334" r="2.2" fill="var(--intro-point-lilac)"/></g>
-        <g transform="translate(192 142) scale(2.4)"><g data-intro="symbol"><path d="M20 3c0 12-5 17-17 17 12 0 17 5 17 17 0-12 5-17 17-17C25 20 20 15 20 3Z" fill="var(--intro-accent)"/><circle cx="20" cy="20" r="17" stroke="var(--intro-accent)" stroke-width=".6" opacity=".5"/></g></g>
-      </svg>
-      <span class="intro-orbital-label">CONEXIONES EN ÓRBITA</span>
-    </div>
-    <div class="intro-identity"><div class="intro-wordmark-mask"><div class="intro-wordmark" data-intro="wordmark">supernova</div></div><div class="intro-tagline" data-intro="tagline">conectá sin límites</div></div>
-    <div class="intro-caption" data-intro="caption"><span></span>UN UNIVERSO DE EXPERIENCIAS<span></span></div>
-  </div>
+  <p class="intro-sr-only">Supernova. Conectá sin límites. Preparando la experiencia. Presioná Escape para continuar.</p>
+  <div class="intro-static-sky" aria-hidden="true"><div class="intro-backdrop"></div><div class="intro-stars"><i style="left:11%;top:7%;width:2px;height:2px;opacity:0.12"></i><i style="left:48%;top:60%;width:1px;height:1px;opacity:0.185"></i><i style="left:85%;top:12%;width:1px;height:1px;opacity:0.25"></i><i style="left:21%;top:65%;width:1px;height:1px;opacity:0.315"></i><i style="left:58%;top:17%;width:1px;height:1px;opacity:0.38"></i><i style="left:95%;top:70%;width:1px;height:1px;opacity:0.12"></i><i style="left:31%;top:22%;width:1px;height:1px;opacity:0.185"></i><i style="left:68%;top:75%;width:1px;height:1px;opacity:0.25"></i><i style="left:4%;top:27%;width:1px;height:1px;opacity:0.315"></i><i style="left:41%;top:80%;width:2px;height:2px;opacity:0.38"></i><i style="left:78%;top:32%;width:1px;height:1px;opacity:0.12"></i><i style="left:14%;top:85%;width:1px;height:1px;opacity:0.185"></i><i style="left:51%;top:37%;width:1px;height:1px;opacity:0.25"></i><i style="left:88%;top:90%;width:1px;height:1px;opacity:0.315"></i><i style="left:24%;top:42%;width:1px;height:1px;opacity:0.38"></i><i style="left:61%;top:95%;width:1px;height:1px;opacity:0.12"></i><i style="left:98%;top:47%;width:1px;height:1px;opacity:0.185"></i><i style="left:34%;top:100%;width:1px;height:1px;opacity:0.25"></i><i style="left:71%;top:52%;width:2px;height:2px;opacity:0.315"></i><i style="left:7%;top:4%;width:1px;height:1px;opacity:0.38"></i><i style="left:44%;top:57%;width:1px;height:1px;opacity:0.12"></i><i style="left:81%;top:9%;width:1px;height:1px;opacity:0.185"></i><i style="left:17%;top:62%;width:1px;height:1px;opacity:0.25"></i><i style="left:54%;top:14%;width:1px;height:1px;opacity:0.315"></i><i style="left:91%;top:67%;width:1px;height:1px;opacity:0.38"></i><i style="left:27%;top:19%;width:1px;height:1px;opacity:0.12"></i><i style="left:64%;top:72%;width:1px;height:1px;opacity:0.185"></i><i style="left:0%;top:24%;width:2px;height:2px;opacity:0.25"></i><i style="left:37%;top:77%;width:1px;height:1px;opacity:0.315"></i><i style="left:74%;top:29%;width:1px;height:1px;opacity:0.38"></i><i style="left:10%;top:82%;width:1px;height:1px;opacity:0.12"></i><i style="left:47%;top:34%;width:1px;height:1px;opacity:0.185"></i><i style="left:84%;top:87%;width:1px;height:1px;opacity:0.25"></i><i style="left:20%;top:39%;width:1px;height:1px;opacity:0.315"></i><i style="left:57%;top:92%;width:1px;height:1px;opacity:0.38"></i><i style="left:94%;top:44%;width:1px;height:1px;opacity:0.12"></i><i style="left:30%;top:97%;width:2px;height:2px;opacity:0.185"></i><i style="left:67%;top:49%;width:1px;height:1px;opacity:0.25"></i><i style="left:3%;top:1%;width:1px;height:1px;opacity:0.315"></i><i style="left:40%;top:54%;width:1px;height:1px;opacity:0.38"></i><i style="left:77%;top:6%;width:1px;height:1px;opacity:0.12"></i><i style="left:13%;top:59%;width:1px;height:1px;opacity:0.185"></i><i style="left:50%;top:11%;width:1px;height:1px;opacity:0.25"></i><i style="left:87%;top:64%;width:1px;height:1px;opacity:0.315"></i><i style="left:23%;top:16%;width:1px;height:1px;opacity:0.38"></i><i style="left:60%;top:69%;width:2px;height:2px;opacity:0.12"></i></div></div><div class="intro-composition" data-intro="composition" aria-hidden="true"><div class="intro-orbital-system"><svg class="intro-orbital-map" viewBox="0 0 480 380" fill="none"><defs><radialGradient id="_R_0_-radiance"><stop stop-color="#f2d4a3" stop-opacity=".2"></stop><stop offset=".28" stop-color="#d2a373" stop-opacity=".055"></stop><stop offset="1" stop-color="#d2a373" stop-opacity="0"></stop></radialGradient><radialGradient id="_R_0_-sun" cx=".36" cy=".32" r=".8"><stop stop-color="#fff2d7"></stop><stop offset=".46" stop-color="#e4c399"></stop><stop offset="1" stop-color="#9f7552"></stop></radialGradient><linearGradient id="_R_0_-orbit" x1="50" y1="300" x2="440" y2="70" gradientUnits="userSpaceOnUse"><stop stop-color="#ae96c9" stop-opacity=".07"></stop><stop offset=".5" stop-color="#d6c8e7" stop-opacity=".48"></stop><stop offset="1" stop-color="#ae96c9" stop-opacity=".08"></stop></linearGradient><radialGradient id="_R_0_-earth" cx=".27" cy=".23" r=".8"><stop stop-color="#abd9ef"></stop><stop offset=".3" stop-color="#367fa8"></stop><stop offset=".72" stop-color="#142b40"></stop><stop offset="1" stop-color="#05090d"></stop></radialGradient><radialGradient id="_R_0_-jupiter" cx=".27" cy=".23" r=".8"><stop stop-color="#e0cdb8"></stop><stop offset=".3" stop-color="#c6a584"></stop><stop offset=".72" stop-color="#554330"></stop><stop offset="1" stop-color="#0c0906"></stop></radialGradient><radialGradient id="_R_0_-saturn" cx=".27" cy=".23" r=".8"><stop stop-color="#e4d6b5"></stop><stop offset=".3" stop-color="#d5bd89"></stop><stop offset=".7" stop-color="#584832"></stop><stop offset="1" stop-color="#0c0906"></stop></radialGradient><radialGradient id="_R_0_-mercury" cx=".27" cy=".23" r=".8"><stop stop-color="#c8c3b8"></stop><stop offset=".3" stop-color="#a6a29a"></stop><stop offset=".72" stop-color="#3c3b39"></stop><stop offset="1" stop-color="#0a0908"></stop></radialGradient><radialGradient id="_R_0_-venus" cx=".27" cy=".23" r=".8"><stop stop-color="#ead4ae"></stop><stop offset=".3" stop-color="#dfb578"></stop><stop offset=".72" stop-color="#5b3f27"></stop><stop offset="1" stop-color="#0e0906"></stop></radialGradient><radialGradient id="_R_0_-mars" cx=".27" cy=".23" r=".8"><stop stop-color="#e0a887"></stop><stop offset=".3" stop-color="#c87145"></stop><stop offset=".72" stop-color="#4b2418"></stop><stop offset="1" stop-color="#110805"></stop></radialGradient><radialGradient id="_R_0_-uranus" cx=".27" cy=".23" r=".8"><stop stop-color="#b6e3df"></stop><stop offset=".3" stop-color="#92d0d1"></stop><stop offset=".72" stop-color="#2c484c"></stop><stop offset="1" stop-color="#080f11"></stop></radialGradient><radialGradient id="_R_0_-neptune" cx=".27" cy=".23" r=".8"><stop stop-color="#99c7ef"></stop><stop offset=".3" stop-color="#346bbd"></stop><stop offset=".72" stop-color="#152d50"></stop><stop offset="1" stop-color="#050a11"></stop></radialGradient><radialGradient id="_R_0_-pearl" cx=".27" cy=".23" r=".8"><stop stop-color="#ece6de"></stop><stop offset=".35" stop-color="#a49bad"></stop><stop offset=".8" stop-color="#3a3441"></stop><stop offset="1" stop-color="#0a090d"></stop></radialGradient><radialGradient id="_R_0_-night" cx=".27" cy=".23" r=".92"><stop offset=".24" stop-color="#020305" stop-opacity="0"></stop><stop offset=".65" stop-color="#020305" stop-opacity=".2"></stop><stop offset="1" stop-color="#020305" stop-opacity=".78"></stop></radialGradient><clipPath id="_R_0_-earth-clip"><circle cx="300" cy="157" r="14"></circle></clipPath><clipPath id="_R_0_-jupiter-clip"><circle cx="149" cy="218" r="12"></circle></clipPath><clipPath id="_R_0_-saturn-clip"><circle cx="405" cy="168" r="9.5"></circle></clipPath></defs><circle data-intro="radiance" cx="240" cy="185" r="92" fill="url(#_R_0_-radiance)"></circle><g data-intro="orbits" stroke="url(#_R_0_-orbit)" stroke-width=".65"><ellipse cx="240" cy="185" rx="59" ry="24" transform="rotate(-15 240 185)"></ellipse><ellipse cx="240" cy="185" rx="107" ry="46" transform="rotate(-15 240 185)"></ellipse><ellipse cx="240" cy="185" rx="166" ry="73" transform="rotate(-15 240 185)"></ellipse><ellipse cx="240" cy="185" rx="217" ry="96" transform="rotate(-15 240 185)"></ellipse><path d="M51 316H118M379 70H432" stroke="#d1b6ed" stroke-opacity=".23"></path><circle cx="50" cy="316" r="1.6" fill="#d1b6ed" stroke="none"></circle><circle cx="432" cy="70" r="1.6" fill="#8daca5" stroke="none"></circle></g><g data-intro="point" data-intro-point="0" data-solar-body="earth"><circle cx="300" cy="157" r="14.8" stroke="#abd9ef" stroke-width=".55" stroke-opacity=".35"></circle><circle cx="300" cy="157" r="14" fill="url(#_R_0_-earth)"></circle><g clip-path="url(#_R_0_-earth-clip)"><path d="M289 149L294 146 297 147 299 150 297 153 294 152 292 154 289 152ZM296 157L300 158 302 162 300 168 297 165 296 161ZM306 149L310 150 313 153 309 155 308 158 304 157 302 154 304 151ZM310 162L313 163 314 165 311 167 308 165Z" fill="#91a780"></path><path d="M288 154Q294 151 300 153T313 153M292 163Q299 160 307 162M297 145Q302 143 307 146" stroke="#f1f3ee" stroke-width=".85" stroke-linecap="round" stroke-opacity=".62"></path><circle cx="300" cy="157" r="14" fill="url(#_R_0_-night)"></circle></g><circle cx="300" cy="157" r="14" stroke="#abd9ef" stroke-width=".35" stroke-opacity=".65"></circle></g><g data-intro="point" data-intro-point="1" data-solar-body="jupiter"><circle cx="149" cy="218" r="12" fill="url(#_R_0_-jupiter)"></circle><g clip-path="url(#_R_0_-jupiter-clip)"><path d="M136 212Q149 216 162 212M136 219Q149 222 163 219M137 225Q149 227 161 224" stroke="#80593f" stroke-width="2.3" stroke-opacity=".65"></path><path d="M136 216Q149 219 163 216M138 223Q149 225 161 222" stroke="#e5cfaa" stroke-width="1.15" stroke-opacity=".65"></path><ellipse cx="154" cy="221" rx="2.7" ry="1.35" transform="rotate(-9 154 221)" fill="#ae6043"></ellipse><circle cx="149" cy="218" r="12" fill="url(#_R_0_-night)"></circle></g><circle cx="149" cy="218" r="12" stroke="#e0cdb8" stroke-width=".3" stroke-opacity=".7"></circle><circle data-solar-moon="true" cx="129" cy="209" r="2.5" fill="url(#_R_0_-pearl)"></circle><circle data-solar-moon="true" cx="164" cy="201" r="3" fill="url(#_R_0_-pearl)"></circle><circle data-solar-moon="true" cx="169" cy="225" r="1.9" fill="url(#_R_0_-pearl)"></circle><circle data-solar-moon="true" cx="137" cy="237" r="2.2" fill="url(#_R_0_-pearl)"></circle></g><g data-intro="point" data-intro-point="2" data-solar-body="saturn"><ellipse cx="405" cy="168" rx="18" ry="4.5" transform="rotate(-19 405 168)" stroke="#e4d6b5" stroke-width="1.5" stroke-opacity=".58"></ellipse><ellipse cx="405" cy="168" rx="15.5" ry="3.8" transform="rotate(-19 405 168)" stroke="#a19174" stroke-width=".5" stroke-opacity=".55"></ellipse><circle cx="405" cy="168" r="9.5" fill="url(#_R_0_-saturn)"></circle><g clip-path="url(#_R_0_-saturn-clip)"><path d="M394 165Q405 168 416 165M396 171Q405 173 415 170" stroke="#a88e63" stroke-width="1" stroke-opacity=".55"></path><circle cx="405" cy="168" r="9.5" fill="url(#_R_0_-night)"></circle></g><circle cx="405" cy="168" r="9.5" stroke="#e4d6b5" stroke-width=".3" stroke-opacity=".7"></circle><path d="M388 175Q405 179 422 162" stroke="#e4d6b5" stroke-width="1.3" stroke-opacity=".7"></path></g><g data-intro="point" data-intro-point="3" data-solar-body="mercury"><circle cx="202" cy="111" r="4.8" fill="url(#_R_0_-mercury)" stroke="#c8c3b8" stroke-width=".25"></circle><circle cx="200" cy="110" r="1.1" fill="#373533" fill-opacity=".28"></circle><circle cx="203.3" cy="112.5" r=".7" fill="#292827" fill-opacity=".25"></circle></g><g data-intro="point" data-intro-point="4" data-solar-body="venus"><circle cx="270" cy="236" r="5.5" fill="url(#_R_0_-venus)" stroke="#ead4ae" stroke-width=".25"></circle><path d="M266 234Q269 232 274 235M267 238Q270 236 273 239" stroke="#ead4ae" stroke-width=".65" stroke-opacity=".4"></path></g><g data-intro="point" data-intro-point="5" data-solar-body="mars"><circle cx="201" cy="242" r="5.8" fill="url(#_R_0_-mars)" stroke="#e0a887" stroke-width=".25"></circle><path d="M198 237.7Q201 236.2 204 238" stroke="#ebd8c9" stroke-width=".9" stroke-opacity=".55"></path><path d="M198 242L202 241 204 243 201 246Z" fill="#5b2d21" fill-opacity=".5"></path></g><g data-intro="point" data-intro-point="6" data-solar-body="uranus"><ellipse cx="73" cy="254" rx="11" ry="2.8" transform="rotate(62 73 254)" stroke="#b6e3df" stroke-width=".5" stroke-opacity=".48"></ellipse><circle cx="73" cy="254" r="6.5" fill="url(#_R_0_-uranus)" stroke="#b6e3df" stroke-width=".25"></circle><path d="M75 244Q82 253 76 264" stroke="#b6e3df" stroke-width=".55" stroke-opacity=".6"></path></g><g data-intro="point" data-intro-point="7" data-solar-body="neptune"><circle cx="407" cy="110" r="7" fill="url(#_R_0_-neptune)" stroke="#99c7ef" stroke-width=".25"></circle><path d="M402 108Q407 106 412 108M403 113Q408 110 411 113" stroke="#b4d6ef" stroke-width=".65" stroke-opacity=".45"></path></g><g class="intro-solar-ship" transform="translate(133 125) rotate(-14)"><path d="M-14 0L-4-6 9-3 18 0 9 3-4 6Z" fill="#807b8b"></path><path d="M-3-3L8-1 11 0 8 1-3 3Z" fill="#171922"></path><path d="M-11-3L-6-2M-11 3L-6 2" stroke="#c1b5da" stroke-width="1"></path><circle cx="26" cy="0" r="1.5" fill="#bba7d8"></circle></g><circle cx="240" cy="185" r="10.5" fill="url(#_R_0_-sun)"></circle><circle cx="240" cy="185" r="12" stroke="#eed7b3" stroke-width=".35" stroke-opacity=".25"></circle></svg><span class="intro-orbital-label">TU PRÓXIMA ÓRBITA</span></div><div class="intro-brand-lockup" data-intro="identity"><div class="intro-identity"><div class="intro-wordmark-mask"><div class="intro-wordmark" data-intro="wordmark"><svg class="intro-brand-symbol" viewBox="0 0 40 40" fill="none"><path d="M20 3c0 12-5 17-17 17 12 0 17 5 17 17 0-12 5-17 17-17C25 20 20 15 20 3Z" fill="currentColor"></path><circle cx="20" cy="20" r="17" stroke="currentColor" stroke-width=".6" opacity=".55"></circle></svg><span>supernova</span></div></div><div class="intro-tagline" data-intro="tagline">conectá sin límites</div></div><div class="intro-caption" data-intro="caption"><span></span>UN UNIVERSO DE EXPERIENCIAS<span></span></div></div></div>
 </div>
-<script>document.getElementById('intro-bootstrap').setAttribute('data-intro-started-at', String(performance.now()));</script>
+<p id="intro-bootstrap-note" role="status">Preparando tu universo.<span>La aplicación todavía se está cargando.</span></p>
+<script>
+(() => {
+  const bootstrap = document.getElementById('intro-bootstrap');
+  const note = document.getElementById('intro-bootstrap-note');
+  const startedAtMs = performance.now();
+  bootstrap.setAttribute('data-intro-started-at', String(startedAtMs));
+  const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const release = () => {
+    bootstrap.setAttribute('data-intro-dismissed', 'true');
+    bootstrap.setAttribute('aria-hidden', 'true');
+    bootstrap.inert = true;
+    bootstrap.style.opacity = '0';
+    bootstrap.style.visibility = 'hidden';
+    bootstrap.style.pointerEvents = 'none';
+    if (note && bootstrap.isConnected) note.style.opacity = '1';
+  };
+  const timer = window.setTimeout(release, preference.matches ? 150 : 3600);
+  const onKeyDown = event => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      release();
+    }
+  };
+  const onPreferenceChange = event => { if (event.matches) release(); };
+  document.addEventListener('keydown', onKeyDown);
+  preference.addEventListener('change', onPreferenceChange);
+  const observer = new MutationObserver(() => {
+    if (bootstrap.isConnected) return;
+    window.clearTimeout(timer);
+    document.removeEventListener('keydown', onKeyDown);
+    preference.removeEventListener('change', onPreferenceChange);
+    observer.disconnect();
+    note?.remove();
+  });
+  observer.observe(document.body, { childList: true });
+})();
+</script>

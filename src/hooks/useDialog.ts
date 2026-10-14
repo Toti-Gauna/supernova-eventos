@@ -13,6 +13,7 @@ export function useDialog(ref: RefObject<HTMLDialogElement | null>) {
       document.body.style.overflow = previousOverflow;
       if (dialog.open) dialog.close();
       if (previous?.isConnected) previous.focus({ preventScroll: true });
+      else document.getElementById('main-content')?.focus({ preventScroll: true });
     };
   }, [ref]);
 }

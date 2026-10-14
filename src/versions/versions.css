@@ -1,0 +1,21 @@
+.versions-page { min-height:100vh; padding:48px max(24px,calc((100vw - 1160px)/2)); background:#060609; color:#f4f0ea; }
+.versions-brand { display:block; width:fit-content; color:#e8dcf4; text-decoration:none; font-size:30px; letter-spacing:-1.5px; margin-bottom:80px; }
+.versions-page>h1 { font:500 clamp(40px,6vw,76px)/1.1 Manrope,sans-serif; letter-spacing:-.055em; margin:20px 0; }
+.versions-page>p { max-width:520px; color:#b6abbf; line-height:1.8; }
+.versions-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; margin:48px 0; }
+.version-card { text-decoration:none; color:inherit; border:1px solid #d6b9ef24; border-radius:24px; padding:24px; background:linear-gradient(150deg,#15111b,#09080e); transition:transform .25s; }
+.version-card:hover { transform:translateY(-5px); }
+.version-card:focus-visible { outline:2px solid #d5b7f9; outline-offset:5px; }
+.version-card h2 { font:500 22px Manrope,sans-serif; letter-spacing:-.6px; margin:16px 0; }
+.version-card p { font-size:13px; color:#b6abbf; line-height:1.8; min-height:72px; }
+.version-card strong { display:flex; justify-content:space-between; color:#dec9f1; font-size:13px; font-weight:500; margin-top:32px; }
+.version-preview { height:170px; position:relative; display:grid; place-items:center; margin-bottom:20px; }
+.version-preview i { width:105px; height:105px; border-radius:50%; background:radial-gradient(circle at 27% 23%,#c7b2e2,#715398 25%,#251638 70%,#07060b); box-shadow:inset 1px 1px 1px #d6c8e7; }
+.version-preview i::after { content:''; position:absolute; width:170px; height:32px; border:2px solid #b59ac48c; border-radius:50%; top:68px; left:50%; transform:translateX(-50%) rotate(-24deg); }
+.version-preview>span { position:absolute; bottom:26px; right:32px; font-size:18px; color:#c6b3df; }
+.version-3d .version-preview i { background:radial-gradient(circle at 25% 25%,#b9a3bc,#6b5873 24%,#2a1d34 65%,#030307); }
+.version-original .version-preview { background:radial-gradient(ellipse,#ba8ce31a,transparent 70%); }
+.versions-page>small { color:#857b90; font-size:11px; }
+.version-access { text-decoration:none; color:inherit; font-size:11px; }
+@media(max-width:760px) { .versions-grid { grid-template-columns:1fr; }.versions-brand { margin-bottom:48px; }.version-preview { height:130px; }.version-preview i::after { top:48px; }.version-card p { min-height:0; } }
+@media(prefers-reduced-motion:reduce) { .version-card { transition:none; } }

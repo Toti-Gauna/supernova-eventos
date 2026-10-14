@@ -1,0 +1,2357 @@
+{
+  "baseURL": "http://127.0.0.1:5173/",
+  "browser": "155.0.8059.40",
+  "businessDate": "2026-10-07T15:00:00Z",
+  "reducedMotion": "no-preference",
+  "captureFreeze": "Preferencia local Pausar movimiento; semilla de escena estable. animations:disabled sólo congela el DOM.",
+  "fps": "No medido: rAF del navegador por sí solo no prueba el rendimiento del renderer.",
+  "journeys": [
+    {
+      "destination": "section:registrations",
+      "observedRemainingTravelMs": 824,
+      "persistentCanvas": true,
+      "cameraDistance": 20.0846309649941,
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 1440,
+        "height": 900,
+        "drawingWidth": 1440,
+        "drawingHeight": 900
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "activeTheme": "dark",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        15.534,
+        -1.986,
+        16.894
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "3",
+        "destination": "registrations",
+        "motion": "animated",
+        "quality": "balanced",
+        "drawCalls": "6",
+        "triangles": "9268",
+        "visibleBodies": "registrations"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "destination": "section:favorites",
+      "observedRemainingTravelMs": 846,
+      "persistentCanvas": true,
+      "cameraDistance": 49.70538137867972,
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 1440,
+        "height": 900,
+        "drawingWidth": 1440,
+        "drawingHeight": 900
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "activeTheme": "dark",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        -33.661,
+        -5.414,
+        10.671
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "4",
+        "destination": "favorites",
+        "motion": "animated",
+        "quality": "balanced",
+        "drawCalls": "5",
+        "triangles": "9084",
+        "visibleBodies": "favorites"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "destination": "section:explore",
+      "observedRemainingTravelMs": 883,
+      "persistentCanvas": true,
+      "cameraDistance": 30.40370189631519,
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 1440,
+        "height": 900,
+        "drawingWidth": 1440,
+        "drawingHeight": 900
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "activeTheme": "dark",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        -4.478,
+        -2.23,
+        18.583
+      ],
+      "headingColor": "rgb(245, 240, 233)",
+      "engine": {
+        "request": "5",
+        "destination": "explore",
+        "motion": "animated",
+        "quality": "balanced",
+        "drawCalls": "4",
+        "triangles": "8832",
+        "visibleBodies": "explore"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    }
+  ],
+  "captures": [
+    {
+      "file": "hero-dark-320.png",
+      "theme": "dark",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 320,
+        "height": 667,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 320,
+        "height": 667,
+        "drawingWidth": 320,
+        "drawingHeight": 667
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:explore",
+      "activeTheme": "dark",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        -0.069,
+        3.771,
+        23.991
+      ],
+      "headingColor": "rgb(245, 240, 233)",
+      "engine": {
+        "request": "3",
+        "destination": "explore",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "4",
+        "triangles": "8832",
+        "visibleBodies": "explore"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "mis-eventos-dark-320.png",
+      "theme": "dark",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 320,
+        "height": 667,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 320,
+        "height": 667,
+        "drawingWidth": 320,
+        "drawingHeight": 667
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:registrations",
+      "activeTheme": "dark",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        25.928,
+        3.967,
+        12.983
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "4",
+        "destination": "registrations",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "6",
+        "triangles": "9268",
+        "visibleBodies": "registrations"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "favoritos-dark-320.png",
+      "theme": "dark",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 320,
+        "height": 667,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 320,
+        "height": 667,
+        "drawingWidth": 320,
+        "drawingHeight": 667
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:favorites",
+      "activeTheme": "dark",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        -24.067,
+        0.297,
+        7.061
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "5",
+        "destination": "favorites",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "5",
+        "triangles": "9084",
+        "visibleBodies": "favorites"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "hero-dark-390.png",
+      "theme": "dark",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 390,
+        "height": 844,
+        "drawingWidth": 390,
+        "drawingHeight": 844
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:explore",
+      "activeTheme": "dark",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        -0.069,
+        1.457,
+        24.286
+      ],
+      "headingColor": "rgb(245, 240, 233)",
+      "engine": {
+        "request": "6",
+        "destination": "explore",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "4",
+        "triangles": "8832",
+        "visibleBodies": "explore"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "mis-eventos-dark-390.png",
+      "theme": "dark",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 390,
+        "height": 844,
+        "drawingWidth": 390,
+        "drawingHeight": 844
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:registrations",
+      "activeTheme": "dark",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        25.91,
+        1.081,
+        19.612
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "7",
+        "destination": "registrations",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "6",
+        "triangles": "9268",
+        "visibleBodies": "registrations"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "favoritos-dark-390.png",
+      "theme": "dark",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 390,
+        "height": 844,
+        "drawingWidth": 390,
+        "drawingHeight": 844
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:favorites",
+      "activeTheme": "dark",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        -24.083,
+        -1.81,
+        13.18
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "8",
+        "destination": "favorites",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "5",
+        "triangles": "9084",
+        "visibleBodies": "favorites"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "hero-dark-768.png",
+      "theme": "dark",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 768,
+        "height": 1024,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 768,
+        "height": 1024,
+        "drawingWidth": 768,
+        "drawingHeight": 1024
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:explore",
+      "activeTheme": "dark",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        -3.716,
+        -4.678,
+        29.624
+      ],
+      "headingColor": "rgb(245, 240, 233)",
+      "engine": {
+        "request": "9",
+        "destination": "explore",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "4",
+        "triangles": "8832",
+        "visibleBodies": "explore"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "mis-eventos-dark-768.png",
+      "theme": "dark",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 768,
+        "height": 1024,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 768,
+        "height": 1024,
+        "drawingWidth": 768,
+        "drawingHeight": 1024
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:registrations",
+      "activeTheme": "dark",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        21.788,
+        -3.302,
+        20.875
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "10",
+        "destination": "registrations",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "6",
+        "triangles": "9268",
+        "visibleBodies": "registrations"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "favoritos-dark-768.png",
+      "theme": "dark",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 768,
+        "height": 1024,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 768,
+        "height": 1024,
+        "drawingWidth": 768,
+        "drawingHeight": 1024
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:favorites",
+      "activeTheme": "dark",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        -27.888,
+        -6.68,
+        14.346
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "11",
+        "destination": "favorites",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "5",
+        "triangles": "9084",
+        "visibleBodies": "favorites"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "hero-dark-1440.png",
+      "theme": "dark",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 1440,
+        "height": 900,
+        "drawingWidth": 1440,
+        "drawingHeight": 900
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:explore",
+      "activeTheme": "dark",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        -4.478,
+        -2.23,
+        18.583
+      ],
+      "headingColor": "rgb(245, 240, 233)",
+      "engine": {
+        "request": "12",
+        "destination": "explore",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "4",
+        "triangles": "8832",
+        "visibleBodies": "explore"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "mis-eventos-dark-1440.png",
+      "theme": "dark",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 1440,
+        "height": 900,
+        "drawingWidth": 1440,
+        "drawingHeight": 900
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:registrations",
+      "activeTheme": "dark",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        15.534,
+        -1.986,
+        16.894
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "13",
+        "destination": "registrations",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "6",
+        "triangles": "9268",
+        "visibleBodies": "registrations"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "favoritos-dark-1440.png",
+      "theme": "dark",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 1440,
+        "height": 900,
+        "drawingWidth": 1440,
+        "drawingHeight": 900
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:favorites",
+      "activeTheme": "dark",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        -33.661,
+        -5.414,
+        10.671
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "14",
+        "destination": "favorites",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "5",
+        "triangles": "9084",
+        "visibleBodies": "favorites"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "perfil-dark-390.png",
+      "theme": "dark",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 390,
+        "height": 844,
+        "drawingWidth": 390,
+        "drawingHeight": 844
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:profile",
+      "activeTheme": "dark",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        -9.113,
+        6.47,
+        13.616
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "15",
+        "destination": "profile",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "4",
+        "triangles": "8764",
+        "visibleBodies": "profile"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "admin-dark-390.png",
+      "theme": "dark",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 390,
+        "height": 844,
+        "drawingWidth": 390,
+        "drawingHeight": 844
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:admin",
+      "activeTheme": "dark",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        3.842,
+        -1.903,
+        23.356
+      ],
+      "headingColor": "rgb(245, 240, 233)",
+      "engine": {
+        "request": "16",
+        "destination": "admin",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "11",
+        "triangles": "4028",
+        "visibleBodies": "admin"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "estudio-dark-390.png",
+      "theme": "dark",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 390,
+        "height": 844,
+        "drawingWidth": 390,
+        "drawingHeight": 844
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "studio",
+      "activeTheme": "dark",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        4,
+        8.3,
+        -28.6
+      ],
+      "headingColor": "rgb(245, 240, 233)",
+      "engine": {
+        "request": "17",
+        "destination": "studio",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "9",
+        "triangles": "3304",
+        "visibleBodies": "admin"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "evento-dark-390.png",
+      "theme": "dark",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 390,
+        "height": 844,
+        "drawingWidth": 390,
+        "drawingHeight": 844
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "event:supernova-sessions",
+      "activeTheme": "dark",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        21.04,
+        -19.506,
+        -1.145
+      ],
+      "headingColor": "rgb(245, 240, 233)",
+      "engine": {
+        "request": "20",
+        "destination": "event-supernova-sessions",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "3",
+        "triangles": "8512",
+        "visibleBodies": "event-supernova-sessions"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "evento-formulario-dark-390.png",
+      "theme": "dark",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 390,
+        "height": 844,
+        "drawingWidth": 390,
+        "drawingHeight": 844
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "event:supernova-sessions",
+      "activeTheme": "dark",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        21.04,
+        -19.506,
+        -1.145
+      ],
+      "headingColor": "rgb(245, 240, 233)",
+      "engine": {
+        "request": "20",
+        "destination": "event-supernova-sessions",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "3",
+        "triangles": "8512",
+        "visibleBodies": "event-supernova-sessions"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "perfil-dark-1440.png",
+      "theme": "dark",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 1440,
+        "height": 900,
+        "drawingWidth": 1440,
+        "drawingHeight": 900
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:profile",
+      "activeTheme": "dark",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        -20.242,
+        4.65,
+        5.036
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "22",
+        "destination": "profile",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "4",
+        "triangles": "8764",
+        "visibleBodies": "profile"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "admin-dark-1440.png",
+      "theme": "dark",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 1440,
+        "height": 900,
+        "drawingWidth": 1440,
+        "drawingHeight": 900
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:admin",
+      "activeTheme": "dark",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        -14.328,
+        -1.877,
+        18.596
+      ],
+      "headingColor": "rgb(245, 240, 233)",
+      "engine": {
+        "request": "23",
+        "destination": "admin",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "11",
+        "triangles": "4028",
+        "visibleBodies": "admin"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "estudio-dark-1440.png",
+      "theme": "dark",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 1440,
+        "height": 900,
+        "drawingWidth": 1440,
+        "drawingHeight": 900
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "studio",
+      "activeTheme": "dark",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        4,
+        8.3,
+        -28.6
+      ],
+      "headingColor": "rgb(245, 240, 233)",
+      "engine": {
+        "request": "24",
+        "destination": "studio",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "14",
+        "triangles": "3856",
+        "visibleBodies": "admin"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "evento-dark-1440.png",
+      "theme": "dark",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 1440,
+        "height": 900,
+        "drawingWidth": 1440,
+        "drawingHeight": 900
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "event:supernova-sessions",
+      "activeTheme": "dark",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        19.223,
+        -16.643,
+        -10.665
+      ],
+      "headingColor": "rgb(245, 240, 233)",
+      "engine": {
+        "request": "27",
+        "destination": "event-supernova-sessions",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "3",
+        "triangles": "8512",
+        "visibleBodies": "event-supernova-sessions"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "hero-light-320.png",
+      "theme": "light",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 320,
+        "height": 667,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 320,
+        "height": 667,
+        "drawingWidth": 320,
+        "drawingHeight": 667
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:explore",
+      "activeTheme": "light",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        -0.069,
+        3.771,
+        23.991
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "3",
+        "destination": "explore",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "4",
+        "triangles": "8832",
+        "visibleBodies": "explore"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "mis-eventos-light-320.png",
+      "theme": "light",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 320,
+        "height": 667,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 320,
+        "height": 667,
+        "drawingWidth": 320,
+        "drawingHeight": 667
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:registrations",
+      "activeTheme": "light",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        25.928,
+        3.967,
+        12.983
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "4",
+        "destination": "registrations",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "6",
+        "triangles": "9268",
+        "visibleBodies": "registrations"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "favoritos-light-320.png",
+      "theme": "light",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 320,
+        "height": 667,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 320,
+        "height": 667,
+        "drawingWidth": 320,
+        "drawingHeight": 667
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:favorites",
+      "activeTheme": "light",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        -24.067,
+        0.297,
+        7.061
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "5",
+        "destination": "favorites",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "5",
+        "triangles": "9084",
+        "visibleBodies": "favorites"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "hero-light-390.png",
+      "theme": "light",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 390,
+        "height": 844,
+        "drawingWidth": 390,
+        "drawingHeight": 844
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:explore",
+      "activeTheme": "light",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        -0.069,
+        1.457,
+        24.286
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "6",
+        "destination": "explore",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "4",
+        "triangles": "8832",
+        "visibleBodies": "explore"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "mis-eventos-light-390.png",
+      "theme": "light",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 390,
+        "height": 844,
+        "drawingWidth": 390,
+        "drawingHeight": 844
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:registrations",
+      "activeTheme": "light",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        25.91,
+        1.081,
+        19.612
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "7",
+        "destination": "registrations",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "6",
+        "triangles": "9268",
+        "visibleBodies": "registrations"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "favoritos-light-390.png",
+      "theme": "light",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 390,
+        "height": 844,
+        "drawingWidth": 390,
+        "drawingHeight": 844
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:favorites",
+      "activeTheme": "light",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        -24.083,
+        -1.81,
+        13.18
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "8",
+        "destination": "favorites",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "5",
+        "triangles": "9084",
+        "visibleBodies": "favorites"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "hero-light-768.png",
+      "theme": "light",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 768,
+        "height": 1024,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 768,
+        "height": 1024,
+        "drawingWidth": 768,
+        "drawingHeight": 1024
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:explore",
+      "activeTheme": "light",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        -3.716,
+        -4.678,
+        29.624
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "9",
+        "destination": "explore",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "4",
+        "triangles": "8832",
+        "visibleBodies": "explore"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "mis-eventos-light-768.png",
+      "theme": "light",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 768,
+        "height": 1024,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 768,
+        "height": 1024,
+        "drawingWidth": 768,
+        "drawingHeight": 1024
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:registrations",
+      "activeTheme": "light",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        21.788,
+        -3.302,
+        20.875
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "10",
+        "destination": "registrations",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "6",
+        "triangles": "9268",
+        "visibleBodies": "registrations"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "favoritos-light-768.png",
+      "theme": "light",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 768,
+        "height": 1024,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 768,
+        "height": 1024,
+        "drawingWidth": 768,
+        "drawingHeight": 1024
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:favorites",
+      "activeTheme": "light",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        -27.888,
+        -6.68,
+        14.346
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "11",
+        "destination": "favorites",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "5",
+        "triangles": "9084",
+        "visibleBodies": "favorites"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "hero-light-1440.png",
+      "theme": "light",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 1440,
+        "height": 900,
+        "drawingWidth": 1440,
+        "drawingHeight": 900
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:explore",
+      "activeTheme": "light",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        -4.478,
+        -2.23,
+        18.583
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "12",
+        "destination": "explore",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "4",
+        "triangles": "8832",
+        "visibleBodies": "explore"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "mis-eventos-light-1440.png",
+      "theme": "light",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 1440,
+        "height": 900,
+        "drawingWidth": 1440,
+        "drawingHeight": 900
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:registrations",
+      "activeTheme": "light",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        15.534,
+        -1.986,
+        16.894
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "13",
+        "destination": "registrations",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "6",
+        "triangles": "9268",
+        "visibleBodies": "registrations"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "favoritos-light-1440.png",
+      "theme": "light",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 1440,
+        "height": 900,
+        "drawingWidth": 1440,
+        "drawingHeight": 900
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:favorites",
+      "activeTheme": "light",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        -33.661,
+        -5.414,
+        10.671
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "14",
+        "destination": "favorites",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "5",
+        "triangles": "9084",
+        "visibleBodies": "favorites"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "perfil-light-390.png",
+      "theme": "light",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 390,
+        "height": 844,
+        "drawingWidth": 390,
+        "drawingHeight": 844
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:profile",
+      "activeTheme": "light",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        -9.113,
+        6.47,
+        13.616
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "15",
+        "destination": "profile",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "4",
+        "triangles": "8764",
+        "visibleBodies": "profile"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "admin-light-390.png",
+      "theme": "light",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 390,
+        "height": 844,
+        "drawingWidth": 390,
+        "drawingHeight": 844
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:admin",
+      "activeTheme": "light",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        3.842,
+        -1.913,
+        23.356
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "16",
+        "destination": "admin",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "11",
+        "triangles": "4028",
+        "visibleBodies": "admin"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "estudio-light-390.png",
+      "theme": "light",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 390,
+        "height": 844,
+        "drawingWidth": 390,
+        "drawingHeight": 844
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "studio",
+      "activeTheme": "light",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        4,
+        8.3,
+        -28.6
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "17",
+        "destination": "studio",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "9",
+        "triangles": "3304",
+        "visibleBodies": "admin"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "evento-light-390.png",
+      "theme": "light",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 390,
+        "height": 844,
+        "drawingWidth": 390,
+        "drawingHeight": 844
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "event:supernova-sessions",
+      "activeTheme": "light",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        21.04,
+        -19.506,
+        -1.145
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "20",
+        "destination": "event-supernova-sessions",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "3",
+        "triangles": "8512",
+        "visibleBodies": "event-supernova-sessions"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "evento-formulario-light-390.png",
+      "theme": "light",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 390,
+        "height": 844,
+        "drawingWidth": 390,
+        "drawingHeight": 844
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "event:supernova-sessions",
+      "activeTheme": "light",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        21.04,
+        -19.506,
+        -1.145
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "20",
+        "destination": "event-supernova-sessions",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "3",
+        "triangles": "8512",
+        "visibleBodies": "event-supernova-sessions"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "perfil-light-1440.png",
+      "theme": "light",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 1440,
+        "height": 900,
+        "drawingWidth": 1440,
+        "drawingHeight": 900
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:profile",
+      "activeTheme": "light",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        -20.242,
+        4.65,
+        5.036
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "22",
+        "destination": "profile",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "4",
+        "triangles": "8764",
+        "visibleBodies": "profile"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "admin-light-1440.png",
+      "theme": "light",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 1440,
+        "height": 900,
+        "drawingWidth": 1440,
+        "drawingHeight": 900
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "section:admin",
+      "activeTheme": "light",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        -14.328,
+        -1.926,
+        18.596
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "23",
+        "destination": "admin",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "11",
+        "triangles": "4028",
+        "visibleBodies": "admin"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "estudio-light-1440.png",
+      "theme": "light",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 1440,
+        "height": 900,
+        "drawingWidth": 1440,
+        "drawingHeight": 900
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "studio",
+      "activeTheme": "light",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        4,
+        8.3,
+        -28.6
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "24",
+        "destination": "studio",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "14",
+        "triangles": "3856",
+        "visibleBodies": "admin"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    },
+    {
+      "file": "evento-light-1440.png",
+      "theme": "light",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 12,
+      "deviceMemoryGB": 32,
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1
+      },
+      "canvasCount": 1,
+      "canvasSize": {
+        "width": 1440,
+        "height": 900,
+        "drawingWidth": 1440,
+        "drawingHeight": 900
+      },
+      "webgl": {
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "vendor": "Google Inc. (Intel)",
+        "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "contextLost": false
+      },
+      "destination": "event:supernova-sessions",
+      "activeTheme": "light",
+      "status": "ready",
+      "quality": null,
+      "cameraPosition": [
+        19.223,
+        -16.643,
+        -10.665
+      ],
+      "headingColor": "rgb(244, 240, 234)",
+      "engine": {
+        "request": "27",
+        "destination": "event-supernova-sessions",
+        "motion": "static",
+        "quality": "balanced",
+        "drawCalls": "3",
+        "triangles": "8512",
+        "visibleBodies": "event-supernova-sessions"
+      },
+      "overflow": false,
+      "dialogOverflow": [],
+      "backgrounds": [
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgb(2, 2, 5)",
+        "rgba(0, 0, 0, 0)"
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": []
+}

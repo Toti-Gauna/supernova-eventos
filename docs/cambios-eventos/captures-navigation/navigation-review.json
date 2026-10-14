@@ -1,0 +1,1062 @@
+{
+  "baseURL": "http://127.0.0.1:5173/",
+  "recordedAt": "2026-10-09T18:50:24.180Z",
+  "browser": "155.0.8059.40",
+  "checks": [
+    {
+      "version": "original",
+      "width": 1440,
+      "initial": {
+        "hero": {
+          "x": 80,
+          "y": 76,
+          "width": 1280,
+          "height": 302,
+          "right": 1360,
+          "bottom": 378
+        },
+        "catalog": {
+          "x": 80,
+          "y": 378,
+          "width": 1280,
+          "height": 787.5,
+          "right": 1360,
+          "bottom": 1165.5
+        },
+        "header": {
+          "x": 80,
+          "y": 0,
+          "width": 1280,
+          "height": 76,
+          "right": 1360,
+          "bottom": 76
+        },
+        "actions": {
+          "x": 1010.75,
+          "y": 16,
+          "width": 349.25,
+          "height": 44,
+          "right": 1360,
+          "bottom": 60
+        },
+        "switcher": {
+          "x": 1110.765625,
+          "y": 16,
+          "width": 98.234375,
+          "height": 44,
+          "right": 1209,
+          "bottom": 60
+        },
+        "overflow": false
+      },
+      "floating": {
+        "hero": {
+          "x": 80,
+          "y": -204,
+          "width": 1280,
+          "height": 302,
+          "right": 1360,
+          "bottom": 98
+        },
+        "catalog": {
+          "x": 80,
+          "y": 98,
+          "width": 1280,
+          "height": 787.5,
+          "right": 1360,
+          "bottom": 885.5
+        },
+        "header": {
+          "x": 80,
+          "y": 0,
+          "width": 1280,
+          "height": 76,
+          "right": 1360,
+          "bottom": 76
+        },
+        "actions": {
+          "x": 1010.75,
+          "y": 16,
+          "width": 349.25,
+          "height": 44,
+          "right": 1360,
+          "bottom": 60
+        },
+        "switcher": {
+          "x": 1110.765625,
+          "y": 16,
+          "width": 98.234375,
+          "height": 44,
+          "right": 1209,
+          "bottom": 60
+        },
+        "overflow": false
+      },
+      "menuBox": {
+        "x": 1080,
+        "y": 80,
+        "width": 280,
+        "height": 266
+      },
+      "links": [
+        {
+          "label": "Original",
+          "href": "/original/",
+          "current": "page"
+        },
+        {
+          "label": "3D",
+          "href": "/3d/",
+          "current": null
+        },
+        {
+          "label": "2D + 3D",
+          "href": "/hibrida/",
+          "current": null
+        }
+      ],
+      "escapeFocus": true,
+      "closeFocus": true,
+      "catalogFocus": true,
+      "floatingHeader": true
+    },
+    {
+      "version": "3d",
+      "width": 1440,
+      "initial": {
+        "hero": {
+          "x": 80,
+          "y": 76,
+          "width": 1280,
+          "height": 302,
+          "right": 1360,
+          "bottom": 378
+        },
+        "catalog": {
+          "x": 80,
+          "y": 378,
+          "width": 1280,
+          "height": 787.5,
+          "right": 1360,
+          "bottom": 1165.5
+        },
+        "header": {
+          "x": 80,
+          "y": 0,
+          "width": 1280,
+          "height": 76,
+          "right": 1360,
+          "bottom": 76
+        },
+        "actions": {
+          "x": 1033.1875,
+          "y": 16,
+          "width": 326.8125,
+          "height": 44,
+          "right": 1360,
+          "bottom": 60
+        },
+        "switcher": {
+          "x": 1133.203125,
+          "y": 16,
+          "width": 75.796875,
+          "height": 44,
+          "right": 1209,
+          "bottom": 60
+        },
+        "overflow": false
+      },
+      "floating": {
+        "hero": {
+          "x": 80,
+          "y": -204,
+          "width": 1280,
+          "height": 302,
+          "right": 1360,
+          "bottom": 98
+        },
+        "catalog": {
+          "x": 80,
+          "y": 98,
+          "width": 1280,
+          "height": 787.5,
+          "right": 1360,
+          "bottom": 885.5
+        },
+        "header": {
+          "x": 80,
+          "y": 0,
+          "width": 1280,
+          "height": 76,
+          "right": 1360,
+          "bottom": 76
+        },
+        "actions": {
+          "x": 1033.1875,
+          "y": 16,
+          "width": 326.8125,
+          "height": 44,
+          "right": 1360,
+          "bottom": 60
+        },
+        "switcher": {
+          "x": 1133.203125,
+          "y": 16,
+          "width": 75.796875,
+          "height": 44,
+          "right": 1209,
+          "bottom": 60
+        },
+        "overflow": false
+      },
+      "menuBox": {
+        "x": 1080,
+        "y": 80,
+        "width": 280,
+        "height": 266
+      },
+      "links": [
+        {
+          "label": "Original",
+          "href": "/original/",
+          "current": null
+        },
+        {
+          "label": "3D",
+          "href": "/3d/",
+          "current": "page"
+        },
+        {
+          "label": "2D + 3D",
+          "href": "/hibrida/",
+          "current": null
+        }
+      ],
+      "escapeFocus": true,
+      "closeFocus": true,
+      "catalogFocus": true,
+      "floatingHeader": true
+    },
+    {
+      "version": "hibrida",
+      "width": 1440,
+      "initial": {
+        "hero": {
+          "x": 80,
+          "y": 76,
+          "width": 1280,
+          "height": 302,
+          "right": 1360,
+          "bottom": 378
+        },
+        "catalog": {
+          "x": 80,
+          "y": 378,
+          "width": 1280,
+          "height": 787.5,
+          "right": 1360,
+          "bottom": 1165.5
+        },
+        "header": {
+          "x": 80,
+          "y": 0,
+          "width": 1280,
+          "height": 76,
+          "right": 1360,
+          "bottom": 76
+        },
+        "actions": {
+          "x": 1009.734375,
+          "y": 16,
+          "width": 350.265625,
+          "height": 44,
+          "right": 1360,
+          "bottom": 60
+        },
+        "switcher": {
+          "x": 1109.75,
+          "y": 16,
+          "width": 99.25,
+          "height": 44,
+          "right": 1209,
+          "bottom": 60
+        },
+        "overflow": false
+      },
+      "floating": {
+        "hero": {
+          "x": 80,
+          "y": -204,
+          "width": 1280,
+          "height": 302,
+          "right": 1360,
+          "bottom": 98
+        },
+        "catalog": {
+          "x": 80,
+          "y": 98,
+          "width": 1280,
+          "height": 787.5,
+          "right": 1360,
+          "bottom": 885.5
+        },
+        "header": {
+          "x": 80,
+          "y": 0,
+          "width": 1280,
+          "height": 76,
+          "right": 1360,
+          "bottom": 76
+        },
+        "actions": {
+          "x": 1009.734375,
+          "y": 16,
+          "width": 350.265625,
+          "height": 44,
+          "right": 1360,
+          "bottom": 60
+        },
+        "switcher": {
+          "x": 1109.75,
+          "y": 16,
+          "width": 99.25,
+          "height": 44,
+          "right": 1209,
+          "bottom": 60
+        },
+        "overflow": false
+      },
+      "menuBox": {
+        "x": 1080,
+        "y": 80,
+        "width": 280,
+        "height": 266
+      },
+      "links": [
+        {
+          "label": "Original",
+          "href": "/original/",
+          "current": null
+        },
+        {
+          "label": "3D",
+          "href": "/3d/",
+          "current": null
+        },
+        {
+          "label": "2D + 3D",
+          "href": "/hibrida/",
+          "current": "page"
+        }
+      ],
+      "escapeFocus": true,
+      "closeFocus": true,
+      "catalogFocus": true,
+      "floatingHeader": true
+    },
+    {
+      "version": "original",
+      "width": 390,
+      "initial": {
+        "hero": {
+          "x": 20,
+          "y": 64,
+          "width": 350,
+          "height": 276.53125,
+          "right": 370,
+          "bottom": 340.53125
+        },
+        "catalog": {
+          "x": 20,
+          "y": 340.53125,
+          "width": 350,
+          "height": 1629.3125,
+          "right": 370,
+          "bottom": 1969.84375
+        },
+        "header": {
+          "x": 22,
+          "y": 0,
+          "width": 346,
+          "height": 64,
+          "right": 368,
+          "bottom": 64
+        },
+        "actions": {
+          "x": 221,
+          "y": 10,
+          "width": 147,
+          "height": 44,
+          "right": 368,
+          "bottom": 54
+        },
+        "switcher": {
+          "x": 221,
+          "y": 10,
+          "width": 36,
+          "height": 44,
+          "right": 257,
+          "bottom": 54
+        },
+        "overflow": false
+      },
+      "floating": {
+        "hero": {
+          "x": 20,
+          "y": -187,
+          "width": 350,
+          "height": 276.53125,
+          "right": 370,
+          "bottom": 89.53125
+        },
+        "catalog": {
+          "x": 20,
+          "y": 89.53125,
+          "width": 350,
+          "height": 1629.3125,
+          "right": 370,
+          "bottom": 1718.84375
+        },
+        "header": {
+          "x": 22,
+          "y": 0,
+          "width": 346,
+          "height": 64,
+          "right": 368,
+          "bottom": 64
+        },
+        "actions": {
+          "x": 221,
+          "y": 10,
+          "width": 147,
+          "height": 44,
+          "right": 368,
+          "bottom": 54
+        },
+        "switcher": {
+          "x": 221,
+          "y": 10,
+          "width": 36,
+          "height": 44,
+          "right": 257,
+          "bottom": 54
+        },
+        "overflow": false
+      },
+      "menuBox": {
+        "x": 94,
+        "y": 70,
+        "width": 280,
+        "height": 266
+      },
+      "links": [
+        {
+          "label": "Original",
+          "href": "/original/",
+          "current": "page"
+        },
+        {
+          "label": "3D",
+          "href": "/3d/",
+          "current": null
+        },
+        {
+          "label": "2D + 3D",
+          "href": "/hibrida/",
+          "current": null
+        }
+      ],
+      "escapeFocus": true,
+      "closeFocus": true,
+      "catalogFocus": true,
+      "floatingHeader": true
+    },
+    {
+      "version": "3d",
+      "width": 390,
+      "initial": {
+        "hero": {
+          "x": 20,
+          "y": 64,
+          "width": 350,
+          "height": 376.53125,
+          "right": 370,
+          "bottom": 440.53125
+        },
+        "catalog": {
+          "x": 20,
+          "y": 440.53125,
+          "width": 350,
+          "height": 1629.3125,
+          "right": 370,
+          "bottom": 2069.84375
+        },
+        "header": {
+          "x": 22,
+          "y": 0,
+          "width": 346,
+          "height": 64,
+          "right": 368,
+          "bottom": 64
+        },
+        "actions": {
+          "x": 221,
+          "y": 10,
+          "width": 147,
+          "height": 44,
+          "right": 368,
+          "bottom": 54
+        },
+        "switcher": {
+          "x": 221,
+          "y": 10,
+          "width": 36,
+          "height": 44,
+          "right": 257,
+          "bottom": 54
+        },
+        "overflow": false
+      },
+      "floating": {
+        "hero": {
+          "x": 20,
+          "y": -287,
+          "width": 350,
+          "height": 376.53125,
+          "right": 370,
+          "bottom": 89.53125
+        },
+        "catalog": {
+          "x": 20,
+          "y": 89.53125,
+          "width": 350,
+          "height": 1629.3125,
+          "right": 370,
+          "bottom": 1718.84375
+        },
+        "header": {
+          "x": 22,
+          "y": 0,
+          "width": 346,
+          "height": 64,
+          "right": 368,
+          "bottom": 64
+        },
+        "actions": {
+          "x": 221,
+          "y": 10,
+          "width": 147,
+          "height": 44,
+          "right": 368,
+          "bottom": 54
+        },
+        "switcher": {
+          "x": 221,
+          "y": 10,
+          "width": 36,
+          "height": 44,
+          "right": 257,
+          "bottom": 54
+        },
+        "overflow": false
+      },
+      "menuBox": {
+        "x": 94,
+        "y": 70,
+        "width": 280,
+        "height": 266
+      },
+      "links": [
+        {
+          "label": "Original",
+          "href": "/original/",
+          "current": null
+        },
+        {
+          "label": "3D",
+          "href": "/3d/",
+          "current": "page"
+        },
+        {
+          "label": "2D + 3D",
+          "href": "/hibrida/",
+          "current": null
+        }
+      ],
+      "escapeFocus": true,
+      "closeFocus": true,
+      "catalogFocus": true,
+      "floatingHeader": true
+    },
+    {
+      "version": "hibrida",
+      "width": 390,
+      "initial": {
+        "hero": {
+          "x": 20,
+          "y": 64,
+          "width": 350,
+          "height": 376.53125,
+          "right": 370,
+          "bottom": 440.53125
+        },
+        "catalog": {
+          "x": 20,
+          "y": 440.53125,
+          "width": 350,
+          "height": 1629.3125,
+          "right": 370,
+          "bottom": 2069.84375
+        },
+        "header": {
+          "x": 22,
+          "y": 0,
+          "width": 346,
+          "height": 64,
+          "right": 368,
+          "bottom": 64
+        },
+        "actions": {
+          "x": 221,
+          "y": 10,
+          "width": 147,
+          "height": 44,
+          "right": 368,
+          "bottom": 54
+        },
+        "switcher": {
+          "x": 221,
+          "y": 10,
+          "width": 36,
+          "height": 44,
+          "right": 257,
+          "bottom": 54
+        },
+        "overflow": false
+      },
+      "floating": {
+        "hero": {
+          "x": 20,
+          "y": -287,
+          "width": 350,
+          "height": 376.53125,
+          "right": 370,
+          "bottom": 89.53125
+        },
+        "catalog": {
+          "x": 20,
+          "y": 89.53125,
+          "width": 350,
+          "height": 1629.3125,
+          "right": 370,
+          "bottom": 1718.84375
+        },
+        "header": {
+          "x": 22,
+          "y": 0,
+          "width": 346,
+          "height": 64,
+          "right": 368,
+          "bottom": 64
+        },
+        "actions": {
+          "x": 221,
+          "y": 10,
+          "width": 147,
+          "height": 44,
+          "right": 368,
+          "bottom": 54
+        },
+        "switcher": {
+          "x": 221,
+          "y": 10,
+          "width": 36,
+          "height": 44,
+          "right": 257,
+          "bottom": 54
+        },
+        "overflow": false
+      },
+      "menuBox": {
+        "x": 94,
+        "y": 70,
+        "width": 280,
+        "height": 266
+      },
+      "links": [
+        {
+          "label": "Original",
+          "href": "/original/",
+          "current": null
+        },
+        {
+          "label": "3D",
+          "href": "/3d/",
+          "current": null
+        },
+        {
+          "label": "2D + 3D",
+          "href": "/hibrida/",
+          "current": "page"
+        }
+      ],
+      "escapeFocus": true,
+      "closeFocus": true,
+      "catalogFocus": true,
+      "floatingHeader": true
+    },
+    {
+      "version": "original",
+      "width": 320,
+      "initial": {
+        "hero": {
+          "x": 20,
+          "y": 64,
+          "width": 280,
+          "height": 270.28125,
+          "right": 300,
+          "bottom": 334.28125
+        },
+        "catalog": {
+          "x": 20,
+          "y": 334.28125,
+          "width": 280,
+          "height": 1660.5625,
+          "right": 300,
+          "bottom": 1994.84375
+        },
+        "header": {
+          "x": 16,
+          "y": 0,
+          "width": 288,
+          "height": 64,
+          "right": 304,
+          "bottom": 64
+        },
+        "actions": {
+          "x": 163,
+          "y": 10,
+          "width": 141,
+          "height": 44,
+          "right": 304,
+          "bottom": 54
+        },
+        "switcher": {
+          "x": 163,
+          "y": 10,
+          "width": 36,
+          "height": 44,
+          "right": 199,
+          "bottom": 54
+        },
+        "overflow": false
+      },
+      "floating": {
+        "hero": {
+          "x": 20,
+          "y": -180,
+          "width": 280,
+          "height": 270.28125,
+          "right": 300,
+          "bottom": 90.28125
+        },
+        "catalog": {
+          "x": 20,
+          "y": 90.28125,
+          "width": 280,
+          "height": 1660.5625,
+          "right": 300,
+          "bottom": 1750.84375
+        },
+        "header": {
+          "x": 16,
+          "y": 0,
+          "width": 288,
+          "height": 64,
+          "right": 304,
+          "bottom": 64
+        },
+        "actions": {
+          "x": 163,
+          "y": 10,
+          "width": 141,
+          "height": 44,
+          "right": 304,
+          "bottom": 54
+        },
+        "switcher": {
+          "x": 163,
+          "y": 10,
+          "width": 36,
+          "height": 44,
+          "right": 199,
+          "bottom": 54
+        },
+        "overflow": false
+      },
+      "menuBox": {
+        "x": 24,
+        "y": 70,
+        "width": 280,
+        "height": 266
+      },
+      "links": [
+        {
+          "label": "Original",
+          "href": "/original/",
+          "current": "page"
+        },
+        {
+          "label": "3D",
+          "href": "/3d/",
+          "current": null
+        },
+        {
+          "label": "2D + 3D",
+          "href": "/hibrida/",
+          "current": null
+        }
+      ],
+      "escapeFocus": true,
+      "closeFocus": true,
+      "catalogFocus": true,
+      "floatingHeader": true
+    },
+    {
+      "version": "3d",
+      "width": 320,
+      "initial": {
+        "hero": {
+          "x": 20,
+          "y": 64,
+          "width": 280,
+          "height": 370.28125,
+          "right": 300,
+          "bottom": 434.28125
+        },
+        "catalog": {
+          "x": 20,
+          "y": 434.28125,
+          "width": 280,
+          "height": 1660.5625,
+          "right": 300,
+          "bottom": 2094.84375
+        },
+        "header": {
+          "x": 16,
+          "y": 0,
+          "width": 288,
+          "height": 64,
+          "right": 304,
+          "bottom": 64
+        },
+        "actions": {
+          "x": 163,
+          "y": 10,
+          "width": 141,
+          "height": 44,
+          "right": 304,
+          "bottom": 54
+        },
+        "switcher": {
+          "x": 163,
+          "y": 10,
+          "width": 36,
+          "height": 44,
+          "right": 199,
+          "bottom": 54
+        },
+        "overflow": false
+      },
+      "floating": {
+        "hero": {
+          "x": 20,
+          "y": -280,
+          "width": 280,
+          "height": 370.28125,
+          "right": 300,
+          "bottom": 90.28125
+        },
+        "catalog": {
+          "x": 20,
+          "y": 90.28125,
+          "width": 280,
+          "height": 1660.5625,
+          "right": 300,
+          "bottom": 1750.84375
+        },
+        "header": {
+          "x": 16,
+          "y": 0,
+          "width": 288,
+          "height": 64,
+          "right": 304,
+          "bottom": 64
+        },
+        "actions": {
+          "x": 163,
+          "y": 10,
+          "width": 141,
+          "height": 44,
+          "right": 304,
+          "bottom": 54
+        },
+        "switcher": {
+          "x": 163,
+          "y": 10,
+          "width": 36,
+          "height": 44,
+          "right": 199,
+          "bottom": 54
+        },
+        "overflow": false
+      },
+      "menuBox": {
+        "x": 24,
+        "y": 70,
+        "width": 280,
+        "height": 266
+      },
+      "links": [
+        {
+          "label": "Original",
+          "href": "/original/",
+          "current": null
+        },
+        {
+          "label": "3D",
+          "href": "/3d/",
+          "current": "page"
+        },
+        {
+          "label": "2D + 3D",
+          "href": "/hibrida/",
+          "current": null
+        }
+      ],
+      "escapeFocus": true,
+      "closeFocus": true,
+      "catalogFocus": true,
+      "floatingHeader": true
+    },
+    {
+      "version": "hibrida",
+      "width": 320,
+      "initial": {
+        "hero": {
+          "x": 20,
+          "y": 64,
+          "width": 280,
+          "height": 370.28125,
+          "right": 300,
+          "bottom": 434.28125
+        },
+        "catalog": {
+          "x": 20,
+          "y": 434.28125,
+          "width": 280,
+          "height": 1660.5625,
+          "right": 300,
+          "bottom": 2094.84375
+        },
+        "header": {
+          "x": 16,
+          "y": 0,
+          "width": 288,
+          "height": 64,
+          "right": 304,
+          "bottom": 64
+        },
+        "actions": {
+          "x": 163,
+          "y": 10,
+          "width": 141,
+          "height": 44,
+          "right": 304,
+          "bottom": 54
+        },
+        "switcher": {
+          "x": 163,
+          "y": 10,
+          "width": 36,
+          "height": 44,
+          "right": 199,
+          "bottom": 54
+        },
+        "overflow": false
+      },
+      "floating": {
+        "hero": {
+          "x": 20,
+          "y": -280,
+          "width": 280,
+          "height": 370.28125,
+          "right": 300,
+          "bottom": 90.28125
+        },
+        "catalog": {
+          "x": 20,
+          "y": 90.28125,
+          "width": 280,
+          "height": 1660.5625,
+          "right": 300,
+          "bottom": 1750.84375
+        },
+        "header": {
+          "x": 16,
+          "y": 0,
+          "width": 288,
+          "height": 64,
+          "right": 304,
+          "bottom": 64
+        },
+        "actions": {
+          "x": 163,
+          "y": 10,
+          "width": 141,
+          "height": 44,
+          "right": 304,
+          "bottom": 54
+        },
+        "switcher": {
+          "x": 163,
+          "y": 10,
+          "width": 36,
+          "height": 44,
+          "right": 199,
+          "bottom": 54
+        },
+        "overflow": false
+      },
+      "menuBox": {
+        "x": 24,
+        "y": 70,
+        "width": 280,
+        "height": 266
+      },
+      "links": [
+        {
+          "label": "Original",
+          "href": "/original/",
+          "current": null
+        },
+        {
+          "label": "3D",
+          "href": "/3d/",
+          "current": null
+        },
+        {
+          "label": "2D + 3D",
+          "href": "/hibrida/",
+          "current": "page"
+        }
+      ],
+      "escapeFocus": true,
+      "closeFocus": true,
+      "catalogFocus": true,
+      "floatingHeader": true
+    }
+  ],
+  "errors": [],
+  "failedRequests": []
+}

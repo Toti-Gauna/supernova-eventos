@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { EventItem } from '../../types';
+import { getEventSessions } from '../../lib/eventSessions';
 
 /** Refresh at event boundaries and when returning to a backgrounded tab. */
 export function useEventClock(events: EventItem[]): number {
@@ -13,7 +14,7 @@ export function useEventClock(events: EventItem[]): number {
       setNow(current);
       const nextBoundary = events
         .filter(event => event.status === 'published')
-        .flatMap(event => [new Date(event.date).getTime(), new Date(event.endDate).getTime()])
+        .flatMap(event => getEventSessions(event).flatMap(session => [new Date(session.date).getTime(), new Date(session.endDate).getTime()]))
         .filter(timestamp => timestamp > current)
         .reduce((next, timestamp) => Math.min(next, timestamp), Infinity);
       if (Number.isFinite(nextBoundary)) {

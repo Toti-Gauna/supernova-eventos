@@ -1,3 +1,90 @@
+.hero.hero-compact { min-height:300px; padding-top:12px; padding-bottom:10px; gap:24px; }
+.hero.hero-compact h1 { margin:16px 0 20px; font-size:clamp(38px,3.6vw,52px); line-height:1.13; }
+.hero.hero-compact .hero-actions { margin-top:0; }
+.hero.hero-compact .hero-eyebrow { padding:7px 10px; font-size:8px; }
+.hero.hero-compact .cosmic-scene.cosmic-installation { height:280px; min-height:280px; }
+.hero.hero-compact .cosmos-label,.hero.hero-compact .cosmos-note,.hero.hero-compact .cosmos-axis { display:none; }
+.hero-compact+#experiencias { padding-top:22px; }
+@media(max-width:700px) {
+  .hero.hero-compact { display:flex; min-height:0; gap:0; padding-top:12px; padding-bottom:4px; }
+  .hero.hero-compact h1 { font-size:clamp(30px,8.4vw,36px); margin:12px 0 16px; letter-spacing:-1.7px; }
+  .hero.hero-compact .hero-actions .button { min-height:44px; }
+  .hero.hero-compact .cosmic-scene.cosmic-installation { height:74px; min-height:74px; margin:14px 0 0; }
+  html[data-experience] .app-shell[data-universe-enabled] .hero.hero-compact .cosmic-scene.cosmic-installation { height:180px; min-height:180px; margin:8px 0 0; }
+  .hero.hero-compact .cosmos-ticket { min-height:64px; padding-block:9px; }
+  .hero-compact+#experiencias { padding-top:20px; }
+}
+
+.hero.hero-orbital { grid-template-columns:minmax(0,7fr) minmax(180px,3fr); min-height:460px; gap:32px; padding-top:8px; padding-bottom:8px; align-items:center; }
+.hero.hero-orbital .hero-copy { align-self:center; }
+.hero.hero-orbital h1 { margin:0 0 8px; font-size:28px; line-height:1.15; letter-spacing:-1px; }
+.hero.hero-orbital :is(.hero-eyebrow,.hero-title-opening,.hero-title-opening-break) { display:none; }
+.hero-orbital-search .search-field { width:100%; height:44px; padding-inline:14px; margin-bottom:10px; background:#110e18e0; border-color:#cbb2ff2b; }
+.hero-orbital-search .search-field>button { min-width:44px; min-height:44px; }
+.hero-orbital-search .search-field input { font-size:14px; }
+.hero-orbital-search .search-field input::placeholder { font-size:13px; }
+.hero-orbital-universe { position:relative; min-width:0; }
+.hero-orbital .cosmos-planet-slot { position:absolute; top:50%; left:50%; width:220px; height:220px; transform:translate(-50%,-50%); pointer-events:none; }
+.orbit-preview-list { display:grid; gap:8px; }
+.orbit-preview-empty { display:flex; align-items:center; min-height:96px; margin:0; padding:16px; border:1px dashed #cbb2ff32; border-radius:16px; color:#c4b2d3; font-size:14px; line-height:1.5; }
+.orbit-preview-reservation { color:#b7a8c4; }
+.hero.hero-orbital .hero-actions { margin-top:10px; }
+.hero.hero-orbital .hero-actions>.button { min-height:44px; }
+.event-section.orbital-catalog { display:grid; grid-template-columns:minmax(0,1fr) auto; column-gap:16px; padding-top:16px; }
+.orbital-catalog>:not(.section-heading):not(.search-toolbar) { grid-column:1 / -1; }
+.orbital-catalog .section-heading { grid-column:1; grid-row:1; min-width:0; margin-bottom:10px; gap:16px; }
+.orbital-catalog .section-heading .eyebrow { display:none; }
+.orbital-catalog .section-heading h2 { margin:0; font-size:25px; line-height:1.25; letter-spacing:-.7px; }
+.orbital-catalog .section-count { display:none; }
+.orbital-catalog .category-row { margin-top:10px; margin-bottom:8px; }
+.orbital-catalog .result-info { margin-bottom:10px; }
+.orbital-catalog .event-phase-heading { margin-bottom:10px; }
+.orbital-catalog .event-phase-heading h3 { font-size:17px; }
+.orbital-catalog-toolbar { grid-column:2; grid-row:1; justify-content:flex-end; margin-bottom:10px; }
+.orbital-catalog-toolbar .sort-field { flex:none; min-width:210px; }
+.orbital-catalog-toolbar :is(.sort-field,.filter-toggle) { min-height:44px; height:44px; }
+html[data-theme='light'] .app-shell[data-universe-enabled] .hero-orbital-search :is(.search-field,.search-field input) { background:#110e18e0; color:#e4d9ef; }
+html[data-theme='light'] .app-shell[data-universe-enabled] .hero-orbital-search .search-field input::placeholder,
+html[data-theme='light'] .app-shell[data-universe-enabled] .hero-orbital-search .search-field :is(kbd,svg) { color:#b6a5c6; }
+@media(max-width:1100px) and (min-width:701px) {
+  .hero.hero-orbital { grid-template-columns:minmax(0,7fr) minmax(180px,3fr); gap:22px; }
+  .hero.hero-orbital h1 { font-size:28px; }
+}
+@media(min-width:701px) and (max-height:700px) {
+  .hero.hero-orbital { min-height:460px; }
+  .event-section.orbital-catalog { padding-top:10px; }
+  .orbital-catalog .section-heading { margin-bottom:8px; }
+  .orbital-catalog .section-heading h2 { font-size:23px; }
+  .orbital-catalog .category-row { margin-block:6px; padding-block:0; }
+  .orbital-catalog .result-info { margin-bottom:6px; }
+  .orbital-catalog .event-phase-heading { margin-bottom:8px; }
+}
+@media(max-width:700px) {
+  .hero.hero-orbital { display:grid; grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr); gap:4px; min-height:0; padding-top:2px; padding-bottom:2px; }
+  .hero.hero-orbital .hero-copy { display:contents; }
+  .hero-orbital-heading { grid-column:1; grid-row:1; min-width:0; }
+  .hero.hero-orbital h1 { font-size:22px; letter-spacing:-.7px; margin:0; line-height:1.18; }
+  .hero.hero-orbital :is(.hero-title-opening,.hero-title-opening-break) { display:none; }
+  .hero.hero-orbital .title-star { font-size:15px; right:-14px; }
+  .hero.hero-orbital .hero-eyebrow { font-size:6px; letter-spacing:.8px; padding:6px 8px; gap:6px; }
+  .hero-orbital-universe { grid-column:2; grid-row:1; align-self:center; }
+  .hero-orbital .cosmos-planet-slot { width:52px; height:52px; }
+  .hero-orbital-search { grid-column:1 / -1; grid-row:2; }
+  .hero-orbital-search .search-field { height:44px; margin-bottom:0; }
+  .hero-orbital-search .search-field input { font-size:16px; }
+  .orbit-preview-list { grid-column:1 / -1; grid-row:3; gap:4px; }
+  .orbit-preview-empty { min-height:88px; padding:12px; font-size:13px; }
+  .hero.hero-orbital .hero-actions { grid-column:1 / -1; grid-row:4; margin-top:0; }
+  .hero.hero-orbital .hero-actions>.button { width:100%; height:44px; padding:10px 14px; justify-content:space-between; }
+  .orbital-catalog-toolbar { flex-wrap:nowrap; }
+  .orbital-catalog-toolbar .sort-field { flex:1; min-width:0; }
+  .event-section.orbital-catalog { display:block; }
+  #experiencias.orbital-catalog .section-heading { align-items:flex-start; margin-bottom:10px; }
+  #experiencias.orbital-catalog .section-heading h2 { font-size:21px; margin:0; }
+  .orbital-catalog .section-count { font-size:9px; }
+  .hero-classic .hero-orbital-heading { display:block; }
+}
+
 .catalog-results {
   display:grid;
   gap:28px;

@@ -2,6 +2,7 @@ node_modules/
 dist/
 *.tsbuildinfo
 test-results/
+test-results-*/
 playwright-report/
 .env
 *.log

@@ -2,6 +2,8 @@
 
 Supernova Eventos es una micro-app de frontend construida con Vite, React y TypeScript. Demuestra el recorrido de un colaborador y la creación administrativa de eventos. **No hay backend, SSO ni envío real de emails.**
 
+Tres presentaciones independientes están disponibles localmente: `/original/`, `/3d/` y `/hibrida/`, con selector en `/versiones/`. La raíz conserva la 3D. La original vive en `src/versions/original/`, recuperada de `c7d93f6` por lectura de Git; la híbrida agrega arte SVG sobre planos Three y cámara propia en `src/features/hybrid/`. El App espacial comparte los mismos flujos/controlador y elige su host por `variant`. Cada acceso carga su entrada lazy y recarga el documento al cambiar, manteniendo las claves locales existentes. Ver [separación e implementación híbrida](experiencia-hibrida/implementacion.md).
+
 ## Límites actuales
 
 Los eventos e inscripciones del prototipo se resuelven en el navegador con datos sintéticos. El helper `src/lib/storage.ts` lee/escribe `localStorage` de forma defensiva; el estado es local al origen y navegador. No hay sincronización entre personas, control de cupo concurrente ni fuente corporativa de identidad. La vista administrativa sirve para explorar la demo y no representa una autorización real.
@@ -9,6 +11,10 @@ Los eventos e inscripciones del prototipo se resuelven en el navegador con datos
 `src/types.ts` define las estructuras del mock: `EventItem`, `Registration`, `AudiencePerson` y `EmailTemplate`. La selección de nómina es ficticia. Un archivo leído en el navegador sirve para visualizar una audiencia, no para dar acceso corporativo. La plantilla de email es una vista previa, no una entrega a sus destinatarios.
 
 ## Composición
+
+En 3D e Híbrida, `EventExplorer` usa el layout orbital: buscador, dos próximas funciones disponibles y la próxima reserva del usuario, con imágenes y textos legibles. El catálogo continúa debajo. Los marcadores DOM encuadran un planeta acotado; los encabezados secundarios son más bajos y alternan su lado. Original utiliza `layout="classic"`. [Legibilidad y registro de pases](cambios-eventos/legibilidad-y-registro-de-pases.md) describe el recorrido actual; [funciones, navegación y QR](cambios-eventos/README.md) reúne los cambios de flujos.
+
+`EventSession` conserva el horario, puertas y cupo de cada función. Las reservas guardan `sessionId` y `sessionSnapshot`; los helpers resuelven los eventos anteriores sin funciones y mantienen los pases en su fecha original. Ambos Apps conservan guardas síncronas por evento y función para reservar/cancelar una sola vez. La disponibilidad entre dispositivos sigue dependiendo del backend. Los QR se generan localmente bajo demanda; el del usuario contiene identificadores de demostración y el del admin un enlace a evento/función en la versión actual. Ver [contratos y límites del QR](qr-y-funciones.md).
 
 ```mermaid
 flowchart LR
@@ -23,7 +29,7 @@ flowchart LR
 
 Home, Mis eventos, Favoritos y administración comparten un header centrado que cambia de barra a cápsula flotante al bajar. El creador reemplaza ese shell por una barra de pasos con volver a la izquierda. Inscripción y pase usan un `dialog` nativo fullscreen y ocultan header y footer; se cierran con X o Escape y restauran el foco. El pase incluye un calendario mensual custom de presentación, con la fecha del evento resaltada, sin alterar la reserva.
 
-La intro se monta en cada refresh y puede repetirse desde el footer. Su timeline dura 3,4 segundos, no tiene botón «Saltar intro» y conserva Escape y movimiento reducido. GSAP se carga en su chunk lazy. El planeta pausa sus animaciones mientras la intro vuelve inerte el contenido, cuando queda fuera de pantalla y cuando se oculta la pestaña.
+La intro se monta en cada refresh y puede repetirse desde el footer. Su timeline apunta a 3,6 segundos, con salida antes de 4 segundos, sin botón «Saltar intro», conservando Escape y movimiento reducido. GSAP se carga en su chunk lazy. El ambiente 3D se pausa cuando su región queda fuera de pantalla, se oculta la pestaña o la persona activa la pausa en Mi perfil. La intro vuelve inerte el contenido DOM sin desmontar el renderer.
 
 `index.html` presenta el primer frame orbital con CSS crítico antes de descargar React. `IntroLoading` comparte el artwork con `CinematicIntro` y sustituye el antiguo fallback de solo logo; un reloj común conserva el avance al entregar la escena a GSAP. App retira el bootstrap y sus estilos después del primer commit. El snippet de `src/features/intro/bootstrap.html` documenta la composición inicial que debe mantenerse en sincronía con `index.html`.
 
@@ -41,7 +47,23 @@ En móvil la navegación principal y Administración se ubican en una barra infe
 
 Los selects, calendarios, horas y colores usan controles propios con popovers nativos. La inscripción valida con tostadas de Supernova, sin mensajes de validación del navegador. Administración mantiene filtros editados y aplicados por separado; Buscar actualiza métricas y tabla, los tags abren un diálogo para quitar filtros y el paginado muestra cinco o diez filas. Nuevos eventos no tienen TyC hasta activar su toggle e ingresar condiciones.
 
-El stack visual usa CSS, Motion y GSAP; iconos Lucide y tipografías locales. Animar transform/opacity y respetar `prefers-reduced-motion` preserva fluidez y accesibilidad. Las operaciones de negocio no deben depender de que una animación finalice.
+El stack visual usa CSS y Motion para UI, GSAP para la intro y Three.js con React Three Fiber para el universo; iconos Lucide y tipografías locales. El DOM anima transform/opacity. El engine modifica transforms de cámara/objetos y uniforms de shaders, según la experiencia 3D solicitada. Todas las capas respetan `prefers-reduced-motion`. Las operaciones de negocio no dependen de que una animación finalice.
+
+## Universo persistente
+
+`src/features/universe/` contiene el contrato, controlador de presentación, contexto liviano y engine lazy. `UniverseHost` es hermano del shell y permanece fuera de las vistas con `key={view}`, de los diálogos y del Suspense de intro. Mantiene un único Canvas activo, con identidad estable durante navegación, diálogos, replay y pérdida de contexto; el reintento de una excepción React reconstruye el árbol que falló. El engine no importa storage ni lee permisos. App conserva vistas, eventos, inscripciones, favoritos y estado del wizard.
+
+Cada intención real emite un `UniverseCommand` con ID monotónico y reloj `performance.now()`. El viaje nuevo parte de la pose actual y prevalece sobre el anterior; los callbacks viejos se descartan. `ready` se informa después del primer frame renderizado. Fallos de chunk, shader o contexto habilitan el fondo estático y resuelven la presentación, preservando las acciones DOM. Perfil permite un reintento explícito: contexto y shader conservan Canvas; un import rechazado usa una segunda entrada estática lazy y una excepción React requiere reconstruir su árbol. Al recuperar se emite una nueva solicitud para el destino actual, con encuadre directo. Las historias de resoluciones y cachés de cuerpos se acotan.
+
+Los ocho planetas del sistema solar y la nave usan coordenadas estables y superficies vectoriales locales compartidas por las dos presentaciones espaciales. `UniverseSurface` reserva regiones compactas para la cámara. Un fondo persistente, fuera de React desde el primer HTML, reutiliza la nebulosa de Tour, 60 estrellas SVG y siete partículas. Los hosts y Canvas son transparentes para compartirlo durante carga y navegación. El mouse no desplaza ninguna capa ni cámara. Mi perfil persiste la pausa en `supernova-universe-motion-v1`, independiente del tema; pausa y reduced motion detienen el fondo y usan render bajo demanda para resolver destinos sin vuelo.
+
+Bootstrap, fallback DOM y GSAP comparten el reloj de apertura. El primer frame solar y la fuente Manrope local se presentan antes de React. El handoff conserva su sesión por reloj entre Suspense y GSAP; un chunk tardío no repone el SVG ya retirado. Al liberar la app se cancela cualquier apertura pendiente. Replay conserva sección y scroll, y excluye la pausa por región fuera de pantalla desde su primer commit.
+
+El prompt 2 agrega materiales procedurales suaves, tres capas de estrellas, lunas instanciadas, fragmentos de Favoritos, observatorio y nave con cabina. El pool de partículas vive sólo durante el viaje. Hover/foco de controles DOM modifica una luz localizada; no emite navegación. La banda de horizonte del evento se mide por layout y scroll, mientras el DOM de origen se oculta visualmente detrás del diálogo. El prompt 3 encuadra el planeta en una región del encabezado del pase antes de su pulso y mantiene quieta la cámara durante la celebración. Las nervaduras de cabina se adaptan al ancho del viewport; pasar de paso en el wizard no cambia de destino.
+
+Las reservas y cancelaciones locales usan guardas síncronas para evitar duplicados dentro del mismo turno. El autosave del wizard conserva su debounce, con flush de la última edición antes de cerrar, en `pagehide` y al desmontar. Guardar o publicar marca el borrador temporal como terminado antes de limpiar storage. El boundary de intro libera el shell ante un import rechazado sin afectar el resto de la app. Abrir un evento o estudio excluye desde el primer commit la pausa por una región de sección fuera de pantalla.
+
+Los registros de alcance, verificación y límites están en [implementacion-01.md](experiencia-3d/implementacion-01.md), [implementacion-02.md](experiencia-3d/implementacion-02.md) e [implementacion-03.md](experiencia-3d/implementacion-03.md).
 
 ## Agentes del repositorio
 
