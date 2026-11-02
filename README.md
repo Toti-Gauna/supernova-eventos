@@ -30,7 +30,7 @@ En **Settings → Pages → Build and deployment**, la fuente debe ser **GitHub 
 
 La dirección de la demo es [https://toti-gauna.github.io/supernova-eventos/](https://toti-gauna.github.io/supernova-eventos/). Vite usa `/supernova-eventos/` para el build y la preview; el servidor de desarrollo conserva `/`. Para revisar el build publicado localmente, abrir [http://127.0.0.1:4173/supernova-eventos/](http://127.0.0.1:4173/supernova-eventos/) después de `npm run build` y `npm run preview`.
 
-Las portadas locales se resuelven con la base de Vite al mostrarse, incluidos eventos y borradores ya guardados. La navegación interna no cambia la URL y no necesita un fallback `404.html`. GitHub Pages aloja este prototipo estático; las inscripciones y los borradores siguen siendo locales y los emails no se envían.
+Las portadas locales se resuelven con la base de Vite al mostrarse, incluidos eventos y borradores ya guardados. Cada versión tiene su propia ruta (`/original/`, `/3d/`, `/hibrida/`, `/versiones/`) y GitHub Pages solo sirve archivos, así que el build copia `index.html` en cada una de esas carpetas y en `404.html` como fallback. GitHub Pages aloja este prototipo estático; las inscripciones y los borradores siguen siendo locales y los emails no se envían.
 
 ## Recorrido
 
