@@ -2,7 +2,7 @@
 .versions-brand { display:block; width:fit-content; color:#daeaf6; text-decoration:none; font-size:30px; letter-spacing:-1.5px; margin-bottom:80px; }
 .versions-page>h1 { font:500 clamp(40px,6vw,76px)/1.1 Manrope,sans-serif; letter-spacing:-.055em; margin:20px 0; }
 .versions-page>p { max-width:520px; color:#a8b5c2; line-height:1.8; }
-.versions-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; margin:48px 0; }
+.versions-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px; margin:48px 0; }
 .version-card { text-decoration:none; color:inherit; border:1px solid #b9d8ef24; border-radius:24px; padding:24px; background:linear-gradient(150deg,#081126,#030814); transition:transform .25s; }
 .version-card:hover { transform:translateY(-5px); }
 .version-card:focus-visible { outline:2px solid #4ec5ff; outline-offset:5px; }
@@ -15,7 +15,13 @@
 .version-preview>span { position:absolute; bottom:26px; right:32px; font-size:18px; color:#a9d0e9; }
 .version-3d .version-preview i { background:radial-gradient(circle at 25% 25%,#9fadc0,#546477 24%,#0b1e4a 65%,#010409); }
 .version-original .version-preview { background:radial-gradient(ellipse,#8cbee31a,transparent 70%); }
+/* Comercial: a mini promo banner instead of a planet. */
+.version-commercial .version-preview { overflow:hidden; border-radius:18px; background:linear-gradient(115deg,#4ec5ff 0 52%,#2348de 52% 100%); }
+.version-commercial .version-preview i { width:62%; height:14px; border-radius:7px; background:#04122b; box-shadow:0 22px 0 -2px #04122b, 0 48px 0 -4px #fff; justify-self:start; margin-left:22px; align-self:start; margin-top:38px; }
+.version-commercial .version-preview i::after { display:none; }
+.version-commercial .version-preview>span { color:#fff; }
 .versions-page>small { color:#788693; font-size:11px; }
 .version-access { text-decoration:none; color:inherit; font-size:11px; }
+@media(max-width:1100px) { .versions-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(max-width:760px) { .versions-grid { grid-template-columns:1fr; }.versions-brand { margin-bottom:48px; }.version-preview { height:130px; }.version-preview i::after { top:48px; }.version-card p { min-height:0; } }
 @media(prefers-reduced-motion:reduce) { .version-card { transition:none; } }

@@ -73,13 +73,41 @@ test.describe('sin sesión', () => {
   });
 
   test('cada versión muestra el acceso antes de entrar', async ({ page }) => {
-    for (const path of ['/original/', '/hibrida/']) {
+    for (const path of ['/original/', '/hibrida/', '/comercial/']) {
       await openGate(page, path);
       await page.getByRole('button', { name: 'Ingresar con cuenta corporativa' }).click();
       await expect(page.getByRole('button', { name: 'Abrir perfil de Alex García' })).toBeVisible();
       await expect(page.getByRole('button', { name: 'Administrar', exact: true })).toBeVisible();
       await page.evaluate(() => localStorage.removeItem('orbita-access-v1'));
     }
+  });
+});
+
+test.describe('acceso en una sola pantalla', () => {
+  test.use({ storageState: { cookies: [], origins: [] } });
+  const fitsViewport = (page: Page) => page.evaluate(() => document.documentElement.scrollHeight <= window.innerHeight);
+
+  test('en laptop entra completo, con las dos tarjetas a la vista', async ({ page }) => {
+    await page.setViewportSize({ width: 1366, height: 660 });
+    await openGate(page, '/comercial/');
+    await expect(page.getByRole('heading', { name: 'Soy parte del equipo' })).toBeInViewport();
+    await expect(page.getByRole('button', { name: 'Ingresar como invitado' })).toBeInViewport();
+    expect(await fitsViewport(page)).toBe(true);
+  });
+
+  test('en teléfono un selector alterna las tarjetas sin scroll', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await openGate(page, '/comercial/');
+    const internal = page.getByRole('button', { name: 'Personal interno', exact: true });
+    const external = page.getByRole('button', { name: 'Personal externo', exact: true });
+    await expect(internal).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.getByRole('heading', { name: 'Vengo con una invitación' })).toBeHidden();
+    expect(await fitsViewport(page)).toBe(true);
+    await external.click();
+    await expect(external).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.getByRole('heading', { name: 'Soy parte del equipo' })).toBeHidden();
+    await expect(page.getByRole('button', { name: 'Ingresar como invitado' })).toBeInViewport();
+    expect(await fitsViewport(page)).toBe(true);
   });
 });
 

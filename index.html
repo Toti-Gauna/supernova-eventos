@@ -8,17 +8,24 @@
     <link rel="stylesheet" href="/node_modules/@fontsource/manrope/latin-400.css" />
     <script>
       const segment = location.pathname.replace(/\/+$/, '').split('/').pop();
-      const experience = segment === 'original' ? 'original' : segment === 'hibrida' ? 'hybrid' : segment === 'versiones' ? 'versions' : '3d';
+      const experience = segment === 'original' ? 'original' : segment === 'hibrida' ? 'hybrid' : segment === 'comercial' ? 'commercial' : segment === 'versiones' ? 'versions' : '3d';
+      const commercial = experience === 'commercial';
       document.documentElement.dataset.experience = experience;
       if (experience === '3d' || experience === 'hybrid') document.documentElement.dataset.universe = 'true';
       try {
-        const preference = JSON.parse(localStorage.getItem('supernova-theme-v1') || '"dark"');
+        // Comercial keeps its own preference and starts in light, like Personal.
+        const preference = JSON.parse(localStorage.getItem(commercial ? 'orbita-commercial-theme-v1' : 'supernova-theme-v1') || (commercial ? '"light"' : '"dark"'));
         const theme = preference === 'light' ? 'light' : 'dark';
         document.documentElement.dataset.theme = theme;
         document.documentElement.style.colorScheme = theme;
-        document.querySelector('meta[name="theme-color"]').content = '#030B1C';
+        document.querySelector('meta[name="theme-color"]').content = commercial && theme === 'light' ? '#F5F7FA' : '#030B1C';
       } catch { document.documentElement.style.colorScheme = 'dark'; }
     </script>
+    <style>
+      /* Comercial has no space intro: hide the critical solar frame until React removes it. */
+      html[data-experience='commercial'] :is(#intro-bootstrap, #intro-bootstrap-note) { display: none !important; }
+      html[data-experience='commercial'][data-theme='light'], html[data-experience='commercial'][data-theme='light'] body { background: #f5f7fa !important; }
+    </style>
     <meta name="description" content="Descubrí experiencias que nos conectan. Órbita, los eventos de Personal para su equipo y sus invitados." />
     <title>Órbita — Eventos que nos conectan</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

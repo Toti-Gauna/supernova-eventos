@@ -70,7 +70,7 @@ test('las tres versiones tienen accesos independientes y la original no carga Th
   await expect(page.getByRole('heading', { name:'Tu próximo momento está esperando.' })).toBeVisible();
   await page.getByRole('link', { name:'Ver versiones', exact:true }).click();
   await expect(page.getByRole('heading', { name:'Elegí tu universo.' })).toBeVisible();
-  await expect(page.locator('.versions-grid>a')).toHaveCount(3);
+  await expect(page.locator('.versions-grid>a')).toHaveCount(4);
   await page.locator('.version-3d').click();
   await arrived(page, 'section:explore');
   await expect(page.locator('canvas[data-universe-camera]')).toHaveCount(1);

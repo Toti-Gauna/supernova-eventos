@@ -6,18 +6,18 @@ import { eventAccess } from '../../lib/events';
 import { eventForSession, getEventSessions } from '../../lib/eventSessions';
 import './featured-banner.css';
 
-interface Props { event: EventItem; session?: EventSession; joined: boolean; onOpen: () => void }
+interface Props { event: EventItem; session?: EventSession; joined: boolean; onOpen: () => void; label?: string; className?: string; headingId?: string }
 
 /** Festival-style promo for the featured event, inspired by Personal's event banners. */
-export default function FeaturedBanner({ event, session, joined, onOpen }: Props) {
+export default function FeaturedBanner({ event, session, joined, onOpen, label = 'NO TE LO PIERDAS', className = 'section-container', headingId = 'featured-banner-title' }: Props) {
   const shown = eventForSession(event, session);
   const sessions = getEventSessions(event);
-  const categoryClass = event.category.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  const categoryClass = event.category.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   const day = formatEventDate(shown.date, { weekday: 'long', day: 'numeric', month: 'long' });
-  return <section className={`featured-banner section-container category-${categoryClass}`} aria-labelledby="featured-banner-title">
+  return <section className={`featured-banner ${className} category-${categoryClass}`} aria-labelledby={headingId}>
     <div className="featured-banner-copy">
-      <span className="featured-banner-eyebrow"><span aria-hidden="true">✦</span> NO TE LO PIERDAS · {event.category.toUpperCase()}</span>
-      <h2 id="featured-banner-title">{event.title}</h2>
+      <span className="featured-banner-eyebrow"><span aria-hidden="true">✦</span> {label} · {event.category.toUpperCase()}</span>
+      <h2 id={headingId}>{event.title}</h2>
       <p>{event.subtitle}</p>
       <ul className="featured-banner-lineup">
         <li><CalendarDays size={15} aria-hidden="true" />{day.charAt(0).toUpperCase() + day.slice(1)}</li>

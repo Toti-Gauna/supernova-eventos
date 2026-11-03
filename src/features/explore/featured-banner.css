@@ -1,40 +1,50 @@
-/* Festival banner: a cyan field cut by a diagonal block, like Personal's promo banners. */
-.featured-banner { --banner-block:var(--festival-magenta,#d94fd0); position:relative; isolation:isolate; overflow:hidden; display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); align-items:center; gap:24px; margin-top:64px; padding:46px 0 46px 48px; border-radius:28px; color:#04122b; background:linear-gradient(120deg,#4ec5ff 0%,#1eb2f5 48%,#1d8fe8 100%); box-shadow:0 30px 80px #00071a40; }
-.featured-banner::before { content:''; position:absolute; inset:0; z-index:-1; background:linear-gradient(115deg,transparent 0 52%,var(--banner-block) 52% 100%); opacity:.92; }
-.featured-banner::after { content:''; position:absolute; z-index:-1; width:420px; height:420px; right:-90px; bottom:-210px; border:46px solid #ffffff24; border-radius:50%; }
+/* Festival banner: a cyan field cut by a diagonal block, like Personal's promo banners.
+   Compact by design (about 360 px tall on desktop) so it never takes the whole screen. */
+.featured-banner { --banner-block:var(--festival-magenta,#d94fd0); position:relative; isolation:isolate; overflow:hidden; display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); align-items:center; gap:28px; margin-top:56px; padding:clamp(26px,3.6vh,36px) 0 clamp(26px,3.6vh,36px) clamp(26px,3.4vw,44px); border-radius:28px; color:#04122b; background:linear-gradient(120deg,#5fcbff 0%,#1eb2f5 50%,#1d8fe8 100%); box-shadow:0 24px 64px #00071a33,inset 0 1px #ffffff59; }
+.featured-banner::before { content:''; position:absolute; inset:0; z-index:-1; background:linear-gradient(115deg,transparent 0 54%,var(--banner-block) 54% 100%); opacity:.94; }
+.featured-banner::after { content:''; position:absolute; z-index:-1; width:360px; height:360px; right:-80px; bottom:-200px; border:38px solid #ffffff24; border-radius:50%; }
 .featured-banner.category-bienestar { --banner-block:#18c39a; }
 .featured-banner.category-tecnologia { --banner-block:#2348de; }
 .featured-banner.category-comunidad { --banner-block:#5a50f9; }
 .featured-banner.category-aprendizaje { --banner-block:#4e26b1; }
-.featured-banner-copy { position:relative; display:grid; justify-items:start; gap:14px; }
-.featured-banner-eyebrow { display:inline-flex; align-items:center; gap:8px; padding:8px 13px; border-radius:999px; background:#04122b; color:#fff; font-size:10px; font-weight:700; letter-spacing:1.4px; }
+.featured-banner-copy { position:relative; display:grid; justify-items:start; gap:10px; min-width:0; }
+.featured-banner-eyebrow { display:inline-flex; align-items:center; gap:8px; padding:7px 12px; border-radius:999px; background:#04122b; color:#fff; font-size:10px; font-weight:700; letter-spacing:1.3px; }
 .featured-banner-eyebrow>span { color:#4ec5ff; }
-.featured-banner h2 { margin:4px 0 0; font:800 clamp(44px,5.6vw,78px)/.95 Manrope,sans-serif; letter-spacing:-3px; color:#04122b; }
-.featured-banner-copy>p { margin:0; font-size:17px; font-weight:600; color:#062a52; }
-.featured-banner-lineup { display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 4px; padding:0; list-style:none; }
-.featured-banner-lineup>li { display:inline-flex; align-items:center; gap:7px; padding:8px 13px; border-radius:999px; background:#ffffffd9; color:#04122b; font-size:12px; font-weight:600; }
+.featured-banner h2 { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; margin:2px 0 0; padding-bottom:.06em; font:800 clamp(32px,3.3vw,54px)/1.02 Manrope,sans-serif; letter-spacing:-.045em; color:#04122b; text-wrap:balance; }
+.featured-banner-copy>p { margin:0; font-size:15px; font-weight:600; color:#062a52; }
+.featured-banner-lineup { display:flex; flex-wrap:wrap; gap:6px; margin:2px 0 4px; padding:0; list-style:none; }
+.featured-banner-lineup>li { display:inline-flex; align-items:center; gap:6px; padding:6px 11px; border-radius:999px; background:#ffffffe0; color:#04122b; font-size:12px; font-weight:600; box-shadow:0 2px 8px #04122b14; }
 .featured-banner-lineup svg { color:#0b51df; }
-.featured-banner .featured-banner-cta { gap:14px; min-width:190px; border-radius:999px; background:#04122b; color:#fff; border:1px solid #04122b; box-shadow:0 12px 30px #04122b40; }
+.featured-banner .featured-banner-cta { gap:14px; min-width:176px; min-height:46px; border-radius:999px; background:#04122b; color:#fff; border:1px solid #04122b; box-shadow:0 12px 30px #04122b40; }
 .featured-banner .featured-banner-cta:hover { background:#0b1f45; }
-.featured-banner .featured-banner-cta:focus-visible { outline:3px solid #fff; outline-offset:3px; }
-.featured-banner-art { position:relative; height:320px; margin-right:-1px; }
-.featured-banner-block { position:absolute; inset:18px 48px 18px 36px; border-radius:24px; background:#ffffff2e; transform:rotate(-4deg); }
-.featured-banner-art>img { position:absolute; inset:0 48px 0 52px; width:calc(100% - 100px); height:100%; object-fit:cover; border-radius:24px; border:4px solid #fff; box-shadow:0 24px 60px #04122b55; }
-.featured-banner-date { position:absolute; left:28px; bottom:22px; display:grid; justify-items:center; min-width:76px; padding:10px 12px; border-radius:18px; background:#fff; color:#04122b; font-size:11px; font-weight:800; letter-spacing:1.4px; box-shadow:0 12px 30px #04122b40; }
-.featured-banner-date strong { font:800 34px/1 Manrope,sans-serif; letter-spacing:-1px; }
+/* Visible on cyan: a navy ring with a white halo. */
+.featured-banner .featured-banner-cta:focus-visible { outline:3px solid #04122b; outline-offset:3px; box-shadow:0 0 0 7px #ffffffcc; }
+.featured-banner-art { position:relative; height:clamp(220px,32vh,286px); margin-right:-1px; }
+.featured-banner-block { position:absolute; inset:14px 40px 14px 30px; border-radius:22px; background:#ffffff2e; transform:rotate(-4deg); }
+.featured-banner-art>img { position:absolute; inset:0 40px 0 44px; width:calc(100% - 84px); height:100%; object-fit:cover; border-radius:22px; border:4px solid #fff; box-shadow:0 22px 50px #04122b55; }
+.featured-banner-date { position:absolute; left:20px; bottom:18px; display:grid; justify-items:center; min-width:66px; padding:8px 10px; border-radius:16px; background:#fff; color:#04122b; font-size:10px; font-weight:800; letter-spacing:1.4px; box-shadow:0 12px 30px #04122b40; }
+.featured-banner-date strong { font:800 28px/1 Manrope,sans-serif; letter-spacing:-1px; }
 
 @media (max-width:900px) {
-  .featured-banner { grid-template-columns:1fr; padding:34px 28px 28px; gap:28px; }
-  .featured-banner::before { background:linear-gradient(160deg,transparent 0 58%,var(--banner-block) 58% 100%); }
-  .featured-banner-art { height:240px; }
-  .featured-banner-art>img { inset:0 8px 0 18px; width:calc(100% - 26px); }
-  .featured-banner-block { inset:12px 4px 12px 10px; }
-  .featured-banner-date { left:2px; bottom:14px; }
-}
-@media (max-width:520px) {
-  .featured-banner { margin-top:44px; padding:28px 20px 22px; border-radius:24px; }
-  .featured-banner h2 { letter-spacing:-2px; }
-  .featured-banner-copy>p { font-size:15px; }
-  .featured-banner .featured-banner-cta { width:100%; justify-content:center; }
+  .featured-banner { grid-template-columns:minmax(0,1fr) 38%; gap:16px; padding:24px 0 24px 24px; }
+  .featured-banner::before { background:linear-gradient(115deg,transparent 0 62%,var(--banner-block) 62% 100%); }
+  .featured-banner h2 { font-size:clamp(28px,4.4vw,38px); }
   .featured-banner-art { height:200px; }
+  .featured-banner-art>img { inset:0 16px 0 8px; width:calc(100% - 24px); }
+  .featured-banner-block { inset:10px 12px 10px 4px; }
+  .featured-banner-date { left:-6px; bottom:12px; }
+}
+/* Phones: the photo becomes a slim strip on top so the copy and CTA stay in view. */
+@media (max-width:600px) {
+  .featured-banner { grid-template-columns:1fr; gap:14px; margin-top:40px; padding:0 0 20px; border-radius:24px; }
+  .featured-banner::before { background:linear-gradient(165deg,transparent 0 70%,var(--banner-block) 70% 100%); }
+  .featured-banner-art { order:-1; height:132px; margin:0; }
+  .featured-banner-block { display:none; }
+  .featured-banner-art>img { inset:0; width:100%; border:0; border-radius:24px 24px 0 0; box-shadow:none; }
+  .featured-banner-date { left:auto; right:14px; bottom:-18px; min-width:58px; padding:7px 9px; }
+  .featured-banner-date strong { font-size:24px; }
+  .featured-banner-copy { padding:0 20px; }
+  .featured-banner h2 { font-size:30px; letter-spacing:-.04em; }
+  .featured-banner-copy>p { font-size:14px; }
+  .featured-banner .featured-banner-cta { width:100%; justify-content:center; }
 }

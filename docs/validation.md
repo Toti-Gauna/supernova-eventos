@@ -1,5 +1,30 @@
 # Validación del frontend
 
+## Una sola pantalla: acceso, banner y catálogo Comercial · 3 de noviembre de 2026
+
+- **Acceso.** Sin scroll en 1920 × 840, 1440 × 900, 1366 × 660, 390 × 844 y 360 × 740, medido con Chrome headless. En escritorio muestra las dos tarjetas; en teléfono, un selector alterna la tarjeta visible.
+- **Banner.** Unos 330 px de alto en 1920 × 840 (antes ocupaba casi toda la pantalla) y 275 px en 1366 × 660. En la home Comercial, las cards empiezan a 711 px en 1920 × 840.
+- **Catálogo Comercial.** Barra única (título y contador, búsqueda, orden y filtros) con chips de categoría y el atajo «Tu próximo pase».
+- `npm run build` aprobado.
+- **Corrida E2E integrada: 132 de 133.** El caso fallido detectó un bug real: en teléfono, la regla que ocultaba la bajada del acceso también ocultaba el aviso «Cerraste sesión». Se corrigió con una clase propia para la bajada. Después aprobaron los 12 casos afectados (`access.spec.ts`, `commercial.spec.ts` y el de navegación móvil de `e2e.spec.ts`); la suite completa no se volvió a correr tras ese ajuste.
+- Casos nuevos: acceso sin scroll en laptop y en teléfono con el selector, y atajo «Tu próximo pase» con retorno de foco.
+
+## Versión Comercial · 3 de noviembre de 2026
+
+[Versión Comercial](orbita/comercial.md) en `/comercial/`: estética de banners de Personal, sin espacio, planetas ni intro.
+
+- `npm run build` aprobado; genera `dist/comercial/index.html` para GitHub Pages.
+- **130/130 casos E2E en 15,3 minutos**, en una corrida integrada. Incluye los 4 nuevos de `tests/commercial.spec.ts`:
+  - sin nebulosa, canvas, intro ni sus descargas;
+  - tema claro propio;
+  - carrusel con pestañas, flechas, inscripción y salto al catálogo;
+  - rotación automática con pausa;
+  - cambio de versión conservando sesión y favoritos.
+
+  `tests/access.spec.ts` también cubre `/comercial/`.
+- Una corrida previa dio 128/130. Los 2 fallos de tiempo en `universe.spec.ts` (límite de 4 s de la intro y Escape durante el acercamiento) se debían a cuatro servidores Vite de la sesión que quedaron abiertos y competían por CPU. Al cerrarlos, esos casos aprobaron 6/6 repetidos y la suite completa volvió a aprobar entera.
+- Revisión visual con Chrome headless de la home en tema claro y oscuro (1440 px) y en claro a 390 px, más acceso, inscripción, Mis eventos, Administrar y la página de versiones.
+
 ## Órbita: marca, accesos interno y externo y paleta Personal · 3 de noviembre de 2026
 
 Cambios: [identidad y composición](orbita/README.md), [accesos](orbita/accesos.md) y [universo](orbita/universo.md).

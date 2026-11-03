@@ -7,6 +7,7 @@ const versions: { value: ExperienceVersion; label: string; description: string }
   { value: 'original', label: 'Original', description: 'El recorrido clásico' },
   { value: '3d', label: '3D', description: 'Planetas y nave en 3D' },
   { value: 'hybrid', label: '2D + 3D', description: 'Arte ilustrado y cámara espacial' },
+  { value: 'commercial', label: 'Comercial', description: 'Estética Personal, sin espacio' },
 ];
 
 export default function VersionSwitcher() {

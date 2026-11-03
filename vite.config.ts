@@ -5,7 +5,7 @@ import { resolve } from 'node:path';
 
 // GitHub Pages only serves files: each version path from src/versions/catalog.ts
 // needs its own index.html. 404.html mirrors the dev server's SPA fallback.
-const versionRoutes = ['original', '3d', 'hibrida', 'versiones'];
+const versionRoutes = ['original', '3d', 'hibrida', 'comercial', 'versiones'];
 
 function staticVersionRoutes(): Plugin {
   let outDir = '';

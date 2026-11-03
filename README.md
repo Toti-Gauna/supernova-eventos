@@ -32,7 +32,7 @@ En **Settings → Pages → Build and deployment**, la fuente debe ser **GitHub 
 
 La dirección de la demo es [https://toti-gauna.github.io/supernova-eventos/](https://toti-gauna.github.io/supernova-eventos/). Vite usa `/supernova-eventos/` para el build y la preview; el servidor de desarrollo conserva `/`. Para revisar el build publicado localmente, abrir [http://127.0.0.1:4173/supernova-eventos/](http://127.0.0.1:4173/supernova-eventos/) después de `npm run build` y `npm run preview`.
 
-Las portadas locales se resuelven con la base de Vite al mostrarse, incluidos eventos y borradores ya guardados. Cada versión tiene su propia ruta (`/original/`, `/3d/`, `/hibrida/`, `/versiones/`) y GitHub Pages solo sirve archivos, así que el build copia `index.html` en cada una de esas carpetas y en `404.html` como fallback. GitHub Pages aloja este prototipo estático; las inscripciones y los borradores siguen siendo locales y los emails no se envían.
+Las portadas locales se resuelven con la base de Vite al mostrarse, incluidos eventos y borradores ya guardados. Cada versión tiene su propia ruta (`/original/`, `/3d/`, `/hibrida/`, `/comercial/`, `/versiones/`) y GitHub Pages solo sirve archivos, así que el build copia `index.html` en cada una de esas carpetas y en `404.html` como fallback. GitHub Pages aloja este prototipo estático; las inscripciones y los borradores siguen siendo locales y los emails no se envían.
 
 ## Recorrido
 
@@ -65,7 +65,7 @@ Validación: build de producción, treinta y dos casos de navegador y revisión 
 
 ## Documentación y agentes
 
-- [Órbita: identidad, paleta y composición](docs/orbita/README.md), [accesos interno y externo](docs/orbita/accesos.md) y [universo recoloreado](docs/orbita/universo.md).
+- [Órbita: identidad, paleta y composición](docs/orbita/README.md), [accesos interno y externo](docs/orbita/accesos.md), [universo recoloreado](docs/orbita/universo.md) y [versión Comercial](docs/orbita/comercial.md), sin espacio ni planetas.
 - [Arquitectura del prototipo](docs/architecture.md).
 - [Prompt completo para implementar backend](docs/backend-prompt.md): contratos propuestos a validar, SSO, nómina, privacidad, inscripciones, email, archivos, pruebas y conexión posterior del FE.
 - [Agentes frontend y trailer](agents/README.md) en `agents/frontend/` y `agents/trailer/`, separados dentro de la misma carpeta y adaptados a Codex.

@@ -1,0 +1,73 @@
+/* Comercial: the Personal-style site. No space, no planets; bright banners on a
+   clean page. Everything is scoped to html[data-experience='commercial']. */
+html[data-experience='commercial'] { --page-bg:var(--bg); --cta-bg:#04122b; --cta-text:#fff; --card-shadow:0 10px 34px #052c5012; }
+html[data-experience='commercial'][data-theme='dark'] { --cta-bg:var(--accent); --cta-text:#03122b; --card-shadow:0 18px 50px #00071a59; }
+html[data-experience='commercial'] body,
+html[data-experience='commercial'] .app-shell { background:var(--page-bg); }
+
+/* Header: a solid bar at the top, the floating capsule on scroll stays as is */
+html[data-experience='commercial'] .site-header:not(.header-floating) { background:var(--panel); border-bottom-color:var(--line); box-shadow:0 1px 0 var(--line); }
+html[data-experience='commercial'] .wordmark { color:#1eb2f5; }
+html[data-experience='commercial'][data-theme='dark'] .wordmark { color:#4ec5ff; }
+html[data-experience='commercial'] .brand>svg { color:#1eb2f5; }
+
+/* Catalog: one action bar. Title and count on the left; search, sort and filters on the
+   same row; category chips right under it. Less copy, the cards start sooner. */
+html[data-experience='commercial'] .commercial-catalog { display:grid; grid-template-columns:auto minmax(0,1fr); column-gap:28px; align-items:center; padding-top:clamp(28px,5vh,48px); }
+html[data-experience='commercial'] .commercial-catalog>* { grid-column:1 / -1; }
+html[data-experience='commercial'] .commercial-catalog>.section-heading { grid-column:1; grid-row:1; flex-direction:row; align-items:center; gap:10px; margin:0; }
+html[data-experience='commercial'] .commercial-catalog>.search-toolbar { grid-column:2; grid-row:1; }
+html[data-experience='commercial'] .commercial-heading h2 { margin:0; font:800 30px/1.1 Manrope,sans-serif; letter-spacing:-.04em; }
+html[data-experience='commercial'] .commercial-count { display:inline-grid; place-items:center; min-width:34px; height:30px; padding:0 10px; border-radius:999px; background:var(--accent-strong); color:#fff; font-size:13px; font-weight:800; }
+html[data-experience='commercial'] .commercial-catalog .search-field { flex:1; }
+html[data-experience='commercial'] .commercial-catalog .result-info { position:absolute; width:1px; height:1px; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
+html[data-experience='commercial'] .commercial-catalog .category-row { justify-content:flex-start; gap:8px; margin:16px 0 4px; }
+html[data-experience='commercial'] .category-row>button { --chip:var(--accent-strong); border-color:transparent; background:var(--panel); color:var(--text); font-weight:600; box-shadow:var(--card-shadow); }
+html[data-experience='commercial'] .category-row>button[data-category='musica'] { --chip:var(--cat-musica); }
+html[data-experience='commercial'] .category-row>button[data-category='bienestar'] { --chip:var(--cat-bienestar); }
+html[data-experience='commercial'] .category-row>button[data-category='tecnologia'] { --chip:var(--cat-tecnologia); }
+html[data-experience='commercial'] .category-row>button[data-category='comunidad'] { --chip:var(--cat-comunidad); }
+html[data-experience='commercial'] .category-row>button[data-category='aprendizaje'] { --chip:var(--cat-aprendizaje); }
+html[data-experience='commercial'] .category-row>button>svg { color:var(--chip); }
+html[data-experience='commercial'] .category-row>button:hover { border-color:var(--chip); }
+html[data-experience='commercial'] .category-row>button.active { color:#fff; }
+html[data-experience='commercial'] .category-row>button.active>svg { color:#fff; }
+html[data-experience='commercial'] .category-row>button .category-active-surface { background:var(--chip); border-color:var(--chip); }
+html[data-experience='commercial'] .commercial-catalog .event-phase-heading { margin:20px 0 14px; }
+html[data-experience='commercial'] .commercial-catalog .event-phase-heading h3 { font-size:13px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+
+/* Cards: white, soft shadow, solid pill CTA */
+html[data-experience='commercial'] .event-card { border:0; background:var(--panel); box-shadow:var(--card-shadow); border-radius:24px; }
+html[data-experience='commercial'] .event-card:hover { box-shadow:0 18px 44px #052c501f; }
+html[data-experience='commercial'] .event-card .card-cta { background:var(--cta-bg); color:var(--cta-text); padding:11px 18px; }
+html[data-experience='commercial'] .event-card .card-cta:hover { background:var(--accent-strong); color:#fff; }
+html[data-experience='commercial'] .event-card .card-cta.joined { background:color-mix(in srgb,var(--green) 16%,transparent); color:var(--green); }
+html[data-experience='commercial'] :is(.search-field,.sort-field,.filter-toggle) { background:var(--panel); box-shadow:var(--card-shadow); }
+
+/* Less copy: cards keep title, date, place and action; the subtitle lives in the event. */
+html[data-experience='commercial'] .event-card-body>p { display:none; }
+html[data-experience='commercial'] .event-card .event-card-title { margin-bottom:14px; }
+html[data-experience='commercial'] .event-card { display:flex; flex-direction:column; }
+html[data-experience='commercial'] .event-card-body { display:flex; flex:1; flex-direction:column; }
+html[data-experience='commercial'] .event-card-bottom { margin-top:auto; }
+html[data-experience='commercial'] .event-card-body>:is(.event-access-chip,.scarcity) { align-self:flex-start; }
+
+/* Newsletter: one line and one button */
+html[data-experience='commercial'] .newsletter { margin-top:48px; padding:24px 30px; gap:20px; }
+html[data-experience='commercial'] .newsletter :is(.eyebrow,p) { display:none; }
+html[data-experience='commercial'] .newsletter h2 { margin:0; font-size:clamp(22px,2.2vw,28px); }
+html[data-experience='commercial'] .newsletter-orbit { width:52px; height:52px; font-size:22px; box-shadow:0 0 0 8px #ffffff12; }
+
+/* Sections in the rest of the views */
+html[data-experience='commercial'] :is(.my-events h1,.profile-page h1,.favorites-page h1) { font-weight:800; }
+html[data-experience='commercial'] .site-footer { border-top:1px solid var(--line); }
+html[data-experience='commercial'] .footer-main>span { display:none; }
+
+@media (max-width:900px) {
+  html[data-experience='commercial'] .commercial-catalog { grid-template-columns:minmax(0,1fr); row-gap:14px; }
+  html[data-experience='commercial'] .commercial-catalog>.section-heading { justify-content:flex-start; }
+  html[data-experience='commercial'] .commercial-catalog>.search-toolbar { grid-column:1; grid-row:2; display:grid; grid-template-columns:minmax(0,1fr) auto; gap:10px; }
+  html[data-experience='commercial'] .commercial-catalog .search-field { grid-column:1 / -1; }
+  html[data-experience='commercial'] .commercial-catalog .sort-field { min-width:0; }
+  html[data-experience='commercial'] .newsletter { padding:22px; }
+}

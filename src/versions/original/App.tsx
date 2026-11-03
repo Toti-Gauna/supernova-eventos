@@ -16,7 +16,7 @@ import Favorites from './features/favorites/Favorites';
 import RegistrationModal from './features/registration/RegistrationModal';
 import Profile from './features/profile/Profile';
 import SupernovaToast from '../../components/ui/SupernovaToast';
-import { useTheme } from './hooks/useTheme';
+import { COMMERCIAL_THEME_KEY, useTheme } from './hooks/useTheme';
 import { versionHref } from '../catalog';
 import IntroLoading from './features/intro/IntroLoading';
 
@@ -25,8 +25,9 @@ const CinematicIntro = lazy(() => import('./features/intro/CinematicIntro'));
 const KEYS = { events: 'supernova-events-v1', registrations: 'supernova-registrations-v1', favorites: 'supernova-favorites-v1', subscribed: 'supernova-subscribed-v1' };
 function storedArray<T>(key: string, fallback: T[]): T[] { const result = readStorage<T[]>(key, fallback); return Array.isArray(result) ? result : fallback; }
 
-export default function App() {
-  const { theme, toggleTheme } = useTheme();
+export default function App({ variant = 'original' }: { variant?: 'original' | 'commercial' }) {
+  const commercial = variant === 'commercial';
+  const { theme, toggleTheme } = useTheme(commercial ? COMMERCIAL_THEME_KEY : undefined, commercial ? 'light' : 'dark');
   const [view, setView] = useState<AppView>('explore');
   const [events, setEvents] = useState<EventItem[]>(() => withAccessDefaults(withDemoArchive(storedArray(KEYS.events, INITIAL_EVENTS), readStorage(DEMO_ARCHIVE_MIGRATION_KEY, false))));
   const [registrations, setRegistrations] = useState<Registration[]>(() => storedArray(KEYS.registrations, []));
@@ -39,7 +40,7 @@ export default function App() {
   viewerRef.current = viewer;
   const [selectedEvent, setSelectedEvent] = useState<EventItem | null>(null);
   const [selectedSessionId, setSelectedSessionId] = useState<string>();
-  const [showIntro, setShowIntro] = useState(true);
+  const [showIntro, setShowIntro] = useState(!commercial);
   const [studioActive, setStudioActive] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const registrationsRef = useRef(registrations);
@@ -127,16 +128,16 @@ export default function App() {
   const immersiveStudio = view === 'admin' && studioActive;
   const visibleFavoriteCount = events.filter(event => favorites.includes(event.id) && event.status !== 'draft' && canViewEvent(event, viewer)).length;
 
-  return <AccessContext.Provider value={access ?? INTERNAL_DEMO_PROFILE}><MotionConfig reducedMotion="user"><div data-experience="original" className={`app-shell view-${view} ${sessionActive ? '' : 'signed-out'}`}><div className="ambient-stars" aria-hidden="true" /><a className="skip-link" href="#main-content">Ir al contenido</a>
+  return <AccessContext.Provider value={access ?? INTERNAL_DEMO_PROFILE}><MotionConfig reducedMotion="user"><div data-experience={variant} className={`app-shell view-${view} ${sessionActive ? '' : 'signed-out'}`}>{!commercial && <div className="ambient-stars" aria-hidden="true" />}<a className="skip-link" href="#main-content">Ir al contenido</a>
     {sessionActive && !immersiveStudio && !selectedLiveEvent && <Header view={view} onNavigate={navigate} registrations={registrations} favoriteCount={visibleFavoriteCount} onLogout={logout} theme={theme} onThemeToggle={toggleTheme} />}
     <main id="main-content" className={immersiveStudio ? 'studio-main' : !sessionActive ? 'session-main' : ''} tabIndex={-1}>{sessionActive ? <AnimatePresence mode="wait"><motion.div key={view} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: .2 }}>
-      {view === 'explore' && <EventExplorer layout="classic" events={events} registrations={registrations} favorites={favorites} onFavorite={favorite} onOpen={openEvent} subscribed={subscribed} onSubscribe={subscribe} />}
+      {view === 'explore' && <EventExplorer layout={commercial ? 'commercial' : 'classic'} events={events} registrations={registrations} favorites={favorites} onFavorite={favorite} onOpen={openEvent} subscribed={subscribed} onSubscribe={subscribe} />}
       {view === 'registrations' && <MyEvents events={events} registrations={registrations} onOpen={openEvent} onExplore={() => navigate('explore')} />}
       {view === 'favorites' && <Favorites events={events} favorites={favorites} registrations={registrations} onFavorite={favorite} onOpen={openEvent} onExplore={() => navigate('explore')} />}
       {view === 'profile' && <Profile subscribed={subscribed} registrations={registrations.length} favorites={visibleFavoriteCount} onSubscribe={subscribe} onLogout={logout} onBack={() => navigate('explore')} />}
       {view === 'admin' && <div className={immersiveStudio ? 'studio-container' : 'section-container'}><Suspense fallback={<div className="page-loading"><span className="loading-star">✦</span><p>Preparando tu espacio de creación...</p></div>}><AdminPanel events={events} registrations={registrations} onCreate={create} onUpdate={update} onPreview={event => openEvent({ ...event, status: 'draft' })} notify={setToast} onWizardChange={setStudioActive} onBack={() => navigate('explore')} /></Suspense></div>}
     </motion.div></AnimatePresence> : <AccessGate onEnter={enter} signedOut={signedOut} />}</main>
-    {sessionActive && !immersiveStudio && !selectedLiveEvent && <footer className={`site-footer section-container ${view === 'admin' ? 'compact-footer' : ''}`}><div className="footer-main"><Brand compact />{view !== 'admin' && <span>Un universo de experiencias.<br />Una nueva forma de conectar.</span>}<button onClick={() => setShowIntro(true)}><Play size={11} fill="currentColor" /> Volver a vivir el inicio <ArrowUpRight size={12} /></button></div><div className="footer-bottom"><span>© 2026 Órbita · Personal · <a className="version-access" href={versionHref('versions')}>Ver versiones</a></span><span>Experiencia de demostración · Datos guardados en este navegador</span><span>HECHO PARA CONECTAR <span>✦</span></span></div></footer>}
+    {sessionActive && !immersiveStudio && !selectedLiveEvent && <footer className={`site-footer section-container ${view === 'admin' ? 'compact-footer' : ''}`}><div className="footer-main"><Brand compact />{view !== 'admin' && <span>Un universo de experiencias.<br />Una nueva forma de conectar.</span>}{!commercial && <button onClick={() => setShowIntro(true)}><Play size={11} fill="currentColor" /> Volver a vivir el inicio <ArrowUpRight size={12} /></button>}</div><div className="footer-bottom"><span>© 2026 Órbita · Personal · <a className="version-access" href={versionHref('versions')}>Ver versiones</a></span><span>Experiencia de demostración · Datos guardados en este navegador</span><span>HECHO PARA CONECTAR <span>✦</span></span></div></footer>}
     <AnimatePresence>{selectedLiveEvent && <RegistrationModal key={selectedLiveEvent.id} event={selectedLiveEvent} initialSessionId={selectedSessionId} registrations={selectedLiveEvent.status === 'draft' ? [] : registrations} registration={selectedLiveEvent.status === 'draft' ? undefined : registrations.find(r => sameRegistrationSession(selectedLiveEvent, r, selectedSessionId))} onClose={closeModal} onRegister={register} onCancel={cancel} />}</AnimatePresence>
     <AnimatePresence>{toast && <SupernovaToast message={toast} onDismiss={() => setToast(null)} />}</AnimatePresence>
   </div>{showIntro && <Suspense fallback={<IntroLoading onComplete={finishIntro} />}><CinematicIntro onComplete={finishIntro} /></Suspense>}</MotionConfig></AccessContext.Provider>;

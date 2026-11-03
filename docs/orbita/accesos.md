@@ -15,6 +15,8 @@
 
 Cerrar sesión vuelve a la pantalla de acceso, anuncia el cierre y lleva el foco al título.
 
+La pantalla entra completa en 1920 × 840, 1440 × 900, 1366 × 660, 390 × 844 y 360 × 740 sin scroll. En escritorio muestra las dos tarjetas a la vez; el formulario externo usa dos columnas. En teléfonos, un selector con `aria-pressed` alterna entre las dos tarjetas.
+
 ## Acceso por evento
 
 Cada evento declara `access: 'internal' | 'external' | 'all'`. Se elige en el paso **Audiencia** del creador («¿Quiénes pueden verlo?»), se muestra en la revisión y en la tabla de administración, y las cards del personal interno marcan «Abierto a invitados» o «Solo invitados externos».

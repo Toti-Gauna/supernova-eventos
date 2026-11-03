@@ -18,5 +18,6 @@ import './theme.css';
 import './components/ui/theme.css';
 import './scrollbars.css';
 import './orbita.css';
+import './commercial.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(<React.StrictMode><TourNebulaBackdrop /><VersionRouter /></React.StrictMode>);

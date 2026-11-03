@@ -6,6 +6,7 @@ import EventCard from '../../components/EventCard';
 import CosmicScene from '../../components/CosmicScene';
 import OrbitEventPreview from './OrbitEventPreview';
 import FeaturedBanner from './FeaturedBanner';
+import CommercialHero from './CommercialHero';
 import { canViewEvent, getEventPhase } from '../../lib/events';
 import { eventLocalDay } from '../../lib/calendar';
 import { eventForSession, getDisplaySession, getEventSessions, getRegistrationSession, sameRegistrationSession } from '../../lib/eventSessions';
@@ -15,7 +16,7 @@ import { useEventClock } from './useEventClock';
 import { useViewer } from '../access/access';
 import './explorer.css';
 
-interface Props { events: EventItem[]; registrations: Registration[]; favorites: string[]; onFavorite: (id: string) => void; onOpen: (event: EventItem, sessionId?: string) => void; subscribed: boolean; onSubscribe: () => void; layout?: 'classic' | 'orbital' }
+interface Props { events: EventItem[]; registrations: Registration[]; favorites: string[]; onFavorite: (id: string) => void; onOpen: (event: EventItem, sessionId?: string) => void; subscribed: boolean; onSubscribe: () => void; layout?: 'classic' | 'orbital' | 'commercial' }
 const categories = [{ label: 'Todo el universo', value: 'all', Icon: Compass }, { label: 'Música', value: 'Música', Icon: Music2 }, { label: 'Bienestar', value: 'Bienestar', Icon: Leaf }, { label: 'Tecnología', value: 'Tecnología', Icon: Zap }, { label: 'Comunidad', value: 'Comunidad', Icon: Users }, { label: 'Aprendizaje', value: 'Aprendizaje', Icon: Sparkles }];
 const normalize = (value: string) => value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 const PAGE_SIZE = 3;
@@ -73,6 +74,16 @@ export default function EventExplorer({ events, registrations, favorites, onFavo
     return event && session && sessionMatches(event, session) ? [{ event, session, registration }] : [];
   }).sort((a, b) => Date.parse(a.session.date) - Date.parse(b.session.date))[0];
   const orbital = layout === 'orbital';
+  const commercial = layout === 'commercial';
+  const heroSlides = commercial ? [...liveEvents]
+    .sort((a, b) => Number(b.featured) - Number(a.featured) || Date.parse(display(a).date) - Date.parse(display(b).date))
+    .slice(0, 4)
+    .map(event => ({ event, session: displayedSessions.get(event.id), joined: registrations.some(registration => registration.eventId === event.id) })) : [];
+  const nextPass = commercial ? registrations.flatMap(registration => {
+    const event = visible.find(item => item.id === registration.eventId);
+    const session = event ? getRegistrationSession(event, registration) : undefined;
+    return event && session && getEventPhase(eventForSession(event, session), now) !== 'ended' ? [{ event, session }] : [];
+  }).sort((a, b) => Date.parse(a.session.date) - Date.parse(b.session.date))[0] : undefined;
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const currentPage = Math.min(page, totalPages);
   const start = (currentPage - 1) * PAGE_SIZE;
@@ -118,7 +129,7 @@ export default function EventExplorer({ events, registrations, favorites, onFavo
   const preview = ({ event, session, registration }: PreviewPlan) => <OrbitEventPreview key={`${event.id}:${session.id}:${registration ? 'registered' : 'available'}`} event={event} session={session} phase={getEventPhase(eventForSession(event, session), now)} joined={Boolean(registration)} favorite={favorites.includes(event.id)} onFavorite={() => onFavorite(event.id)} onOpen={() => onOpen(event, registration?.sessionId || session.id)} />;
 
   return <>
-    <section className={`hero hero-compact ${orbital ? 'hero-orbital' : 'hero-classic'} section-container`}>
+    {commercial ? <CommercialHero slides={heroSlides} nextPass={nextPass} onOpen={onOpen} onExplore={explore} /> : <section className={`hero hero-compact ${orbital ? 'hero-orbital' : 'hero-classic'} section-container`}>
       <div className="hero-copy"><div className="hero-orbital-heading"><motion.span className="hero-eyebrow" initial={reducedMotion ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reducedMotion ? 0 : .6 }}><span className="live-dot" /> TU PRÓXIMO PLAN</motion.span>
         <motion.h1 aria-label="Salí de la rutina. Entrá en órbita." initial={reducedMotion ? false : { opacity: 0, y: 25 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reducedMotion ? 0 : .8, delay: reducedMotion ? 0 : .08, ease: [.22, 1, .36, 1] }}><span className="hero-title-opening">Salí de la rutina.</span><br className="hero-title-opening-break" />Entrá en <span className="hero-gradient">órbita<span className="title-star">✦</span></span>.</motion.h1>
         </div>
@@ -129,13 +140,15 @@ export default function EventExplorer({ events, registrations, favorites, onFavo
         </div></>}
         <motion.div className="hero-actions" initial={reducedMotion ? false : { opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reducedMotion ? 0 : .7, delay: reducedMotion ? 0 : .16 }}><button className="button primary" onClick={explore}>Ver eventos <ArrowUpRight size={18} /></button></motion.div>
       </div>{orbital ? <div className="hero-orbital-universe">{scene}<div className="cosmos-planet-slot" data-universe-surface="hero" data-universe-side="right" data-universe-composition="hero-compact" aria-hidden="true" /></div> : scene}
-    </section>
-    <section className={`event-section section-container${orbital ? ' orbital-catalog' : ''}`} id="experiencias" ref={catalog} tabIndex={-1} aria-labelledby="catalog-heading">
-      <div className="section-heading"><div><span className="eyebrow">TU AGENDA, CON OTRA ENERGÍA</span><h2 id="catalog-heading">Encontrá tu próximo <span>momento.</span></h2></div><span className="section-count"><span className="live-dot" /> {visible.length} experiencias en órbita</span></div>
+    </section>}
+    <section className={`event-section section-container${orbital ? ' orbital-catalog' : ''}${commercial ? ' commercial-catalog' : ''}`} id="experiencias" ref={catalog} tabIndex={-1} aria-labelledby="catalog-heading">
+      {commercial
+        ? <div className="section-heading commercial-heading"><h2 id="catalog-heading">Experiencias</h2><span className="commercial-count">{visible.length}<span className="sr-only"> experiencias disponibles</span></span></div>
+        : <div className="section-heading"><div><span className="eyebrow">TU AGENDA, CON OTRA ENERGÍA</span><h2 id="catalog-heading">Encontrá tu próximo <span>momento.</span></h2></div><span className="section-count"><span className="live-dot" /> {visible.length} experiencias en órbita</span></div>}
       <div className={`search-toolbar ${orbital ? 'orbital-catalog-toolbar' : ''}`}>{!orbital && searchField}<div className="sort-field"><CalendarDays size={15} /><SupernovaSelect label="Ordenar experiencias" value={sort} onChange={sort => updateFilters({ sort })} options={[{ value: 'date', label: 'Próximos primero' }, { value: 'available', label: 'Más lugares disponibles' }, { value: 'title', label: 'Nombre: A a Z' }]} /></div><button className={`filter-toggle ${showFilters || activeFilterCount ? 'active' : ''}`} aria-expanded={showFilters} onClick={() => setShowFilters(s => !s)}><SlidersHorizontal size={16} />Filtros{activeFilterCount > 0 && <span>{activeFilterCount}</span>}</button></div>
       <AnimatePresence>{showFilters && <motion.div className="expanded-filters" initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: .18 }}><div><div className="explorer-filter-field"><label htmlFor="explorer-mode">Modalidad</label><SupernovaSelect id="explorer-mode" label="Filtrar por modalidad" value={mode} onChange={mode => updateFilters({ mode })} options={[{ value: 'all', label: 'Todas las modalidades' }, ...['Presencial', 'Online', 'Híbrido'].map(mode => ({ value: mode, label: mode }))]} /></div><div className="explorer-filter-field"><label htmlFor="explorer-date">A partir del</label><SupernovaDatePicker id="explorer-date" label="Filtrar por fecha" value={fromDate} onChange={fromDate => updateFilters({ fromDate })} /></div><button className={`saved-filter ${savedOnly ? 'active' : ''}`} aria-pressed={savedOnly} onClick={() => updateFilters({ savedOnly: !savedOnly })}><Heart size={15} fill={savedOnly ? 'currentColor' : 'none'} />Mis favoritos{savedOnly && <Check size={12} />}</button>{activeFilterCount > 0 && <button className="reset-filters" onClick={clearFilters}>Limpiar filtros <X size={12} /></button>}</div></motion.div>}</AnimatePresence>
-      <div className="category-row" role="group" aria-label="Categorías de experiencias">{categories.map(({ label, value, Icon }) => <button key={value} className={category === value ? 'active' : ''} onClick={() => updateFilters({ category: value as EventCategory | 'all' })} aria-pressed={category === value}>{category === value && <motion.span className="category-active-surface" layoutId="active-category" transition={{ type: 'spring', stiffness: 380, damping: 34 }} />}<Icon size={15} />{label}{value === 'all' && <span className="category-count">{visible.length}</span>}</button>)}</div>
-      <div className="result-info" aria-live="polite" aria-atomic="true"><span>{resultSummary}</span><span>Buenos momentos. Mejor compañía.</span></div>
+      <div className="category-row" role="group" aria-label="Categorías de experiencias">{categories.map(({ label, value, Icon }) => <button key={value} data-category={normalize(value)} className={category === value ? 'active' : ''} onClick={() => updateFilters({ category: value as EventCategory | 'all' })} aria-pressed={category === value}>{category === value && <motion.span className="category-active-surface" layoutId="active-category" transition={{ type: 'spring', stiffness: 380, damping: 34 }} />}<Icon size={15} />{commercial && value === 'all' ? 'Todas' : label}{value === 'all' && <span className="category-count">{visible.length}</span>}</button>)}</div>
+      <div className="result-info" aria-live="polite" aria-atomic="true"><span>{resultSummary}</span>{!commercial && <span>Buenos momentos. Mejor compañía.</span>}</div>
       {filtered.length ? <>
         <div className="catalog-results" id="catalog-result-list" ref={results} tabIndex={-1} aria-label={`Eventos de la página ${currentPage} de ${totalPages}`}>
           {groups.map(group => <section key={group.key} className="event-phase-group" aria-labelledby={`phase-${group.key}`}>
@@ -156,7 +169,7 @@ export default function EventExplorer({ events, registrations, favorites, onFavo
         </div>}
       </> : <div className="empty-state"><span><Search size={30} /></span><h3>Todavía no hay una órbita por acá.</h3><p>Probá con otra búsqueda o descubrí todo el universo.</p><button className="button secondary" onClick={clearFilters}>Ver todas las experiencias <ArrowRight size={16} /></button></div>}
     </section>
-    {featured && <FeaturedBanner event={featured} session={displayedSessions.get(featured.id)} joined={registrations.some(registration => registration.eventId === featured.id)} onOpen={() => onOpen(featured, displayedSessions.get(featured.id)?.id)} />}
+    {featured && !commercial && <FeaturedBanner event={featured} session={displayedSessions.get(featured.id)} joined={registrations.some(registration => registration.eventId === featured.id)} onOpen={() => onOpen(featured, displayedSessions.get(featured.id)?.id)} />}
     <section className="newsletter section-container"><div className="newsletter-orbit" aria-hidden="true">✦</div><div><span className="eyebrow">LAS MEJORES CONEXIONES ESTÁN POR VENIR</span><h2>Que nada te pase de largo.</h2><p>Activá las novedades y descubrí tu próximo plan antes que nadie.</p></div><button className={`button ${subscribed ? 'secondary' : 'primary'}`} onClick={onSubscribe}>{subscribed ? <><Check size={17} /> Novedades activadas</> : <>Quiero estar en órbita <ArrowUpRight size={17} /></>}</button></section>
   </>;
 }
