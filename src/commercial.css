@@ -52,8 +52,12 @@ html[data-experience='commercial'] .event-card-body { display:flex; flex:1; flex
 html[data-experience='commercial'] .event-card-bottom { margin-top:auto; }
 html[data-experience='commercial'] .event-card-body>:is(.event-access-chip,.scarcity) { align-self:flex-start; }
 
-/* Newsletter: one line and one button */
+/* Newsletter: a slim strip right under the hero, one line and one button */
 html[data-experience='commercial'] .newsletter { margin-top:48px; padding:24px 30px; gap:20px; }
+html[data-experience='commercial'] .newsletter.newsletter-strip { margin-top:18px; padding:16px 22px; border-radius:22px; }
+html[data-experience='commercial'] .newsletter-strip .newsletter-orbit { width:44px; height:44px; font-size:18px; }
+html[data-experience='commercial'] .newsletter-strip h2 { font-size:clamp(19px,1.8vw,24px); }
+html[data-experience='commercial'] .newsletter-strip .button { min-height:44px; }
 html[data-experience='commercial'] .newsletter :is(.eyebrow,p) { display:none; }
 html[data-experience='commercial'] .newsletter h2 { margin:0; font-size:clamp(22px,2.2vw,28px); }
 html[data-experience='commercial'] .newsletter-orbit { width:52px; height:52px; font-size:22px; box-shadow:0 0 0 8px #ffffff12; }
@@ -61,7 +65,7 @@ html[data-experience='commercial'] .newsletter-orbit { width:52px; height:52px; 
 /* Sections in the rest of the views */
 html[data-experience='commercial'] :is(.my-events h1,.profile-page h1,.favorites-page h1) { font-weight:800; }
 html[data-experience='commercial'] .site-footer { border-top:1px solid var(--line); }
-html[data-experience='commercial'] .footer-main>span { display:none; }
+html[data-experience='commercial'] .footer-main>span:not(.brand) { display:none; }
 
 @media (max-width:900px) {
   html[data-experience='commercial'] .commercial-catalog { grid-template-columns:minmax(0,1fr); row-gap:14px; }

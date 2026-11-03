@@ -21,7 +21,7 @@ La pantalla entra completa en 1920 × 840, 1440 × 900, 1366 × 660, 390 × 844 
 
 Cada evento declara `access: 'internal' | 'external' | 'all'`. Se elige en el paso **Audiencia** del creador («¿Quiénes pueden verlo?»), se muestra en la revisión y en la tabla de administración, y las cards del personal interno marcan «Abierto a invitados» o «Solo invitados externos».
 
-- Un evento sin `access`, guardado antes de este cambio, se trata como `internal`. Los eventos de ejemplo recuperan el acceso declarado en `src/data/events.ts` (`withAccessDefaults`).
+- Un evento sin `access`, guardado antes de este cambio, se trata como `internal`. Los eventos de ejemplo recuperan el acceso declarado en `src/data/events.ts` (`migrateStoredEvents`, que también actualiza los textos de marca vieja de los eventos de ejemplo guardados).
 - `access` se combina con la audiencia de invitaciones existente: un evento privado sigue exigiendo que el email esté en la lista.
 - Con acceso `external`, la Tabla de nómina no se ofrece como audiencia: la nómina es personal interno.
 

@@ -20,6 +20,13 @@ Cuarta versión de Órbita, en [`/comercial/`](http://127.0.0.1:5173/comercial/)
   La banda de novedades queda en título y botón, y el footer sin texto de relleno.
 - **Tu próximo pase.** Si la persona tiene una inscripción vigente, el carrusel muestra un atajo con el evento y la fecha que abre el pase en un toque. Sin pase, ese lugar es «Ver todas las experiencias».
 - **Estilo.** Header blanco con el wordmark en cian, cards blancas con sombra suave, CTA navy alineados al pie de cada card. Las reglas están en `src/commercial.css`, todas bajo `html[data-experience='commercial']`.
+- **Mis eventos y Favoritos.** Vistas propias (`src/versions/commercial/`):
+  - encabezado de una línea con título, contador y acción;
+  - los pases como tickets con estado, chips, línea troquelada, «Ver mi pase» y calendario;
+  - los favoritos con búsqueda en el encabezado y, si están vacíos, tres planes para guardar con un toque.
+- **Novedades.** La banda «Que nada te pase de largo» va como franja debajo del carrusel.
+
+Próximos pasos: [plan por lotes](plan-premium.md).
 
 ## Lo que comparte
 

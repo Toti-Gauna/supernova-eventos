@@ -2,7 +2,7 @@ import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRe
 import { AnimatePresence, MotionConfig, motion } from 'motion/react';
 import { ArrowUpRight, Play } from 'lucide-react';
 import type { AccessProfile, AppView, EventItem, Registration } from './types';
-import { DEMO_ARCHIVE_MIGRATION_KEY, INITIAL_EVENTS, withAccessDefaults, withDemoArchive } from './data/events';
+import { DEMO_ARCHIVE_MIGRATION_KEY, INITIAL_EVENTS, migrateStoredEvents, withDemoArchive } from './data/events';
 import { readStorage, writeStorage } from './lib/storage';
 import { canAccessEvent, canViewEvent, getEventPhase } from './lib/events';
 import { changeSessionRegistration, eventForSession, getEventSession, getRegistrationSession, mergeEventSessionUpdate, sameRegistrationSession, withEventSessions } from './lib/eventSessions';
@@ -34,7 +34,7 @@ function storedArray<T>(key: string, fallback: T[]): T[] { const result = readSt
 export default function App({ variant = '3d' }: { variant?: '3d' | 'hybrid' }) {
   const { theme, toggleTheme } = useTheme();
   const [view, setView] = useState<AppView>('explore');
-  const [events, setEvents] = useState<EventItem[]>(() => withAccessDefaults(withDemoArchive(storedArray(KEYS.events, INITIAL_EVENTS), readStorage(DEMO_ARCHIVE_MIGRATION_KEY, false))));
+  const [events, setEvents] = useState<EventItem[]>(() => migrateStoredEvents(withDemoArchive(storedArray(KEYS.events, INITIAL_EVENTS), readStorage(DEMO_ARCHIVE_MIGRATION_KEY, false))));
   const [registrations, setRegistrations] = useState<Registration[]>(() => storedArray(KEYS.registrations, []));
   const [favorites, setFavorites] = useState<string[]>(() => storedArray(KEYS.favorites, []));
   const [subscribed, setSubscribed] = useState(() => readStorage<boolean>(KEYS.subscribed, false));

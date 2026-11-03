@@ -128,8 +128,10 @@ export default function EventExplorer({ events, registrations, favorites, onFavo
   const scene = <CosmicScene featured={featured ? display(featured) : undefined} onExplore={() => { if (featured) onOpen(featured, displayedSessions.get(featured.id)?.id); else explore(); }} />;
   const preview = ({ event, session, registration }: PreviewPlan) => <OrbitEventPreview key={`${event.id}:${session.id}:${registration ? 'registered' : 'available'}`} event={event} session={session} phase={getEventPhase(eventForSession(event, session), now)} joined={Boolean(registration)} favorite={favorites.includes(event.id)} onFavorite={() => onFavorite(event.id)} onOpen={() => onOpen(event, registration?.sessionId || session.id)} />;
 
+  const newsletter = <section className={`newsletter section-container${commercial ? ' newsletter-strip' : ''}`}><div className="newsletter-orbit" aria-hidden="true">✦</div><div><span className="eyebrow">LAS MEJORES CONEXIONES ESTÁN POR VENIR</span><h2>Que nada te pase de largo.</h2><p>Activá las novedades y descubrí tu próximo plan antes que nadie.</p></div><button className={`button ${subscribed ? 'secondary' : 'primary'}`} onClick={onSubscribe}>{subscribed ? <><Check size={17} /> Novedades activadas</> : <>Quiero estar en órbita <ArrowUpRight size={17} /></>}</button></section>;
+
   return <>
-    {commercial ? <CommercialHero slides={heroSlides} nextPass={nextPass} onOpen={onOpen} onExplore={explore} /> : <section className={`hero hero-compact ${orbital ? 'hero-orbital' : 'hero-classic'} section-container`}>
+    {commercial ? <><CommercialHero slides={heroSlides} nextPass={nextPass} onOpen={onOpen} onExplore={explore} />{newsletter}</> : <section className={`hero hero-compact ${orbital ? 'hero-orbital' : 'hero-classic'} section-container`}>
       <div className="hero-copy"><div className="hero-orbital-heading"><motion.span className="hero-eyebrow" initial={reducedMotion ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reducedMotion ? 0 : .6 }}><span className="live-dot" /> TU PRÓXIMO PLAN</motion.span>
         <motion.h1 aria-label="Salí de la rutina. Entrá en órbita." initial={reducedMotion ? false : { opacity: 0, y: 25 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reducedMotion ? 0 : .8, delay: reducedMotion ? 0 : .08, ease: [.22, 1, .36, 1] }}><span className="hero-title-opening">Salí de la rutina.</span><br className="hero-title-opening-break" />Entrá en <span className="hero-gradient">órbita<span className="title-star">✦</span></span>.</motion.h1>
         </div>
@@ -170,6 +172,6 @@ export default function EventExplorer({ events, registrations, favorites, onFavo
       </> : <div className="empty-state"><span><Search size={30} /></span><h3>Todavía no hay una órbita por acá.</h3><p>Probá con otra búsqueda o descubrí todo el universo.</p><button className="button secondary" onClick={clearFilters}>Ver todas las experiencias <ArrowRight size={16} /></button></div>}
     </section>
     {featured && !commercial && <FeaturedBanner event={featured} session={displayedSessions.get(featured.id)} joined={registrations.some(registration => registration.eventId === featured.id)} onOpen={() => onOpen(featured, displayedSessions.get(featured.id)?.id)} />}
-    <section className="newsletter section-container"><div className="newsletter-orbit" aria-hidden="true">✦</div><div><span className="eyebrow">LAS MEJORES CONEXIONES ESTÁN POR VENIR</span><h2>Que nada te pase de largo.</h2><p>Activá las novedades y descubrí tu próximo plan antes que nadie.</p></div><button className={`button ${subscribed ? 'secondary' : 'primary'}`} onClick={onSubscribe}>{subscribed ? <><Check size={17} /> Novedades activadas</> : <>Quiero estar en órbita <ArrowUpRight size={17} /></>}</button></section>
+    {!commercial && newsletter}
   </>;
 }

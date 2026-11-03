@@ -1,5 +1,12 @@
 # Validación del frontend
 
+## Lote 1 premium: Mis eventos, Favoritos y banda bajo el carrusel · 3 de noviembre de 2026
+
+- Corrida E2E integrada: **134 de 135 en 17,7 minutos**.
+  - El fallo (`intro-earth.spec.ts`, versión 2D + 3D) fue de tiempo: `clock.pauseAt` no pudo avanzar al pasado. Ese archivo, repetido dos veces aislado, aprobó 8/8.
+  - Casos nuevos en `commercial.spec.ts`: tickets de Mis eventos con pase y calendario, sugerencias de Favoritos que se guardan con un toque, y migración de eventos guardados con la marca anterior.
+- Revisión visual con Chrome headless de Comercial en 1920 × 840 oscuro, 1440 × 900 claro y 390 × 844 oscuro: home, Mis eventos y Favoritos. Plan de próximos lotes en [orbita/plan-premium.md](orbita/plan-premium.md).
+
 ## Una sola pantalla: acceso, banner y catálogo Comercial · 3 de noviembre de 2026
 
 - **Acceso.** Sin scroll en 1920 × 840, 1440 × 900, 1366 × 660, 390 × 844 y 360 × 740, medido con Chrome headless. En escritorio muestra las dos tarjetas; en teléfono, un selector alterna la tarjeta visible.

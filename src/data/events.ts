@@ -68,7 +68,22 @@ export function withDemoArchive(events: EventItem[], alreadyMigrated: boolean): 
   return [...events, ARCHIVED_EVENT];
 }
 
-/** Seed events keep their declared access; any other event saved before access existed stays internal. */
-export function withAccessDefaults(events: EventItem[]): EventItem[] {
-  return events.map(event => event.access ? event : { ...event, access: [...INITIAL_EVENTS, ARCHIVED_EVENT].find(seed => seed.id === event.id)?.access ?? 'internal' });
+const SEEDS = [...INITIAL_EVENTS, ARCHIVED_EVENT];
+const LEGACY_BRAND = /Supernova|Telef[oó]nica|Movistar/;
+const SEED_TEXT_FIELDS = ['title', 'subtitle', 'description', 'terms', 'location', 'host'] as const;
+
+/**
+ * Brings events saved in the browser up to date: missing access becomes the seed's (or
+ * internal), and seed events still carrying the old brand take the current seed copy.
+ * Counts, sessions and anything else the person changed are kept.
+ */
+export function migrateStoredEvents(events: EventItem[]): EventItem[] {
+  return events.map(event => {
+    const seed = SEEDS.find(item => item.id === event.id);
+    const access = event.access ?? seed?.access ?? 'internal';
+    const outdated = seed && SEED_TEXT_FIELDS.some(field => LEGACY_BRAND.test(event[field]));
+    if (!outdated && event.access) return event;
+    const copy = outdated ? Object.fromEntries(SEED_TEXT_FIELDS.map(field => [field, seed[field]])) : {};
+    return { ...event, ...copy, access };
+  });
 }

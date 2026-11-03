@@ -2,7 +2,7 @@ import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRe
 import { AnimatePresence, MotionConfig, motion } from 'motion/react';
 import { ArrowUpRight, Play } from 'lucide-react';
 import type { AccessProfile, AppView, EventItem, Registration } from '../../types';
-import { DEMO_ARCHIVE_MIGRATION_KEY, INITIAL_EVENTS, withAccessDefaults, withDemoArchive } from '../../data/events';
+import { DEMO_ARCHIVE_MIGRATION_KEY, INITIAL_EVENTS, migrateStoredEvents, withDemoArchive } from '../../data/events';
 import { readStorage, writeStorage } from '../../lib/storage';
 import { canAccessEvent, canViewEvent, getEventPhase } from '../../lib/events';
 import { changeSessionRegistration, eventForSession, getEventSession, getRegistrationSession, mergeEventSessionUpdate, sameRegistrationSession, withEventSessions } from '../../lib/eventSessions';
@@ -12,6 +12,8 @@ import AccessGate from '../../features/access/AccessGate';
 import { AccessContext, INTERNAL_DEMO_PROFILE, toViewer, useAccessSession } from '../../features/access/access';
 import EventExplorer from '../../features/explore/EventExplorer';
 import MyEvents from './features/registration/MyEvents';
+import CommercialMyEvents from '../commercial/CommercialMyEvents';
+import CommercialFavorites from '../commercial/CommercialFavorites';
 import Favorites from './features/favorites/Favorites';
 import RegistrationModal from './features/registration/RegistrationModal';
 import Profile from './features/profile/Profile';
@@ -29,7 +31,7 @@ export default function App({ variant = 'original' }: { variant?: 'original' | '
   const commercial = variant === 'commercial';
   const { theme, toggleTheme } = useTheme(commercial ? COMMERCIAL_THEME_KEY : undefined, commercial ? 'light' : 'dark');
   const [view, setView] = useState<AppView>('explore');
-  const [events, setEvents] = useState<EventItem[]>(() => withAccessDefaults(withDemoArchive(storedArray(KEYS.events, INITIAL_EVENTS), readStorage(DEMO_ARCHIVE_MIGRATION_KEY, false))));
+  const [events, setEvents] = useState<EventItem[]>(() => migrateStoredEvents(withDemoArchive(storedArray(KEYS.events, INITIAL_EVENTS), readStorage(DEMO_ARCHIVE_MIGRATION_KEY, false))));
   const [registrations, setRegistrations] = useState<Registration[]>(() => storedArray(KEYS.registrations, []));
   const [favorites, setFavorites] = useState<string[]>(() => storedArray(KEYS.favorites, []));
   const [subscribed, setSubscribed] = useState(() => readStorage<boolean>(KEYS.subscribed, false));
@@ -132,8 +134,10 @@ export default function App({ variant = 'original' }: { variant?: 'original' | '
     {sessionActive && !immersiveStudio && !selectedLiveEvent && <Header view={view} onNavigate={navigate} registrations={registrations} favoriteCount={visibleFavoriteCount} onLogout={logout} theme={theme} onThemeToggle={toggleTheme} />}
     <main id="main-content" className={immersiveStudio ? 'studio-main' : !sessionActive ? 'session-main' : ''} tabIndex={-1}>{sessionActive ? <AnimatePresence mode="wait"><motion.div key={view} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: .2 }}>
       {view === 'explore' && <EventExplorer layout={commercial ? 'commercial' : 'classic'} events={events} registrations={registrations} favorites={favorites} onFavorite={favorite} onOpen={openEvent} subscribed={subscribed} onSubscribe={subscribe} />}
-      {view === 'registrations' && <MyEvents events={events} registrations={registrations} onOpen={openEvent} onExplore={() => navigate('explore')} />}
-      {view === 'favorites' && <Favorites events={events} favorites={favorites} registrations={registrations} onFavorite={favorite} onOpen={openEvent} onExplore={() => navigate('explore')} />}
+      {view === 'registrations' && commercial && <CommercialMyEvents events={events} registrations={registrations} onOpen={openEvent} onExplore={() => navigate('explore')} />}
+      {view === 'registrations' && !commercial && <MyEvents events={events} registrations={registrations} onOpen={openEvent} onExplore={() => navigate('explore')} />}
+      {view === 'favorites' && commercial && <CommercialFavorites events={events} favorites={favorites} registrations={registrations} onFavorite={favorite} onOpen={openEvent} onExplore={() => navigate('explore')} />}
+      {view === 'favorites' && !commercial && <Favorites events={events} favorites={favorites} registrations={registrations} onFavorite={favorite} onOpen={openEvent} onExplore={() => navigate('explore')} />}
       {view === 'profile' && <Profile subscribed={subscribed} registrations={registrations.length} favorites={visibleFavoriteCount} onSubscribe={subscribe} onLogout={logout} onBack={() => navigate('explore')} />}
       {view === 'admin' && <div className={immersiveStudio ? 'studio-container' : 'section-container'}><Suspense fallback={<div className="page-loading"><span className="loading-star">✦</span><p>Preparando tu espacio de creación...</p></div>}><AdminPanel events={events} registrations={registrations} onCreate={create} onUpdate={update} onPreview={event => openEvent({ ...event, status: 'draft' })} notify={setToast} onWizardChange={setStudioActive} onBack={() => navigate('explore')} /></Suspense></div>}
     </motion.div></AnimatePresence> : <AccessGate onEnter={enter} signedOut={signedOut} />}</main>

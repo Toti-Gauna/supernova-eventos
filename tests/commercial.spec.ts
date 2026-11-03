@@ -84,6 +84,44 @@ test('con un pase vigente, el atajo «Tu próximo pase» lo abre en un toque', a
   await expect(shortcut).toBeFocused();
 });
 
+test('Mis eventos muestra cada pase como ticket y Favoritos sugiere planes para guardar', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('supernova-registrations-v1', JSON.stringify([{
+    id: 'SN-TICKET01', eventId: 'next-frontier', sessionId: 'next-frontier:main', name: 'Alex García', email: 'alex.garcia@demo.personal.test', companions: 0, createdAt: '2026-10-06T15:00:00Z',
+  }])));
+  await openCommercial(page);
+  await page.getByRole('button', { name: /^Mis eventos/ }).first().click();
+  await expect(page.getByRole('heading', { name: 'Mis eventos', level: 1 })).toBeVisible();
+  const ticket = page.getByRole('article', { name: 'El futuro empieza acá' });
+  await expect(ticket).toContainText('Tu próximo');
+  await expect(ticket.getByRole('button', { name: 'Agregar El futuro empieza acá al calendario' })).toBeVisible();
+  await ticket.getByRole('button', { name: 'Ver mi pase' }).click();
+  await expect(page.getByRole('dialog')).toContainText('SN-TICKET01');
+  await page.keyboard.press('Escape');
+
+  await page.getByRole('button', { name: /^Favoritos/ }).first().click();
+  await expect(page.getByRole('heading', { name: 'Favoritos', level: 1 })).toBeVisible();
+  const suggestions = page.getByRole('region', { name: 'Para empezar' });
+  await expect(suggestions.locator('article')).toHaveCount(3);
+  await suggestions.getByRole('button', { name: 'Guardar Órbita Fest', exact: true }).click();
+  await expect(page.getByRole('region', { name: 'Para empezar' })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Quitar Órbita Fest de favoritos', exact: true })).toBeVisible();
+  await expect(page.getByRole('textbox', { name: 'Buscar en favoritos' })).toBeVisible();
+});
+
+test('los eventos de ejemplo guardados con la marca anterior se actualizan', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('supernova-events-v1', JSON.stringify([{
+    id: 'supernova-sessions', title: 'Supernova Sessions', subtitle: 'Una noche. Muchas conexiones.', category: 'Música', image: '/images/concert.jpg',
+    date: '2026-10-23T19:00:00-03:00', endDate: '2026-10-24T23:00:00-03:00', location: 'Terraza Movistar · Buenos Aires', mode: 'Presencial',
+    capacity: 480, registered: 190, description: 'Texto anterior.', host: 'Equipo de Experiencias', featured: true, isPrivate: false,
+    status: 'published', companions: 1, terms: 'Evento exclusivo para colaboradores de Telefónica.',
+  }])));
+  await openCommercial(page);
+  await expect(page.getByText(/Supernova Sessions|Terraza Movistar/)).toHaveCount(0);
+  await expect(page.getByRole('region', { name: 'Experiencias destacadas' }).getByRole('heading', { name: 'Órbita Fest', level: 2 })).toBeVisible();
+  const stored = await page.evaluate(() => JSON.parse(localStorage.getItem('supernova-events-v1')!)[0]);
+  expect(stored).toMatchObject({ title: 'Órbita Fest', location: 'Terraza Personal · Buenos Aires', registered: 190, access: 'all' });
+});
+
 test('con movimiento permitido rota sola y se puede pausar', async ({ page }) => {
   await openCommercial(page, 'no-preference');
   const hero = page.getByRole('region', { name: 'Experiencias destacadas' });
