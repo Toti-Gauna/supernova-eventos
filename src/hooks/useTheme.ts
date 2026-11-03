@@ -16,7 +16,7 @@ export function useTheme() {
     document.documentElement.dataset.theme = theme;
     document.documentElement.dataset.universe = 'true';
     document.documentElement.style.colorScheme = theme;
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#020205');
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#030B1C');
     writeStorage(THEME_KEY, theme);
   }, [theme]);
 

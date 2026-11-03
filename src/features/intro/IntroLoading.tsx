@@ -34,8 +34,8 @@ export default function IntroLoading({ onComplete, variant = '3d' }: IntroLoadin
   };
 
   return createPortal(
-    <div ref={stageRef} className={`cinematic-intro intro-pending ${status === 'ready' ? 'intro-revealing' : ''}`} style={style} data-cinematic-intro data-intro-variant={variant} data-intro-started-at={introStartedAtMs} data-intro-universe-status={status} tabIndex={-1} role="dialog" aria-modal="true" aria-label="Bienvenido a Supernova Eventos" aria-describedby="intro-loading-description">
-      <p id="intro-loading-description" className="intro-sr-only">Supernova. Conectá sin límites. Preparando la experiencia. Presioná Escape para continuar.</p>
+    <div ref={stageRef} className={`cinematic-intro intro-pending ${status === 'ready' ? 'intro-revealing' : ''}`} style={style} data-cinematic-intro data-intro-variant={variant} data-intro-started-at={introStartedAtMs} data-intro-universe-status={status} tabIndex={-1} role="dialog" aria-modal="true" aria-label="Te damos la bienvenida a Órbita" aria-describedby="intro-loading-description">
+      <p id="intro-loading-description" className="intro-sr-only">Órbita. Conectá sin límites. Preparando la experiencia. Presioná Escape para continuar.</p>
       <IntroArtwork />
     </div>,
     document.body,

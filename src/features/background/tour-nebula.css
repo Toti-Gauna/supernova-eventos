@@ -1,4 +1,4 @@
-/* Exact Tour image, glow, timings and particle positions; one persistent host. */
+/* Órbita night: recolored Tour image (navy/blue, cyan glows, a hint of violet/magenta). Same timings, positions and host. */
 #tour-nebula-backdrop { display: none; }
 html:is([data-experience='3d'], [data-experience='hybrid']) #tour-nebula-backdrop {
   display: block;
@@ -8,7 +8,7 @@ html:is([data-experience='3d'], [data-experience='hybrid']) #tour-nebula-backdro
   overflow: hidden;
   isolation: isolate;
   pointer-events: none;
-  background: #020205;
+  background: #030b1c;
 }
 html:is([data-experience='3d'], [data-experience='hybrid']) #root { position: relative; z-index: 1; }
 #tour-nebula-backdrop .tour-nebula-layers {
@@ -36,14 +36,14 @@ html:is([data-experience='3d'], [data-experience='hybrid']) #root { position: re
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 50% at 50% 100%, rgba(124, 58, 237, .45) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 15% 60%, rgba(99, 46, 180, .25) 0%, transparent 50%),
-    radial-gradient(ellipse 40% 55% at 88% 65%, rgba(236, 72, 153, .2) 0%, transparent 50%);
+    radial-gradient(ellipse 80% 50% at 50% 100%, rgba(35, 72, 222, .4) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 15% 60%, rgba(30, 178, 245, .16) 0%, transparent 50%),
+    radial-gradient(ellipse 40% 55% at 88% 65%, rgba(224, 71, 158, .1) 0%, transparent 50%);
   animation: tour-nebula-breathe 5s ease-in-out infinite alternate;
 }
 #tour-nebula-backdrop .tour-nebula-stars,
 #tour-nebula-backdrop .tour-nebula-particles { position: absolute; inset: 0; width: 100%; height: 100%; }
-#tour-nebula-backdrop .tour-nebula-stars > circle { fill: #fff; }
+#tour-nebula-backdrop .tour-nebula-stars > circle { fill: #eef5ff; }
 #tour-nebula-backdrop .tour-nebula-particle {
   position: absolute;
   width: .4rem;
@@ -52,10 +52,10 @@ html:is([data-experience='3d'], [data-experience='hybrid']) #root { position: re
   opacity: .45;
   animation: tour-nebula-particle-float 7s ease-in-out infinite;
 }
-#tour-nebula-backdrop .tour-nebula-particle[data-tone='violet'] { background: #a855f7; box-shadow: 0 0 .8rem #a855f7; }
-#tour-nebula-backdrop .tour-nebula-particle[data-tone='magenta'] { background: #ec4899; box-shadow: 0 0 .8rem #ec4899; }
-#tour-nebula-backdrop .tour-nebula-particle[data-tone='cyan'] { background: #06b6d4; box-shadow: 0 0 .8rem #06b6d4; }
-#tour-nebula-backdrop .tour-nebula-particle[data-tone='pink'] { background: #f472b6; box-shadow: 0 0 .8rem #f472b6; }
+#tour-nebula-backdrop .tour-nebula-particle[data-tone='cyan'] { background: #4ec5ff; box-shadow: 0 0 .8rem #4ec5ff; }
+#tour-nebula-backdrop .tour-nebula-particle[data-tone='blue'] { background: #4d7cff; box-shadow: 0 0 .8rem #4d7cff; }
+#tour-nebula-backdrop .tour-nebula-particle[data-tone='violet'] { background: #7b6cf6; box-shadow: 0 0 .8rem #7b6cf6; }
+#tour-nebula-backdrop .tour-nebula-particle[data-tone='magenta'] { background: #e0479e; box-shadow: 0 0 .8rem #e0479e; }
 #tour-nebula-backdrop .tour-nebula-particle-1 { top: 18%; left: 12%; animation-duration: 6s; }
 #tour-nebula-backdrop .tour-nebula-particle-2 { top: 30%; right: 14%; animation-duration: 5s; animation-delay: -1.5s; }
 #tour-nebula-backdrop .tour-nebula-particle-3 { bottom: 22%; left: 18%; animation-duration: 7s; animation-delay: -2.5s; }
@@ -66,7 +66,7 @@ html:is([data-experience='3d'], [data-experience='hybrid']) #root { position: re
 #tour-nebula-backdrop .tour-nebula-shade {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(2, 2, 5, .12), rgba(2, 2, 5, .22) 55%, rgba(2, 2, 5, .42));
+  background: linear-gradient(180deg, rgba(3, 11, 28, .12), rgba(3, 11, 28, .22) 55%, rgba(3, 11, 28, .42));
 }
 #tour-nebula-backdrop:not([data-motion='running']) .tour-nebula-layers,
 #tour-nebula-backdrop:not([data-motion='running']) .tour-nebula-image,

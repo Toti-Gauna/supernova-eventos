@@ -75,11 +75,11 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
       tabIndex={-1}
       role="dialog"
       aria-modal="true"
-      aria-label="Bienvenido a Supernova Eventos"
+      aria-label="Te damos la bienvenida a Órbita"
       aria-describedby="intro-description"
     >
       <p id="intro-description" className="intro-sr-only">
-        Supernova. Conectá sin límites. Un universo de experiencias. La presentación termina en unos segundos. Presioná Escape para continuar.
+        Órbita. Conectá sin límites. Un universo de experiencias. La presentación termina en unos segundos. Presioná Escape para continuar.
       </p>
       <IntroArtwork />
     </div>,

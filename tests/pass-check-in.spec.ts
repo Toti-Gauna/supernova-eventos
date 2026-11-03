@@ -44,7 +44,7 @@ async function readQR(page: Page, source: string, width: number, height = width)
 for (const version of ['original', '3d', 'hibrida']) {
   test(`${version}: QR embebido en pase y descarga, ingreso único y foco al cerrar`, async ({ page }) => {
     await open(page, version);
-    await page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true }).click();
+    await page.getByRole('button', { name: 'Ver Órbita Fest', exact: true }).click();
     const image = page.getByRole('img', { name: 'QR de tu pase', exact: true });
     await expect(image).toBeVisible();
     const source = await image.getAttribute('src');
@@ -53,7 +53,7 @@ for (const version of ['original', '3d', 'hibrida']) {
     const pendingDownload = page.waitForEvent('download');
     await page.getByRole('button', { name: 'Descargar pase', exact: true }).click();
     const download = await pendingDownload;
-    expect(download.suggestedFilename()).toMatch(/^supernova-pase-supernova-sessions-SN-CHECKIN-TEST\.svg$/);
+    expect(download.suggestedFilename()).toMatch(/^orbita-pase-supernova-sessions-SN-CHECKIN-TEST\.svg$/);
     const svg = await readFile((await download.path())!, 'utf8');
     expect(svg).toContain('Alex García');
     expect(await readQR(page, `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`, 1200, 720)).toBe(payload);
@@ -118,7 +118,7 @@ test('el registro vuelve a validar una reserva cancelada y una función vencida'
 
 test('admin lee el QR de un pase SVG descargado y permite registrar su ingreso', async ({ page }) => {
   await open(page);
-  await page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true }).click();
+  await page.getByRole('button', { name: 'Ver Órbita Fest', exact: true }).click();
   const pendingDownload = page.waitForEvent('download');
   await page.getByRole('button', { name: 'Descargar pase', exact: true }).click();
   const file = await pendingDownload;

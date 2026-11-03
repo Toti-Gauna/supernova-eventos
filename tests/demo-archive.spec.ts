@@ -21,7 +21,7 @@ async function seedOnce(page: Page, events: EventItem[]) {
 async function openDemo(page: Page, path: string) {
   await page.clock.setFixedTime(businessDate);
   await page.goto(path);
-  await expect(page.getByRole('dialog', { name: 'Bienvenido a Supernova Eventos' })).toHaveCount(0);
+  await expect(page.getByRole('dialog', { name: 'Te damos la bienvenida a Órbita' })).toHaveCount(0);
   await expect(page.locator('.hero')).toBeVisible();
 }
 
@@ -44,7 +44,7 @@ for (const version of ['original', '3d', 'hibrida']) {
     await page.getByRole('textbox', { name: 'Buscar experiencias', exact: true }).fill(ARCHIVED_EVENT.title);
     await expect(page.getByRole('button', { name: `Ver ${ARCHIVED_EVENT.title}`, exact: true })).toBeVisible();
     await page.reload();
-    await expect(page.getByRole('dialog', { name: 'Bienvenido a Supernova Eventos' })).toHaveCount(0);
+    await expect(page.getByRole('dialog', { name: 'Te damos la bienvenida a Órbita' })).toHaveCount(0);
     const afterReload = await storedEvents(page);
     expect(afterReload.filter(event => event.id === ARCHIVED_EVENT.id)).toHaveLength(1);
     expect(afterReload.find(event => event.id === edited.id)).toEqual(edited);
@@ -62,11 +62,11 @@ test('el archivo eliminado del estado persistido no reaparece al recargar o camb
     localStorage.setItem(storageKey, JSON.stringify(events.filter(event => event.id !== archiveId)));
   }, { storageKey, archiveId: ARCHIVED_EVENT.id });
   await page.reload();
-  await expect(page.getByRole('dialog', { name: 'Bienvenido a Supernova Eventos' })).toHaveCount(0);
+  await expect(page.getByRole('dialog', { name: 'Te damos la bienvenida a Órbita' })).toHaveCount(0);
   await expect(page.locator('.hero')).toBeVisible();
   expect(await storedEvents(page)).toEqual(oldSeed);
   await page.goto('/original/');
-  await expect(page.getByRole('dialog', { name: 'Bienvenido a Supernova Eventos' })).toHaveCount(0);
+  await expect(page.getByRole('dialog', { name: 'Te damos la bienvenida a Órbita' })).toHaveCount(0);
   await expect(page.locator('.hero')).toBeVisible();
   expect(await storedEvents(page)).toEqual(oldSeed);
   await expect(page.getByRole('button', { name: `Ver ${ARCHIVED_EVENT.title}`, exact: true })).toHaveCount(0);
@@ -79,7 +79,7 @@ test('un catálogo personalizado se conserva sin agregar experiencias de muestra
   await expect(page.getByRole('button', { name: 'Ver Mi programa personalizado', exact: true })).toBeVisible();
   expect(await storedEvents(page)).toEqual([custom]);
   await page.reload();
-  await expect(page.getByRole('dialog', { name: 'Bienvenido a Supernova Eventos' })).toHaveCount(0);
+  await expect(page.getByRole('dialog', { name: 'Te damos la bienvenida a Órbita' })).toHaveCount(0);
   await expect(page.locator('.hero')).toBeVisible();
   expect(await storedEvents(page)).toEqual([custom]);
   await expect(page.getByRole('button', { name: `Ver ${ARCHIVED_EVENT.title}`, exact: true })).toHaveCount(0);
@@ -97,7 +97,7 @@ test('el archivo también se agrega cuando el seed tiene eventos propios adicion
   expect(migrated.filter(event => event.id === ARCHIVED_EVENT.id)).toHaveLength(1);
   await expect.poll(() => page.evaluate(key => JSON.parse(localStorage.getItem(key) || 'false'),DEMO_ARCHIVE_MIGRATION_KEY)).toBe(true);
   await page.reload();
-  await expect(page.getByRole('dialog', { name:'Bienvenido a Supernova Eventos' })).toHaveCount(0);
+  await expect(page.getByRole('dialog', { name:'Te damos la bienvenida a Órbita' })).toHaveCount(0);
   await expect(page.locator('.hero')).toBeVisible();
   const restored = await storedEvents(page);
   expect(restored).toHaveLength(8);

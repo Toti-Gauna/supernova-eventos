@@ -1,15 +1,18 @@
 ﻿import { motion, useReducedMotion } from 'motion/react';
-import { ArrowUpRight, Check, Heart, MapPin, Monitor } from 'lucide-react';
+import { ArrowUpRight, Check, Heart, MapPin, Monitor, UsersRound } from 'lucide-react';
 import type { EventItem, EventSession } from '../types';
 import { formatEventDate } from '../lib/calendar';
 import { publicAssetUrl } from '../lib/assets';
-import { getEventPhase, type EventPhase } from '../lib/events';
+import { eventAccess, getEventPhase, type EventPhase } from '../lib/events';
+import { useAccessProfile } from '../features/access/access';
 import { eventForSession, getDisplaySession, getEventSessions } from '../lib/eventSessions';
 
 interface Props { event: EventItem; joined: boolean; favorite: boolean; onFavorite: () => void; onOpen: () => void; phase?: EventPhase; titleLevel?: 3 | 4; now?: number; session?: EventSession }
 
 export default function EventCard({ event, joined, favorite, onFavorite, onOpen, phase: eventPhase, titleLevel = 3, now = Date.now(), session }: Props) {
   const reducedMotion = useReducedMotion();
+  const viewerKind = useAccessProfile().kind;
+  const access = eventAccess(event);
   const sessions = getEventSessions(event);
   const displayedSession = session ?? getDisplaySession(event, now);
   const displayed = eventForSession(event, displayedSession);
@@ -33,6 +36,7 @@ export default function EventCard({ event, joined, favorite, onFavorite, onOpen,
     </motion.button>
     <div className="event-card-body">
       <div className="event-meta"><span className="event-location">{event.mode === 'Online' ? <Monitor size={14} /> : <MapPin size={14} />}{event.location.split(' · ')[0]}</span><time dateTime={displayed.date}>{formatEventDate(displayed.date, { hour: '2-digit', minute: '2-digit', hour12: false })} h</time></div>
+      {viewerKind === 'internal' && access !== 'internal' && <span className="event-access-chip"><UsersRound size={13} aria-hidden="true" />{access === 'all' ? 'Abierto a invitados' : 'Solo invitados externos'}</span>}
       <Title className="event-card-title"><button onClick={onOpen}>{event.title}</button></Title><p>{event.subtitle}</p>
       <div className="event-card-bottom">
         <span className="attendees"><span>{displayed.registered > 0 ? <><strong>{displayed.registered}</strong> se sumaron</> : ended ? 'Evento finalizado' : 'Sé el primero'}</span></span>

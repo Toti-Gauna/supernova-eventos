@@ -48,5 +48,5 @@ export function qrDataURL(svg: string): string {
 }
 
 export function qrDownloadName(kind: 'evento' | 'pase', id: string): string {
-  return `supernova-${kind}-${id.replace(/[^a-zA-Z0-9_-]/g, '-')}-qr.svg`;
+  return `orbita-${kind}-${id.replace(/[^a-zA-Z0-9_-]/g, '-')}-qr.svg`;
 }

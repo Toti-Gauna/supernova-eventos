@@ -21,8 +21,8 @@ try {
   const markup = renderToStaticMarkup(createElement(Artwork));
   const bootstrap = `<!-- Critical solar first frame. Capture its clock/dismissal before removal; copy this entire block before #root. -->
 <style id="intro-bootstrap-style">${css.trim()}</style>
-<div id="intro-bootstrap" class="cinematic-intro intro-pending" role="status" aria-label="Preparando Supernova">
-  <p class="intro-sr-only">Supernova. Conectá sin límites. Preparando la experiencia. Presioná Escape para continuar.</p>
+<div id="intro-bootstrap" class="cinematic-intro intro-pending" role="status" aria-label="Preparando Órbita">
+  <p class="intro-sr-only">Órbita. Conectá sin límites. Preparando la experiencia. Presioná Escape para continuar.</p>
   ${markup}
 </div>
 <p id="intro-bootstrap-note" role="status">Preparando tu universo.<span>La aplicación todavía se está cargando.</span></p>

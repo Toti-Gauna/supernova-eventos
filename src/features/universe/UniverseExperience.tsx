@@ -301,7 +301,7 @@ function UniverseWorld({ props, renderQuality, settle, status, contextLost, reco
   return <>
     <ambientLight intensity={.12} color="#abb6cb" />
     <directionalLight position={[-8, 6, 5]} intensity={2.2} color="#fff0dc" />
-    <directionalLight position={[6, 2, -7]} intensity={1} color="#c9a3ff" />
+    <directionalLight position={[6, 2, -7]} intensity={1} color="#62bfff" />
     {Object.values(PLANETS).map(spec => <group key={spec.key} ref={body => { bodies.current[spec.key] = body; }} visible={visible(spec.key)}>
       <Planet spec={spec} quality={renderQuality} detailed={spec.key === key} animated={animated} highlight={highlight}
         satellites={spec.key === 'favorites' ? favoriteSatellites : undefined} />

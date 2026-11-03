@@ -41,30 +41,30 @@ async function createWizard(page: Page, title: string) {
 test('la intro aparece en cada refresh, termina sola y libera navegación y foco', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.goto('/');
-  await expect(page.getByRole('dialog', { name: 'Bienvenido a Supernova Eventos' })).toBeVisible();
+  await expect(page.getByRole('dialog', { name: 'Te damos la bienvenida a Órbita' })).toBeVisible();
   await expect(page.getByRole('button', { name: /Saltar intro/ })).toHaveCount(0);
-  await expect(page.getByRole('dialog', { name: 'Bienvenido a Supernova Eventos' })).toHaveCount(0);
+  await expect(page.getByRole('dialog', { name: 'Te damos la bienvenida a Órbita' })).toHaveCount(0);
   await expect(page.locator('#root')).not.toHaveAttribute('aria-hidden', 'true');
   await expect.poll(() => page.evaluate(() => document.getElementById('root')?.contains(document.activeElement))).toBe(true);
   await page.reload();
-  await expect(page.getByRole('dialog', { name: 'Bienvenido a Supernova Eventos' })).toBeVisible();
+  await expect(page.getByRole('dialog', { name: 'Te damos la bienvenida a Órbita' })).toBeVisible();
   await page.keyboard.press('Escape');
-  await expect(page.getByRole('dialog', { name: 'Bienvenido a Supernova Eventos' })).toHaveCount(0);
+  await expect(page.getByRole('dialog', { name: 'Te damos la bienvenida a Órbita' })).toHaveCount(0);
   await page.getByRole('button', { name: /Mis eventos/ }).click();
   await expect(page.getByRole('heading', { name: 'Tu próximo momento está esperando.' })).toBeVisible();
   await page.getByRole('button', { name: 'Volver a vivir el inicio' }).click();
-  await expect(page.getByRole('dialog', { name: 'Bienvenido a Supernova Eventos' })).toBeVisible();
+  await expect(page.getByRole('dialog', { name: 'Te damos la bienvenida a Órbita' })).toBeVisible();
   await page.keyboard.press('Escape');
-  await expect(page.getByRole('dialog', { name: 'Bienvenido a Supernova Eventos' })).toHaveCount(0);
+  await expect(page.getByRole('dialog', { name: 'Te damos la bienvenida a Órbita' })).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Volver a vivir el inicio' })).toBeFocused();
 });
 
 test('reduced motion omite la secuencia y la home muestra tres experiencias por página', async ({ page }, testInfo) => {
   await openDemo(page);
-  await expect(page.getByRole('dialog', { name: 'Bienvenido a Supernova Eventos' })).toHaveCount(0);
+  await expect(page.getByRole('dialog', { name: 'Te damos la bienvenida a Órbita' })).toHaveCount(0);
   await expect(page.locator('.event-grid article')).toHaveCount(3);
   await expect(page.getByRole('button', { name: 'Página siguiente de eventos', exact: true })).toBeEnabled();
-  await expect(page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Ver Órbita Fest', exact: true })).toBeVisible();
   await capture(page, testInfo, 'desktop-home.png', true);
   await page.getByRole('button', { name: 'Ver eventos', exact: true }).click();
   await expect(page.locator('header')).toHaveClass(/header-floating/);
@@ -82,21 +82,21 @@ test('búsqueda, categorías, favoritos y novedades se guardan', async ({ page }
   await page.getByRole('button', { name: 'Bienestar', exact: true }).click();
   await expect(page.locator('.event-grid article')).toHaveCount(2);
   await page.getByRole('button', { name: /Todo el universo/ }).click();
-  await page.getByRole('button', { name: 'Guardar Supernova Sessions', exact: true }).click();
+  await page.getByRole('button', { name: 'Guardar Órbita Fest', exact: true }).click();
   await page.getByRole('button', { name: 'Filtros', exact: true }).click();
   await page.getByRole('button', { name: 'Mis favoritos', exact: true }).click();
   await expect(page.locator('.event-grid article')).toHaveCount(1);
-  await expect(page.getByRole('button', { name: 'Quitar Supernova Sessions de favoritos', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByRole('button', { name: 'Quitar Órbita Fest de favoritos', exact: true })).toHaveAttribute('aria-pressed', 'true');
   await page.getByRole('button', { name: 'Quiero estar en órbita' }).click();
   await expect(page.getByRole('button', { name: 'Novedades activadas' })).toBeVisible();
   await page.reload();
   await expect(page.getByRole('button', { name: 'Novedades activadas' })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Quitar Supernova Sessions de favoritos', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByRole('button', { name: 'Quitar Órbita Fest de favoritos', exact: true })).toHaveAttribute('aria-pressed', 'true');
 });
 
 test('inscripción con términos y acompañante persiste, descarga calendario y libera plazas al cancelar', async ({ page }, testInfo) => {
   await openDemo(page);
-  await page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true }).click();
+  await page.getByRole('button', { name: 'Ver Órbita Fest', exact: true }).click();
   const modal = page.getByRole('dialog');
   await expect(modal.getByText('54 lugares disponibles', { exact: true })).toBeVisible();
   await modal.getByRole('button', { name: 'Confirmar mi lugar', exact: true }).click();
@@ -117,13 +117,13 @@ test('inscripción con términos y acompañante persiste, descarga calendario y 
   expect(calendarText).toContain('DTEND:20261024T020000Z');
   await modal.getByRole('button', { name: 'Cerrar inscripción' }).click();
   await page.getByRole('button', { name: 'Administrar', exact: true }).click();
-  await page.getByRole('button', { name: 'Vista previa de Supernova Sessions', exact: true }).click();
-  await expect(page.getByRole('dialog').getByRole('heading', { name: 'Supernova Sessions', exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Vista previa de Órbita Fest', exact: true }).click();
+  await expect(page.getByRole('dialog').getByRole('heading', { name: 'Órbita Fest', exact: true })).toBeVisible();
   await expect(page.getByRole('dialog').getByRole('button', { name: 'Confirmar mi lugar' })).toHaveCount(0);
   await expect(page.getByRole('dialog').getByRole('button', { name: 'No voy a poder asistir' })).toHaveCount(0);
   await page.getByRole('button', { name: 'Cerrar inscripción' }).click();
   await page.getByRole('button', { name: /Mis eventos/ }).click();
-  await expect(page.getByRole('heading', { name: 'Supernova Sessions', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Órbita Fest', exact: true })).toBeVisible();
   await page.reload();
   await page.getByRole('button', { name: /Mis eventos/ }).click();
   await page.getByRole('button', { name: 'Ver mi pase' }).click();
@@ -133,7 +133,7 @@ test('inscripción con términos y acompañante persiste, descarga calendario y 
   await expect(page.getByRole('dialog')).toHaveCount(0);
   await expect(page.getByRole('heading', { name: 'Tu próximo momento está esperando.' })).toBeVisible();
   await page.getByRole('button', { name: 'Explorar experiencias', exact: true }).click();
-  await page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true }).click();
+  await page.getByRole('button', { name: 'Ver Órbita Fest', exact: true }).click();
   await expect(page.getByRole('dialog').getByText('54 lugares disponibles', { exact: true })).toBeVisible();
 });
 
@@ -209,7 +209,7 @@ test('importar Excel y CSV revisa emails, deduplica y muestra filas rechazadas',
   await expect(page.getByText('2 personas listas para invitar', { exact: true })).toBeVisible();
   const csv = [
     'nombre,email,area',
-    'Alex García,alex.garcia@demo.telefonica.test,Tecnología',
+    'Alex García,alex.garcia@demo.personal.test,Tecnología',
     'Sofía Prueba,sofia@example.com,Tecnología',
     'Duplicado,SOFIA@EXAMPLE.COM,Personas',
     ',invalid@example.com,Personas',
@@ -232,7 +232,7 @@ test('a 390px la navegación y el modal funcionan sin desbordamiento horizontal'
   await page.getByRole('button', { name: /Mis eventos/ }).click();
   await expect(page.getByRole('heading', { name: 'Tu próximo momento está esperando.' })).toBeVisible();
   await page.getByRole('button', { name: 'Explorar', exact: true }).click();
-  await page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true }).click();
+  await page.getByRole('button', { name: 'Ver Órbita Fest', exact: true }).click();
   await expect(page.getByRole('dialog')).toBeVisible();
   expect(await horizontalOverflow()).toBe(false);
   await expect(page.getByRole('dialog').getByLabel('Tu nombre')).toBeVisible();
@@ -285,7 +285,7 @@ test('los popovers nativos cierran con Escape, click exterior y navegación', as
 
 test('el diálogo nativo bloquea el fondo y devuelve el foco al cerrar', async ({ page }) => {
   await openDemo(page);
-  const trigger = page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true });
+  const trigger = page.getByRole('button', { name: 'Ver Órbita Fest', exact: true });
   await trigger.click();
   await expect(page.locator('dialog:modal')).toBeVisible();
   await page.evaluate(() => document.querySelector<HTMLButtonElement>('.event-cover')?.focus());
@@ -307,7 +307,7 @@ test('favoritos tiene vista propia, búsqueda y eliminación persistente', async
   await page.getByRole('button', { name: /^Favoritos/ }).click();
   await expect(page.getByRole('heading', { name: 'Lo que te gusta, cerca.' })).toBeVisible();
   await page.getByRole('button', { name: 'Descubrir experiencias' }).click();
-  await page.getByRole('button', { name: 'Guardar Supernova Sessions', exact: true }).click();
+  await page.getByRole('button', { name: 'Guardar Órbita Fest', exact: true }).click();
   await page.getByRole('button', { name: 'Guardar Un respiro para vos', exact: true }).click();
   await page.getByRole('button', { name: /^Favoritos/ }).click();
   await expect(page.locator('.favorites-grid article')).toHaveCount(2);
@@ -316,7 +316,7 @@ test('favoritos tiene vista propia, búsqueda y eliminación persistente', async
   await page.getByLabel('Buscar en favoritos').fill('sin coincidencias');
   await expect(page.getByRole('heading', { name: 'No encontramos ese plan.' })).toBeVisible();
   await page.getByRole('button', { name: 'Ver todos mis favoritos' }).click();
-  await page.getByRole('button', { name: 'Quitar Supernova Sessions de favoritos', exact: true }).click();
+  await page.getByRole('button', { name: 'Quitar Órbita Fest de favoritos', exact: true }).click();
   await expect(page.locator('.favorites-grid article')).toHaveCount(1);
   await page.reload();
   await page.getByRole('button', { name: /^Favoritos/ }).click();
@@ -359,7 +359,7 @@ test('estudio sin header principal y pase fullscreen con calendario navegable', 
   await page.getByRole('button', { name: 'Volver a eventos' }).click();
   await expect(page.locator('.site-header')).toBeVisible();
   await page.getByRole('button', { name: 'Explorar', exact: true }).click();
-  await page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true }).click();
+  await page.getByRole('button', { name: 'Ver Órbita Fest', exact: true }).click();
   await expect(page.locator('.site-header')).toHaveCount(0);
   const size = await page.locator('dialog:modal').boundingBox();
   expect(size).toMatchObject({ x: 0, y: 0, width: 1440, height: 1000 });
@@ -387,7 +387,7 @@ test('navegación móvil inferior incluye admin y el perfil permite cerrar la se
   await nav.getByRole('button', { name: 'Administrar', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Crear experiencia', exact: true })).toBeVisible();
   await nav.getByRole('button', { name: 'Explorar', exact: true }).click();
-  await page.getByRole('button', { name: 'Guardar Supernova Sessions', exact: true }).click();
+  await page.getByRole('button', { name: 'Guardar Órbita Fest', exact: true }).click();
   await page.getByRole('button', { name: 'Abrir perfil de Alex García' }).click();
   const menu = page.locator('#header-profile');
   await expect(menu.getByRole('button', { name: 'Ver mis eventos' })).toHaveCount(0);
@@ -397,12 +397,13 @@ test('navegación móvil inferior incluye admin y el perfil permite cerrar la se
   await page.getByRole('switch', { name: 'Recibir novedades de experiencias' }).check();
   await page.getByRole('button', { name: 'Abrir perfil de Alex García' }).click();
   await page.locator('#header-profile').getByRole('button', { name: 'Cerrar sesión' }).click();
-  await expect(page.getByRole('heading', { name: 'Sesión cerrada.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '¿Cómo entrás hoy?' })).toBeFocused();
+  await expect(page.getByText('Cerraste sesión. Te esperamos en la próxima órbita.')).toBeVisible();
   await expect(page.locator('.site-header')).toHaveCount(0);
   await page.reload();
-  await expect(page.getByRole('heading', { name: 'Sesión cerrada.' })).toBeVisible();
-  await page.getByRole('button', { name: 'Volver a entrar' }).click();
-  await expect(page.getByRole('button', { name: 'Quitar Supernova Sessions de favoritos', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '¿Cómo entrás hoy?' })).toBeVisible();
+  await page.getByRole('button', { name: 'Ingresar con cuenta corporativa' }).click();
+  await expect(page.getByRole('button', { name: 'Quitar Órbita Fest de favoritos', exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Novedades activadas' })).toBeVisible();
 });
 
@@ -486,11 +487,11 @@ test('filtros admin aplican por buscar, tags se quitan en modal y paginado limit
 
 test('pase completo sin scroll en desktop y móvil, incluso en meses de seis filas', async ({ page }) => {
   await openDemo(page);
-  await page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true }).click();
+  await page.getByRole('button', { name: 'Ver Órbita Fest', exact: true }).click();
   await page.getByLabel('Email corporativo', { exact: true }).fill('sin-email');
   await page.getByRole('button', { name: 'Confirmar mi lugar', exact: true }).click();
   await expect(page.getByRole('alert')).toContainText('Completá tu nombre y un email válido.');
-  await page.getByLabel('Email corporativo', { exact: true }).fill('alex.garcia@demo.telefonica.test');
+  await page.getByLabel('Email corporativo', { exact: true }).fill('alex.garcia@demo.personal.test');
   await page.getByRole('button', { name: 'Confirmar mi lugar', exact: true }).click();
   await expect(page.getByRole('alert')).toContainText('Aceptá los términos');
   await page.getByRole('checkbox', { name: 'Acepto los términos y condiciones del evento.' }).check();

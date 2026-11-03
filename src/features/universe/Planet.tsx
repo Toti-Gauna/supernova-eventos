@@ -2,7 +2,7 @@ import { useLayoutEffect, useMemo, useRef, type RefObject } from 'react';
 import { useFrame, useLoader } from '@react-three/fiber';
 import { Color, DoubleSide, FrontSide, Object3D, RepeatWrapping, SRGBColorSpace, TextureLoader, type Group, type InstancedMesh } from 'three';
 import { atmosphereFragment, planetFragment, planetVertex, ringFragment, ringVertex } from './shaders/planet';
-import { QUALITY_PROFILES, SOLAR_BODIES, stableHash, type PlanetSpec, type RenderQuality } from './scene.config';
+import { CATEGORY_TINT_MIX, CATEGORY_TINTS, QUALITY_PROFILES, SOLAR_BODIES, stableHash, type PlanetSpec, type RenderQuality } from './scene.config';
 import { solarCloudArtwork, solarSurfaceArtwork } from '../hybrid/HybridArtwork';
 import type { EventCategory } from '../../types';
 import type { DestinationHighlight } from './useDestinationHighlight';
@@ -17,9 +17,9 @@ interface PlanetProps {
 }
 
 const SIGNATURES = { strata: 0, continents: 1, network: 2, plateaus: 3, grooves: 4 };
-const CATEGORY_COLORS: Record<EventCategory, string> = {
-  Música: '#edb3cd', Bienestar: '#a6d5c2', Tecnología: '#a5c6ef', Comunidad: '#e8c49e', Aprendizaje: '#c6b3f1',
-};
+// Favorite moons carry their event's Órbita category color.
+const CATEGORY_COLORS = Object.fromEntries(Object.entries(CATEGORY_TINTS)
+  .map(([category, tint]) => [category, tint.color])) as Record<EventCategory, string>;
 
 /** One shared geometry and material for every moon/favorite at this destination. */
 function Satellites({ spec, satellites, segments }: {
@@ -141,7 +141,8 @@ export default function Planet({ spec, quality, detailed, animated, highlight, s
     uRim: { value: new Color(spec.rim) }, uSeed: { value: spec.seed },
     uSignature: { value: SIGNATURES[spec.signature ?? 'strata'] }, uHighlight: { value: 0 },
     uSurface: { value: surfaceTexture }, uClouds: { value: cloudTexture }, uSolarBody: { value: definition.index }, uPhase: { value: 0 },
-  }), [spec.dark, spec.mineral, spec.rim, spec.seed, spec.signature, surfaceTexture, cloudTexture, definition.index]);
+    uTint: { value: new Color(spec.tint ?? spec.rim) }, uTintMix: { value: spec.tint ? CATEGORY_TINT_MIX : 0 },
+  }), [spec.dark, spec.mineral, spec.rim, spec.tint, spec.seed, spec.signature, surfaceTexture, cloudTexture, definition.index]);
   const inner = spec.radius * (spec.solarBody === 'saturn' ? 1.35 : 1.42);
   const outer = spec.radius * (spec.solarBody === 'saturn' ? 2.02 : 1.512);
   const ringMaterial = useMemo(() => ({

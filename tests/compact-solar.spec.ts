@@ -8,7 +8,7 @@ const featured = INITIAL_EVENTS.find(event => event.id === 'supernova-sessions')
 const firstSession = featured.sessions![0];
 const pass: Registration = {
   id: 'SN-COMPACT-QA', eventId: featured.id, sessionId: firstSession.id,
-  sessionSnapshot: firstSession, name: 'Alex García', email: 'alex.garcia@demo.telefonica.test',
+  sessionSnapshot: firstSession, name: 'Alex García', email: 'alex.garcia@demo.personal.test',
   companions: 0, createdAt: businessDate.toISOString(),
 };
 
@@ -47,7 +47,7 @@ async function openHome(page: Page, version: 'hibrida' | '3d', motion: 'reduce' 
   await page.emulateMedia({ reducedMotion: motion });
   await page.goto(`/${version}/`);
   await expect(page.getByRole('heading', { name: /Salí de la rutina/ })).toBeVisible();
-  await expect(page.getByRole('dialog', { name: 'Bienvenido a Supernova Eventos' })).toHaveCount(0);
+  await expect(page.getByRole('dialog', { name: 'Te damos la bienvenida a Órbita' })).toHaveCount(0);
   const host = page.locator('[data-universe-host]');
   await expectSettled(host, 'section:explore');
   return host;
@@ -204,7 +204,7 @@ test('el fondo Tour del primer HTML conserva el mismo nodo durante intro, seccio
   await expect.poll(() => page.evaluate(() => (window as Window & { __qaIntroSharesTour?: boolean }).__qaIntroSharesTour)).toBe(true);
   expect(await sameFirstNode()).toBe(true);
   await page.keyboard.press('Escape');
-  await expect(page.getByRole('dialog', { name: 'Bienvenido a Supernova Eventos' })).toHaveCount(0);
+  await expect(page.getByRole('dialog', { name: 'Te damos la bienvenida a Órbita' })).toHaveCount(0);
   const host = page.locator('[data-universe-host]');
   await expectSettled(host, 'section:explore');
   const canvas = await host.locator('canvas').elementHandle();
@@ -217,7 +217,7 @@ test('el fondo Tour del primer HTML conserva el mismo nodo durante intro, seccio
     await expectSettled(host, destination.value);
     expect(await sameFirstNode()).toBe(true);
   }
-  await page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true }).click();
+  await page.getByRole('button', { name: 'Ver Órbita Fest', exact: true }).click();
   const ticketDialog = page.getByRole('dialog', { name: 'Ya sos parte.', exact: true });
   await expect(ticketDialog).toBeVisible();
   await expect(ticketDialog.getByText(pass.id, { exact: true })).toBeVisible();

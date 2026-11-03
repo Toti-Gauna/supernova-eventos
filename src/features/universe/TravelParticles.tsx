@@ -50,7 +50,7 @@ export default function TravelParticles({ command, quality, animated }: {
   return <group ref={group} visible={false} name="finite-flight-particles">
     <points ref={points} frustumCulled={false}>
       <bufferGeometry><bufferAttribute attach="attributes-position" args={[buffer.position, 3]} /></bufferGeometry>
-      <pointsMaterial color="#d8cced" size={.021} sizeAttenuation transparent opacity={0} depthWrite={false} />
+      <pointsMaterial color="#bfe6ff" size={.021} sizeAttenuation transparent opacity={0} depthWrite={false} />
     </points>
   </group>;
 }

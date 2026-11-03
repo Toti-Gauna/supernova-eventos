@@ -31,7 +31,7 @@ export function validatePass(input: string, eventId: string, sessionId: string, 
         || ![value.passId, value.eventId, value.sessionId].every(id => typeof id === 'string' && id.length > 0 && id.length <= 128)) throw new Error('Invalid QR');
       passId = value.passId as string;
       qr = { eventId: value.eventId as string, sessionId: value.sessionId as string };
-    } catch { return { kind: 'invalid', message: 'El QR no es un pase de Supernova válido.' }; }
+    } catch { return { kind: 'invalid', message: 'El QR no es un pase de Órbita válido.' }; }
   } else if (!/^[A-Za-z0-9:_-]{1,128}$/.test(text)) return { kind: 'invalid', message: 'El código de pase no tiene un formato válido.' };
   const pass = registrations.find(registration => registration.id === passId);
   if (!pass) return { kind: 'invalid', message: 'Pase inválido: no existe una reserva vigente con ese código en este navegador.' };

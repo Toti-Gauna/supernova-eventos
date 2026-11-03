@@ -1,7 +1,7 @@
 .version-switcher { flex-shrink:0; }
 .site-header .version-switcher-button { display:flex; align-items:center; justify-content:center; gap:6px; min-height:44px; padding:7px 10px; border:1px solid var(--line); border-radius:999px; color:var(--muted); background:var(--accent-soft); font-size:10px; white-space:nowrap; }
 .site-header .version-switcher-button:hover,.site-header .version-switcher-button[aria-expanded='true'] { border-color:var(--accent); color:var(--accent); }
-.version-switcher-popover { inset:80px max(var(--page-gutter),calc((100vw - var(--content-width))/2)) auto auto; width:280px; max-width:calc(100vw - 32px); margin:0; padding:14px; border:1px solid var(--line); border-radius:16px; background:var(--panel); color:var(--text); box-shadow:0 18px 60px #0006; }
+.version-switcher-popover { inset:80px max(var(--page-gutter),calc((100vw - var(--content-width))/2)) auto auto; width:280px; max-width:calc(100vw - 32px); margin:0; padding:14px; border:1px solid var(--line); border-radius:16px; background:var(--panel); color:var(--text); box-shadow:0 18px 60px #00000066; }
 .version-switcher-popover:popover-open { display:block; }
 .version-switcher-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:10px; }
 .version-switcher-heading h2 { margin:0; font:500 14px/1.5 Manrope,sans-serif; letter-spacing:-.2px; }
@@ -14,7 +14,7 @@
 .version-switcher-popover strong { font-size:12px; font-weight:500; }
 .version-switcher-popover small { color:var(--muted); font-size:10px; line-height:1.5; }
 .version-switcher-popover nav>a>svg { color:var(--accent); flex-shrink:0; }
-html[data-theme='light'] .app-shell[data-universe-enabled] .site-header:not(.header-floating) .version-switcher-button { color:#d8c8e6; border-color:#c9a3ff30; background:#c9a3ff0b; }
+html[data-theme='light'] .app-shell[data-universe-enabled] .site-header:not(.header-floating) .version-switcher-button { color:#d6ecff; border-color:#4ec5ff30; background:#4ec5ff0b; }
 @media(max-width:1100px) { .site-header .version-switcher-button { width:36px; padding:0; border-color:transparent; background:transparent; }.version-switcher-button>span,.version-switcher-chevron { display:none; } }
 @media(max-width:700px) { .version-switcher-popover { top:70px; right:16px; } }
 @media(max-width:380px) { .site-header,.site-header.header-floating { padding-inline:16px; }.site-header .brand { gap:5px; }.site-header .brand>svg,.site-header.header-floating .brand>svg { width:22px; height:22px; }.site-header .wordmark,.site-header.header-floating .wordmark { font-size:19px; }.site-header .header-actions { gap:1px; }.site-header .notification-button { width:34px; } }

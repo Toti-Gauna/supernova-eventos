@@ -8,10 +8,10 @@ const STARS = Array.from({ length: 46 }, (_, index) => ({
 }));
 
 export const INTRO_SOURCES = [
-  { x: 79, y: 190, color: 'var(--intro-point-violet)' },
-  { x: 401, y: 190, color: 'var(--intro-point-warm)' },
-  { x: 240, y: 46, color: 'var(--intro-mint)' },
-  { x: 240, y: 334, color: 'var(--intro-point-lilac)' },
+  { x: 79, y: 190, color: 'var(--intro-point-cyan)' },
+  { x: 401, y: 190, color: 'var(--intro-point-light)' },
+  { x: 240, y: 46, color: 'var(--intro-point-violet)' },
+  { x: 240, y: 334, color: 'var(--intro-point-blue)' },
 ];
 
 /** Shared first frame and cinematic artwork. This module never imports GSAP. */
@@ -37,7 +37,7 @@ export default function IntroArtwork() {
             <circle cx="240" cy="190" r="126" stroke="var(--intro-orbit)" strokeOpacity=".1" strokeDasharray="1 12" />
             <path d="M67 270H118M361 112H413" stroke="var(--intro-accent)" strokeOpacity=".22" />
             <circle cx="87" cy="271" r="2" fill="var(--intro-accent)" stroke="none" />
-            <circle cx="392" cy="111" r="2" fill="var(--intro-mint)" stroke="none" />
+            <circle cx="392" cy="111" r="2" fill="var(--intro-spark)" stroke="none" />
           </g>
           {INTRO_SOURCES.map((point, index) => <g key={index} data-intro="point" data-intro-point={index}><circle cx={point.x} cy={point.y} r="15" fill={point.color} opacity=".035" /><circle cx={point.x} cy={point.y} r="5" fill={point.color} opacity=".1" /><circle cx={point.x} cy={point.y} r="2.2" fill={point.color} /></g>)}
           <g transform="translate(192 142) scale(2.4)"><g data-intro="symbol"><path d="M20 3c0 12-5 17-17 17 12 0 17 5 17 17 0-12 5-17 17-17C25 20 20 15 20 3Z" fill="var(--intro-accent)" /><circle cx="20" cy="20" r="17" stroke="var(--intro-accent)" strokeWidth=".6" opacity=".5" /></g></g>
@@ -45,7 +45,7 @@ export default function IntroArtwork() {
         <span className="intro-orbital-label">CONEXIONES EN ÓRBITA</span>
       </div>
       <div className="intro-identity">
-        <div className="intro-wordmark-mask"><div className="intro-wordmark" data-intro="wordmark">supernova</div></div>
+        <div className="intro-wordmark-mask"><div className="intro-wordmark" data-intro="wordmark">órbita</div></div>
         <div className="intro-tagline" data-intro="tagline">conectá sin límites</div>
       </div>
       <div className="intro-caption" data-intro="caption"><span />UN UNIVERSO DE EXPERIENCIAS<span /></div>

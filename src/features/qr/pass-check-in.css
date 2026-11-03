@@ -1,8 +1,8 @@
-.native-dialog.pass-check-dialog { width:min(650px,calc(100% - 32px)); height:fit-content; max-height:calc(100dvh - 40px); inset:0; margin:auto; overflow:auto; border:1px solid var(--line); border-radius:22px; background:var(--panel,#17121f); color:var(--text); }
-.pass-check-dialog::backdrop { background:#030208ab; backdrop-filter:blur(7px); }
+.native-dialog.pass-check-dialog { width:min(650px,calc(100% - 32px)); height:fit-content; max-height:calc(100dvh - 40px); inset:0; margin:auto; overflow:auto; border:1px solid var(--line); border-radius:22px; background:var(--panel,#07122c); color:var(--text); }
+.pass-check-dialog::backdrop { background:#010409ab; backdrop-filter:blur(7px); }
 .pass-check-content { padding:26px; }
 .pass-check-content header,.pass-check-content header>span { display:flex; align-items:center; gap:12px; }
-.pass-check-content header { position:sticky; top:0; z-index:2; justify-content:space-between; background:var(--panel,#17121f); }
+.pass-check-content header { position:sticky; top:0; z-index:2; justify-content:space-between; background:var(--panel,#07122c); }
 .pass-check-content h2 { margin:0; font:500 24px/1.2 Manrope,sans-serif; letter-spacing:-.6px; }
 .pass-check-content header>button { display:grid; place-items:center; width:44px; height:44px; padding:0; border:1px solid var(--line); border-radius:50%; background:transparent; }
 .pass-check-content>p,.pass-check-result p { color:var(--muted); font-size:13px; line-height:1.6; }
@@ -30,9 +30,9 @@
 .pass-camera-actions .button { min-height:44px; gap:8px; padding:10px 14px; font-size:13px; }
 .pass-camera-message { margin:0; font-size:12px; line-height:1.5; color:var(--muted); }
 .pass-camera-message[role='alert'] { color:var(--danger,#e9a3a3); }
-.pass-camera-view { position:relative; min-width:0; aspect-ratio:16 / 10; max-height:280px; overflow:hidden; border:1px solid var(--line); border-radius:14px; background:#08070b; }
+.pass-camera-view { position:relative; min-width:0; aspect-ratio:16 / 10; max-height:280px; overflow:hidden; border:1px solid var(--line); border-radius:14px; background:#030710; }
 .pass-camera-view video { display:block; width:100%; height:100%; object-fit:cover; }
-.pass-camera-frame { position:absolute; width:min(65%,190px); aspect-ratio:1; top:50%; left:50%; transform:translate(-50%,-50%); border:2px solid #e5d2ff; border-radius:15px; box-shadow:0 0 0 100vmax #08050b38; pointer-events:none; }
+.pass-camera-frame { position:absolute; width:min(65%,190px); aspect-ratio:1; top:50%; left:50%; transform:translate(-50%,-50%); border:2px solid #d2eeff; border-radius:15px; box-shadow:0 0 0 100vmax #02060f38; pointer-events:none; }
 .pass-check-details { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px 18px; margin:0; }
 .pass-check-details>div { min-width:0; }
 .pass-check-details dt { margin-bottom:4px; color:var(--muted); font-size:11px; }

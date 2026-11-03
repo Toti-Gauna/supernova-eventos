@@ -34,7 +34,7 @@ const catalogEvents: EventItem[] = [
   eventFixture('ended-past', 'Delta cerrada', '2026-10-06T15:00:00Z', '2026-10-06T17:00:00Z', { registered: 0 }),
   eventFixture('active-start', 'Ypsilon en vivo', '2026-10-07T15:00:00Z', '2026-10-07T16:00:00Z', {
     category: 'Música', registered: 60, isPrivate: true,
-    audience: { mode: 'payroll', people: [{ id: 'demo-alex', name: 'Alex García', email: 'ALEX.GARCIA@DEMO.TELEFONICA.TEST', department: 'Tecnología' }] },
+    audience: { mode: 'payroll', people: [{ id: 'demo-alex', name: 'Alex García', email: 'ALEX.GARCIA@DEMO.PERSONAL.TEST', department: 'Tecnología' }] },
   }),
   eventFixture('future-gamma', 'Gamma futura', '2026-10-10T15:00:00Z', '2026-10-10T17:00:00Z', { category: 'Aprendizaje', mode: 'Online', registered: 30 }),
   eventFixture('ended-boundary', 'Épsilon al cierre', '2026-10-07T14:00:00Z', '2026-10-07T15:00:00Z', { category: 'Bienestar', registered: 80 }),
@@ -58,7 +58,7 @@ async function openCatalog(page: Page, withFixtures = true, allFavorites = false
   }
   await page.goto('/');
   await expect(page.getByRole('heading', { name: /Salí de la rutina/ })).toBeVisible();
-  await expect(page.getByRole('dialog', { name: 'Bienvenido a Supernova Eventos' })).toHaveCount(0);
+  await expect(page.getByRole('dialog', { name: 'Te damos la bienvenida a Órbita' })).toHaveCount(0);
 }
 
 function pageButton(page: Page, number: number) {
@@ -81,7 +81,7 @@ async function chooseOrder(page: Page, label: string) {
 
 test('las seis próximas experiencias y el archivo se distribuyen en tres páginas', async ({ page }) => {
   await openCatalog(page, false);
-  await expectTitles(page, ['Supernova Sessions', 'Un respiro para vos', 'El futuro empieza acá']);
+  await expectTitles(page, ['Órbita Fest', 'Un respiro para vos', 'El futuro empieza acá']);
   await expect(page.locator('.event-phase-group h3')).toHaveText(['Eventos próximos']);
   await expect(page.locator('.event-phase-count')).toHaveText(/6/);
   await expectCurrentPage(page, 1);
@@ -253,7 +253,7 @@ for (const theme of ['dark', 'light'] as const) {
       await page.keyboard.press('Space');
       await expectCurrentPage(page, 1);
       await expect(page.locator('#catalog-result-list')).toBeFocused();
-      await expectTitles(page, ['Supernova Sessions', 'Un respiro para vos', 'El futuro empieza acá']);
+      await expectTitles(page, ['Órbita Fest', 'Un respiro para vos', 'El futuro empieza acá']);
     }
   });
 }

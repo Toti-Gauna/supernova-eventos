@@ -2,7 +2,7 @@
 .event-sessions-editor-heading { display: grid; gap: 7px; }
 .event-sessions-editor-heading > span { display: flex; align-items: center; gap: 9px; font-size: 15px; color: var(--admin-content, var(--text)); }
 .event-sessions-editor-heading p, .event-session-total, .event-session-locked-note { margin: 0; color: var(--admin-muted, var(--muted)); font-size: 12px; line-height: 1.6; }
-.event-session-fields { min-width: 0; margin: 0; padding: 18px; display: grid; gap: 15px; border: 1px solid var(--admin-border, var(--line)); border-radius: 18px; background: var(--admin-subtle, rgba(140, 113, 182, .035)); }
+.event-session-fields { min-width: 0; margin: 0; padding: 18px; display: grid; gap: 15px; border: 1px solid var(--admin-border, var(--line)); border-radius: 18px; background: var(--admin-subtle, rgba(83,164,212,.035)); }
 .event-session-fields legend { padding: 0 8px; color: var(--admin-muted, var(--muted)); font-size: 11px; font-weight: 700; letter-spacing: .06em; }
 .event-session-fields .admin-form-field { margin: 0; }
 .event-session-title-row { display: flex; align-items: center; gap: 12px; min-width: 0; }
@@ -10,7 +10,7 @@
 .event-session-remove { flex-shrink: 0; align-self: flex-end; margin-bottom: 10px; }
 .event-session-remove:disabled { opacity: .35; cursor: not-allowed; }
 .event-session-add { width: fit-content; }
-.event-session-locked-note { padding: 9px 12px; border-radius: 10px; background: rgba(155, 127, 199, .07); }
+.event-session-locked-note { padding: 9px 12px; border-radius: 10px; background: rgba(108,177,218,.07); }
 .event-session-fields input:disabled { opacity: .65; }
 @media (max-width: 600px) {
   .event-session-fields { padding: 13px; border-radius: 13px; gap: 12px; }

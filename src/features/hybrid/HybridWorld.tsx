@@ -2,7 +2,7 @@ import { useMemo, useRef } from 'react';
 import { useFrame, useLoader, useThree } from '@react-three/fiber';
 import { Color, RepeatWrapping, SRGBColorSpace, TextureLoader, Vector3, type Group, type Mesh, type MeshBasicMaterial, type ShaderMaterial } from 'three';
 import type { UniverseExperienceProps } from '../universe/contracts';
-import { destinationKey, eventPlanet, PLANETS, SHIP_CENTER, SOLAR_BODIES, travelDuration, type SolarBody } from '../universe/scene.config';
+import { CATEGORY_TINT_MIX, destinationKey, eventPlanet, PLANETS, SHIP_CENTER, SOLAR_BODIES, travelDuration, type SolarBody } from '../universe/scene.config';
 import { illustratedPlanetFragment, illustratedPlanetVertex } from '../universe/shaders/planet';
 import { CABIN_BACK, CABIN_FRONT, MAP_ART, MOON_ART, planetArtwork, solarBodyArtwork, solarCloudArtwork, solarSurfaceArtwork, SHIP_ART, SUN_ART, type ArtworkColor } from './HybridArtwork';
 
@@ -21,7 +21,9 @@ function Billboard({ position, children, enabled = true }: { position: [number, 
   return <group ref={group} position={position}>{children}</group>;
 }
 
-function SolarSurface({ body, radius, animated, observable, moons }: { body: SolarBody; radius: number; animated: boolean; observable: boolean; moons: number }) {
+function SolarSurface({ body, radius, animated, observable, moons, tint, rim }: {
+  body: SolarBody; radius: number; animated: boolean; observable: boolean; moons: number; tint?: string; rim?: string;
+}) {
   const mesh = useRef<Mesh>(null);
   const material = useRef<ShaderMaterial>(null);
   const phase = useRef(0);
@@ -34,8 +36,9 @@ function SolarSurface({ body, radius, animated, observable, moons }: { body: Sol
   const uniforms = useMemo(() => ({
     uSurface: { value: surface }, uClouds: { value: clouds }, uPhase: { value: 0 },
     uSolarBody: { value: definition.index }, uTilt: { value: definition.axialTilt },
-    uRim: { value: new Color(definition.rim) }, uOpacity: { value: 1 },
-  }), [surface, clouds, definition]);
+    uRim: { value: new Color(rim ?? definition.rim) }, uOpacity: { value: 1 },
+    uTint: { value: new Color(tint ?? definition.rim) }, uTintMix: { value: tint ? CATEGORY_TINT_MIX : 0 },
+  }), [surface, clouds, definition, tint, rim]);
   useFrame(({ gl }, delta) => {
     let visible = true;
     for (let ancestor = mesh.current; ancestor; ancestor = ancestor.parent as Mesh | null) if (!ancestor.visible) { visible = false; break; }
@@ -57,13 +60,15 @@ function SolarSurface({ body, radius, animated, observable, moons }: { body: Sol
   </mesh>;
 }
 
-export function IllustratedPlanet({ color = 'blue', solarBody, radius, ring = false, moons = 0, satellites = 0, animated, polished = true, observable = false }: {
+export function IllustratedPlanet({ color = 'blue', solarBody, radius, ring = false, moons = 0, satellites = 0, animated, polished = true, observable = false, tint, rim }: {
   color?: ArtworkColor; solarBody?: SolarBody; radius: number; ring?: boolean; moons?: number; satellites?: number; animated: boolean; polished?: boolean; observable?: boolean;
+  /** Event planets only: Órbita category hue and its rim light. */
+  tint?: string; rim?: string;
 }) {
   const body = useMemo(() => planetArtwork(color, 'body', ring, polished), [color, ring, polished]);
-  const back = useMemo(() => solarBody ? solarBodyArtwork(solarBody, 'back') : planetArtwork(color, 'back', ring, polished), [color, ring, polished, solarBody]);
-  const front = useMemo(() => solarBody ? solarBodyArtwork(solarBody, 'front') : planetArtwork(color, 'front', ring, polished), [color, ring, polished, solarBody]);
-  const halo = useMemo(() => solarBody ? solarBodyArtwork(solarBody, 'halo') : '', [solarBody]);
+  const back = useMemo(() => solarBody ? solarBodyArtwork(solarBody, 'back', rim) : planetArtwork(color, 'back', ring, polished), [color, ring, polished, solarBody, rim]);
+  const front = useMemo(() => solarBody ? solarBodyArtwork(solarBody, 'front', rim) : planetArtwork(color, 'front', ring, polished), [color, ring, polished, solarBody, rim]);
+  const halo = useMemo(() => solarBody ? solarBodyArtwork(solarBody, 'halo', rim) : '', [solarBody, rim]);
   const orbit = useRef<Group>(null);
   const scale = radius / 1.4;
   useFrame((_, delta) => {
@@ -75,7 +80,7 @@ export function IllustratedPlanet({ color = 'blue', solarBody, radius, ring = fa
   });
   return <group name={`hybrid-${solarBody ?? color}-planet`}>
     {ring && <Illustration art={back} width={6 * scale} height={4 * scale} z={-.04} />}
-    {solarBody ? <><SolarSurface key={solarBody} body={solarBody} radius={radius} animated={animated} observable={observable} moons={moons} /><Illustration art={halo} width={6 * scale} height={4 * scale} z={.02} /></> : <Illustration art={body} width={6 * scale} height={4 * scale} />}
+    {solarBody ? <><SolarSurface key={solarBody} body={solarBody} radius={radius} animated={animated} observable={observable} moons={moons} tint={tint} rim={rim} /><Illustration art={halo} width={6 * scale} height={4 * scale} z={.02} /></> : <Illustration art={body} width={6 * scale} height={4 * scale} />}
     {ring && <Illustration art={front} width={6 * scale} height={4 * scale} z={.04} />}
     <group ref={orbit}>
       {Array.from({ length: moons + satellites }, (_, index) => {
@@ -120,7 +125,8 @@ function SolarIllustrations({ startedAtMs, animated }: { startedAtMs: number; an
   </group>;
 }
 
-const EVENT_COLORS = { Música: 'rose', Bienestar: 'teal', Tecnología: 'blue', Comunidad: 'amber', Aprendizaje: 'violet' } as const;
+// Success cue in the Órbita category color (docs/orbita/README.md).
+const EVENT_COLORS = { Música: 'rose', Bienestar: 'teal', Tecnología: 'cyan', Comunidad: 'violet', Aprendizaje: 'blue' } as const satisfies Record<string, ArtworkColor>;
 
 function Cockpit({ active, animated }: { active: boolean; animated: boolean }) {
   const back = useRef<Group>(null);
@@ -198,7 +204,7 @@ export default function HybridWorld({ command, favoriteSatellites, reducedMotion
     <group name="destination:profile"><Billboard position={PLANETS.profile.center}><IllustratedPlanet solarBody={PLANETS.profile.solarBody} radius={PLANETS.profile.radius} animated={animated} observable={activeKey === 'profile'} /></Billboard></group>
     <group name="destination:admin"><group ref={ship}><Billboard position={SHIP_CENTER}><Illustration art={SHIP_ART} width={8.9} height={5.93} /></Billboard></group></group>
     {event && command.destination.kind === 'event' && <Billboard position={event.center}>
-      <IllustratedPlanet key={event.key} solarBody={event.solarBody} radius={event.radius} ring={Boolean(event.ring)} animated={animated} observable />
+      <IllustratedPlanet key={event.key} solarBody={event.solarBody} radius={event.radius} ring={Boolean(event.ring)} animated={animated} observable tint={event.tint} rim={event.rim} />
       <group ref={cue} visible={false}><Illustration art={planetArtwork(EVENT_COLORS[command.destination.category], 'back', true)} width={event.radius * 4.8} height={event.radius * 3.2} z={.15} /></group>
     </Billboard>}
     <Cockpit active={command.destination.kind === 'studio'} animated={animated} />

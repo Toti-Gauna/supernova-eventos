@@ -27,7 +27,7 @@ export default function VersionSwitcher() {
     </button>
     <div ref={popover} id={id} className="version-switcher-popover" popover="auto" onToggle={event => setOpen((event.nativeEvent as ToggleEvent).newState === 'open')}>
       <div className="version-switcher-heading"><h2>Elegí tu versión</h2><button type="button" aria-label="Cerrar versiones" onClick={close}><X size={16} /></button></div>
-      <nav aria-label="Versiones de Supernova">
+      <nav aria-label="Versiones de Órbita">
         {versions.map(version => <a key={version.value} href={versionHref(version.value)} aria-current={version.value === current.value ? 'page' : undefined}>
           <span><strong>{version.label}</strong><small>{version.description}</small></span>{version.value === current.value && <Check size={16} aria-hidden="true" />}
         </a>)}

@@ -15,7 +15,7 @@ export function useTheme() {
   useLayoutEffect(() => {
     document.documentElement.dataset.theme = theme;
     document.documentElement.style.colorScheme = theme;
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'light' ? '#f8f7fc' : '#0c0b14');
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'light' ? '#f5f7fa' : '#030b1c');
     writeStorage(THEME_KEY, theme);
   }, [theme]);
 

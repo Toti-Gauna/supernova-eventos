@@ -7,7 +7,7 @@ const SpatialApp = lazy(() => import('../App'));
 
 function Versions() {
   return <main className="versions-page">
-    <a className="versions-brand" href={versionHref('3d')}>✦ supernova</a>
+    <a className="versions-brand" href={versionHref('3d')}>✦ órbita</a>
     <span className="eyebrow">TRES FORMAS DE ENTRAR EN ÓRBITA</span>
     <h1>Elegí tu universo.</h1>
     <p>Tres experiencias independientes, con los mismos eventos de demostración.</p>

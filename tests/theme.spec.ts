@@ -44,7 +44,7 @@ test('la intro pendiente mantiene animación, aislamiento y Escape mientras lleg
   await page.goto('/', { waitUntil: 'domcontentloaded' });
   // Advance lazy-host retries without spending the opening's four-second budget.
   await expect.poll(async () => { await page.clock.runFor(10); return page.locator('[data-cinematic-intro].intro-pending').count(); }, { timeout:15000, intervals:[50] }).toBe(1);
-  const intro = page.getByRole('dialog', { name: 'Bienvenido a Supernova Eventos' });
+  const intro = page.getByRole('dialog', { name: 'Te damos la bienvenida a Órbita' });
   await expect(intro).toBeVisible();
   await expect(intro).toHaveClass(/intro-pending/);
   await page.clock.runFor(250);
@@ -74,7 +74,7 @@ test('oscuro inicial ignora el tema del sistema y el usuario conserva su elecci�
   await expect(page.getByRole('heading', { name: /Salí de la rutina/ })).toBeVisible();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
   expect(await page.locator('html').evaluate(element => getComputedStyle(element).colorScheme)).toBe('light');
-  await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute('content', '#020205');
+  await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute('content', '#030B1C');
   await page.getByRole('button', { name: 'Activar modo oscuro' }).click();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   await page.reload();
@@ -87,7 +87,7 @@ test('tema claro cubre popovers, perfil, favoritos, admin y los controles del es
   await page.getByRole('button', { name: 'Notificaciones', exact: true }).click();
   await expectLightSurface(page.locator('#header-notifications'));
   await page.keyboard.press('Escape');
-  await page.getByRole('button', { name: 'Guardar Supernova Sessions', exact: true }).click();
+  await page.getByRole('button', { name: 'Guardar Órbita Fest', exact: true }).click();
   await page.getByRole('button', { name: /^Favoritos/ }).click();
   await expectLightSurface(page.locator('.event-card').first());
   await page.getByRole('button', { name: 'Abrir perfil de Alex García' }).click();
@@ -120,7 +120,7 @@ test('tema claro cubre popovers, perfil, favoritos, admin y los controles del es
 test('inscripción y pase conservan contraste, acciones y calendario completos en modo claro', async ({ page }) => {
   await openDemo(page);
   await page.getByRole('button', { name: 'Activar modo claro' }).click();
-  await page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true }).click();
+  await page.getByRole('button', { name: 'Ver Órbita Fest', exact: true }).click();
   await expectLightSurface(page.locator('.registration-form-panel'));
   await page.getByRole('button', { name: 'Confirmar mi lugar', exact: true }).click();
   await expect(page.getByRole('alert')).toContainText('Aceptá los términos');
@@ -147,7 +147,7 @@ test('selector y scrollbars custom mantienen la geometría del header en todas l
     await page.setViewportSize({ width, height: 844 });
     await page.evaluate(() => scrollTo(0, 0));
     const header = page.locator('.header-inner');
-    const logo = page.getByRole('button', { name: 'Supernova, ir a inicio' });
+    const logo = page.getByRole('button', { name: 'Órbita, ir a inicio' });
     const theme = page.getByRole('button', { name: /Activar modo/ });
     const first = await logo.boundingBox();
     const action = await theme.boundingBox();

@@ -6,7 +6,7 @@ async function open(page: Page, path: string, motion: 'reduce' | 'no-preference'
   await page.clock.setFixedTime(date);
   await page.emulateMedia({ reducedMotion: motion });
   await page.goto(path);
-  await expect(page.getByRole('dialog', { name:'Bienvenido a Supernova Eventos' })).toHaveCount(0);
+  await expect(page.getByRole('dialog', { name:'Te damos la bienvenida a Órbita' })).toHaveCount(0);
   await expect(page.getByRole('heading', { name:/Salí de la rutina/ })).toBeVisible();
   await expect(page.locator('.app-shell')).not.toHaveClass(/intro-playing/);
 }
@@ -21,18 +21,18 @@ async function arrived(page: Page, destination: string) {
 
 test('el selector del header cambia las tres versiones y conserva pases y favoritos', async ({ page }) => {
   await open(page, '/3d/');
-  await page.getByRole('button', { name:'Guardar Supernova Sessions', exact:true }).click();
-  await page.getByRole('button', { name:'Ver Supernova Sessions', exact:true }).click();
+  await page.getByRole('button', { name:'Guardar Órbita Fest', exact:true }).click();
+  await page.getByRole('button', { name:'Ver Órbita Fest', exact:true }).click();
   await page.getByRole('checkbox', { name:'Acepto los términos y condiciones del evento.' }).check();
   await page.getByRole('button', { name:'Confirmar mi lugar', exact:true }).click();
   await page.getByRole('button', { name:'Volver', exact:true }).click();
   for (const [name, path, experience] of [['2D + 3D','/hibrida/','hybrid'],['Original','/original/','original'],['3D','/3d/','3d']]) {
     await page.getByRole('button', { name:'Cambiar versión', exact:true }).click();
-    await page.getByRole('navigation', { name:'Versiones de Supernova' }).getByRole('link', { name:new RegExp(`^${name.replace(/[+]/g, '\\+')} `) }).click();
+    await page.getByRole('navigation', { name:'Versiones de Órbita' }).getByRole('link', { name:new RegExp(`^${name.replace(/[+]/g, '\\+')} `) }).click();
     await expect(page).toHaveURL(new RegExp(`${path}$`));
-    await expect(page.getByRole('dialog', { name:'Bienvenido a Supernova Eventos' })).toHaveCount(0);
+    await expect(page.getByRole('dialog', { name:'Te damos la bienvenida a Órbita' })).toHaveCount(0);
     await expect(page.locator('.app-shell')).toHaveAttribute('data-experience', experience);
-    await expect(page.getByRole('button', { name:'Quitar Supernova Sessions de favoritos', exact:true })).toBeVisible();
+    await expect(page.getByRole('button', { name:'Quitar Órbita Fest de favoritos', exact:true })).toBeVisible();
     expect(await page.evaluate(() => JSON.parse(localStorage.getItem('supernova-registrations-v1')!).length)).toBe(1);
   }
 });
@@ -48,7 +48,7 @@ for (const version of ['original','3d','hibrida']) {
     await expect(page.getByRole('button', { name:'Ver eventos', exact:true })).toBeVisible();
     await page.getByRole('button', { name:'Administrar', exact:true }).click();
     await page.getByRole('button', { name:'Volver a eventos', exact:true }).click();
-    const trigger = page.getByRole('button', { name:'Ver Supernova Sessions', exact:true });
+    const trigger = page.getByRole('button', { name:'Ver Órbita Fest', exact:true });
     await trigger.click();
     await page.getByRole('button', { name:'Volver', exact:true }).click();
     await expect(page.getByRole('dialog')).toHaveCount(0);
@@ -93,10 +93,10 @@ test('la híbrida conserva un Canvas y viaja entre ilustraciones sin esferas', a
 });
 test('la híbrida abre un evento, emite un pase y vuelve con Escape y foco', async ({ page }) => {
   await open(page, '/hibrida/');
-  const trigger = page.getByRole('button', { name:'Ver Supernova Sessions', exact:true });
+  const trigger = page.getByRole('button', { name:'Ver Órbita Fest', exact:true });
   await trigger.click();
   await arrived(page, 'event:supernova-sessions');
-  const dialog = page.getByRole('dialog', { name:'Supernova Sessions', exact:true });
+  const dialog = page.getByRole('dialog', { name:'Órbita Fest', exact:true });
   await dialog.getByRole('checkbox', { name:'Acepto los términos y condiciones del evento.' }).check();
   await dialog.getByRole('button', { name:'Confirmar mi lugar', exact:true }).click();
   await expect(page.getByRole('heading', { name:'Ya sos parte.', exact:true })).toBeVisible();
@@ -131,8 +131,8 @@ test('la híbrida reduce movimiento y mantiene los formularios sin WebGL', async
   await open(page, '/hibrida/');
   const host = page.locator('[data-universe-host]');
   await expect(host).toHaveAttribute('data-universe-status', 'fallback');
-  await page.getByRole('button', { name:'Ver Supernova Sessions', exact:true }).click();
-  await expect(page.getByRole('dialog', { name:'Supernova Sessions', exact:true })).toBeVisible();
+  await page.getByRole('button', { name:'Ver Órbita Fest', exact:true }).click();
+  await expect(page.getByRole('dialog', { name:'Órbita Fest', exact:true })).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(host).toHaveAttribute('data-universe-travelling', 'false');
 });

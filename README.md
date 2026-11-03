@@ -1,8 +1,10 @@
-# Supernova Eventos
+# Órbita · Eventos
 
-Micro-app de eventos para Telefónica con estética galáctica, navegación sin sidebar, inscripción con confirmación animada y administración por pasos. Construida con Vite, React y TypeScript.
+Micro-app de eventos de Personal para su equipo y sus invitados, con estética galáctica, navegación sin sidebar, inscripción con confirmación animada y administración por pasos. Construida con Vite, React y TypeScript.
 
 Es un **prototipo frontend**. Usa datos ficticios y almacenamiento local del navegador. No incluye backend, autenticación SSO, nómina corporativa ni envío real de emails. La vista Administración está disponible para recorrer el mock.
+
+Antes era Supernova: el producto, la paleta y la composición cambiaron según [la dirección de Órbita](docs/orbita/README.md), y ahora tiene [accesos separados para personal interno y externo](docs/orbita/accesos.md). Los identificadores internos (`supernova-*` en `localStorage`) y la ruta `/supernova-eventos/` se conservan.
 
 ## Ejecutar
 
@@ -34,10 +36,11 @@ Las portadas locales se resuelven con la base de Vite al mostrarse, incluidos ev
 
 ## Recorrido
 
+0. Elegir el acceso. **Personal interno** entra con una cuenta corporativa simulada (Alex García) y ve todos los eventos internos y abiertos, además de Administración. **Personal externo** entra con nombre, email y el código de invitación de demo `ORBITA-2026`, y solo ve los eventos abiertos a invitados.
 1. Explorar el evento destacado y buscar/filtrar en el catálogo. La home muestra tres eventos por página, agrupados en Eventos activos, Eventos próximos y Eventos finalizados, en ese orden. Los filtros y el orden se aplican antes de paginar.
 2. Guardar experiencias en Favoritos, buscarlas y volver a encontrarlas después de un refresh.
 3. Abrir la inscripción fullscreen, confirmar el lugar y revisar el pase con su calendario custom desde Mis eventos.
-4. Entrar a Administración y crear un evento con su propia barra de pasos: información, audiencia, plantilla de email y revisión.
+4. Entrar a Administración y crear un evento con su propia barra de pasos: información, audiencia (incluye quién puede verlo: interno, externo o ambos), plantilla de email y revisión.
 5. Probar audiencia de compañía, selección ficticia de nómina o importación local. El preview de email muestra cómo se personalizaría la invitación; no envía mensajes.
 
 Los cambios guardados en `localStorage` sólo existen en este navegador/origen. Para reiniciar el prototipo, borrar el almacenamiento del sitio desde las herramientas del navegador. No introducir datos reales de colaboradores en esta demo.
@@ -62,6 +65,7 @@ Validación: build de producción, treinta y dos casos de navegador y revisión 
 
 ## Documentación y agentes
 
+- [Órbita: identidad, paleta y composición](docs/orbita/README.md), [accesos interno y externo](docs/orbita/accesos.md) y [universo recoloreado](docs/orbita/universo.md).
 - [Arquitectura del prototipo](docs/architecture.md).
 - [Prompt completo para implementar backend](docs/backend-prompt.md): contratos propuestos a validar, SSO, nómina, privacidad, inscripciones, email, archivos, pruebas y conexión posterior del FE.
 - [Agentes frontend y trailer](agents/README.md) en `agents/frontend/` y `agents/trailer/`, separados dentro de la misma carpeta y adaptados a Codex.

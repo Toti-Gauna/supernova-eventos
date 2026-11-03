@@ -1,0 +1,40 @@
+/* Festival banner: a cyan field cut by a diagonal block, like Personal's promo banners. */
+.featured-banner { --banner-block:var(--festival-magenta,#d94fd0); position:relative; isolation:isolate; overflow:hidden; display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); align-items:center; gap:24px; margin-top:64px; padding:46px 0 46px 48px; border-radius:28px; color:#04122b; background:linear-gradient(120deg,#4ec5ff 0%,#1eb2f5 48%,#1d8fe8 100%); box-shadow:0 30px 80px #00071a40; }
+.featured-banner::before { content:''; position:absolute; inset:0; z-index:-1; background:linear-gradient(115deg,transparent 0 52%,var(--banner-block) 52% 100%); opacity:.92; }
+.featured-banner::after { content:''; position:absolute; z-index:-1; width:420px; height:420px; right:-90px; bottom:-210px; border:46px solid #ffffff24; border-radius:50%; }
+.featured-banner.category-bienestar { --banner-block:#18c39a; }
+.featured-banner.category-tecnologia { --banner-block:#2348de; }
+.featured-banner.category-comunidad { --banner-block:#5a50f9; }
+.featured-banner.category-aprendizaje { --banner-block:#4e26b1; }
+.featured-banner-copy { position:relative; display:grid; justify-items:start; gap:14px; }
+.featured-banner-eyebrow { display:inline-flex; align-items:center; gap:8px; padding:8px 13px; border-radius:999px; background:#04122b; color:#fff; font-size:10px; font-weight:700; letter-spacing:1.4px; }
+.featured-banner-eyebrow>span { color:#4ec5ff; }
+.featured-banner h2 { margin:4px 0 0; font:800 clamp(44px,5.6vw,78px)/.95 Manrope,sans-serif; letter-spacing:-3px; color:#04122b; }
+.featured-banner-copy>p { margin:0; font-size:17px; font-weight:600; color:#062a52; }
+.featured-banner-lineup { display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 4px; padding:0; list-style:none; }
+.featured-banner-lineup>li { display:inline-flex; align-items:center; gap:7px; padding:8px 13px; border-radius:999px; background:#ffffffd9; color:#04122b; font-size:12px; font-weight:600; }
+.featured-banner-lineup svg { color:#0b51df; }
+.featured-banner .featured-banner-cta { gap:14px; min-width:190px; border-radius:999px; background:#04122b; color:#fff; border:1px solid #04122b; box-shadow:0 12px 30px #04122b40; }
+.featured-banner .featured-banner-cta:hover { background:#0b1f45; }
+.featured-banner .featured-banner-cta:focus-visible { outline:3px solid #fff; outline-offset:3px; }
+.featured-banner-art { position:relative; height:320px; margin-right:-1px; }
+.featured-banner-block { position:absolute; inset:18px 48px 18px 36px; border-radius:24px; background:#ffffff2e; transform:rotate(-4deg); }
+.featured-banner-art>img { position:absolute; inset:0 48px 0 52px; width:calc(100% - 100px); height:100%; object-fit:cover; border-radius:24px; border:4px solid #fff; box-shadow:0 24px 60px #04122b55; }
+.featured-banner-date { position:absolute; left:28px; bottom:22px; display:grid; justify-items:center; min-width:76px; padding:10px 12px; border-radius:18px; background:#fff; color:#04122b; font-size:11px; font-weight:800; letter-spacing:1.4px; box-shadow:0 12px 30px #04122b40; }
+.featured-banner-date strong { font:800 34px/1 Manrope,sans-serif; letter-spacing:-1px; }
+
+@media (max-width:900px) {
+  .featured-banner { grid-template-columns:1fr; padding:34px 28px 28px; gap:28px; }
+  .featured-banner::before { background:linear-gradient(160deg,transparent 0 58%,var(--banner-block) 58% 100%); }
+  .featured-banner-art { height:240px; }
+  .featured-banner-art>img { inset:0 8px 0 18px; width:calc(100% - 26px); }
+  .featured-banner-block { inset:12px 4px 12px 10px; }
+  .featured-banner-date { left:2px; bottom:14px; }
+}
+@media (max-width:520px) {
+  .featured-banner { margin-top:44px; padding:28px 20px 22px; border-radius:24px; }
+  .featured-banner h2 { letter-spacing:-2px; }
+  .featured-banner-copy>p { font-size:15px; }
+  .featured-banner .featured-banner-cta { width:100%; justify-content:center; }
+  .featured-banner-art { height:200px; }
+}

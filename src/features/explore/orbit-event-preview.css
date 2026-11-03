@@ -1,20 +1,20 @@
-.orbit-event-preview { display:grid; grid-template-columns:minmax(0,1fr) 44px; align-items:center; gap:8px; min-width:0; min-height:96px; padding:10px; border:1px solid #c8ade92b; border-radius:16px; background:linear-gradient(115deg,#322540b8,#120f1dd9 85%); box-shadow:inset 0 1px #e2caff08; }
-.orbit-event-open { display:grid; grid-template-columns:72px minmax(0,1fr) auto; align-items:center; gap:16px; min-width:0; min-height:72px; padding:0; border:0; border-radius:10px; background:transparent; text-align:left; color:#f4eefa; }
-.orbit-event-open>img { width:72px; height:72px; border:1px solid #dfc3ff14; border-radius:11px; object-fit:cover; }
+.orbit-event-preview { display:grid; grid-template-columns:minmax(0,1fr) 44px; align-items:center; gap:8px; min-width:0; min-height:96px; padding:10px; border:1px solid #acd1ea2b; border-radius:16px; background:linear-gradient(115deg,#0e265cb8,#061028d9 85%); box-shadow:inset 0 1px #caeaff08; }
+.orbit-event-open { display:grid; grid-template-columns:72px minmax(0,1fr) auto; align-items:center; gap:16px; min-width:0; min-height:72px; padding:0; border:0; border-radius:10px; background:transparent; text-align:left; color:#eef3fa; }
+.orbit-event-open>img { width:72px; height:72px; border:1px solid #c3e7ff14; border-radius:11px; object-fit:cover; }
 .orbit-event-copy { display:flex; flex-direction:column; gap:5px; min-width:0; }
 .orbit-event-title { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font:500 18px/1.2 Manrope,sans-serif; letter-spacing:-.4px; }
-.orbit-event-meta { display:flex; align-items:center; min-width:0; overflow:hidden; color:#c4b2d3; font-size:13px; line-height:1.35; }
+.orbit-event-meta { display:flex; align-items:center; min-width:0; overflow:hidden; color:#adc2d8; font-size:13px; line-height:1.35; }
 .orbit-event-meta>time { white-space:nowrap; }
 .orbit-event-session { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.orbit-event-status { color:#ccb9e2; font-size:12px; line-height:1.35; }
-.orbit-event-cta { display:flex; align-items:center; justify-content:center; gap:10px; min-height:44px; padding:10px 14px; border:1px solid #c8ade93b; border-radius:11px; background:#c6a6ed15; color:#e4d0fc; font-size:13px; white-space:nowrap; }
+.orbit-event-status { color:#b0d3eb; font-size:12px; line-height:1.35; }
+.orbit-event-cta { display:flex; align-items:center; justify-content:center; gap:10px; min-height:44px; padding:10px 14px; border:1px solid #acd1ea3b; border-radius:11px; background:#a6d1ed15; color:#d0eafc; font-size:13px; white-space:nowrap; }
 .orbit-event-action-mobile { display:none; }
-.orbit-event-open:hover .orbit-event-title { color:#dec4fd; }
-.orbit-event-open:focus-visible,.orbit-event-favorite:focus-visible { outline:2px solid #ddc1fd; outline-offset:3px; }
-.orbit-event-favorite { display:grid; place-items:center; width:44px; height:44px; padding:0; border:0; border-radius:10px; background:transparent; color:#b5a1c9; }
-.orbit-event-favorite:hover,.orbit-event-favorite.is-saved { color:#ddc1fd; background:#c7a0f112; }
-.orbit-event-preview[data-preview-kind='registered'] { border-color:#ceb7ef45; background:linear-gradient(115deg,#40304bbd,#181221df); }
-.orbit-event-preview[data-preview-kind='registered'] .orbit-event-cta { background:#c9acf032; }
+.orbit-event-open:hover .orbit-event-title { color:#c4e6fd; }
+.orbit-event-open:focus-visible,.orbit-event-favorite:focus-visible { outline:2px solid #c1e5fd; outline-offset:3px; }
+.orbit-event-favorite { display:grid; place-items:center; width:44px; height:44px; padding:0; border:0; border-radius:10px; background:transparent; color:#9bb5cf; }
+.orbit-event-favorite:hover,.orbit-event-favorite.is-saved { color:#c1e5fd; background:#a0d0f112; }
+.orbit-event-preview[data-preview-kind='registered'] { border-color:#b7daef45; background:linear-gradient(115deg,#2c3d4fbd,#07132fdf); }
+.orbit-event-preview[data-preview-kind='registered'] .orbit-event-cta { background:#acd6f032; }
 @media(min-width:701px) and (max-width:1000px) {
   .orbit-event-open { grid-template-columns:64px minmax(0,1fr) auto; gap:10px; }
   .orbit-event-open>img { width:64px; height:64px; }
@@ -30,6 +30,6 @@
   .orbit-event-copy { gap:2px; }
   .orbit-event-meta { font-size:13px; }
   .orbit-event-status { display:flex; align-items:center; gap:6px; font-size:11px; white-space:nowrap; }
-  .orbit-event-action-mobile { display:inline-flex; align-items:center; gap:3px; color:#e1c7ff; font-weight:500; }
+  .orbit-event-action-mobile { display:inline-flex; align-items:center; gap:3px; color:#c7e8ff; font-weight:500; }
   .orbit-event-cta,.orbit-event-category,.orbit-event-session { display:none; }
 }

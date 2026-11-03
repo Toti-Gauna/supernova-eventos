@@ -4,8 +4,8 @@ import jsQR from 'jsqr';
 async function open(page: Page, version: string) {
   await page.clock.setFixedTime(new Date('2026-10-09T15:00:00Z'));
   await page.goto(`/${version}/`);
-  await expect(page.getByRole('dialog', { name: 'Bienvenido a Supernova Eventos' })).toHaveCount(0);
-  await expect(page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true })).toBeVisible();
+  await expect(page.getByRole('dialog', { name: 'Te damos la bienvenida a Órbita' })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Ver Órbita Fest', exact: true })).toBeVisible();
 }
 
 /** Decode the actual SVG image after browser rasterization with an independent QR reader. */
@@ -29,7 +29,7 @@ async function decode(image: Locator, actualSize = false): Promise<string> {
 for (const version of ['original', '3d', 'hibrida']) {
   test(`QR de usuario en ${version}: reserva y función sin datos personales, descarga y foco`, async ({ page }) => {
     await open(page, version);
-    await page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true }).click();
+    await page.getByRole('button', { name: 'Ver Órbita Fest', exact: true }).click();
     await page.getByRole('checkbox', { name: 'Acepto los términos y condiciones del evento.' }).check();
     await page.getByRole('button', { name: 'Confirmar mi lugar', exact: true }).click();
     await expect(page.getByRole('heading', { name: 'Ya sos parte.', exact: true })).toBeVisible();
@@ -44,7 +44,7 @@ for (const version of ['original', '3d', 'hibrida']) {
     const downloadPromise = page.waitForEvent('download');
     await dialog.getByRole('link', { name: 'Descargar QR', exact: true }).click();
     const download = await downloadPromise;
-    expect(download.suggestedFilename()).toMatch(/^supernova-pase-.+-qr\.svg$/);
+    expect(download.suggestedFilename()).toMatch(/^orbita-pase-.+-qr\.svg$/);
     await page.keyboard.press('Escape');
     await expect(dialog).toHaveCount(0);
     await expect(trigger).toBeFocused();
@@ -55,8 +55,8 @@ for (const version of ['original', '3d', 'hibrida']) {
 test('QR admin selecciona la función, genera un enlace de la versión y abre el evento elegido', async ({ page }) => {
   await open(page, 'hibrida');
   await page.getByRole('button', { name: 'Administrar', exact: true }).click();
-  await page.getByRole('button', { name: 'QR de Supernova Sessions', exact: true }).click();
-  const dialog = page.getByRole('dialog', { name: 'QR de Supernova Sessions', exact: true });
+  await page.getByRole('button', { name: 'QR de Órbita Fest', exact: true }).click();
+  const dialog = page.getByRole('dialog', { name: 'QR de Órbita Fest', exact: true });
   const first = new URL(await decode(dialog.locator('.qr-image')));
   expect(first.pathname).toBe('/hibrida/');
   expect(first.searchParams.get('evento')).toBe('supernova-sessions');
@@ -73,14 +73,14 @@ test('QR admin selecciona la función, genera un enlace de la versión y abre el
   await dialog.getByRole('button', { name: 'Volver', exact: true }).click();
   await expect(dialog).toHaveCount(0);
   await page.goto(second.href);
-  await expect(page.getByRole('dialog', { name: 'Supernova Sessions', exact: true })).toBeVisible();
+  await expect(page.getByRole('dialog', { name: 'Órbita Fest', exact: true })).toBeVisible();
   await expect(page.locator('.event-session-selector').getByRole('radio').nth(1)).toBeChecked();
 });
 
 test('QR usuario y admin en 320 px mantienen acciones y navegación con teclado', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 667 });
   await open(page, 'original');
-  await page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true }).click();
+  await page.getByRole('button', { name: 'Ver Órbita Fest', exact: true }).click();
   await page.getByRole('checkbox', { name: 'Acepto los términos y condiciones del evento.' }).check();
   await page.getByRole('button', { name: 'Confirmar mi lugar', exact: true }).click();
   await page.getByRole('button', { name: 'Ver mi QR', exact: true }).click();
@@ -94,8 +94,8 @@ test('QR usuario y admin en 320 px mantienen acciones y navegación con teclado'
   await expect(page.getByRole('button', { name: 'Ver mi QR', exact: true })).toBeFocused();
   await page.getByRole('button', { name: 'Cerrar inscripción', exact: true }).click();
   await page.getByRole('button', { name: 'Administrar', exact: true }).click();
-  await page.getByRole('button', { name: 'QR de Supernova Sessions', exact: true }).click();
-  const admin = page.getByRole('dialog', { name: 'QR de Supernova Sessions', exact: true });
+  await page.getByRole('button', { name: 'QR de Órbita Fest', exact: true }).click();
+  const admin = page.getByRole('dialog', { name: 'QR de Órbita Fest', exact: true });
   const decoded = new URL(await decode(admin.locator('.qr-image'), true));
   expect(decoded.pathname).toBe('/original/');
   const actions = await admin.locator('.qr-dialog-actions .button').evaluateAll(elements => elements.map(element => {
@@ -105,7 +105,7 @@ test('QR usuario y admin en 320 px mantienen acciones y navegación con teclado'
   }));
   expect(actions).toEqual([true, true]);
   await page.keyboard.press('Escape');
-  await expect(page.getByRole('button', { name: 'QR de Supernova Sessions', exact: true })).toBeFocused();
+  await expect(page.getByRole('button', { name: 'QR de Órbita Fest', exact: true })).toBeFocused();
 });
 
 test('si falla el generador, el pase conserva su código, Escape y foco', async ({ page }) => {
@@ -113,7 +113,7 @@ test('si falla el generador, el pase conserva su código, Escape y foco', async 
   page.on('pageerror', error => errors.push(error.message));
   await page.route('**/node_modules/.vite/deps/qrcode*', route => route.abort());
   await open(page, 'original');
-  await page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true }).click();
+  await page.getByRole('button', { name: 'Ver Órbita Fest', exact: true }).click();
   await page.getByRole('checkbox', { name: 'Acepto los términos y condiciones del evento.' }).check();
   await page.getByRole('button', { name: 'Confirmar mi lugar', exact: true }).click();
   const trigger = page.getByRole('button', { name: 'Ver mi QR', exact: true });

@@ -1,3 +1,15 @@
+// Category tint for event planets: the hue moves toward the category color while the
+// texture's luminance keeps craters, bands and the terminator. uTintMix 0 = natural body.
+const categoryTint = /* glsl */ `
+  vec3 categoryTint(vec3 surface, vec3 tint, float amount) {
+    if (amount <= 0.) return surface;
+    float luma = dot(surface, vec3(.2126, .7152, .0722));
+    float tintLuma = max(dot(tint, vec3(.2126, .7152, .0722)), .05);
+    vec3 recolored = tint * min(luma / tintLuma, 2.);
+    return mix(surface, recolored, amount);
+  }
+`;
+
 export const planetVertex = /* glsl */ `
   varying vec3 vLocal;
   varying vec3 vNormalWorld;
@@ -22,9 +34,12 @@ export const planetFragment = /* glsl */ `
   uniform sampler2D uClouds;
   uniform float uSolarBody;
   uniform float uPhase;
+  uniform vec3 uTint;
+  uniform float uTintMix;
   varying vec3 vLocal;
   varying vec3 vNormalWorld;
   varying vec3 vWorld;
+  ${categoryTint}
   void main() {
     vec3 p = normalize(vLocal);
     vec3 n = normalize(vNormalWorld);
@@ -36,6 +51,7 @@ export const planetFragment = /* glsl */ `
       vec4 clouds = texture2D(uClouds, vec2(fract(uv.x + uPhase * .027), uv.y));
       surface = mix(surface, clouds.rgb, clouds.a * .82);
     }
+    surface = categoryTint(surface, uTint, uTintMix);
     vec3 eye = normalize(cameraPosition - vWorld);
     float fresnel = pow(1. - max(dot(n, eye), 0.), 7.);
     float rimLight = .14 + .7 * max(0., dot(n, light));
@@ -110,7 +126,10 @@ export const illustratedPlanetFragment = /* glsl */ `
   uniform float uTilt;
   uniform float uOpacity;
   uniform vec3 uRim;
+  uniform vec3 uTint;
+  uniform float uTintMix;
   varying vec2 vUv;
+  ${categoryTint}
   void main() {
     vec2 disc = (vUv - .5) * vec2(600. / 140., 400. / 140.);
     float radius2 = dot(disc, disc);
@@ -125,6 +144,7 @@ export const illustratedPlanetFragment = /* glsl */ `
       vec4 clouds = texture2D(uClouds, vec2(fract(surfaceUv.x + uPhase * .027), surfaceUv.y));
       surface = mix(surface, clouds.rgb, clouds.a * .82);
     }
+    surface = min(categoryTint(surface, uTint, uTintMix), vec3(1.));
     vec3 normal = vec3(disc, depth);
     float diffuse = smoothstep(-.24, .94, dot(normal, normalize(vec3(-.55, .65, 1.))));
     vec3 color = surface * (.07 + diffuse * .93);

@@ -1,4 +1,4 @@
-import type { AppView } from '../../types';
+import type { AppView, EventCategory } from '../../types';
 import type { UniverseCommand, UniverseDestination, UniverseQuality } from './contracts';
 
 export type VectorTuple = [number, number, number];
@@ -16,6 +16,20 @@ export const SOLAR_BODIES = {
   neptune: { label: 'Neptuno', index: 7, dark: '#102345', mineral: '#346bbd', rim: '#99c7ef', rotationSpeed: .08, axialTilt: .49 },
 } satisfies Record<SolarBody, { label: string; index: number; dark: string; mineral: string; rim: string; rotationSpeed: number; axialTilt: number; ring?: 'continuous' }>;
 
+/**
+ * Órbita category palette (docs/orbita/README.md). `color` biases the event planet's
+ * surface, `rim` lights its atmosphere and landmark, `dark` is its night side.
+ */
+export const CATEGORY_TINTS: Record<EventCategory, { color: string; rim: string; dark: string }> = {
+  Música: { color: '#e0479e', rim: '#f59bcd', dark: '#2a0c1e' },
+  Bienestar: { color: '#18c39a', rim: '#8de8cf', dark: '#05261e' },
+  Tecnología: { color: '#1eb2f5', rim: '#9adcff', dark: '#06233a' },
+  Comunidad: { color: '#7b6cf6', rim: '#bdb4ff', dark: '#16123a' },
+  Aprendizaje: { color: '#4d7cff', rim: '#a9c0ff', dark: '#0c1a40' },
+};
+/** Share of the surface that takes the category hue; the body's own relief and light remain. */
+export const CATEGORY_TINT_MIX = .86;
+
 export interface PlanetSpec {
   key: string;
   solarBody: SolarBody;
@@ -25,6 +39,8 @@ export interface PlanetSpec {
   dark: string;
   mineral: string;
   rim: string;
+  /** Category hue for event planets. Sections, the sun and moons stay natural. */
+  tint?: string;
   seed: number;
   ring?: 'continuous' | 'fragmented';
   moons?: number;
@@ -66,9 +82,14 @@ export function eventPlanet(destination: Extract<UniverseDestination, { kind: 'e
   const hash = stableHash(destination.eventId);
   const solarBody = EVENT_SOLAR_BODIES[hash % EVENT_SOLAR_BODIES.length];
   const body = SOLAR_BODIES[solarBody];
+  const category = CATEGORY_TINTS[destination.category];
   // The ID alone defines its location, so a return to the same event is continuous.
+  // The category only tints the surface and light; geometry still comes from the ID.
   return {
     ...body,
+    dark: category.dark,
+    rim: category.rim,
+    tint: category.color,
     solarBody,
     key: `event-${destination.eventId}`,
     center: [10 + (hash % 17), -10 - ((hash >>> 5) % 7), -15 - ((hash >>> 10) % 13)],

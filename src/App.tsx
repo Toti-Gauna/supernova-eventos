@@ -1,13 +1,15 @@
 import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, MotionConfig, motion } from 'motion/react';
 import { ArrowUpRight, Play } from 'lucide-react';
-import type { AppView, EventItem, Registration } from './types';
-import { DEMO_ARCHIVE_MIGRATION_KEY, INITIAL_EVENTS, withDemoArchive } from './data/events';
+import type { AccessProfile, AppView, EventItem, Registration } from './types';
+import { DEMO_ARCHIVE_MIGRATION_KEY, INITIAL_EVENTS, withAccessDefaults, withDemoArchive } from './data/events';
 import { readStorage, writeStorage } from './lib/storage';
-import { canViewEvent, getEventPhase } from './lib/events';
+import { canAccessEvent, canViewEvent, getEventPhase } from './lib/events';
 import { changeSessionRegistration, eventForSession, getEventSession, getRegistrationSession, mergeEventSessionUpdate, sameRegistrationSession, withEventSessions } from './lib/eventSessions';
 import Header from './components/Header';
 import Brand from './components/Brand';
+import AccessGate from './features/access/AccessGate';
+import { AccessContext, INTERNAL_DEMO_PROFILE, toViewer, useAccessSession } from './features/access/access';
 import EventExplorer from './features/explore/EventExplorer';
 import MyEvents from './features/registration/MyEvents';
 import Favorites from './features/favorites/Favorites';
@@ -26,17 +28,21 @@ import { useUniverseController } from './features/universe/useUniverseController
 
 const AdminPanel = lazy(() => import('./features/admin/AdminPanel'));
 const CinematicIntro = lazy(() => import('./features/intro/CinematicIntro'));
-const KEYS = { events: 'supernova-events-v1', registrations: 'supernova-registrations-v1', favorites: 'supernova-favorites-v1', subscribed: 'supernova-subscribed-v1', session: 'supernova-demo-session-v1' };
+const KEYS = { events: 'supernova-events-v1', registrations: 'supernova-registrations-v1', favorites: 'supernova-favorites-v1', subscribed: 'supernova-subscribed-v1' };
 function storedArray<T>(key: string, fallback: T[]): T[] { const result = readStorage<T[]>(key, fallback); return Array.isArray(result) ? result : fallback; }
 
 export default function App({ variant = '3d' }: { variant?: '3d' | 'hybrid' }) {
   const { theme, toggleTheme } = useTheme();
   const [view, setView] = useState<AppView>('explore');
-  const [events, setEvents] = useState<EventItem[]>(() => withDemoArchive(storedArray(KEYS.events, INITIAL_EVENTS), readStorage(DEMO_ARCHIVE_MIGRATION_KEY, false)));
+  const [events, setEvents] = useState<EventItem[]>(() => withAccessDefaults(withDemoArchive(storedArray(KEYS.events, INITIAL_EVENTS), readStorage(DEMO_ARCHIVE_MIGRATION_KEY, false))));
   const [registrations, setRegistrations] = useState<Registration[]>(() => storedArray(KEYS.registrations, []));
   const [favorites, setFavorites] = useState<string[]>(() => storedArray(KEYS.favorites, []));
   const [subscribed, setSubscribed] = useState(() => readStorage<boolean>(KEYS.subscribed, false));
-  const [sessionActive, setSessionActive] = useState(() => readStorage<boolean>(KEYS.session, true));
+  const { access, signedOut, signIn, signOut } = useAccessSession();
+  const sessionActive = access !== null;
+  const viewer = useMemo(() => access ? toViewer(access) : toViewer(INTERNAL_DEMO_PROFILE), [access]);
+  const viewerRef = useRef(viewer);
+  viewerRef.current = viewer;
   const [selectedEvent, setSelectedEvent] = useState<EventItem | null>(null);
   const [selectedSessionId, setSelectedSessionId] = useState<string>();
   const [opening] = useState(() => ({ startedAt: readIntroStartedAt(), dismissed: document.getElementById('intro-bootstrap')?.getAttribute('data-intro-dismissed') === 'true' }));
@@ -72,7 +78,6 @@ export default function App({ variant = '3d' }: { variant?: '3d' | 'hybrid' }) {
   useEffect(() => { if (!writeStorage(KEYS.registrations, registrations)) setToast('No pudimos guardar tu pase en el navegador. Se conserva durante esta sesión.'); }, [registrations]);
   useEffect(() => { writeStorage(KEYS.favorites, favorites); }, [favorites]);
   useEffect(() => { writeStorage(KEYS.subscribed, subscribed); }, [subscribed]);
-  useEffect(() => { writeStorage(KEYS.session, sessionActive); }, [sessionActive]);
   useEffect(() => { if (!toast) return; const timer = window.setTimeout(() => setToast(null), 5200); return () => window.clearTimeout(timer); }, [toast]);
   useEffect(() => {
     setIntroRevealed(false);
@@ -107,6 +112,7 @@ export default function App({ variant = '3d' }: { variant?: '3d' | 'hybrid' }) {
     universe.issueCommand({ kind: 'event', eventId: event.id, category: event.category }, 'open-event');
   }
   function navigate(next: AppView) {
+    if (next === 'admin' && access?.kind === 'external') next = 'explore';
     studioRef.current = false;
     setSelectedEvent(null); setSelectedSessionId(undefined); setStudioActive(false); setView(next);
     universe.issueCommand({ kind: 'section', view: next }, 'navigate');
@@ -114,7 +120,8 @@ export default function App({ variant = '3d' }: { variant?: '3d' | 'hybrid' }) {
   }
   function replayIntro() { replayFocus.current = document.activeElement instanceof HTMLElement ? document.activeElement : null; universe.replay({ kind: 'section', view }); setShowIntro(true); }
   function favorite(id: string) { setFavorites(ids => ids.includes(id) ? ids.filter(value => value !== id) : [...ids, id]); }
-  function logout() { studioRef.current = false; setSelectedEvent(null); setSelectedSessionId(undefined); setStudioActive(false); setToast(null); setView('explore'); setSessionActive(false); universe.issueCommand({ kind: 'section', view: 'explore' }, 'navigate', performance.now() - 2000); window.scrollTo({ top: 0, behavior: 'instant' }); }
+  function enter(profile: AccessProfile) { signIn(profile); setView('explore'); window.scrollTo({ top: 0, behavior: 'instant' }); }
+  function logout() { studioRef.current = false; setSelectedEvent(null); setSelectedSessionId(undefined); setStudioActive(false); setToast(null); setView('explore'); signOut(); universe.issueCommand({ kind: 'section', view: 'explore' }, 'navigate', performance.now() - 2000); window.scrollTo({ top: 0, behavior: 'instant' }); }
   function subscribe() { setSubscribed(v => !v); setToast(subscribed ? 'Desactivaste las novedades en esta demo.' : '¡Ya estás en órbita! Preferencia guardada en este navegador.'); }
   function register(event: EventItem, name: string, email: string, companions: number, sessionId?: string): Registration | null {
     const current = eventsRef.current.find(e => e.id === event.id);
@@ -123,7 +130,7 @@ export default function App({ variant = '3d' }: { variant?: '3d' | 'hybrid' }) {
     if (!session) return null;
     const existing = registrationsRef.current.find(r => sameRegistrationSession(current, r, session.id));
     if (existing) return existing;
-    if (!canViewEvent(current) || current.status !== 'published' || getEventPhase(eventForSession(current, session)) === 'ended' || session.capacity - session.registered < 1 + companions || !Number.isInteger(companions) || companions < 0 || companions > current.companions || !name.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) return null;
+    if (!canViewEvent(current, viewerRef.current) || current.status !== 'published' || getEventPhase(eventForSession(current, session)) === 'ended' || session.capacity - session.registered < 1 + companions || !Number.isInteger(companions) || companions < 0 || companions > current.companions || !name.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) return null;
     const registration: Registration = { id: `SN-${crypto.randomUUID().slice(0, 8).toUpperCase()}`, eventId: event.id, sessionId: session.id, sessionSnapshot: { ...session }, name: name.trim(), email: email.trim(), companions, createdAt: new Date().toISOString() };
     registrationsRef.current = [...registrationsRef.current, registration];
     eventsRef.current = eventsRef.current.map(e => e.id === event.id ? changeSessionRegistration(e, session.id, 1 + companions) : e);
@@ -164,7 +171,9 @@ export default function App({ variant = '3d' }: { variant?: '3d' | 'hybrid' }) {
     const query = new URLSearchParams(window.location.search);
     const eventId = query.get('evento');
     if (!eventId) return;
-    const event = eventsRef.current.find(item => item.id === eventId && item.status !== 'draft' && canViewEvent(item));
+    const requested = eventsRef.current.find(item => item.id === eventId && item.status !== 'draft');
+    if (requested && !canAccessEvent(requested, viewerRef.current.kind)) { setToast(viewerRef.current.kind === 'external' ? 'Este evento es solo para personal interno.' : 'Este evento es solo para personal externo.'); return; }
+    const event = requested && canViewEvent(requested, viewerRef.current) ? requested : undefined;
     const sessionId = query.get('funcion') || undefined;
     if (!event || !getEventSession(event, sessionId)) { setToast('No encontramos ese evento o esa función en esta demo.'); return; }
     eventReturn.current = { kind: 'section', view: viewRef.current };
@@ -173,15 +182,15 @@ export default function App({ variant = '3d' }: { variant?: '3d' | 'hybrid' }) {
   }, [showIntro, sessionActive, universe.issueCommand]);
   const selectedLiveEvent = selectedEvent ? selectedEvent.status === 'draft' ? selectedEvent : events.find(e => e.id === selectedEvent.id) ?? selectedEvent : null;
   const immersiveStudio = view === 'admin' && studioActive;
-  const visibleFavoriteCount = events.filter(event => favorites.includes(event.id) && event.status !== 'draft' && canViewEvent(event)).length;
+  const visibleFavoriteCount = events.filter(event => favorites.includes(event.id) && event.status !== 'draft' && canViewEvent(event, viewer)).length;
   const favoriteSatellites = useMemo(() => events
-    .filter(event => favorites.includes(event.id) && event.status !== 'draft' && canViewEvent(event))
+    .filter(event => favorites.includes(event.id) && event.status !== 'draft' && canViewEvent(event, viewer))
     .sort((a, b) => a.id.localeCompare(b.id)).slice(0, 8)
-    .map(event => ({ eventId: event.id, category: event.category })), [events, favorites]);
+    .map(event => ({ eventId: event.id, category: event.category })), [events, favorites, viewer]);
   const presentation = useMemo(() => ({ status: universe.status, command: universe.command, introStartedAtMs: universe.introStartedAtMs }), [universe.status, universe.command, universe.introStartedAtMs]);
   const ExperienceHost = variant === 'hybrid' ? HybridHost : UniverseHost;
 
-  return <MotionConfig reducedMotion="user"><UniversePresentationProvider value={presentation}>
+  return <AccessContext.Provider value={access ?? INTERNAL_DEMO_PROFILE}><MotionConfig reducedMotion="user"><UniversePresentationProvider value={presentation}>
     <ExperienceHost introActive={showIntro} command={universe.command} favoriteSatellites={favoriteSatellites} reducedMotion={universe.reducedMotion} paused={universe.paused} quality="auto" onSettled={universe.onSettled} onStatusChange={universe.onStatusChange} status={universe.status} settled={universe.settled} settlementHistory={universe.settlementHistory} />
     <div data-experience={variant} data-universe-enabled="true" data-universe-status={universe.status} data-universe-event={String(!!selectedLiveEvent)} data-universe-reveal={String(introRevealed)} data-universe-paused={String(universe.paused)} className={`app-shell view-${view} ${showIntro ? 'intro-playing' : ''} ${sessionActive ? '' : 'signed-out'}`}><a className="skip-link" href="#main-content">Ir al contenido</a>
     {sessionActive && !immersiveStudio && !selectedLiveEvent && <Header view={view} onNavigate={navigate} registrations={registrations} favoriteCount={visibleFavoriteCount} onLogout={logout} theme={theme} onThemeToggle={toggleTheme} />}
@@ -191,9 +200,9 @@ export default function App({ variant = '3d' }: { variant?: '3d' | 'hybrid' }) {
       {view === 'favorites' && <Favorites events={events} favorites={favorites} registrations={registrations} onFavorite={favorite} onOpen={openEvent} onExplore={() => navigate('explore')} />}
       {view === 'profile' && <Profile subscribed={subscribed} registrations={registrations.length} favorites={visibleFavoriteCount} onSubscribe={subscribe} onLogout={logout} onBack={() => navigate('explore')} motionPaused={universe.userPaused} onMotionToggle={universe.toggleMotion} universeStatus={universe.status} onUniverseRetry={universe.retry} />}
       {view === 'admin' && <div className={immersiveStudio ? 'studio-container' : 'section-container'}><Suspense fallback={<div className="page-loading"><span className="loading-star">✦</span><p>Preparando tu espacio de creación...</p></div>}><AdminPanel events={events} registrations={registrations} onCreate={create} onUpdate={update} onPreview={event => openEvent({ ...event, status: 'draft' })} notify={setToast} onWizardChange={wizardChanged} onBack={() => navigate('explore')} /></Suspense></div>}
-    </motion.div></AnimatePresence> : <section className="session-closed"><Brand compact /><span className="session-orbit" aria-hidden="true">✦</span><span className="eyebrow">NOS VEMOS EN LA PRÓXIMA ÓRBITA</span><h1>Sesión cerrada.</h1><p>Tu próximo gran momento te va a estar esperando.</p><button className="button primary" onClick={() => setSessionActive(true)}>Volver a entrar <ArrowUpRight size={16} /></button><small>Acceso de demostración</small></section>}</main>
-    {sessionActive && !immersiveStudio && !selectedLiveEvent && <footer className={`site-footer section-container ${view === 'admin' ? 'compact-footer' : ''}`}><div className="footer-main"><Brand compact />{view !== 'admin' && <span>Un universo de experiencias.<br />Una nueva forma de conectar.</span>}<button onClick={replayIntro}><Play size={11} fill="currentColor" /> Volver a vivir el inicio <ArrowUpRight size={12} /></button></div><div className="footer-bottom"><span>© 2026 Supernova · Telefónica · <a className="version-access" href={versionHref('versions')}>Ver versiones</a></span><span>Experiencia de demostración · Datos guardados en este navegador</span><span>HECHO PARA CONECTAR <span>✦</span></span></div></footer>}
+    </motion.div></AnimatePresence> : <AccessGate onEnter={enter} signedOut={signedOut} />}</main>
+    {sessionActive && !immersiveStudio && !selectedLiveEvent && <footer className={`site-footer section-container ${view === 'admin' ? 'compact-footer' : ''}`}><div className="footer-main"><Brand compact />{view !== 'admin' && <span>Un universo de experiencias.<br />Una nueva forma de conectar.</span>}<button onClick={replayIntro}><Play size={11} fill="currentColor" /> Volver a vivir el inicio <ArrowUpRight size={12} /></button></div><div className="footer-bottom"><span>© 2026 Órbita · Personal · <a className="version-access" href={versionHref('versions')}>Ver versiones</a></span><span>Experiencia de demostración · Datos guardados en este navegador</span><span>HECHO PARA CONECTAR <span>✦</span></span></div></footer>}
     <AnimatePresence>{selectedLiveEvent && <RegistrationModal key={selectedLiveEvent.id} event={selectedLiveEvent} initialSessionId={selectedSessionId} registrations={selectedLiveEvent.status === 'draft' ? [] : registrations} registration={selectedLiveEvent.status === 'draft' ? undefined : registrations.find(r => sameRegistrationSession(selectedLiveEvent, r, selectedSessionId))} onClose={closeModal} onRegister={register} onCancel={cancel} />}</AnimatePresence>
     <AnimatePresence>{toast && <SupernovaToast message={toast} onDismiss={() => setToast(null)} />}</AnimatePresence>
-  </div>{showIntro && <IntroBoundary key={universe.introStartedAtMs} onFailure={failedIntro}><Suspense fallback={<IntroLoading onComplete={finishIntro} variant={variant} />}><CinematicIntro onComplete={finishIntro} variant={variant} /></Suspense></IntroBoundary>}</UniversePresentationProvider></MotionConfig>;
+  </div>{showIntro && <IntroBoundary key={universe.introStartedAtMs} onFailure={failedIntro}><Suspense fallback={<IntroLoading onComplete={finishIntro} variant={variant} />}><CinematicIntro onComplete={finishIntro} variant={variant} /></Suspense></IntroBoundary>}</UniversePresentationProvider></MotionConfig></AccessContext.Provider>;
 }

@@ -19,8 +19,8 @@ const icsEscape = (value: string) => value.replace(/\\/g, '\\\\').replace(/\n/g,
 export function downloadCalendar(event: EventItem, sessionId?: string) {
   const stamp = (date: string) => new Date(date).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
   const content = [
-    'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Supernova//Eventos//ES', 'CALSCALE:GREGORIAN',
-    'BEGIN:VEVENT', `UID:${icsEscape(sessionId ? `${event.id}-${sessionId}` : event.id)}@supernova.demo`, `DTSTAMP:${stamp(new Date().toISOString())}`,
+    'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Orbita//Eventos//ES', 'CALSCALE:GREGORIAN',
+    'BEGIN:VEVENT', `UID:${icsEscape(sessionId ? `${event.id}-${sessionId}` : event.id)}@orbita.demo`, `DTSTAMP:${stamp(new Date().toISOString())}`,
     `DTSTART:${stamp(event.date)}`, `DTEND:${stamp(event.endDate)}`, `SUMMARY:${icsEscape(event.title)}`,
     `DESCRIPTION:${icsEscape(event.subtitle)}`, `LOCATION:${icsEscape(event.location)}`,
     'END:VEVENT', 'END:VCALENDAR', '',

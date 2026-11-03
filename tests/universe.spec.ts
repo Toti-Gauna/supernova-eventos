@@ -10,7 +10,7 @@ async function openUniverse(page: Page, motion: 'reduce' | 'no-preference' = 're
   await page.clock.setFixedTime(businessDate);
   await page.emulateMedia({ reducedMotion: motion });
   await page.goto('/');
-  await expect(page.getByRole('dialog', { name: 'Bienvenido a Supernova Eventos' })).toHaveCount(0);
+  await expect(page.getByRole('dialog', { name: 'Te damos la bienvenida a Órbita' })).toHaveCount(0);
   await expect(page.getByRole('heading', { name: /Salí de la rutina/ })).toBeVisible();
   const host = page.locator(hostSelector);
   await expect(host).toHaveAttribute('data-universe-status', 'ready', { timeout: 20_000 });
@@ -154,14 +154,14 @@ test('fallar el chunk 3D permite navegar, abrir un evento con teclado y restitui
   const host = page.locator(hostSelector);
   await expect(host).toHaveAttribute('data-universe-status', 'fallback');
   await expect(page.getByRole('heading', { name: /Salí de la rutina/ })).toBeVisible();
-  await page.getByRole('button', { name: 'Guardar Supernova Sessions', exact: true }).click();
+  await page.getByRole('button', { name: 'Guardar Órbita Fest', exact: true }).click();
   await page.getByRole('button', { name: /^Favoritos/ }).click();
   await expectSettled(host, 'section:favorites', 'fallback');
   await expect(page.getByRole('heading', { name: 'Favoritos', exact: true })).toBeVisible();
-  const trigger = page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true });
+  const trigger = page.getByRole('button', { name: 'Ver Órbita Fest', exact: true });
   await trigger.focus();
   await page.keyboard.press('Enter');
-  const dialog = page.getByRole('dialog', { name: 'Supernova Sessions', exact: true });
+  const dialog = page.getByRole('dialog', { name: 'Órbita Fest', exact: true });
   await expect(dialog).toBeVisible();
   await expect(dialog.getByRole('button', { name: 'Confirmar mi lugar', exact: true })).toBeEnabled();
   await expectSettled(host, 'event:supernova-sessions', 'fallback');
@@ -193,7 +193,7 @@ test('WebGL ausente conserva la app operativa y no deja solicitudes pendientes',
   await expect(page.getByRole('heading', { name: 'Tu próximo momento está esperando.' })).toBeVisible();
   await expectSettled(host, 'section:registrations', 'fallback');
   await page.getByRole('button', { name: 'Explorar experiencias', exact: true }).click();
-  await expect(page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Ver Órbita Fest', exact: true })).toBeVisible();
   await expectSettled(host, 'section:explore', 'fallback');
 });
 
@@ -254,7 +254,7 @@ test('un chunk de intro tardío libera la app dentro del deadline y no reaparece
     });
     const replay = page.getByRole('button', { name: /Volver a vivir el inicio/ });
     await replay.click();
-    const intro = page.getByRole('dialog', { name: 'Bienvenido a Supernova Eventos' });
+    const intro = page.getByRole('dialog', { name: 'Te damos la bienvenida a Órbita' });
     const timing = () => page.evaluate(() => (window as Window & { __universeIntroTiming: { seen: boolean; elapsedMs: number | null } }).__universeIntroTiming);
     await expect.poll(async () => (await timing()).seen).toBe(true);
     await expect(intro).toHaveCount(0, { timeout: 4_500 });
@@ -287,7 +287,7 @@ test('la pausa voluntaria persiste y cambia destinos sin bloquear navegación', 
   await expectSettled(host, 'section:favorites');
   expect(await stopObserving(host)).not.toContain('true');
   await page.reload();
-  await expect(page.getByRole('dialog', { name: 'Bienvenido a Supernova Eventos' })).toHaveCount(0);
+  await expect(page.getByRole('dialog', { name: 'Te damos la bienvenida a Órbita' })).toHaveCount(0);
   await expect(page.getByRole('heading', { name: /Salí de la rutina/ })).toBeVisible();
   await expect(page.locator('.app-shell')).not.toHaveClass(/intro-playing/);
   await expectSettled(host, 'section:explore');
@@ -327,10 +327,10 @@ test('cerrar un evento vuelve al planeta de origen y devuelve el foco al control
   await page.getByRole('button', { name: /^Favoritos/ }).click();
   await expect(page.getByRole('heading', { name: 'Favoritos', exact: true })).toBeVisible();
   await expectSettled(host, 'section:favorites');
-  const trigger = page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true });
+  const trigger = page.getByRole('button', { name: 'Ver Órbita Fest', exact: true });
   await trigger.focus();
   await page.keyboard.press('Enter');
-  await expect(page.getByRole('dialog', { name: 'Supernova Sessions', exact: true })).toBeVisible();
+  await expect(page.getByRole('dialog', { name: 'Órbita Fest', exact: true })).toBeVisible();
   await expectSettled(host, 'event:supernova-sessions');
   await page.keyboard.press('Escape');
   await expect(page.getByRole('dialog')).toHaveCount(0);
@@ -380,8 +380,8 @@ test('la cabina abre una vez, los pasos no viajan y la vista previa devuelve el 
 
 test('la inscripción válida guarda el pase antes del cue y fallar o reabrir no vuelve a celebrarlo', async ({ page }) => {
   const host = await openUniverse(page, 'no-preference');
-  await page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true }).click();
-  const modal = page.getByRole('dialog', { name: 'Supernova Sessions', exact: true });
+  await page.getByRole('button', { name: 'Ver Órbita Fest', exact: true }).click();
+  const modal = page.getByRole('dialog', { name: 'Órbita Fest', exact: true });
   const eventRequest = await expectSettled(host, 'event:supernova-sessions');
   await modal.getByRole('button', { name: 'Confirmar mi lugar', exact: true }).click();
   await expect(page.getByRole('alert')).toHaveText('Aceptá los términos del evento para continuar.');
@@ -436,7 +436,7 @@ test('replay mantiene Favoritos, conserva el scroll y un reloj nuevo sin resetea
   const scroll = await page.evaluate(() => scrollY);
   const started = await page.evaluate(() => performance.now());
   await replay.click();
-  const intro = page.getByRole('dialog', { name: 'Bienvenido a Supernova Eventos' });
+  const intro = page.getByRole('dialog', { name: 'Te damos la bienvenida a Órbita' });
   await expect(intro).toBeVisible();
   const introStarted = Number(await page.locator('[data-cinematic-intro]').getAttribute('data-intro-started-at'));
   expect(introStarted).toBeGreaterThanOrEqual(started);
@@ -514,7 +514,7 @@ test.describe('controles touch dentro del universo', () => {
     expect(await page.evaluate(() => matchMedia('(pointer: coarse)').matches)).toBe(true);
     const ticket = page.locator('.orbit-event-preview[data-preview-kind="available"][data-event-id="supernova-sessions"] .orbit-event-open');
     await ticket.tap();
-    const dialog = page.getByRole('dialog', { name: 'Supernova Sessions', exact: true });
+    const dialog = page.getByRole('dialog', { name: 'Órbita Fest', exact: true });
     await expect(dialog).toBeVisible();
     await expectSettled(host, 'event:supernova-sessions');
     const name = dialog.getByLabel('Tu nombre', { exact: true });
@@ -538,7 +538,7 @@ test('Escape durante el acercamiento cancela el evento y devuelve origen y foco'
   const host = await openUniverse(page, 'no-preference');
   await page.getByRole('button', { name: /^Favoritos/ }).click();
   await expectSettled(host, 'section:favorites');
-  const trigger = page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true });
+  const trigger = page.getByRole('button', { name: 'Ver Órbita Fest', exact: true });
   await trigger.focus();
   await page.keyboard.press('Enter');
   await expect(host).toHaveAttribute('data-universe-travelling', 'true');
@@ -554,7 +554,7 @@ test('Escape durante el acercamiento cancela el evento y devuelve origen y foco'
 
 test('dos submits en el mismo turno crean una reserva, descuentan plazas una vez y emiten un cue', async ({ page }) => {
   const host = await openUniverse(page, 'no-preference');
-  await page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true }).click();
+  await page.getByRole('button', { name: 'Ver Órbita Fest', exact: true }).click();
   await expectSettled(host, 'event:supernova-sessions');
   await page.getByRole('checkbox', { name: 'Acepto los términos y condiciones del evento.' }).check();
   const before = Number(await host.getAttribute('data-universe-request'));
@@ -577,7 +577,7 @@ test('dos submits en el mismo turno crean una reserva, descuentan plazas una vez
 
 test('un email inválido no reserva ni emite confirmación espacial', async ({ page }) => {
   const host = await openUniverse(page, 'no-preference');
-  await page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true }).click();
+  await page.getByRole('button', { name: 'Ver Órbita Fest', exact: true }).click();
   const request = await expectSettled(host, 'event:supernova-sessions');
   await page.getByLabel('Email corporativo', { exact: true }).fill('alex@sin-dominio');
   await page.getByRole('checkbox', { name: 'Acepto los términos y condiciones del evento.' }).check();
@@ -591,7 +591,7 @@ test('un email inválido no reserva ni emite confirmación espacial', async ({ p
 test('un evento completo permite leer el detalle pero no promete un pase ni dispara un cue', async ({ page }) => {
   await page.addInitScript(events => localStorage.setItem('supernova-events-v1', JSON.stringify(events)), INITIAL_EVENTS.map(event => event.id === 'supernova-sessions' ? { ...event, registered: event.capacity, sessions: event.sessions?.map(session => ({ ...session, registered: session.capacity })) } : event));
   const host = await openUniverse(page, 'no-preference');
-  await page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true }).click();
+  await page.getByRole('button', { name: 'Ver Órbita Fest', exact: true }).click();
   const request = await expectSettled(host, 'event:supernova-sessions');
   await expect(page.getByText('Esta función está completa. Podés elegir otro horario.', { exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Confirmar mi lugar', exact: true })).toHaveCount(0);
@@ -685,7 +685,7 @@ test('un chunk 3D rechazado se puede reintentar desde DOM conservando favoritos 
   await expect(host).toHaveAttribute('data-universe-destination', 'section:profile');
   await expect(host.locator('canvas')).toHaveAttribute('data-universe-visible', 'profile');
   await page.getByRole('button', { name: /^Favoritos/ }).click();
-  await expect(page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Ver Órbita Fest', exact: true })).toBeVisible();
   expect(await page.evaluate(() => JSON.parse(localStorage.getItem('supernova-favorites-v1')!))).toEqual(['supernova-sessions']);
 });
 
@@ -702,7 +702,7 @@ test('un shader inválido conserva inscripción DOM y un reintento fallido manti
   await expect(host).toHaveAttribute('data-universe-status', 'fallback');
   const canvas = await host.locator('canvas').elementHandle();
   expect(canvas).not.toBeNull();
-  await page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true }).click();
+  await page.getByRole('button', { name: 'Ver Órbita Fest', exact: true }).click();
   await page.getByRole('checkbox', { name: 'Acepto los términos y condiciones del evento.' }).check();
   await page.getByRole('button', { name: 'Confirmar mi lugar', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Ya sos parte.', exact: true })).toBeVisible();
@@ -722,11 +722,11 @@ test('un shader inválido conserva inscripción DOM y un reintento fallido manti
 
 test('abrir un evento después de leer el catálogo reanuda su vuelo aunque el hero esté fuera de pantalla', async ({ page }) => {
   const host = await openUniverse(page, 'no-preference');
-  const trigger = page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true });
+  const trigger = page.getByRole('button', { name: 'Ver Órbita Fest', exact: true });
   await page.locator('#experiencias').evaluate(section => scrollTo({ top: scrollY + section.getBoundingClientRect().top, behavior: 'instant' }));
   await expect(host).toHaveAttribute('data-universe-paused', 'true');
   await trigger.click();
-  await expect(page.getByRole('dialog', { name: 'Supernova Sessions', exact: true })).toBeVisible();
+  await expect(page.getByRole('dialog', { name: 'Órbita Fest', exact: true })).toBeVisible();
   await expect(host).toHaveAttribute('data-universe-paused', 'false');
   await expect(host).toHaveAttribute('data-universe-travelling', 'true');
   await expectSettled(host, 'event:supernova-sessions');
@@ -738,7 +738,7 @@ test('una excepción React dentro del engine conserva la app y un retry explíci
   await page.route('**/src/features/universe/SolarMap.tsx*', async route => {
     const response = await route.fetch();
     const body = await response.text();
-    const signature = /(function SolarMap\(\)\s*\{)/;
+    const signature = /(function SolarMap\([^)]*\)\s*\{)/;
     expect(body).toMatch(signature);
     await route.fulfill({ response, body: body.replace(signature, '$1\n  if (!window.__allowUniverseScene) throw new Error("Fallo React 3D inyectado por QA");') });
   });
@@ -747,7 +747,7 @@ test('una excepción React dentro del engine conserva la app y un retry explíci
   const host = page.locator(hostSelector);
   await expect(host).toHaveAttribute('data-universe-status', 'fallback');
   await page.getByRole('button', { name: /^Favoritos/ }).click();
-  await expect(page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Ver Órbita Fest', exact: true })).toBeVisible();
   await expectSettled(host, 'section:favorites', 'fallback');
   await openProfile(page);
   const failedRequest = await expectSettled(host, 'section:profile', 'fallback');
@@ -761,6 +761,6 @@ test('una excepción React dentro del engine conserva la app y un retry explíci
   await expect(host.locator('canvas')).toHaveAttribute('data-universe-visible', 'profile');
   await expect(page.getByRole('heading', { name: 'Mi perfil', exact: true })).toBeVisible();
   await page.getByRole('button', { name: /^Favoritos/ }).click();
-  await expect(page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Ver Órbita Fest', exact: true })).toBeVisible();
   expect(await page.evaluate(() => JSON.parse(localStorage.getItem('supernova-favorites-v1')!))).toEqual(['supernova-sessions']);
 });

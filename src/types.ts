@@ -1,5 +1,9 @@
 export type EventCategory = 'Música' | 'Bienestar' | 'Tecnología' | 'Comunidad' | 'Aprendizaje';
 export type EventStatus = 'published' | 'draft' | 'ended';
+/** Who can discover an event: internal staff, external guests or both. The server enforces it. */
+export type EventAccess = 'internal' | 'external' | 'all';
+export type AccessKind = 'internal' | 'external';
+export interface AccessProfile { kind: AccessKind; name: string; email: string; organization: string }
 export interface AudiencePerson { id: string; name: string; email: string; department: string }
 export interface EmailTemplate { subject: string; heading: string; body: string; buttonText: string; accentColor: string }
 export interface EventSession {
@@ -27,6 +31,7 @@ export interface EventItem {
   host: string;
   featured: boolean;
   isPrivate: boolean;
+  access?: EventAccess;
   status: EventStatus;
   companions: number;
   terms: string;

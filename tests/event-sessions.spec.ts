@@ -13,7 +13,7 @@ const featured = INITIAL_EVENTS.find(event => event.id === eventId)!;
 async function openDemo(page: Page, path = '/3d/', date = businessDate) {
   await page.clock.setFixedTime(date);
   await page.goto(path);
-  await expect(page.getByRole('dialog', { name: 'Bienvenido a Supernova Eventos' })).toHaveCount(0);
+  await expect(page.getByRole('dialog', { name: 'Te damos la bienvenida a Órbita' })).toHaveCount(0);
   await expect(page.locator('.hero')).toBeVisible();
 }
 
@@ -63,7 +63,7 @@ async function publishWizard(page: Page) {
 for (const version of ['original', '3d', 'hibrida']) {
   test(`${version}: dos funciones conservan pases, cupos, fechas y calendarios independientes`, async ({ page }) => {
     await openDemo(page, `/${version}/`);
-    await page.getByRole('button', { name: 'Ver Supernova Sessions', exact: true }).click();
+    await page.getByRole('button', { name: 'Ver Órbita Fest', exact: true }).click();
     const modal = page.getByRole('dialog');
     await expect(modal.getByRole('radio', { name: /Viernes.*23 de octubre.*19:00/ })).toBeChecked();
     await expect(modal.getByRole('radio', { name: /Sábado.*24 de octubre.*21:00/ })).toBeVisible();
@@ -179,7 +179,7 @@ test('admin valida horarios por función y restaura dos funciones antes de publi
 test('admin conserva horarios reservados y valida el cupo por función', async ({ page }) => {
   await openDemo(page);
   await page.getByRole('button', { name: 'Administrar', exact: true }).click();
-  await page.getByRole('button', { name: 'Editar Supernova Sessions', exact: true }).click();
+  await page.getByRole('button', { name: 'Editar Órbita Fest', exact: true }).click();
   const first = page.locator('.event-session-fields').nth(0);
   await expect(first.getByLabel('Fecha y hora de inicio', { exact: true })).toBeDisabled();
   await expect(first.getByLabel('Fecha y hora de fin', { exact: true })).toBeDisabled();
@@ -198,7 +198,7 @@ test('admin conserva horarios reservados y valida el cupo por función', async (
 
 test('una inscripción antigua conserva su función al agregar una fecha anterior', async ({ page }) => {
   const legacyEvent: EventItem = { ...featured, sessions: undefined, capacity: 240, registered: 187, endDate: featured.sessions![0].endDate };
-  const legacyPass: Registration = { id: 'SN-LEGACY', eventId, name: 'Alex García', email: 'alex.garcia@demo.telefonica.test', companions: 0, createdAt: '2026-10-08T15:00:00Z' };
+  const legacyPass: Registration = { id: 'SN-LEGACY', eventId, name: 'Alex García', email: 'alex.garcia@demo.personal.test', companions: 0, createdAt: '2026-10-08T15:00:00Z' };
   await page.addInitScript(({ events, pass }) => {
     localStorage.setItem('supernova-events-v1', JSON.stringify(events));
     localStorage.setItem('supernova-registrations-v1', JSON.stringify([pass]));
@@ -212,7 +212,7 @@ test('una inscripción antigua conserva su función al agregar una fecha anterio
   expect(legacyCalendar).toContain('DTSTART:20261023T220000Z');
   await page.getByRole('button', { name: 'Cerrar inscripción', exact: true }).click();
   await page.getByRole('button', { name: 'Administrar', exact: true }).click();
-  await page.getByRole('button', { name: 'Editar Supernova Sessions', exact: true }).click();
+  await page.getByRole('button', { name: 'Editar Órbita Fest', exact: true }).click();
   await page.getByRole('button', { name: 'Agregar función', exact: true }).click();
   const addedId = await page.locator('.event-session-fields').nth(1).getAttribute('data-session-id');
   const added = page.locator(`[data-session-id="${addedId}"]`);

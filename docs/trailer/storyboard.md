@@ -2,6 +2,8 @@
 
 Registro histórico de la intro anterior al universo 3D. El storyboard solar vigente está en [02-implementado.md](experiencia-3d/02-implementado.md); la verificación de cierre está en [03-cierre.md](experiencia-3d/03-cierre.md).
 
+Desde el 3 de noviembre de 2026 la marca es Órbita y la paleta es la inspirada en Personal ([README](README.md)): donde este registro dice «supernova» o describe violetas y la variante clara, hoy hay `órbita`, noche navy y acentos cian, siempre en oscuro. La secuencia y sus tiempos no cambiaron.
+
 ## Brief
 
 Audiencia: colaboradores y administradores. Intro de marca en la app. Timeline de 3,4 segundos, sin sonido ni indicadores de progreso. El host la monta en cada refresh y permite repetirla desde el footer. Por pedido explícito del usuario, no tiene botón «Saltar intro»; Escape sigue disponible.

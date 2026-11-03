@@ -1,0 +1,73 @@
+/* Órbita composition, inspired by Personal: firm type, pill actions, one color per
+   category and full-bleed gradient bands. Loaded last; "html[data-theme]" matches the
+   specificity of the theme files, so these rules win without !important. */
+
+/* Brand */
+html[data-theme] .wordmark { font-weight:700; letter-spacing:-1.2px; }
+html[data-theme] .brand>svg { color:var(--accent); }
+html[data-theme] .brand-section { font-weight:700; color:var(--accent); }
+
+/* Type */
+html[data-theme] :is(.hero h1,.my-events h1) { font-weight:700; }
+html[data-theme] .section-heading h2,html[data-theme] .newsletter h2 { font-weight:700; }
+html[data-theme] .event-card-title { font-weight:700; letter-spacing:-.6px; }
+html[data-theme] .hero-gradient { background-image:linear-gradient(105deg,#4ec5ff 0%,#7b6cf6 70%,#e0479e 100%); }
+html[data-theme='light'] .hero-gradient { background-image:linear-gradient(105deg,#0a8fd0 0%,#2348de 55%,#5a50f9 100%); }
+html[data-theme] .title-star { color:var(--magenta); }
+
+/* Actions */
+html[data-theme] .button { border-radius:999px; }
+html[data-theme] .button.primary { background:var(--accent); border-color:var(--accent); color:var(--on-accent); }
+html[data-theme] .button.primary:hover { background:var(--accent-strong); border-color:var(--accent-strong); }
+
+/* Category color, as Personal colors each service */
+html[data-theme] .event-card,html[data-theme] .orbit-event-preview,html[data-theme] .featured-banner { --cat:var(--accent); }
+html[data-theme] :is(.event-card,.orbit-event-preview).category-musica { --cat:var(--cat-musica); }
+html[data-theme] :is(.event-card,.orbit-event-preview).category-bienestar { --cat:var(--cat-bienestar); }
+html[data-theme] :is(.event-card,.orbit-event-preview).category-tecnologia { --cat:var(--cat-tecnologia); }
+html[data-theme] :is(.event-card,.orbit-event-preview).category-comunidad { --cat:var(--cat-comunidad); }
+html[data-theme] :is(.event-card,.orbit-event-preview).category-aprendizaje { --cat:var(--cat-aprendizaje); }
+html[data-theme] .event-card .category-badge { background:var(--cat); border-color:transparent; color:#fff; font-weight:700; backdrop-filter:none; box-shadow:0 6px 18px #00071a40; }
+html[data-theme] .event-card { border-radius:22px; }
+html[data-theme] .event-card::after { content:''; position:absolute; inset:0 0 auto; height:4px; background:var(--cat); z-index:2; pointer-events:none; }
+html[data-theme] .event-card:hover { border-color:color-mix(in srgb,var(--cat) 55%,transparent); }
+html[data-theme] .card-cta { padding:10px 16px; border-radius:999px; background:color-mix(in srgb,var(--accent) 14%,transparent); color:var(--accent); font-weight:700; }
+html[data-theme] .card-cta:hover { background:var(--accent); color:var(--on-accent); }
+html[data-theme] .card-cta.joined { background:color-mix(in srgb,var(--green) 16%,transparent); color:var(--green); }
+html[data-theme] .event-access-chip { display:inline-flex; align-items:center; gap:6px; margin-top:12px; padding:5px 10px; border-radius:999px; font-size:11px; font-weight:700; color:var(--accent); background:var(--accent-soft); border:1px solid color-mix(in srgb,var(--accent) 30%,transparent); }
+html[data-theme] .event-access-chip + .event-card-title { margin-top:10px; }
+
+/* Category pills */
+html[data-theme] .category-row>button.active { color:var(--on-accent); }
+html[data-theme] .category-active-surface { background:var(--accent); border-color:var(--accent); }
+html[data-theme] .category-row>button.active .category-count { background:#ffffff40; color:inherit; }
+
+/* Newsletter: Personal's full-width gradient band */
+html[data-theme] .newsletter { border:0; color:#fff; background:radial-gradient(ellipse 50% 90% at 100% 0,#4ec5ff55,transparent 70%),var(--gradient-orbita); box-shadow:0 28px 70px #00071a40; }
+html[data-theme] .newsletter::after { content:''; position:absolute; z-index:-1; width:360px; height:360px; right:180px; top:-250px; border:40px solid #ffffff1c; border-radius:50%; pointer-events:none; }
+html[data-theme] .newsletter .eyebrow { color:#dff4ff; }
+html[data-theme] .newsletter p { color:#e6f3ff; }
+html[data-theme] .newsletter-orbit { color:#fff; background:#ffffff26; border-color:#ffffff59; box-shadow:0 0 0 12px #ffffff12; }
+html[data-theme] .newsletter .button.primary { background:#fff; border-color:#fff; color:#0b1730; }
+html[data-theme] .newsletter .button.primary:hover { background:#e8f8ff; }
+html[data-theme] .newsletter .button.secondary { background:#ffffff26; border-color:#ffffff80; color:#fff; }
+html[data-theme] .newsletter .button:focus-visible { outline-color:#fff; }
+
+/* Admin and footer details */
+html[data-theme] .admin-table-access { display:block; margin-top:4px; font-size:11px; color:var(--accent); }
+html[data-theme] .access-mode-picker { margin:6px 0 22px; }
+html[data-theme] .access-mode-picker h3 { margin:0 0 4px; font:700 16px/1.4 Manrope,sans-serif; }
+html[data-theme] .access-mode-picker>p { margin:0 0 12px; font-size:12px; color:var(--muted); }
+html[data-theme] .access-mode-options { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+html[data-theme] .access-mode-option { position:relative; display:flex; align-items:center; gap:12px; min-height:64px; padding:12px 40px 12px 14px; text-align:left; border-radius:16px; border:1px solid var(--line-strong,var(--line)); background:var(--surface-raised); color:var(--text); }
+html[data-theme] .access-mode-option>svg { flex-shrink:0; color:var(--accent); }
+html[data-theme] .access-mode-option>span:first-of-type { display:grid; gap:3px; }
+html[data-theme] .access-mode-option strong { font-size:13px; }
+html[data-theme] .access-mode-option small { font-size:11px; line-height:1.4; color:var(--muted); }
+html[data-theme] .access-mode-option .audience-radio { position:absolute; right:14px; top:50%; transform:translateY(-50%); }
+html[data-theme] .access-mode-option.is-selected { border-color:var(--accent); background:var(--accent-soft); box-shadow:inset 0 0 0 1px var(--accent); }
+
+@media (max-width:700px) {
+  html[data-theme] .access-mode-options { grid-template-columns:1fr; }
+  html[data-theme] .newsletter::after { right:-160px; }
+}

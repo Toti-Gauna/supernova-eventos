@@ -4,6 +4,7 @@ import { ArrowUpRight, Heart, Search, X } from 'lucide-react';
 import type { EventItem, Registration } from '../../types';
 import EventCard from '../../components/EventCard';
 import { canViewEvent } from '../../lib/events';
+import { useViewer } from '../access/access';
 import UniverseSurface from '../universe/UniverseSurface';
 import BackButton from '../../components/ui/BackButton';
 import { getDisplaySession } from '../../lib/eventSessions';
@@ -19,10 +20,11 @@ interface Props {
 }
 
 export default function Favorites({ events, favorites, registrations, onFavorite, onOpen, onExplore }: Props) {
+  const viewer = useViewer();
   const [query, setQuery] = useState('');
   const now = useEventClock(events);
   const normalize = (text: string) => text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-  const saved = events.filter(event => favorites.includes(event.id) && event.status !== 'draft' && canViewEvent(event))
+  const saved = events.filter(event => favorites.includes(event.id) && event.status !== 'draft' && canViewEvent(event, viewer))
     .sort((a, b) => new Date(getDisplaySession(a, now).date).getTime() - new Date(getDisplaySession(b, now).date).getTime());
   const filtered = saved.filter(event => normalize(`${event.title} ${event.category} ${event.location}`).includes(normalize(query)));
   return <section className="favorites-page section-container">

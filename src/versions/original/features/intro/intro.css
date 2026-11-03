@@ -1,20 +1,23 @@
+/* Órbita palette (docs/orbita/README.md). The intro is always night, in both
+   themes, so it continues the HTML first frame without a light flash. */
 .cinematic-intro {
-  --intro-bg: #0b0a12;
-  --intro-fg: #f5f0e9;
-  --intro-muted: #b9abca;
-  --intro-caption: #9686a7;
-  --intro-star: #ded7ef;
-  --intro-accent: #d5b7f9;
-  --intro-orbit: #d3b5fd;
-  --intro-orbit-low: #b797e8;
-  --intro-radiance: #dab8ff;
-  --intro-radiance-alt: #bb83f7;
-  --intro-mint: #99c7c3;
-  --intro-point-violet: #ddc1ff;
-  --intro-point-warm: #efe2d3;
-  --intro-point-lilac: #b5a0dc;
-  --intro-nebula-core: #8053b517;
-  --intro-nebula-edge: #44216909;
+  --intro-bg: #030b1c;
+  --intro-fg: #eef5ff;
+  --intro-muted: #9fb3d1;
+  --intro-caption: #8499bc;
+  --intro-star: #dcebff;
+  --intro-accent: #4ec5ff;
+  --intro-orbit: #bfe6ff;
+  --intro-orbit-low: #1eb2f5;
+  --intro-radiance: #4ec5ff;
+  --intro-radiance-alt: #2348de;
+  --intro-spark: #e0479e;
+  --intro-point-cyan: #4ec5ff;
+  --intro-point-light: #eef5ff;
+  --intro-point-violet: #7b6cf6;
+  --intro-point-blue: #4d7cff;
+  --intro-nebula-core: #2348de2e;
+  --intro-nebula-edge: #7b6cf610;
   --intro-start-delay: 0s;
   position: fixed;
   inset: 0;
@@ -27,24 +30,6 @@
   font-family: Manrope, sans-serif;
   isolation: isolate;
   outline: none;
-}
-:root[data-theme='light'] .cinematic-intro {
-  --intro-bg: #f7f5fb;
-  --intro-fg: #20182e;
-  --intro-muted: #6b5b81;
-  --intro-caption: #77618e;
-  --intro-star: #806299;
-  --intro-accent: #8d59c8;
-  --intro-orbit: #9365bf;
-  --intro-orbit-low: #a078c8;
-  --intro-radiance: #ad79e1;
-  --intro-radiance-alt: #ba96df;
-  --intro-mint: #518783;
-  --intro-point-violet: #9260c3;
-  --intro-point-warm: #b79778;
-  --intro-point-lilac: #9379b0;
-  --intro-nebula-core: #bc91e529;
-  --intro-nebula-edge: #d5c3ef16;
 }
 .cinematic-intro::after {
   content: '';
@@ -64,7 +49,8 @@
 }
 .intro-stars { position: absolute; inset: 0; pointer-events: none; }
 .intro-stars i { position: absolute; border-radius: 50%; background: var(--intro-star); }
-.intro-stars i:nth-child(9n) { background: var(--intro-accent); box-shadow: 0 0 10px #b697e52b; }
+.intro-stars i:nth-child(9n) { background: var(--intro-accent); box-shadow: 0 0 10px #4ec5ff2b; }
+.intro-stars i:nth-child(23n) { background: var(--intro-spark); }
 .intro-composition {
   display: flex;
   flex-direction: column;
@@ -86,7 +72,8 @@
 }
 .intro-identity { margin-top: 27px; text-align: center; }
 .intro-wordmark-mask { overflow: hidden; padding-bottom: 13px; margin-bottom: -13px; }
-.intro-wordmark { font-size: 62px; font-weight: 300; line-height: 1.15; letter-spacing: -.065em; white-space: nowrap; }
+/* «órbita» is short: a larger size and gentler tracking keep its presence. */
+.intro-wordmark { font-size: 84px; font-weight: 400; line-height: 1.15; letter-spacing: -.05em; white-space: nowrap; }
 .intro-tagline { margin-top: 8px; color: var(--intro-muted); font-size: 15px; font-weight: 400; letter-spacing: -.025em; }
 .intro-caption {
   display: flex;
@@ -131,7 +118,7 @@
   .intro-orbital-system { height: 270px; }
   .intro-orbital-label { font-size: 7px; letter-spacing: 1.6px; bottom: 4px; }
   .intro-identity { margin-top: 20px; }
-  .intro-wordmark { font-size: clamp(40px, 11vw, 56px); }
+  .intro-wordmark { font-size: clamp(52px, 16vw, 68px); }
   .intro-tagline { font-size: 14px; }
   .intro-caption { font-size: 8px; letter-spacing: 1.5px; gap: 10px; margin-top: 33px; }
   .intro-caption > span { width: 19px; }
@@ -140,7 +127,7 @@
 @media(max-height:650px) and (min-width:601px) {
   .intro-orbital-system { height: 255px; }
   .intro-identity { margin-top: 16px; }
-  .intro-wordmark { font-size: 48px; }
+  .intro-wordmark { font-size: 64px; }
   .intro-caption { margin-top: 27px; }
 }
 @media(prefers-reduced-motion:reduce) {

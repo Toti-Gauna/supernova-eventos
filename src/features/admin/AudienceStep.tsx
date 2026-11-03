@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Building2, Check, CheckCircle2, FileSpreadsheet, Search, Trash2, Upload, Users, X } from 'lucide-react';
-import type { EventItem } from '../../types';
+import { Building2, Check, CheckCircle2, FileSpreadsheet, Globe2, Search, Ticket, Trash2, Upload, Users, X } from 'lucide-react';
+import type { EventAccess, EventItem } from '../../types';
 import { demoPayroll } from '../../data/payroll';
 import { downloadAudienceSample, parseAudienceFile } from './admin.helpers';
 import type { AudienceImportResult } from './admin.helpers';
@@ -9,8 +9,17 @@ import SupernovaSelect from '../../components/ui/SupernovaSelect';
 interface AudienceStepProps {
   audience: NonNullable<EventItem['audience']>;
   onChange: (audience: NonNullable<EventItem['audience']>) => void;
+  access: EventAccess;
+  onAccessChange: (access: EventAccess) => void;
   error?: string;
 }
+
+const accessModes = [
+  { access: 'internal', icon: Building2, title: 'Personal interno', description: 'Solo colaboradores con cuenta corporativa.' },
+  { access: 'all', icon: Globe2, title: 'Interno y externo', description: 'El equipo y sus invitados externos.' },
+  { access: 'external', icon: Ticket, title: 'Personal externo', description: 'Solo invitados, proveedores o prensa.' },
+] as const;
+const allAudienceTitle: Record<EventAccess, string> = { internal: 'Toda la compañía', all: 'Todo el personal', external: 'Todos los invitados' };
 
 const audienceModes = [
   { mode: 'all', icon: Building2, title: 'Toda la compañía', description: 'Una invitación abierta a todos.', detail: 'Acceso abierto' },
@@ -18,7 +27,7 @@ const audienceModes = [
   { mode: 'excel', icon: FileSpreadsheet, title: 'Importar invitados', description: 'Traé tu lista en Excel o CSV.', detail: '.xlsx · .csv' },
 ] as const;
 
-export default function AudienceStep({ audience, onChange, error }: AudienceStepProps) {
+export default function AudienceStep({ audience, onChange, access, onAccessChange, error }: AudienceStepProps) {
   const [query, setQuery] = useState('');
   const [department, setDepartment] = useState('all');
   const [uploading, setUploading] = useState(false);
@@ -40,6 +49,12 @@ export default function AudienceStep({ audience, onChange, error }: AudienceStep
     setUploadError('');
     setImportResult(null);
     setFilename('');
+  }
+
+  function changeAccess(next: EventAccess) {
+    if (next === access) return;
+    onAccessChange(next);
+    if (next === 'external' && audience.mode === 'payroll') changeMode('all');
   }
 
   function togglePerson(id: string) {
@@ -78,11 +93,16 @@ export default function AudienceStep({ audience, onChange, error }: AudienceStep
   return (
     <div className="wizard-step-content">
       <div className="wizard-section-heading"><span className="admin-eyebrow">EL ENCUENTRO EMPIEZA CON ELLOS</span><h2>¿A quiénes vamos a invitar?</h2><p>Encontrá la audiencia ideal para esta experiencia.</p></div>
+      <div className="access-mode-picker"><h3 id="event-access-label">¿Quiénes pueden verlo?</h3><p>Define qué acceso descubre este evento en Órbita. El servidor valida el permiso final.</p>
+        <div className="access-mode-options" role="radiogroup" aria-labelledby="event-access-label">
+          {accessModes.map(({ access: value, icon: Icon, title, description }) => <button key={value} type="button" role="radio" aria-checked={access === value} className={`access-mode-option ${access === value ? 'is-selected' : ''}`} onClick={() => changeAccess(value)}><Icon size={18} /><span><strong>{title}</strong><small>{description}</small></span><span className="audience-radio">{access === value && <Check size={12} />}</span></button>)}
+        </div>
+      </div>
       <div className="audience-options" role="radiogroup" aria-label="Audiencia del evento">
-        {audienceModes.map(({ mode, icon: Icon, title, description, detail }) => (
+        {audienceModes.filter(({ mode }) => access !== 'external' || mode !== 'payroll').map(({ mode, icon: Icon, title, description, detail }) => (
           <button key={mode} type="button" role="radio" aria-checked={audience.mode === mode} className={`audience-option ${audience.mode === mode ? 'is-selected' : ''}`} onClick={() => changeMode(mode)}>
             <span className="audience-option-icon"><Icon size={21} /></span><span className="audience-radio">{audience.mode === mode && <Check size={12} />}</span>
-            <strong>{title}</strong><span>{description}</span><small>{detail}</small>
+            <strong>{mode === 'all' ? allAudienceTitle[access] : title}</strong><span>{description}</span><small>{detail}</small>
           </button>
         ))}
       </div>

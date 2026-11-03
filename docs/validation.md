@@ -1,5 +1,29 @@
 # Validación del frontend
 
+## Órbita: marca, accesos interno y externo y paleta Personal · 3 de noviembre de 2026
+
+Cambios: [identidad y composición](orbita/README.md), [accesos](orbita/accesos.md) y [universo](orbita/universo.md).
+
+- `npm run build` aprobado con el estado final. Sigue la advertencia previa por el tamaño del chunk de Three.
+- **126/126 casos E2E en 13,9 minutos**, en una corrida integrada sin fallos ni casos omitidos. Incluye los 4 nuevos de `tests/access.spec.ts`:
+  - pantalla de acceso en la primera visita;
+  - validación del código de invitación y foco en el campo con error;
+  - catálogo filtrado para externos;
+  - bloqueo de enlaces a eventos internos;
+  - inscripción prellenada;
+  - acceso por evento definido en el creador;
+  - cierre de sesión con foco en el título.
+
+  Playwright arranca cada spec con la sesión interna de demo vía `storageState`.
+- Una corrida anterior aprobó 114 de 126. Los 12 fallos eran:
+  - nombres de descarga `supernova-*` que ahora son `orbita-*` (6);
+  - un email de fixture en mayúsculas (5 casos de catálogo);
+  - la expresión regular de `universe.spec.ts`, que esperaba `function SolarMap()` sin parámetros. Esta falla ya existía en `40f4878`.
+
+  Se corrigieron en los tests, y los 22 casos de esos archivos volvieron a aprobar antes de la corrida integrada.
+- Preview de producción bajo `/supernova-eventos/`: la raíz, `/3d/`, `/hibrida/` y `/original/` muestran el acceso, cargan `fondo-orbita.webp` y no registran errores de página ni respuestas 4xx.
+- Revisión visual con Chrome headless en las tres versiones, en ambos temas y a 1440 y 390 px. Cubre la pantalla de acceso, el catálogo, el banner destacado, la banda de novedades, el selector de acceso del creador y el perfil externo. Las capturas del universo están en `orbita/captures/universo/` y las de la intro en `trailer/captures/orbita/`.
+
 ## Legibilidad, fondo estable y registro de pases · 13 de octubre de 2026
 
 `npm run build` aprobado después del ajuste final de las cámaras de Admin y la regeneración automática del HTML crítico. TypeScript y Vite completaron la compilación; continúa la advertencia por tamaño del chunk Three compartido y lazy (258,66 kB gzip).

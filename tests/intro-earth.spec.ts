@@ -20,7 +20,7 @@ for (const version of ['hibrida', '3d']) {
         scrollTo({ top:0,behavior:'instant' });
         document.querySelector<HTMLButtonElement>('.footer-main > button')!.click();
       });
-      await expect(page.getByRole('dialog', { name:'Bienvenido a Supernova Eventos' })).toBeVisible();
+      await expect(page.getByRole('dialog', { name:'Te damos la bienvenida a Órbita' })).toBeVisible();
       await page.clock.runFor(900);
       const opening = await page.evaluate(() => {
         const bounds = document.querySelector('.intro-orbital-map')!.getBoundingClientRect();
@@ -48,7 +48,7 @@ for (const version of ['hibrida', '3d']) {
       expect(landing[0]).toBeGreaterThan(viewport.width * .5);
       if (viewport.width > 700) expect(landing[2]).toBeLessThanOrEqual(230);
       await page.clock.runFor(350);
-      await expect(page.getByRole('dialog', { name:'Bienvenido a Supernova Eventos' })).toHaveCount(0);
+      await expect(page.getByRole('dialog', { name:'Te damos la bienvenida a Órbita' })).toHaveCount(0);
       await expect(host).toHaveAttribute('data-universe-travelling','false');
       expect(await host.locator('canvas').evaluate((canvas,original) => canvas === original,originalCanvas!)).toBe(true);
       expect(await page.locator('#tour-nebula-backdrop').evaluate((sky,original) => sky === original,originalSky!)).toBe(true);

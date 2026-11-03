@@ -59,7 +59,7 @@ export default function QRDialog({ title, subtitle, payload, fileName, onClose, 
     <NativeDialog className={`qr-dialog ${link ? 'event-qr-dialog' : 'pass-qr-dialog'}`} labelledBy={titleId} onClose={onClose}>
     <div className="qr-dialog-content">
       <header className="qr-dialog-header">
-        <span className="qr-dialog-eyebrow"><QrCode size={13} aria-hidden="true" /> SUPERNOVA · QR</span>
+        <span className="qr-dialog-eyebrow"><QrCode size={13} aria-hidden="true" /> ÓRBITA · QR</span>
         <button type="button" className="qr-dialog-close" onClick={onClose} aria-label="Cerrar QR"><X size={18} /></button>
         <h2 id={titleId}>{title}</h2><p>{subtitle}</p>
       </header>

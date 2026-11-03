@@ -38,8 +38,8 @@ export default function IntroLoading({ onComplete }: IntroLoadingProps) {
   }, [complete]);
 
   return createPortal(
-    <div ref={stageRef} className="cinematic-intro intro-pending" data-cinematic-intro tabIndex={-1} role="dialog" aria-modal="true" aria-label="Bienvenido a Supernova Eventos" aria-describedby="intro-loading-description">
-      <p id="intro-loading-description" className="intro-sr-only">Supernova. Conectá sin límites. Cargando la presentación. Presioná Escape para continuar.</p>
+    <div ref={stageRef} className="cinematic-intro intro-pending" data-cinematic-intro tabIndex={-1} role="dialog" aria-modal="true" aria-label="Te damos la bienvenida a Órbita" aria-describedby="intro-loading-description">
+      <p id="intro-loading-description" className="intro-sr-only">Órbita. Conectá sin límites. Cargando la presentación. Presioná Escape para continuar.</p>
       <IntroArtwork />
     </div>,
     document.body,

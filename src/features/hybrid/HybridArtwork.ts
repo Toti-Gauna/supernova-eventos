@@ -1,23 +1,26 @@
 import { SOLAR_BODIES, type SolarBody } from '../universe/scene.config';
 
 // The original loader palette remains separate from the natural solar-body artwork.
-export type ArtworkColor = 'violet' | 'teal' | 'amber' | 'pearl' | 'blue' | 'rose';
+// Órbita categories: rose = Música, teal = Bienestar, cyan = Tecnología, violet = Comunidad, blue = Aprendizaje.
+export type ArtworkColor = 'violet' | 'teal' | 'amber' | 'pearl' | 'blue' | 'rose' | 'cyan';
 const colors: Record<ArtworkColor, readonly string[]> = {
-  violet: ['#c7b2e2', '#715398', '#251638', '#07060b', '#c7afe0'],
-  teal: ['#cee2db', '#54877f', '#153631', '#060b0a', '#b2d3c7'],
+  violet: ['#c9c3ff', '#5a50c9', '#1b1745', '#06060f', '#bdb4ff'],
+  teal: ['#c8f2e5', '#1f9c7d', '#0b3a2f', '#040c0a', '#8de8cf'],
   amber: ['#f2dfba', '#ae7844', '#4a2d1e', '#0c0806', '#e1c8a0'],
-  pearl: ['#ece6de', '#a49bad', '#3a3441', '#0a090d', '#d0c8d6'],
-  blue: ['#d1e4fa', '#6189b1', '#192c48', '#050910', '#b6d3f3'],
-  rose: ['#f0cadd', '#ad668a', '#422035', '#0d070c', '#e4b5d0'],
+  pearl: ['#e8edf3', '#9aa3b2', '#343b47', '#090b10', '#cdd5e0'],
+  blue: ['#d3e0ff', '#3f66d6', '#122453', '#050914', '#a9c0ff'],
+  rose: ['#f8cde4', '#b8357f', '#45122f', '#0f050b', '#f59bcd'],
+  cyan: ['#d2f1ff', '#1690c9', '#08324f', '#040a12', '#9adcff'],
 };
 // The large worlds borrow the original installation's restrained, illustrated light.
 const polishedColors: Record<ArtworkColor, readonly string[]> = {
-  violet: ['#554167', '#292036', '#11101c', '#0c0b16', '#d4aaff', '#fff1dc'],
-  teal: ['#456560', '#223b39', '#0b191a', '#080e13', '#a6ddd2', '#f3f4df'],
+  violet: ['#433d82', '#252257', '#11112b', '#0a0b1c', '#bdb4ff', '#eef5ff'],
+  teal: ['#2f6e5f', '#174238', '#0a1d1b', '#071014', '#8de8cf', '#effcf7'],
   amber: ['#7c5840', '#483226', '#1d1515', '#100d13', '#e8c292', '#fff0d5'],
-  pearl: ['#6c6475', '#3b3646', '#161520', '#0d0d17', '#ded1ed', '#fff2e3'],
-  blue: ['#4b5e79', '#263449', '#0d1424', '#0a0d18', '#b2cefa', '#edf4ff'],
-  rose: ['#714f6a', '#392333', '#180e1a', '#0e0c16', '#e7abc9', '#fff1dc'],
+  pearl: ['#5f6878', '#353c4a', '#151a24', '#0c0f18', '#cdd5e0', '#f2f6fb'],
+  blue: ['#33509c', '#1d2f63', '#0d1630', '#090d1c', '#a9c0ff', '#eef5ff'],
+  rose: ['#7a2f5c', '#431936', '#1d0b1a', '#100912', '#f59bcd', '#fff0f7'],
+  cyan: ['#21658f', '#123c5c', '#0a1c30', '#070f1c', '#9adcff', '#effaff'],
 };
 const svg = (body: string, width = 600, height = 400) => `data:image/svg+xml;charset=utf-8,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${width * 2}" height="${height * 2}" viewBox="0 0 ${width} ${height}">${body}</svg>`)}`;
 export function planetArtwork(color: ArtworkColor, layer: 'body' | 'back' | 'front', ring: boolean, polished = true) {
@@ -97,8 +100,9 @@ const EMPTY_ATLAS = atlas('');
 export const solarCloudArtwork = (body: SolarBody) => body === 'earth' ? CLOUD_ART : EMPTY_ATLAS;
 
 /** Static rim and ring plates; the moving atlas is rendered inside their circular silhouette. */
-export function solarBodyArtwork(body: SolarBody, layer: 'body' | 'back' | 'front' | 'halo') {
-  const { mineral, dark, rim } = SOLAR_BODIES[body];
+export function solarBodyArtwork(body: SolarBody, layer: 'body' | 'back' | 'front' | 'halo', rimOverride?: string) {
+  const { mineral, dark } = SOLAR_BODIES[body];
+  const rim = rimOverride ?? SOLAR_BODIES[body].rim;
   const hasRing = body === 'saturn' || body === 'uranus';
   if (layer === 'back' || layer === 'front') {
     if (!hasRing) return svg('');
@@ -115,38 +119,38 @@ export function solarBodyArtwork(body: SolarBody, layer: 'body' | 'back' | 'fron
   const clouds = body === 'earth' ? `<svg x="20" y="60" width="560" height="280" viewBox="0 0 512 256" opacity=".7">${inner(CLOUD_ART)}</svg>` : '';
   return svg(`<defs><clipPath id="disc"><circle cx="300" cy="200" r="140"/></clipPath><radialGradient id="solar" cx=".3" cy=".2" r=".85"><stop stop-color="${mineral}"/><stop offset=".7" stop-color="${dark}"/><stop offset="1" stop-color="#060b12"/></radialGradient><radialGradient id="shade" cx=".27" cy=".2" r=".85"><stop stop-color="#02050a" stop-opacity="0"/><stop offset=".43" stop-color="#02050a" stop-opacity=".04"/><stop offset=".76" stop-color="#02050a" stop-opacity=".65"/><stop offset="1" stop-color="#02050a" stop-opacity=".96"/></radialGradient></defs><circle cx="300" cy="200" r="140" fill="url(#solar)"/><g clip-path="url(#disc)"><svg x="20" y="60" width="560" height="280" viewBox="0 0 512 256">${surface}</svg>${clouds}<circle cx="300" cy="200" r="140" fill="url(#shade)"/></g><circle cx="300" cy="200" r="140" fill="none" stroke="${rim}" stroke-opacity=".6" stroke-width="1"/>`);
 }
-export const MOON_ART = svg('<defs><radialGradient id="p" cx=".27" cy=".23" r=".8"><stop stop-color="#ece6de"/><stop offset=".35" stop-color="#a49bad"/><stop offset=".8" stop-color="#3a3441"/><stop offset="1" stop-color="#0a090d"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#p)" stroke="#d0c8d6" stroke-width=".6"/>', 100, 100);
+export const MOON_ART = svg('<defs><radialGradient id="p" cx=".27" cy=".23" r=".8"><stop stop-color="#e9ebee"/><stop offset=".35" stop-color="#a2a7b0"/><stop offset=".8" stop-color="#363b45"/><stop offset="1" stop-color="#090b0f"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#p)" stroke="#cdd3dc" stroke-width=".6"/>', 100, 100);
 export const SUN_ART = svg('<defs><radialGradient id="g"><stop stop-color="#f2d4a3" stop-opacity=".2"/><stop offset=".28" stop-color="#d2a373" stop-opacity=".055"/><stop offset="1" stop-color="#d2a373" stop-opacity="0"/></radialGradient><radialGradient id="s" cx=".36" cy=".32" r=".8"><stop stop-color="#fff2d7"/><stop offset=".46" stop-color="#e4c399"/><stop offset="1" stop-color="#9f7552"/></radialGradient></defs><circle cx="100" cy="100" r="92" fill="url(#g)"/><circle cx="100" cy="100" r="10.5" fill="url(#s)"/><circle cx="100" cy="100" r="12" fill="none" stroke="#eed7b3" stroke-width=".35" stroke-opacity=".25"/>', 200, 200);
 
-export const MAP_ART = svg(`<defs><linearGradient id="o" x1="50" y1="300" x2="440" y2="70" gradientUnits="userSpaceOnUse"><stop stop-color="#ae96c9" stop-opacity=".07"/><stop offset=".5" stop-color="#d6c8e7" stop-opacity=".48"/><stop offset="1" stop-color="#ae96c9" stop-opacity=".08"/></linearGradient></defs><g fill="none" stroke="url(#o)" stroke-width=".65"><ellipse cx="240" cy="185" rx="59" ry="24" transform="rotate(-15 240 185)"/><ellipse cx="240" cy="185" rx="107" ry="46" transform="rotate(-15 240 185)"/><ellipse cx="240" cy="185" rx="166" ry="73" transform="rotate(-15 240 185)"/><ellipse cx="240" cy="185" rx="217" ry="96" transform="rotate(-15 240 185)"/><path d="M51 316H118M379 70H432" stroke="#d1b6ed" stroke-opacity=".23"/></g><circle cx="50" cy="316" r="1.6" fill="#d1b6ed"/><circle cx="432" cy="70" r="1.6" fill="#8daca5"/><g transform="translate(133 125) rotate(-14)"><path d="M-14 0L-4-6 9-3 18 0 9 3-4 6Z" fill="#807b8b"/><path d="M-3-3L8-1 11 0 8 1-3 3Z" fill="#171922"/><path d="M-11-3L-6-2M-11 3L-6 2" stroke="#c1b5da"/><circle cx="26" r="1.5" fill="#bba7d8"/></g>`, 480, 380);
+export const MAP_ART = svg(`<defs><linearGradient id="o" x1="50" y1="300" x2="440" y2="70" gradientUnits="userSpaceOnUse"><stop stop-color="#1eb2f5" stop-opacity=".07"/><stop offset=".5" stop-color="#bfe6ff" stop-opacity=".48"/><stop offset="1" stop-color="#1eb2f5" stop-opacity=".08"/></linearGradient></defs><g fill="none" stroke="url(#o)" stroke-width=".65"><ellipse cx="240" cy="185" rx="59" ry="24" transform="rotate(-15 240 185)"/><ellipse cx="240" cy="185" rx="107" ry="46" transform="rotate(-15 240 185)"/><ellipse cx="240" cy="185" rx="166" ry="73" transform="rotate(-15 240 185)"/><ellipse cx="240" cy="185" rx="217" ry="96" transform="rotate(-15 240 185)"/><path d="M51 316H118M379 70H432" stroke="#4ec5ff" stroke-opacity=".23"/></g><circle cx="50" cy="316" r="1.6" fill="#4ec5ff"/><circle cx="432" cy="70" r="1.6" fill="#e0479e"/><g transform="translate(133 125) rotate(-14)"><path d="M-14 0L-4-6 9-3 18 0 9 3-4 6Z" fill="#76829a"/><path d="M-3-3L8-1 11 0 8 1-3 3Z" fill="#171922"/><path d="M-11-3L-6-2M-11 3L-6 2" stroke="#9fb3d1"/><circle cx="26" r="1.5" fill="#4ec5ff"/></g>`, 480, 380);
 
 // A hand-drawn three-quarter craft. No shaded sphere/mesh substitutes for art.
 export const SHIP_ART = svg(`<defs>
-<linearGradient id="h" x1="0" y1="0" x2=".7" y2="1"><stop stop-color="#e0dbe9"/><stop offset=".3" stop-color="#888593"/><stop offset=".65" stop-color="#414350"/><stop offset="1" stop-color="#151822"/></linearGradient>
-<linearGradient id="w" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9a8fab"/><stop offset=".5" stop-color="#454554"/><stop offset="1" stop-color="#14151e"/></linearGradient>
+<linearGradient id="h" x1="0" y1="0" x2=".7" y2="1"><stop stop-color="#dde5ef"/><stop offset=".3" stop-color="#858b97"/><stop offset=".65" stop-color="#3f4552"/><stop offset="1" stop-color="#141922"/></linearGradient>
+<linearGradient id="w" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8c99ad"/><stop offset=".5" stop-color="#434856"/><stop offset="1" stop-color="#13161e"/></linearGradient>
 <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#98c1cf"/><stop offset=".3" stop-color="#334659"/><stop offset="1" stop-color="#0c1321"/></linearGradient>
-<radialGradient id="engine"><stop stop-color="#eee7fa"/><stop offset=".2" stop-color="#c7b6e4" stop-opacity=".9"/><stop offset="1" stop-color="#a88adc" stop-opacity="0"/></radialGradient></defs>
+<radialGradient id="engine"><stop stop-color="#e6f6ff"/><stop offset=".2" stop-color="#9fdcff" stop-opacity=".9"/><stop offset="1" stop-color="#1eb2f5" stop-opacity="0"/></radialGradient></defs>
 <ellipse cx="184" cy="249" rx="118" ry="26" fill="url(#engine)" transform="rotate(-17 184 249)"/>
-<path d="M162 190L58 139 140 151 269 152 303 198 171 226Z" fill="url(#w)" stroke="#c7bfd4" stroke-width=".8"/>
-<path d="M182 228L80 328 267 278 328 218Z" fill="url(#w)" stroke="#c7bfd4" stroke-width=".9"/>
-<path d="M161 195L247 136 364 135 530 198 474 229 272 265 184 239Z" fill="url(#h)" stroke="#b8afca" stroke-width="1"/>
-<path d="M247 136L285 111 351 113 402 151 366 172 259 172Z" fill="url(#w)" stroke="#b9b3cb" stroke-width="1"/>
+<path d="M162 190L58 139 140 151 269 152 303 198 171 226Z" fill="url(#w)" stroke="#bfcadb" stroke-width=".8"/>
+<path d="M182 228L80 328 267 278 328 218Z" fill="url(#w)" stroke="#bfcadb" stroke-width=".9"/>
+<path d="M161 195L247 136 364 135 530 198 474 229 272 265 184 239Z" fill="url(#h)" stroke="#b3c0d4" stroke-width="1"/>
+<path d="M247 136L285 111 351 113 402 151 366 172 259 172Z" fill="url(#w)" stroke="#b5c0d2" stroke-width="1"/>
 <path d="M278 128L310 117 348 124 376 146 354 154 284 155Z" fill="url(#glass)" stroke="#bac8d6" stroke-width="1.2"/>
 <path d="M310 118L319 153M349 125L347 155" stroke="#abb3c8" stroke-width="1.2" opacity=".55"/>
-<path d="M263 178L399 173 500 201M272 218L402 203 479 212M280 238L389 219" fill="none" stroke="#e1dbea" stroke-width=".65" opacity=".45"/>
-<path d="M167 201L186 198 212 226 188 237Z" fill="#111520" stroke="#898496"/>
-<path d="M169 208L182 206 200 226 187 229" fill="#cab8e8"/>
-<path d="M107 307L226 274M74 144L187 164" stroke="#d1bedf" stroke-width="1.5" opacity=".65"/>
-<circle cx="473" cy="213" r="2" fill="#e4d8f4"/><circle cx="267" cy="180" r="1.4" fill="#b4d8da"/>
-<path d="M303 249L327 244 330 254 307 259Z" fill="#090c13" stroke="#c9b9df" stroke-width=".75"/>
+<path d="M263 178L399 173 500 201M272 218L402 203 479 212M280 238L389 219" fill="none" stroke="#dde7f3" stroke-width=".65" opacity=".45"/>
+<path d="M167 201L186 198 212 226 188 237Z" fill="#111520" stroke="#848c9b"/>
+<path d="M169 208L182 206 200 226 187 229" fill="#9fdcff"/>
+<path d="M107 307L226 274M74 144L187 164" stroke="#a9d6f5" stroke-width="1.5" opacity=".65"/>
+<circle cx="473" cy="213" r="2" fill="#e3f1ff"/><circle cx="267" cy="180" r="1.4" fill="#b4d8da"/>
+<path d="M303 249L327 244 330 254 307 259Z" fill="#090c13" stroke="#a9c8e8" stroke-width=".75"/>
 `, 600, 400);
 
-export const CABIN_BACK = svg(`<defs><linearGradient id="m" x2="1" y2="1"><stop stop-color="#33343e"/><stop offset=".3" stop-color="#171923"/><stop offset="1" stop-color="#070a12"/></linearGradient><linearGradient id="edge" x2="1"><stop stop-color="#777080"/><stop offset=".5" stop-color="#181e2a"/><stop offset="1" stop-color="#393746"/></linearGradient></defs>
-<path d="M0 0H1200V72L930 111H270L0 72Z" fill="url(#m)" stroke="#aea1bd" stroke-opacity=".25"/>
+export const CABIN_BACK = svg(`<defs><linearGradient id="m" x2="1" y2="1"><stop stop-color="#33343e"/><stop offset=".3" stop-color="#171923"/><stop offset="1" stop-color="#070a12"/></linearGradient><linearGradient id="edge" x2="1"><stop stop-color="#6f7a8a"/><stop offset=".5" stop-color="#171e2b"/><stop offset="1" stop-color="#353c4a"/></linearGradient></defs>
+<path d="M0 0H1200V72L930 111H270L0 72Z" fill="url(#m)" stroke="#a1b3c9" stroke-opacity=".25"/>
 <path d="M0 0L135 38 252 196 198 568 64 720H0Z" fill="url(#m)"/><path d="M1200 0L1065 38 948 196 1002 568 1136 720H1200Z" fill="url(#m)"/>
 <path d="M24 18L116 66 217 203 167 553 58 685M1176 18L1084 66 983 203 1033 553 1142 685" fill="none" stroke="url(#edge)" stroke-width="18"/>
-<path d="M94 91L203 222M1106 91L997 222M192 274L158 516M1008 274L1042 516" stroke="#c3afda" stroke-width="2" opacity=".5"/>
-<path d="M0 630L226 555 974 555 1200 630V720H0Z" fill="url(#m)" stroke="#5e536c" stroke-opacity=".4"/>
+<path d="M94 91L203 222M1106 91L997 222M192 274L158 516M1008 274L1042 516" stroke="#8fcfff" stroke-width="2" opacity=".5"/>
+<path d="M0 630L226 555 974 555 1200 630V720H0Z" fill="url(#m)" stroke="#4f5f75" stroke-opacity=".4"/>
 <path d="M164 617L278 586H922L1036 617M382 603H457M746 603H812" fill="none" stroke="#99bec9" stroke-width="2" opacity=".4"/>
-<text x="600" y="44" text-anchor="middle" fill="#c1b0ce" font-family="sans-serif" font-size="8" letter-spacing="5" opacity=".45">SUPERNOVA · FLIGHT DECK</text>`, 1200, 720);
-export const CABIN_FRONT = svg(`<defs><linearGradient id="f" x2="0" y2="1"><stop stop-color="#292631"/><stop offset="1" stop-color="#090b11"/></linearGradient></defs><path d="M0 0H96L229 203 174 520 57 720H0Z" fill="url(#f)"/><path d="M1200 0H1104L971 203 1026 520 1143 720H1200Z" fill="url(#f)"/><path d="M92 5L221 202 163 532M1108 5L979 202 1037 532" fill="none" stroke="#b5a1c9" stroke-width="2" opacity=".28"/><path d="M0 692L135 616M1200 692L1065 616" stroke="#cfb7e7" stroke-width="2" opacity=".4"/>`, 1200, 720);
+<text x="600" y="44" text-anchor="middle" fill="#9fd8ff" font-family="sans-serif" font-size="8" letter-spacing="5" opacity=".45">ÓRBITA · FLIGHT DECK</text>`, 1200, 720);
+export const CABIN_FRONT = svg(`<defs><linearGradient id="f" x2="0" y2="1"><stop stop-color="#232a36"/><stop offset="1" stop-color="#080b11"/></linearGradient></defs><path d="M0 0H96L229 203 174 520 57 720H0Z" fill="url(#f)"/><path d="M1200 0H1104L971 203 1026 520 1143 720H1200Z" fill="url(#f)"/><path d="M92 5L221 202 163 532M1108 5L979 202 1037 532" fill="none" stroke="#8fb8de" stroke-width="2" opacity=".28"/><path d="M0 692L135 616M1200 692L1065 616" stroke="#9fdcff" stroke-width="2" opacity=".4"/>`, 1200, 720);

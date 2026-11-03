@@ -1,6 +1,8 @@
 import { defineConfig } from '@playwright/test';
 import { existsSync } from 'node:fs';
 
+// Every spec starts signed in as the internal demo user; tests/access.spec.ts covers the gate.
+const internalAccess = { kind: 'internal', name: 'Alex García', email: 'alex.garcia@demo.personal.test', organization: 'Personal' };
 const localChrome = process.env.PLAYWRIGHT_CHROME_PATH || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 
 export default defineConfig({
@@ -19,6 +21,7 @@ export default defineConfig({
     timezoneId: 'America/Montevideo',
     locale: 'es-AR',
     reducedMotion: 'reduce',
+    storageState: { cookies: [], origins: [{ origin: 'http://127.0.0.1:5173', localStorage: [{ name: 'orbita-access-v1', value: JSON.stringify(internalAccess) }] }] },
     screenshot: 'only-on-failure',
     trace: 'retain-on-failure',
   },

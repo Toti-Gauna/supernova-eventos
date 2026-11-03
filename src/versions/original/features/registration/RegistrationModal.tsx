@@ -13,8 +13,9 @@ import BackButton from '../../../../components/ui/BackButton';
 import { PassQR } from '../../../../features/qr';
 import { eventForSession, getEventSessions, getRegistrationSession, sameRegistrationSession } from '../../../../lib/eventSessions';
 import EventSessionPicker from '../../../../features/registration/EventSessionPicker';
-import { DEMO_USER, getEventPhase } from '../../../../lib/events';
+import { getEventPhase } from '../../../../lib/events';
 import '../../../../features/registration/registration.css';
+import { useAccessProfile } from '../../../../features/access/access';
 import './theme.css';
 
 interface Props {
@@ -35,8 +36,9 @@ export default function RegistrationModal({ event, registration, registrations =
   const existingPass = allPasses.find(item => sameRegistrationSession(event, item, selectedSession.id)) || (newPass && sameRegistrationSession(event, newPass, selectedSession.id) ? newPass : undefined);
   const pass = browsingFunctions ? undefined : existingPass;
   const displayEvent = eventForSession(event, pass ? getRegistrationSession(event, pass) : selectedSession);
-  const [name, setName] = useState(DEMO_USER.name);
-  const [email, setEmail] = useState(DEMO_USER.email);
+  const access = useAccessProfile();
+  const [name, setName] = useState(access.name);
+  const [email, setEmail] = useState(access.email);
   const [companions, setCompanions] = useState(0);
   const [accepted, setAccepted] = useState(false);
   const [error, setError] = useState('');
@@ -104,7 +106,7 @@ export default function RegistrationModal({ event, registration, registrations =
               setCompanions(value => Math.min(value, event.companions, Math.max(0, next.capacity - next.registered - 1)));
             }} />
             {existingPass ? <div className="existing-session-pass"><p>Ya tenés tu lugar en esta función.</p><button type="button" className="button primary" onClick={() => setBrowsingFunctions(false)}>Ver mi pase <ArrowRight size={16} /></button></div> : closed ? <p className="form-notice"><Clock3 size={17} />{event.status === 'draft' ? 'Vista previa de la experiencia.' : 'La inscripción para esta función está cerrada.'}</p> : full ? <p className="form-notice"><Users size={17} />Esta función está completa. Podés elegir otro horario.</p> : <form noValidate onSubmit={handleSubmit}>
-              <div className="identity-fields"><label>Tu nombre<input value={name} onChange={e => { setName(e.target.value); setError(''); }} required autoComplete="name" maxLength={120} /></label><label>Email corporativo<input type="email" value={email} onChange={e => { setEmail(e.target.value); setError(''); }} required autoComplete="email" maxLength={254} /></label></div>
+              <div className="identity-fields"><label>Tu nombre<input value={name} onChange={e => { setName(e.target.value); setError(''); }} required autoComplete="name" maxLength={120} /></label><label>{access.kind === 'internal' ? 'Email corporativo' : 'Email'}<input type="email" value={email} onChange={e => { setEmail(e.target.value); setError(''); }} required autoComplete="email" maxLength={254} /></label></div>
               {event.companions > 0 && <div className="companion-field"><span><Users size={16} /> ¿Venís con alguien?<small>Hasta {event.companions} acompañante{event.companions > 1 ? 's' : ''}.</small></span><div><button type="button" aria-label="Quitar acompañante" disabled={companions === 0} onClick={() => setCompanions(c => c - 1)}><Minus size={15} /></button><motion.strong key={companions} aria-live="polite" initial={{ opacity: 0, y: reducedMotion ? 0 : 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .2 }}>{companions}</motion.strong><button type="button" aria-label="Agregar acompañante" disabled={companions >= maxCompanions} onClick={() => setCompanions(c => c + 1)}><Plus size={15} /></button></div></div>}
               {event.terms && <div className="terms-field"><label><input type="checkbox" checked={accepted} onChange={e => { setAccepted(e.target.checked); setError(''); }} />Acepto los términos y condiciones del evento.</label><details><summary>Leer términos <ChevronDown size={13} /></summary><p>{event.terms}</p></details></div>}
               <div className="reservation-total"><span>Tu reserva</span><strong>{companions + 1} {companions ? 'lugares' : 'lugar'}<small> · Sin costo</small></strong></div><button className="button primary confirm-registration" type="submit">Confirmar mi lugar <ArrowRight size={18} /></button><span className="registration-secure"><ShieldCheck size={14} /> Tu pase personal, listo al confirmar.</span>

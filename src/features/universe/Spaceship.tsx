@@ -40,18 +40,18 @@ export default function Spaceship({ detailed, studio, command, animated, highlig
         <meshStandardMaterial color="#dfc69e" emissive="#d7b585" emissiveIntensity={.55} metalness={.06} roughness={.3} />
       </mesh>
       <mesh geometry={geometry.lavender}>
-        <meshStandardMaterial ref={accent} color="#c9a3ff" emissive="#c9a3ff" emissiveIntensity={.33} roughness={.7} />
+        <meshStandardMaterial ref={accent} color="#4ec5ff" emissive="#1eb2f5" emissiveIntensity={.33} roughness={.7} />
       </mesh>
     </group>
     {studio && <group name="ship-cabin" scale={[cabinWidth, 1, 1]}>
       <mesh geometry={cabin.structure}>
-        <meshStandardMaterial color="#272b35" emissive="#2a2236" emissiveIntensity={.035} metalness={.42} roughness={.72} />
+        <meshStandardMaterial color="#262d39" emissive="#1c2a44" emissiveIntensity={.035} metalness={.42} roughness={.72} />
       </mesh>
       <mesh geometry={cabin.floor}>
         <meshStandardMaterial color="#10131a" metalness={.12} roughness={.94} />
       </mesh>
       <mesh geometry={cabin.lights}>
-        <meshBasicMaterial color="#a994c8" transparent opacity={.30} />
+        <meshBasicMaterial color="#6cc9ff" transparent opacity={.30} />
       </mesh>
     </group>}
   </group>;

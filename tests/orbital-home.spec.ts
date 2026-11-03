@@ -8,7 +8,7 @@ const friday = featured.sessions![0];
 const saturday = featured.sessions![1];
 const pass: Registration = {
   id:'SN-ORBIT-QA', eventId:featured.id, sessionId:friday.id, sessionSnapshot:friday,
-  name:'Alex García', email:'alex.garcia@demo.telefonica.test', companions:0, createdAt:'2026-10-09T15:00:00Z',
+  name:'Alex García', email:'alex.garcia@demo.personal.test', companions:0, createdAt:'2026-10-09T15:00:00Z',
 };
 
 async function seedPass(page: Page) {
@@ -20,7 +20,7 @@ async function openHome(page: Page, version = 'hibrida') {
   await page.goto(`/${version}/`);
   const heading = page.getByRole('heading', { name:/Salí de la rutina/ });
   await expect(heading).toBeVisible();
-  await expect(page.getByRole('dialog', { name:'Bienvenido a Supernova Eventos' })).toHaveCount(0);
+  await expect(page.getByRole('dialog', { name:'Te damos la bienvenida a Órbita' })).toHaveCount(0);
   if (version !== 'original') await page.waitForFunction(() => {
     const host = document.querySelector<HTMLElement>('[data-universe-host]');
     return host?.dataset.universeStatus === 'ready' && host.dataset.universeRequest === host.dataset.universeSettled;
@@ -53,14 +53,14 @@ test('el hero ofrece dos funciones disponibles y una reserva real con Mi pase, c
   expect(planet!.height).toBeLessThanOrEqual(230);
   await expect(page.getByRole('textbox', { name:'Buscar experiencias',exact:true })).toHaveCount(1);
   const search = page.locator('.hero').getByRole('textbox', { name:'Buscar experiencias',exact:true });
-  await search.fill('Supernova Sessions');
+  await search.fill('Órbita Fest');
   await expect(available).toHaveCount(1);
   await expect(available).toHaveAttribute('data-session-id', saturday.id);
   await expect(registered).toHaveCount(1);
   await expect(page.locator('#catalog-result-list .event-card')).toHaveCount(1);
   const reserve = available.getByRole('button', { name:/^Anotarme:/ });
   await reserve.click();
-  const modal = page.getByRole('dialog', { name:'Supernova Sessions',exact:true });
+  const modal = page.getByRole('dialog', { name:'Órbita Fest',exact:true });
   await expect(modal.getByRole('radio', { name:/Sábado.*21:00/ })).toBeChecked();
   await expect(modal.getByRole('button', { name:'Confirmar mi lugar',exact:true })).toBeEnabled();
   await page.keyboard.press('Escape');

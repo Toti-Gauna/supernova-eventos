@@ -1,12 +1,14 @@
-/* Keep the honest loading state black even if the app's CSS has not arrived. */
-html:has(#intro-bootstrap), body:has(#intro-bootstrap) { background: #020205; }
+/* Keep the honest loading state on Órbita's night navy even if the app's CSS has not arrived. */
+html:has(#intro-bootstrap), body:has(#intro-bootstrap) { background: #030b1c; }
+/* Órbita palette (docs/orbita/README.md): the intro is always night. */
 .cinematic-intro {
-  --intro-bg: #020205;
-  --intro-fg: #f5f0e9;
-  --intro-muted: #b9abca;
-  --intro-caption: #aaa0b5;
-  --intro-star: #ded7ef;
-  --intro-accent: #d5b7f9;
+  --intro-bg: #030b1c;
+  --intro-fg: #eef5ff;
+  --intro-muted: #9fb3d1;
+  --intro-caption: #8499bc;
+  --intro-star: #dcebff;
+  --intro-accent: #4ec5ff;
+  --intro-spark: #e0479e;
   --intro-start-delay: 0s;
   --intro-handoff-delay: 0s;
   --intro-handoff-duration: .2s;
@@ -27,6 +29,7 @@ html:has(#intro-bootstrap), body:has(#intro-bootstrap) { background: #020205; }
 .intro-stars { position: absolute; inset: 0; }
 .intro-stars i { position: absolute; border-radius: 50%; background: var(--intro-star); }
 .intro-stars i:nth-child(9n) { background: var(--intro-accent); }
+.intro-stars i:nth-child(23n) { background: var(--intro-spark); }
 .intro-composition {
   position: relative;
   display: flex;
@@ -50,8 +53,10 @@ html:has(#intro-bootstrap), body:has(#intro-bootstrap) { background: #020205; }
 .intro-identity { margin-top: 27px; text-align: center; }
 .intro-brand-lockup { width: 100%; }
 .intro-wordmark-mask { overflow: hidden; padding-bottom: 13px; margin-bottom: -13px; }
-.intro-wordmark { display: flex; align-items: center; justify-content: center; gap: 16px; font-size: 62px; font-weight: 300; line-height: 1.15; letter-spacing: -.065em; white-space: nowrap; }
-.intro-brand-symbol { width: 42px; height: 42px; flex: none; color: #d5b7f9; }
+/* «órbita» is short: a larger size and gentler tracking keep the lockup's
+   presence. Manrope 400 is the face preloaded for the HTML first frame. */
+.intro-wordmark { display: flex; align-items: center; justify-content: center; gap: 18px; font-size: 80px; font-weight: 400; line-height: 1.15; letter-spacing: -.05em; white-space: nowrap; }
+.intro-brand-symbol { width: 50px; height: 50px; flex: none; color: var(--intro-accent); }
 .intro-tagline { margin-top: 8px; color: var(--intro-muted); font-size: 15px; font-weight: 400; letter-spacing: -.025em; }
 .intro-caption {
   display: flex;
@@ -105,15 +110,15 @@ html:has(#intro-bootstrap), body:has(#intro-bootstrap) { background: #020205; }
   width: max-content;
   max-width: calc(100vw - 48px);
   margin: 0;
-  color: #aaa0b5;
-  background: #020205;
+  color: #9fb3d1;
+  background: #030b1c;
   font: 12px/1.5 Manrope, sans-serif;
   text-align: center;
   opacity: 0;
   pointer-events: none;
   animation: intro-bootstrap-note 3.6s linear both;
 }
-#intro-bootstrap-note span { display: block; font-size: 10px; color: #84798e; margin-top: 4px; }
+#intro-bootstrap-note span { display: block; font-size: 10px; color: #7f93b5; margin-top: 4px; }
 @keyframes intro-bootstrap-release { 0%, 95% { opacity: 1; } 100% { opacity: 0; pointer-events: none; visibility: hidden; } }
 @keyframes intro-bootstrap-note { 0%, 99.9% { opacity: 0; } 100% { opacity: 1; } }
 
@@ -122,8 +127,8 @@ html:has(#intro-bootstrap), body:has(#intro-bootstrap) { background: #020205; }
   .intro-orbital-system { height: 270px; }
   .intro-orbital-label { font-size: 7px; letter-spacing: 1.6px; bottom: 4px; }
   .intro-identity { margin-top: 20px; }
-  .intro-wordmark { font-size: clamp(40px, 11vw, 56px); }
-  .intro-brand-symbol { width: 31px; height: 31px; }
+  .intro-wordmark { gap: 13px; font-size: clamp(48px, 14vw, 62px); }
+  .intro-brand-symbol { width: 38px; height: 38px; }
   .intro-tagline { font-size: 14px; }
   .intro-caption { font-size: 8px; letter-spacing: 1.5px; gap: 10px; margin-top: 33px; }
   .intro-caption > span { width: 19px; }
@@ -132,7 +137,8 @@ html:has(#intro-bootstrap), body:has(#intro-bootstrap) { background: #020205; }
 @media(max-height:650px) and (min-width:601px) {
   .intro-orbital-system { height: 255px; }
   .intro-identity { margin-top: 16px; }
-  .intro-wordmark { font-size: 48px; }
+  .intro-wordmark { gap: 15px; font-size: 60px; }
+  .intro-brand-symbol { width: 39px; height: 39px; }
   .intro-caption { margin-top: 27px; }
 }
 @media(prefers-reduced-motion:reduce) {

@@ -2,6 +2,10 @@
 
 Las mediciones siguientes son históricas y describen la intro anterior al universo 3D. La apertura solar conserva sus resultados de [Prompt 2](experiencia-3d/02-implementado.md) y su revisión final en [03-cierre.md](experiencia-3d/03-cierre.md).
 
+## Órbita · 3 de noviembre de 2026
+
+Cambio de marca y paleta sin tocar tiempos, easing, GSAP, Escape ni cleanup. Con Chrome headless contra Vite local se capturaron `/3d/`, `/hibrida/` y `/original/` a 1440 × 900 y 390 × 844 en 0,3, 1,4, 2,6 y 3,6 s, con reloj controlado y replay desde el footer. También se capturó el primer frame HTML sin React. El wordmark quedó centrado y sin recortes y no hubo scroll horizontal ni errores de página; [capturas](captures/orbita/). Escape cerró y devolvió el foco a `main-content`. Con movimiento reducido, el replay se liberó en el mismo commit en 3D y a los 198 ms en la original. `npx tsc -b` terminó sin errores. La expectativa de fondo claro de `first-frame-check.mjs` ya no aplica: la intro es siempre oscura.
+
 ## Primer frame y tema claro · 7 de octubre de 2026
 
 Se ejecutaron `node docs/trailer/first-frame-check.mjs` y `node docs/trailer/motion-check.mjs` contra Vite en localhost con Chrome headless. Ambos finalizaron sin errores de página. La revisión de primer frame demoró deliberadamente el módulo principal y luego la escena lazy: el HTML ya mostró órbitas animadas; el fallback conservó el artwork, foco y app inerte, y la entrega a GSAP mantuvo ese aislamiento. Se verificaron la eliminación de las cuatro esquinas, el fondo claro, Escape con restitución de foco y reduced motion.

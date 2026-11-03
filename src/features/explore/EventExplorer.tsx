@@ -5,12 +5,14 @@ import type { EventCategory, EventItem, EventSession, Registration } from '../..
 import EventCard from '../../components/EventCard';
 import CosmicScene from '../../components/CosmicScene';
 import OrbitEventPreview from './OrbitEventPreview';
+import FeaturedBanner from './FeaturedBanner';
 import { canViewEvent, getEventPhase } from '../../lib/events';
 import { eventLocalDay } from '../../lib/calendar';
 import { eventForSession, getDisplaySession, getEventSessions, getRegistrationSession, sameRegistrationSession } from '../../lib/eventSessions';
 import SupernovaSelect from '../../components/ui/SupernovaSelect';
 import SupernovaDatePicker from '../../components/ui/SupernovaDatePicker';
 import { useEventClock } from './useEventClock';
+import { useViewer } from '../access/access';
 import './explorer.css';
 
 interface Props { events: EventItem[]; registrations: Registration[]; favorites: string[]; onFavorite: (id: string) => void; onOpen: (event: EventItem, sessionId?: string) => void; subscribed: boolean; onSubscribe: () => void; layout?: 'classic' | 'orbital' }
@@ -29,6 +31,7 @@ const initialFilters: CatalogFilters = { category: 'all', query: '', sort: 'date
 
 export default function EventExplorer({ events, registrations, favorites, onFavorite, onOpen, subscribed, onSubscribe, layout = 'orbital' }: Props) {
   const reducedMotion = useReducedMotion();
+  const viewer = useViewer();
   const [filters, setFilters] = useState(initialFilters);
   const { category, query, sort, mode, savedOnly, fromDate } = filters;
   const [page, setPage] = useState(1);
@@ -42,7 +45,7 @@ export default function EventExplorer({ events, registrations, favorites, onFavo
     const handleKey = (e: KeyboardEvent) => { if (e.key === '/' && !(e.target as HTMLElement).closest('dialog') && !['INPUT', 'TEXTAREA', 'SELECT'].includes((e.target as HTMLElement).tagName)) { e.preventDefault(); search.current?.focus(); } };
     window.addEventListener('keydown', handleKey); return () => window.removeEventListener('keydown', handleKey);
   }, []);
-  const visible = events.filter(event => event.status !== 'draft' && canViewEvent(event));
+  const visible = events.filter(event => event.status !== 'draft' && canViewEvent(event, viewer));
   const displayedSessions = new Map(visible.map(event => {
     const sessions = getEventSessions(event).filter(session => !fromDate || eventLocalDay(session.date) >= fromDate);
     return [event.id, getDisplaySession(sessions.length ? { ...event, sessions } : event, now)];
@@ -153,6 +156,7 @@ export default function EventExplorer({ events, registrations, favorites, onFavo
         </div>}
       </> : <div className="empty-state"><span><Search size={30} /></span><h3>Todavía no hay una órbita por acá.</h3><p>Probá con otra búsqueda o descubrí todo el universo.</p><button className="button secondary" onClick={clearFilters}>Ver todas las experiencias <ArrowRight size={16} /></button></div>}
     </section>
+    {featured && <FeaturedBanner event={featured} session={displayedSessions.get(featured.id)} joined={registrations.some(registration => registration.eventId === featured.id)} onOpen={() => onOpen(featured, displayedSessions.get(featured.id)?.id)} />}
     <section className="newsletter section-container"><div className="newsletter-orbit" aria-hidden="true">✦</div><div><span className="eyebrow">LAS MEJORES CONEXIONES ESTÁN POR VENIR</span><h2>Que nada te pase de largo.</h2><p>Activá las novedades y descubrí tu próximo plan antes que nadie.</p></div><button className={`button ${subscribed ? 'secondary' : 'primary'}`} onClick={onSubscribe}>{subscribed ? <><Check size={17} /> Novedades activadas</> : <>Quiero estar en órbita <ArrowUpRight size={17} /></>}</button></section>
   </>;
 }

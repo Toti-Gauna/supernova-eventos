@@ -10,7 +10,7 @@ export const defaultEmail: EmailTemplate = {
   heading: 'Hay encuentros que lo cambian todo.',
   body: 'Hola {{nombre}},\n\nTe invitamos a {{evento}}. Un momento para conectar, descubrir y compartir algo extraordinario.\n\nNos encontramos el {{fecha}} en {{ubicacion}}.\n\nTu lugar en esta historia te está esperando.',
   buttonText: 'Quiero ser parte',
-  accentColor: '#b998f5',
+  accentColor: '#1eb2f5',
 };
 
 export function clearSavedDraft(): void {
@@ -20,9 +20,9 @@ export function clearSavedDraft(): void {
 
 export function emailButtonTextColor(color: string): string {
   const hex = color.replace('#', '');
-  if (!/^[\da-f]{6}$/i.test(hex)) return '#211432';
+  if (!/^[\da-f]{6}$/i.test(hex)) return '#052c50';
   const [red, green, blue] = [0, 2, 4].map(start => parseInt(hex.slice(start, start + 2), 16));
-  return (red * 299 + green * 587 + blue * 114) / 1000 >= 145 ? '#211432' : '#ffffff';
+  return (red * 299 + green * 587 + blue * 114) / 1000 >= 145 ? '#052c50' : '#ffffff';
 }
 
 export function newEvent(): EventItem {
@@ -33,7 +33,7 @@ export function newEvent(): EventItem {
   return {
     id: crypto.randomUUID(), title: '', subtitle: '', category: 'Comunidad', image: '/images/innovation.jpg',
     date: start.toISOString(), endDate: end.toISOString(), location: '', mode: 'Presencial', capacity: 150,
-    registered: 0, description: '', host: 'Equipo Supernova', featured: false, isPrivate: false, status: 'draft',
+    registered: 0, description: '', host: 'Equipo Órbita', featured: false, isPrivate: false, access: 'internal', status: 'draft',
     companions: 0, terms: '', audience: { mode: 'all', people: [] }, emailTemplate: { ...defaultEmail },
   };
 }
@@ -86,7 +86,7 @@ export function exportRegistrations(events: EventItem[], registrations: Registra
     const session = event ? getRegistrationSession(event, registration) : registration.sessionSnapshot;
     return [event?.title || registration.eventId, session?.name || session?.id || 'Función principal', session?.date || '', session?.doorsDate || '', registration.name, registration.email, registration.companions, registration.createdAt];
   })];
-  downloadFile('supernova-inscripciones.csv', '\uFEFF' + rows.map(row => row.map(csvCell).join(';')).join('\r\n'));
+  downloadFile('orbita-inscripciones.csv', '\uFEFF' + rows.map(row => row.map(csvCell).join(';')).join('\r\n'));
 }
 
 export interface AudienceImportResult { people: AudiencePerson[]; duplicates: number; issues: { row: number; reason: string }[] }
@@ -171,7 +171,7 @@ export async function parseAudienceFile(file: File): Promise<AudienceImportResul
 }
 
 export async function downloadAudienceSample(): Promise<void> {
-  downloadFile('supernova-modelo-invitados.csv', '\uFEFFnombre;email;area\r\nSofía Martínez;sofia.martinez@example.com;Tecnología\r\nLucas Fernández;lucas.fernandez@example.com;Marketing');
+  downloadFile('orbita-modelo-invitados.csv', '\uFEFFnombre;email;area\r\nSofía Martínez;sofia.martinez@example.com;Tecnología\r\nLucas Fernández;lucas.fernandez@example.com;Marketing');
 }
 
 export function validateStep(event: EventItem, step: number): Record<string, string> {

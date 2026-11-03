@@ -24,7 +24,7 @@ export default function IntroArtwork() {
           <defs>
             <radialGradient id={`${id}-radiance`}><stop stopColor="#f2d4a3" stopOpacity=".2" /><stop offset=".28" stopColor="#d2a373" stopOpacity=".055" /><stop offset="1" stopColor="#d2a373" stopOpacity="0" /></radialGradient>
             <radialGradient id={`${id}-sun`} cx=".36" cy=".32" r=".8"><stop stopColor="#fff2d7" /><stop offset=".46" stopColor="#e4c399" /><stop offset="1" stopColor="#9f7552" /></radialGradient>
-            <linearGradient id={`${id}-orbit`} x1="50" y1="300" x2="440" y2="70" gradientUnits="userSpaceOnUse"><stop stopColor="#ae96c9" stopOpacity=".07" /><stop offset=".5" stopColor="#d6c8e7" stopOpacity=".48" /><stop offset="1" stopColor="#ae96c9" stopOpacity=".08" /></linearGradient>
+            <linearGradient id={`${id}-orbit`} x1="50" y1="300" x2="440" y2="70" gradientUnits="userSpaceOnUse"><stop stopColor="#1eb2f5" stopOpacity=".07" /><stop offset=".5" stopColor="#bfe6ff" stopOpacity=".48" /><stop offset="1" stopColor="#1eb2f5" stopOpacity=".08" /></linearGradient>
             <radialGradient id={`${id}-earth`} cx=".27" cy=".23" r=".8"><stop stopColor="#abd9ef" /><stop offset=".3" stopColor="#367fa8" /><stop offset=".72" stopColor="#142b40" /><stop offset="1" stopColor="#05090d" /></radialGradient>
             <radialGradient id={`${id}-jupiter`} cx=".27" cy=".23" r=".8"><stop stopColor="#e0cdb8" /><stop offset=".3" stopColor="#c6a584" /><stop offset=".72" stopColor="#554330" /><stop offset="1" stopColor="#0c0906" /></radialGradient>
             <radialGradient id={`${id}-saturn`} cx=".27" cy=".23" r=".8"><stop stopColor="#e4d6b5" /><stop offset=".3" stopColor="#d5bd89" /><stop offset=".7" stopColor="#584832" /><stop offset="1" stopColor="#0c0906" /></radialGradient>
@@ -45,9 +45,9 @@ export default function IntroArtwork() {
             <ellipse cx="240" cy="185" rx="107" ry="46" transform="rotate(-15 240 185)" />
             <ellipse cx="240" cy="185" rx="166" ry="73" transform="rotate(-15 240 185)" />
             <ellipse cx="240" cy="185" rx="217" ry="96" transform="rotate(-15 240 185)" />
-            <path d="M51 316H118M379 70H432" stroke="#d1b6ed" strokeOpacity=".23" />
-            <circle cx="50" cy="316" r="1.6" fill="#d1b6ed" stroke="none" />
-            <circle cx="432" cy="70" r="1.6" fill="#8daca5" stroke="none" />
+            <path d="M51 316H118M379 70H432" stroke="#4ec5ff" strokeOpacity=".23" />
+            <circle cx="50" cy="316" r="1.6" fill="#4ec5ff" stroke="none" />
+            <circle cx="432" cy="70" r="1.6" fill="#e0479e" stroke="none" />
           </g>
           <g data-intro="point" data-intro-point="0" data-solar-body="earth">
             <circle cx="300" cy="157" r="14.8" stroke="#abd9ef" strokeWidth=".55" strokeOpacity=".35" />
@@ -107,7 +107,7 @@ export default function IntroArtwork() {
             <circle cx="407" cy="110" r="7" fill={`url(#${id}-neptune)`} stroke="#99c7ef" strokeWidth=".25" />
             <path d="M402 108Q407 106 412 108M403 113Q408 110 411 113" stroke="#b4d6ef" strokeWidth=".65" strokeOpacity=".45" />
           </g>
-          <g className="intro-solar-ship" transform="translate(133 125) rotate(-14)"><path d="M-14 0L-4-6 9-3 18 0 9 3-4 6Z" fill="#807b8b" /><path d="M-3-3L8-1 11 0 8 1-3 3Z" fill="#171922" /><path d="M-11-3L-6-2M-11 3L-6 2" stroke="#c1b5da" strokeWidth="1" /><circle cx="26" cy="0" r="1.5" fill="#bba7d8" /></g>
+          <g className="intro-solar-ship" transform="translate(133 125) rotate(-14)"><path d="M-14 0L-4-6 9-3 18 0 9 3-4 6Z" fill="#76829a" /><path d="M-3-3L8-1 11 0 8 1-3 3Z" fill="#171922" /><path d="M-11-3L-6-2M-11 3L-6 2" stroke="#9fb3d1" strokeWidth="1" /><circle cx="26" cy="0" r="1.5" fill="#4ec5ff" /></g>
           <circle cx="240" cy="185" r="10.5" fill={`url(#${id}-sun)`} />
           <circle cx="240" cy="185" r="12" stroke="#eed7b3" strokeWidth=".35" strokeOpacity=".25" />
         </svg>
@@ -115,7 +115,7 @@ export default function IntroArtwork() {
       </div>
       <div className="intro-brand-lockup" data-intro="identity">
         <div className="intro-identity">
-          <div className="intro-wordmark-mask"><div className="intro-wordmark" data-intro="wordmark"><svg className="intro-brand-symbol" viewBox="0 0 40 40" fill="none"><path d="M20 3c0 12-5 17-17 17 12 0 17 5 17 17 0-12 5-17 17-17C25 20 20 15 20 3Z" fill="currentColor" /><circle cx="20" cy="20" r="17" stroke="currentColor" strokeWidth=".6" opacity=".55" /></svg><span>supernova</span></div></div>
+          <div className="intro-wordmark-mask"><div className="intro-wordmark" data-intro="wordmark"><svg className="intro-brand-symbol" viewBox="0 0 40 40" fill="none"><path d="M20 3c0 12-5 17-17 17 12 0 17 5 17 17 0-12 5-17 17-17C25 20 20 15 20 3Z" fill="currentColor" /><circle cx="20" cy="20" r="17" stroke="currentColor" strokeWidth=".6" opacity=".55" /></svg><span>órbita</span></div></div>
           <div className="intro-tagline" data-intro="tagline">conectá sin límites</div>
         </div>
         <div className="intro-caption" data-intro="caption"><span />UN UNIVERSO DE EXPERIENCIAS<span /></div>
