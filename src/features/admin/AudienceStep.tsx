@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { Building2, Check, CheckCircle2, FileSpreadsheet, Globe2, Search, Ticket, Trash2, Upload, Users, X } from 'lucide-react';
+import { Building2, Check, CheckCircle2, FileSpreadsheet, Search, Trash2, Upload, Users, X } from 'lucide-react';
 import type { EventAccess, EventItem } from '../../types';
 import { demoPayroll } from '../../data/payroll';
 import { downloadAudienceSample, parseAudienceFile } from './admin.helpers';
 import type { AudienceImportResult } from './admin.helpers';
 import SupernovaSelect from '../../components/ui/SupernovaSelect';
+import { ACCESS_LABELS } from '../access/access';
+import AccessPicker, { accessModes } from './AccessPicker';
 
 interface AudienceStepProps {
   audience: NonNullable<EventItem['audience']>;
@@ -12,13 +14,10 @@ interface AudienceStepProps {
   access: EventAccess;
   onAccessChange: (access: EventAccess) => void;
   error?: string;
+  /** When set, access is chosen in an earlier step: this step only summarises it. */
+  onEditAccess?: () => void;
 }
 
-const accessModes = [
-  { access: 'internal', icon: Building2, title: 'Personal interno', description: 'Solo colaboradores con cuenta corporativa.' },
-  { access: 'all', icon: Globe2, title: 'Interno y externo', description: 'El equipo y sus invitados externos.' },
-  { access: 'external', icon: Ticket, title: 'Personal externo', description: 'Solo invitados, proveedores o prensa.' },
-] as const;
 const allAudienceTitle: Record<EventAccess, string> = { internal: 'Toda la compañía', all: 'Todo el personal', external: 'Todos los invitados' };
 
 const audienceModes = [
@@ -27,7 +26,7 @@ const audienceModes = [
   { mode: 'excel', icon: FileSpreadsheet, title: 'Importar invitados', description: 'Traé tu lista en Excel o CSV.', detail: '.xlsx · .csv' },
 ] as const;
 
-export default function AudienceStep({ audience, onChange, access, onAccessChange, error }: AudienceStepProps) {
+export default function AudienceStep({ audience, onChange, access, onAccessChange, error, onEditAccess }: AudienceStepProps) {
   const [query, setQuery] = useState('');
   const [department, setDepartment] = useState('all');
   const [uploading, setUploading] = useState(false);
@@ -93,11 +92,7 @@ export default function AudienceStep({ audience, onChange, access, onAccessChang
   return (
     <div className="wizard-step-content">
       <div className="wizard-section-heading"><span className="admin-eyebrow">EL ENCUENTRO EMPIEZA CON ELLOS</span><h2>¿A quiénes vamos a invitar?</h2><p>Encontrá la audiencia ideal para esta experiencia.</p></div>
-      <div className="access-mode-picker"><h3 id="event-access-label">¿Quiénes pueden verlo?</h3><p>Define qué acceso descubre este evento en Órbita. El servidor valida el permiso final.</p>
-        <div className="access-mode-options" role="radiogroup" aria-labelledby="event-access-label">
-          {accessModes.map(({ access: value, icon: Icon, title, description }) => <button key={value} type="button" role="radio" aria-checked={access === value} className={`access-mode-option ${access === value ? 'is-selected' : ''}`} onClick={() => changeAccess(value)}><Icon size={18} /><span><strong>{title}</strong><small>{description}</small></span><span className="audience-radio">{access === value && <Check size={12} />}</span></button>)}
-        </div>
-      </div>
+      {onEditAccess ? <AccessSummary access={access} onEdit={onEditAccess} /> : <AccessPicker access={access} onChange={changeAccess} />}
       <div className="audience-options" role="radiogroup" aria-label="Audiencia del evento">
         {audienceModes.filter(({ mode }) => access !== 'external' || mode !== 'payroll').map(({ mode, icon: Icon, title, description, detail }) => (
           <button key={mode} type="button" role="radio" aria-checked={audience.mode === mode} className={`audience-option ${audience.mode === mode ? 'is-selected' : ''}`} onClick={() => changeMode(mode)}>
@@ -137,4 +132,13 @@ export default function AudienceStep({ audience, onChange, access, onAccessChang
       )}
     </div>
   );
+}
+
+function AccessSummary({ access, onEdit }: { access: EventAccess; onEdit: () => void }) {
+  const Icon = accessModes.find(mode => mode.access === access)?.icon ?? Building2;
+  return <div className="access-mode-summary">
+    <span className="access-mode-summary-icon icon-only" aria-hidden="true"><Icon size={18} /></span>
+    <span><small>Visible para</small><strong>{ACCESS_LABELS[access]}</strong></span>
+    <button type="button" className="admin-text-button" aria-label="Cambiar quiénes pueden verlo" onClick={onEdit}>Cambiar</button>
+  </div>;
 }

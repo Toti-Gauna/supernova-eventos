@@ -4,7 +4,7 @@ import { versionHref, type ExperienceVersion } from '../../versions/catalog';
 
 export function currentExperienceVersion(): ExperienceVersion {
   const version = document.documentElement.dataset.experience;
-  return version === 'original' || version === 'hybrid' ? version : '3d';
+  return version === 'original' || version === 'hybrid' || version === 'commercial' ? version : '3d';
 }
 
 /** An event QR opens its event and function in the current local presentation. */

@@ -22,6 +22,7 @@ async function admin(page: Page) {
   const dialog = page.getByRole('dialog', { name: 'Registrar pase', exact: true });
   await dialog.getByRole('combobox', { name: 'Evento', exact: true }).selectOption(event.id);
   await dialog.getByRole('combobox', { name: 'Función', exact: true }).selectOption(pass.sessionId!);
+  await dialog.getByRole('tab', { name: 'Código', exact: true }).click();
   return { dialog, trigger };
 }
 

@@ -1,11 +1,14 @@
-import { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion } from 'motion/react';
-import { ArrowUpRight, Bell, Check, ChevronDown, Heart, LayoutGrid, LogOut, Moon, Settings2, Sun, Ticket, UserRound, X } from 'lucide-react';
-import type { AppView, Registration } from '../../../types';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import { motion } from 'motion/react';
+import { Bell, Compass, Heart, LayoutDashboard, Ticket } from 'lucide-react';
+import type { AppView, EventItem, Registration } from '../../../types';
 import type { Theme } from '../../../hooks/useTheme';
 import { initials, useAccessProfile } from '../../../features/access/access';
 import Brand from '../../../components/Brand';
-import VersionSwitcher from '../../VersionSwitcher';
+import SettingsMenu from '../../../components/ui/SettingsMenu';
+import { NotificationsPopover, ProfilePopover, consumeHeaderFocus, findNextPass, hasHeaderFocusRequest, plural, requestHeaderFocus, type NextPass } from '../../../components/HeaderPopovers';
+import '../../../components/header-shell.css';
+import '../../commercial/commercial-shell.css';
 
 interface Props {
   view: AppView;
@@ -15,67 +18,81 @@ interface Props {
   onLogout: () => void;
   theme: Theme;
   onThemeToggle: () => void;
+  /** Optional: with the events, the notifications show the next pass and open it. */
+  events?: EventItem[];
+  onOpenEvent?: (event: EventItem, sessionId?: string) => void;
 }
 const navigation = [
-  { view: 'explore' as const, label: 'Explorar', Icon: LayoutGrid },
+  { view: 'explore' as const, label: 'Explorar', Icon: Compass },
   { view: 'registrations' as const, label: 'Mis eventos', Icon: Ticket },
   { view: 'favorites' as const, label: 'Favoritos', Icon: Heart },
-  { view: 'admin' as const, label: 'Admin', Icon: Settings2 },
+  { view: 'admin' as const, label: 'Admin', Icon: LayoutDashboard },
 ];
 
-export default function Header({ view, onNavigate, registrations, favoriteCount, onLogout, theme, onThemeToggle }: Props) {
+export default function Header({ view, onNavigate, registrations, favoriteCount, onLogout, theme, onThemeToggle, events, onOpenEvent }: Props) {
   const access = useAccessProfile();
   const internal = access.kind === 'internal';
-  const userInitials = initials(access.name);
-  const [scrolled, setScrolled] = useState(window.scrollY > 45);
+  const [scrolled, setScrolled] = useState(() => window.scrollY > 45);
+  const [open, setOpen] = useState<'notifications' | 'profile' | null>(null);
   const notifications = useRef<HTMLDivElement>(null);
   const profile = useRef<HTMLDivElement>(null);
+  const notificationsTrigger = useRef<HTMLButtonElement>(null);
+  const nextPass = findNextPass(events, registrations, access);
+  const items = navigation.filter(item => internal || item.view !== 'admin');
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 45);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-  function navigate(next: AppView) {
+  useEffect(() => {
+    if (!hasHeaderFocusRequest()) return;
+    const frame = requestAnimationFrame(() => { if (consumeHeaderFocus()) notificationsTrigger.current?.focus({ preventScroll: true }); });
+    return () => cancelAnimationFrame(frame);
+  }, []);
+  function closePopovers() {
     notifications.current?.hidePopover();
     profile.current?.hidePopover();
+  }
+  function navigate(next: AppView) {
+    closePopovers();
     onNavigate(next);
   }
+  function openPass(pass: NextPass) {
+    closePopovers();
+    requestHeaderFocus();
+    onOpenEvent?.(pass.event, pass.sessionId);
+  }
+  const toggled = (name: 'notifications' | 'profile') => (isOpen: boolean) => setOpen(current => isOpen ? name : current === name ? null : current);
 
   return <header className={`site-header ${scrolled ? 'header-floating' : ''}`}>
     <div className="header-inner">
-      <motion.div className="header-surface" aria-hidden="true" initial={false} animate={{ opacity: scrolled ? 1 : 0, scaleX: scrolled ? 1 : .985, y: scrolled ? 0 : -3 }} transition={{ duration: .5, ease: [.22, 1, .36, 1] }} />
-      <button className="brand-button" onClick={() => navigate('explore')} aria-label="Órbita, ir a inicio"><Brand /></button>
-      <nav className="main-nav" aria-label="Navegación principal">
-        {navigation.filter(item => internal || item.view !== 'admin').map(({ view: destination, label, Icon }) => {
+      <motion.div className="header-surface" aria-hidden="true" initial={false} animate={{ opacity: scrolled ? 1 : 0, scaleX: scrolled ? 1 : .985, y: scrolled ? 0 : -3 }} transition={{ duration: .4, ease: [.22, 1, .36, 1] }} />
+      <button type="button" className="brand-button" onClick={() => navigate('explore')} aria-label="Órbita, ir a inicio"><Brand /></button>
+      <nav className="main-nav" aria-label="Navegación principal" style={{ '--nav-tabs': items.length } as CSSProperties}>
+        {items.map(({ view: destination, label, Icon }) => {
           const count = destination === 'registrations' ? registrations.length : destination === 'favorites' ? favoriteCount : 0;
-          return <button key={destination} className={`${view === destination ? 'active' : ''} ${destination === 'admin' ? 'mobile-admin-tab' : ''}`} aria-label={destination === 'admin' ? 'Administrar' : undefined} aria-current={view === destination ? 'page' : undefined} onClick={() => navigate(destination)}>
-            {view === destination && <motion.span className="nav-active-surface" layoutId="header-active-tab" transition={{ type: 'spring', stiffness: 380, damping: 34 }} />}
-            <Icon size={15} /><span>{label}</span>{count > 0 && <span className="nav-count" aria-label={`${count} ${destination === 'registrations' ? 'inscripciones' : 'guardados'}`}>{count}</span>}
+          const active = view === destination;
+          return <button key={destination} type="button" className={`${active ? 'active' : ''} ${destination === 'admin' ? 'mobile-admin-tab' : ''}`} aria-label={destination === 'admin' ? 'Administrar' : undefined} aria-current={active ? 'page' : undefined} onClick={() => navigate(destination)}>
+            {active && <motion.span className="nav-active-surface" layoutId="header-active-tab" transition={{ type: 'spring', stiffness: 420, damping: 36 }} />}
+            <span className="nav-icon" aria-hidden="true"><Icon size={17} />{count > 0 && <span className="nav-count num-pill">{count > 99 ? '99+' : count}</span>}</span>
+            <span className="nav-label">{label}</span>
+            {count > 0 && <span className="sr-only"> ({destination === 'registrations' ? plural(count, 'pase', 'pases') : plural(count, 'guardado', 'guardados')})</span>}
           </button>;
         })}
       </nav>
       <div className="header-actions">
-        {internal && <button className={`admin-link ${view === 'admin' ? 'active' : ''}`} aria-label="Administrar" aria-current={view === 'admin' ? 'page' : undefined} onClick={() => navigate('admin')}><Settings2 size={16} /><span>Administrar</span></button>}
+        {internal && <button type="button" className={`admin-link ${view === 'admin' ? 'active' : ''}`} aria-label="Administrar" aria-current={view === 'admin' ? 'page' : undefined} onClick={() => navigate('admin')}><LayoutDashboard size={17} aria-hidden="true" /><span>Administrar</span></button>}
         {internal && <span className="header-divider" aria-hidden="true" />}
-        <VersionSwitcher />
-        <button className="theme-toggle" type="button" onClick={onThemeToggle} aria-label={theme === 'dark' ? 'Activar modo claro' : 'Activar modo oscuro'} title={theme === 'dark' ? 'Modo claro' : 'Modo oscuro'} aria-pressed={theme === 'light'}>
-          <AnimatePresence mode="wait" initial={false}><motion.span key={theme} initial={{ opacity: 0, rotate: -45, scale: .8 }} animate={{ opacity: 1, rotate: 0, scale: 1 }} exit={{ opacity: 0, rotate: 45, scale: .8 }} transition={{ duration: .14 }}>{theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}</motion.span></AnimatePresence>
+        <SettingsMenu theme={theme} onThemeToggle={onThemeToggle} />
+        <button ref={notificationsTrigger} type="button" className="header-icon-button notification-button icon-only" aria-label="Notificaciones" aria-expanded={open === 'notifications'} aria-controls="header-notifications" popoverTarget="header-notifications">
+          <Bell size={19} aria-hidden="true" />{nextPass && <span className="notification-dot" aria-hidden="true" />}
         </button>
-        <button className="notification-button" aria-label="Notificaciones" popoverTarget="header-notifications"><Bell size={18} />{registrations.length > 0 && <span />}</button>
-        <button className="profile-button" aria-label={`Abrir perfil de ${access.name}`} popoverTarget="header-profile"><span>{userInitials}</span><ChevronDown size={13} /></button>
+        <button type="button" className={`profile-button ${view === 'profile' ? 'is-current' : ''}`} aria-label={`Abrir perfil de ${access.name}`} aria-expanded={open === 'profile'} aria-controls="header-profile" popoverTarget="header-profile">
+          <span className="account-avatar num-pill" aria-hidden="true">{initials(access.name)}</span>
+        </button>
       </div>
     </div>
-    <div ref={notifications} id="header-notifications" className="header-popover notifications-popover" popover="auto">
-      <div className="popover-heading"><h3>Notificaciones</h3><button className="popover-close" popoverTarget="header-notifications" popoverTargetAction="hide" aria-label="Cerrar panel"><X size={16} /></button></div>
-      <div className="notification-item"><span>{registrations.length ? <Check size={16} /> : <Bell size={16} />}</span><div><strong>{registrations.length ? `${registrations.length} experiencia${registrations.length > 1 ? 's' : ''} confirmada${registrations.length > 1 ? 's' : ''}` : 'Todo al día'}</strong><p>{registrations.length ? 'Tus pases ya están en tu agenda.' : 'Tus próximas conexiones empiezan en Explorar.'}</p></div></div>
-      <button className="popover-action" onClick={() => navigate(registrations.length ? 'registrations' : 'explore')}>{registrations.length ? 'Ver mis eventos' : 'Explorar experiencias'}<ArrowUpRight size={15} /></button>
-    </div>
-    <div ref={profile} id="header-profile" className="header-popover profile-popover" popover="auto">
-      <div className="profile-identity"><span className="profile-large">{userInitials}</span><div><strong>{access.name}</strong><small>{internal ? 'Personal interno' : 'Personal externo'} · {access.organization}</small></div><button className="popover-close" popoverTarget="header-profile" popoverTargetAction="hide" aria-label="Cerrar panel"><X size={16} /></button></div>
-      <div className="profile-menu">
-        <button className="popover-action" onClick={() => navigate('profile')}><UserRound size={16} /><span>Ver mi perfil</span><ArrowUpRight size={14} /></button>
-        <button className="popover-action logout-action" onClick={() => { profile.current?.hidePopover(); onLogout(); }}><LogOut size={16} /><span>Cerrar sesión</span></button>
-      </div>
-    </div>
+    <NotificationsPopover popover={notifications} registrations={registrations} nextPass={nextPass} onNavigate={navigate} onOpenPass={onOpenEvent ? openPass : undefined} onToggle={toggled('notifications')} />
+    <ProfilePopover popover={profile} access={access} onNavigate={navigate} onLogout={() => { profile.current?.hidePopover(); onLogout(); }} onToggle={toggled('profile')} />
   </header>;
 }

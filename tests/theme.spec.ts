@@ -64,26 +64,28 @@ test('oscuro inicial ignora el tema del sistema y el usuario conserva su elecci�
   await page.emulateMedia({ colorScheme: 'light' });
   await openDemo(page);
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
-  const toggle = page.getByRole('button', { name: 'Activar modo claro' });
+  const toggle = await openThemeSwitch(page);
+  await expect(toggle).toBeChecked();
   await toggle.focus();
   await page.keyboard.press('Enter');
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
-  await expect(page.getByRole('button', { name: 'Activar modo oscuro' })).toBeFocused();
+  await expect(toggle).not.toBeChecked();
+  await expect(toggle).toBeFocused();
   await expectLightSurface(page.locator('.event-card').first());
   await page.reload();
   await expect(page.getByRole('heading', { name: /Salí de la rutina/ })).toBeVisible();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
   expect(await page.locator('html').evaluate(element => getComputedStyle(element).colorScheme)).toBe('light');
   await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute('content', '#030B1C');
-  await page.getByRole('button', { name: 'Activar modo oscuro' }).click();
+  await (await openThemeSwitch(page)).click();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   await page.reload();
-  await expect(page.getByRole('button', { name: 'Activar modo claro' })).toBeVisible();
+  await expect(await openThemeSwitch(page)).toBeChecked();
 });
 
 test('tema claro cubre popovers, perfil, favoritos, admin y los controles del estudio', async ({ page }) => {
   await openDemo(page);
-  await page.getByRole('button', { name: 'Activar modo claro' }).click();
+  await themeClick(page);
   await page.getByRole('button', { name: 'Notificaciones', exact: true }).click();
   await expectLightSurface(page.locator('#header-notifications'));
   await page.keyboard.press('Escape');
@@ -119,7 +121,7 @@ test('tema claro cubre popovers, perfil, favoritos, admin y los controles del es
 
 test('inscripción y pase conservan contraste, acciones y calendario completos en modo claro', async ({ page }) => {
   await openDemo(page);
-  await page.getByRole('button', { name: 'Activar modo claro' }).click();
+  await themeClick(page);
   await page.getByRole('button', { name: 'Ver Órbita Fest', exact: true }).click();
   await expectLightSurface(page.locator('.registration-form-panel'));
   await page.getByRole('button', { name: 'Confirmar mi lugar', exact: true }).click();
@@ -138,7 +140,7 @@ test('inscripción y pase conservan contraste, acciones y calendario completos e
   }
   await page.keyboard.press('Escape');
   await page.getByRole('button', { name: /Mis eventos/ }).click();
-  await expectLightSurface(page.locator('.my-event').first());
+  await expectLightSurface(page.locator('.agenda-ticket').first());
 });
 
 test('selector y scrollbars custom mantienen la geometría del header en todas las anchuras', async ({ page }) => {
@@ -148,7 +150,7 @@ test('selector y scrollbars custom mantienen la geometría del header en todas l
     await page.evaluate(() => scrollTo(0, 0));
     const header = page.locator('.header-inner');
     const logo = page.getByRole('button', { name: 'Órbita, ir a inicio' });
-    const theme = page.getByRole('button', { name: /Activar modo/ });
+    const theme = page.getByRole('button', { name: 'Ajustes', exact: true });
     const first = await logo.boundingBox();
     const action = await theme.boundingBox();
     expect(first!.x + first!.width, `logo sin solapamiento en ${width}`).toBeLessThan(action!.x);
@@ -171,4 +173,9 @@ test('selector y scrollbars custom mantienen la geometría del header en todas l
   expect(scrollbar).toEqual({ width: '10px', button: 'none', thumb: '20px' });
 });
 
-async function themeClick(page: Page) { await page.getByRole('button', { name: 'Activar modo claro' }).click(); }
+// Theme and version live in the header settings menu ("Ajustes").
+async function openThemeSwitch(page: Page) {
+  await page.getByRole('button', { name: 'Ajustes', exact: true }).click();
+  return page.getByRole('switch', { name: 'Modo oscuro' });
+}
+async function themeClick(page: Page) { await (await openThemeSwitch(page)).click(); await page.keyboard.press('Escape'); }

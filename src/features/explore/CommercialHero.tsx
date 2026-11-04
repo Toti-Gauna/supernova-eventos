@@ -33,7 +33,7 @@ export default function CommercialHero({ slides, nextPass, onOpen, onExplore }: 
       <div className="commercial-hero-slide" aria-live={paused || slides.length < 2 ? 'polite' : 'off'}>
         <AnimatePresence mode="wait" initial={false}>
           <motion.div key={slide.event.id} role="group" aria-roledescription="diapositiva" aria-label={`${current + 1} de ${slides.length}`} initial={{ opacity: 0, x: 28 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -28 }} transition={{ duration: .32, ease: [.22, 1, .36, 1] }}>
-            <FeaturedBanner event={slide.event} session={slide.session} joined={slide.joined} onOpen={() => onOpen(slide.event, slide.session?.id)} label={slide.event.featured ? 'DESTACADO' : 'PRÓXIMAMENTE'} className="commercial-slide" headingId="commercial-hero-title" />
+            <FeaturedBanner event={slide.event} session={slide.session} joined={slide.joined} onOpen={() => onOpen(slide.event, slide.session?.id)} label={slide.event.featured ? 'DESTACADO' : 'PRÓXIMAMENTE'} className="commercial-slide" headingId="commercial-hero-title" priority />
           </motion.div>
         </AnimatePresence>
       </div>

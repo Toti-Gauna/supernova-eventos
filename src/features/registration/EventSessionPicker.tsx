@@ -4,17 +4,23 @@ import { formatEventDate } from '../../lib/calendar';
 import { getEventSessions, sameRegistrationSession } from '../../lib/eventSessions';
 import './session-picker.css';
 
-interface Props { event: EventItem; selectedId: string; registrations: Registration[]; onChange: (id: string) => void }
+interface Props {
+  event: EventItem; selectedId: string; registrations: Registration[]; onChange: (id: string) => void;
+  /** Visible group name; the default asks to choose. */
+  legend?: string;
+  /** Short helper under the legend. `null` hides it. */
+  hint?: string | null;
+}
 
-export default function EventSessionPicker({ event, selectedId, registrations, onChange }: Props) {
+export default function EventSessionPicker({ event, selectedId, registrations, onChange, legend = 'Elegí una función', hint = 'Una fecha, un horario y tu lugar.' }: Props) {
   return <fieldset className="event-session-selector">
-    <legend>Elegí una función</legend>
-    <p>Una fecha, un horario y tu lugar.</p>
+    <legend>{legend}</legend>
+    {hint && <p>{hint}</p>}
     <div className="event-session-options">{getEventSessions(event).map(session => {
       const reserved = registrations.some(pass => sameRegistrationSession(event, pass, session.id));
       const remaining = Math.max(0, session.capacity - session.registered);
       const ended = new Date(session.endDate).getTime() <= Date.now() || event.status === 'ended';
-      return <label key={session.id} className={`event-session-option ${selectedId === session.id ? 'is-selected' : ''}`}>
+      return <label key={session.id} className={`event-session-option ${selectedId === session.id ? 'is-selected' : ''} ${reserved ? 'is-reserved' : ''} ${ended || !remaining ? 'is-unavailable' : ''}`.replace(/\s+/g, ' ').trim()}>
         <input type="radio" name={`function-${event.id}`} value={session.id} checked={selectedId === session.id} onChange={() => onChange(session.id)}
           aria-label={`${session.name ? `${session.name} · ` : ''}${formatEventDate(session.date)} · ${formatEventDate(session.date, { hour: '2-digit', minute: '2-digit', hour12: false })} h`} />
         <span className="session-date"><strong>{formatEventDate(session.date, { day: '2-digit' })}</strong><span>{formatEventDate(session.date, { month: 'short' }).replace('.', '')}</span></span>

@@ -11,6 +11,7 @@ import '@fontsource/manrope/latin-700.css';
 import '@fontsource/manrope/latin-800.css';
 import VersionRouter from './versions/VersionRouter';
 import TourNebulaBackdrop from './features/background/TourNebulaBackdrop';
+import './tokens.css';
 import './styles.css';
 import './layout.css';
 import './interface.css';

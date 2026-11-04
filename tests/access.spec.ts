@@ -11,6 +11,7 @@ async function openGate(page: Page, path = '/') {
 }
 
 async function enterAsGuest(page: Page) {
+  await page.getByRole('button', { name: 'Personal externo', exact: true }).click();
   await page.getByLabel('Nombre y apellido').fill('Dana Prueba');
   await page.getByLabel('Email', { exact: true }).fill('dana@proveedor.test');
   await page.getByLabel('Organización').fill('Proveedor QA');
@@ -28,9 +29,13 @@ test.describe('sin sesión', () => {
 
   test('la primera visita ofrece acceso interno y externo, y valida la invitación', async ({ page }) => {
     await openGate(page);
+    await expect(page.getByRole('button', { name: 'Personal interno', exact: true })).toHaveAttribute('aria-pressed', 'true');
     await expect(page.getByRole('heading', { name: 'Soy parte del equipo' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Vengo con una invitación' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Vengo con una invitación' })).toBeHidden();
     await expect(page.locator('.site-header')).toHaveCount(0);
+    await page.getByRole('button', { name: 'Personal externo', exact: true }).click();
+    await expect(page.getByRole('heading', { name: 'Vengo con una invitación' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Soy parte del equipo' })).toBeHidden();
 
     await page.getByRole('button', { name: 'Ingresar como invitado' }).click();
     await expect(page.getByText('Completá tu nombre y apellido.', { exact: true })).toBeVisible();
@@ -87,12 +92,17 @@ test.describe('acceso en una sola pantalla', () => {
   test.use({ storageState: { cookies: [], origins: [] } });
   const fitsViewport = (page: Page) => page.evaluate(() => document.documentElement.scrollHeight <= window.innerHeight);
 
-  test('en laptop entra completo, con las dos tarjetas a la vista', async ({ page }) => {
+  test('en laptop entra completo y alterna las dos puertas sin mover la pantalla', async ({ page }) => {
     await page.setViewportSize({ width: 1366, height: 660 });
     await openGate(page, '/comercial/');
     await expect(page.getByRole('heading', { name: 'Soy parte del equipo' })).toBeInViewport();
+    await expect(page.getByRole('button', { name: 'Ingresar con cuenta corporativa' })).toBeInViewport();
+    expect(await fitsViewport(page)).toBe(true);
+    const heading = await gateHeading(page).boundingBox();
+    await page.getByRole('button', { name: 'Personal externo', exact: true }).click();
     await expect(page.getByRole('button', { name: 'Ingresar como invitado' })).toBeInViewport();
     expect(await fitsViewport(page)).toBe(true);
+    expect((await gateHeading(page).boundingBox())?.y).toBe(heading?.y);
   });
 
   test('en teléfono un selector alterna las tarjetas sin scroll', async ({ page }) => {

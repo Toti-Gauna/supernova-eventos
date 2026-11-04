@@ -1,5 +1,4 @@
 /* Comercial hero: a Personal-style promo carousel built from festival banners. */
-.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 .commercial-hero { position:relative; padding-top:clamp(14px,2.4vh,24px); }
 .commercial-hero-stage { position:relative; }
 .commercial-hero .featured-banner { margin-top:0; }

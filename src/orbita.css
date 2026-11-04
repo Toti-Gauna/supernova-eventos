@@ -28,8 +28,10 @@ html[data-theme] :is(.event-card,.orbit-event-preview).category-tecnologia { --c
 html[data-theme] :is(.event-card,.orbit-event-preview).category-comunidad { --cat:var(--cat-comunidad); }
 html[data-theme] :is(.event-card,.orbit-event-preview).category-aprendizaje { --cat:var(--cat-aprendizaje); }
 html[data-theme] .event-card .category-badge { background:var(--cat); border-color:transparent; color:#fff; font-weight:700; backdrop-filter:none; box-shadow:0 6px 18px #00071a40; }
+/* Badge text stays above 4.5:1: navy on the bright dark-theme colors, a deeper tint in light. */
+html[data-theme='dark'] .event-card .category-badge { color:#04122b; }
+html[data-theme='light'] .event-card .category-badge { background:color-mix(in srgb,var(--cat) 80%,#04122b); }
 html[data-theme] .event-card { border-radius:22px; }
-html[data-theme] .event-card::after { content:''; position:absolute; inset:0 0 auto; height:4px; background:var(--cat); z-index:2; pointer-events:none; }
 html[data-theme] .event-card:hover { border-color:color-mix(in srgb,var(--cat) 55%,transparent); }
 html[data-theme] .card-cta { padding:10px 16px; border-radius:999px; background:color-mix(in srgb,var(--accent) 14%,transparent); color:var(--accent); font-weight:700; }
 html[data-theme] .card-cta:hover { background:var(--accent); color:var(--on-accent); }

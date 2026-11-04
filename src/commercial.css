@@ -1,13 +1,14 @@
 /* Comercial: the Personal-style site. No space, no planets; bright banners on a
    clean page. Everything is scoped to html[data-experience='commercial']. */
-html[data-experience='commercial'] { --page-bg:var(--bg); --cta-bg:#04122b; --cta-text:#fff; --card-shadow:0 10px 34px #052c5012; }
-html[data-experience='commercial'][data-theme='dark'] { --cta-bg:var(--accent); --cta-text:#03122b; --card-shadow:0 18px 50px #00071a59; }
+html[data-experience='commercial'] { --page-bg:var(--bg); --cta-bg:#04122b; --cta-text:#fff; --card-shadow:var(--shadow-2); }
+html[data-experience='commercial'][data-theme='dark'] { --cta-bg:var(--accent); --cta-text:#03122b; }
 html[data-experience='commercial'] body,
 html[data-experience='commercial'] .app-shell { background:var(--page-bg); }
 
 /* Header: a solid bar at the top, the floating capsule on scroll stays as is */
 html[data-experience='commercial'] .site-header:not(.header-floating) { background:var(--panel); border-bottom-color:var(--line); box-shadow:0 1px 0 var(--line); }
-html[data-experience='commercial'] .wordmark { color:#1eb2f5; }
+/* Darker cyan on light surfaces keeps the wordmark above 3:1 (large text). */
+html[data-experience='commercial'] .wordmark { color:#0a8fd0; }
 html[data-experience='commercial'][data-theme='dark'] .wordmark { color:#4ec5ff; }
 html[data-experience='commercial'] .brand>svg { color:#1eb2f5; }
 
@@ -30,15 +31,15 @@ html[data-experience='commercial'] .category-row>button[data-category='comunidad
 html[data-experience='commercial'] .category-row>button[data-category='aprendizaje'] { --chip:var(--cat-aprendizaje); }
 html[data-experience='commercial'] .category-row>button>svg { color:var(--chip); }
 html[data-experience='commercial'] .category-row>button:hover { border-color:var(--chip); }
-html[data-experience='commercial'] .category-row>button.active { color:#fff; }
+html[data-experience='commercial'] .category-row>button.active { background:var(--chip); color:#fff; }
 html[data-experience='commercial'] .category-row>button.active>svg { color:#fff; }
 html[data-experience='commercial'] .category-row>button .category-active-surface { background:var(--chip); border-color:var(--chip); }
 html[data-experience='commercial'] .commercial-catalog .event-phase-heading { margin:20px 0 14px; }
 html[data-experience='commercial'] .commercial-catalog .event-phase-heading h3 { font-size:13px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
 
 /* Cards: white, soft shadow, solid pill CTA */
-html[data-experience='commercial'] .event-card { border:0; background:var(--panel); box-shadow:var(--card-shadow); border-radius:24px; }
-html[data-experience='commercial'] .event-card:hover { box-shadow:0 18px 44px #052c501f; }
+html[data-experience='commercial'] .event-card { border:0; background:var(--panel); box-shadow:var(--card-shadow); border-radius:var(--r-lg); }
+html[data-experience='commercial'] .event-card:hover { box-shadow:var(--shadow-3); }
 html[data-experience='commercial'] .event-card .card-cta { background:var(--cta-bg); color:var(--cta-text); padding:11px 18px; }
 html[data-experience='commercial'] .event-card .card-cta:hover { background:var(--accent-strong); color:#fff; }
 html[data-experience='commercial'] .event-card .card-cta.joined { background:color-mix(in srgb,var(--green) 16%,transparent); color:var(--green); }
@@ -54,7 +55,7 @@ html[data-experience='commercial'] .event-card-body>:is(.event-access-chip,.scar
 
 /* Newsletter: a slim strip right under the hero, one line and one button */
 html[data-experience='commercial'] .newsletter { margin-top:48px; padding:24px 30px; gap:20px; }
-html[data-experience='commercial'] .newsletter.newsletter-strip { margin-top:18px; padding:16px 22px; border-radius:22px; }
+html[data-experience='commercial'] .newsletter.newsletter-strip { margin-top:18px; padding:16px 22px; border-radius:var(--r-lg); }
 html[data-experience='commercial'] .newsletter-strip .newsletter-orbit { width:44px; height:44px; font-size:18px; }
 html[data-experience='commercial'] .newsletter-strip h2 { font-size:clamp(19px,1.8vw,24px); }
 html[data-experience='commercial'] .newsletter-strip .button { min-height:44px; }
@@ -75,3 +76,64 @@ html[data-experience='commercial'] .footer-main>span:not(.brand) { display:none;
   html[data-experience='commercial'] .commercial-catalog .sort-field { min-width:0; }
   html[data-experience='commercial'] .newsletter { padding:22px; }
 }
+
+/* ── Visual system (lote 6): tokens from src/tokens.css, three button sizes, press
+   feedback, one focus ring, unified toasts, pagination and image skeletons. ── */
+html[data-experience='commercial'] { --type-h1:clamp(28px,2.6vw,36px); --type-h2:clamp(24px,2.1vw,30px); --type-h3:20px; --type-body:15px; --type-small:13px; --type-caption:11px; }
+html[data-experience='commercial'] .button { min-height:var(--control-md); border-radius:var(--r-pill); font-weight:700; }
+html[data-experience='commercial'] .button.small { min-height:var(--control-sm); padding-inline:14px; font-size:var(--type-small); }
+html[data-experience='commercial'] .button.large { min-height:var(--control-lg); padding-inline:24px; font-size:var(--type-body); }
+html[data-experience='commercial'] :is(.button,.card-cta,.commercial-hero-pass,.commercial-hero-all,.category-row>button,.catalog-pagination button,.favorite-button) { transition:transform var(--dur-fast) var(--ease-out),background-color var(--dur-fast),border-color var(--dur-fast),color var(--dur-fast); }
+html[data-experience='commercial'] :is(.button,.card-cta,.commercial-hero-pass,.commercial-hero-all,.category-row>button,.catalog-pagination button):active:not(:disabled) { transform:scale(.97); }
+html[data-experience='commercial'] :where(button,a,input,select,textarea,summary,[tabindex]):focus-visible { outline:3px solid var(--accent-strong); outline-offset:3px; }
+html[data-experience='commercial'][data-theme='dark'] :where(button,a,input,select,textarea,summary,[tabindex]):focus-visible { outline-color:#8fdcff; }
+
+/* Toasts: a navy pill on the light page, a white one on the dark page. */
+html[data-experience='commercial'] .supernova-toast { gap:12px; padding:10px 10px 10px 12px; border:0; border-radius:var(--r-md); background:#04122b; color:#fff; box-shadow:var(--shadow-3); backdrop-filter:none; font-family:inherit; }
+html[data-experience='commercial'] .supernova-toast p { font-size:14px; font-weight:600; line-height:1.45; }
+html[data-experience='commercial'] .supernova-toast .toast-symbol { width:32px; height:32px; border-radius:50%; background:#1eb2f5; color:#04122b; }
+html[data-experience='commercial'] .supernova-toast-success .toast-symbol { background:#18c39a; color:#04122b; }
+html[data-experience='commercial'] .supernova-toast-error .toast-symbol { background:#ff8597; color:#2b0410; }
+html[data-experience='commercial'] .supernova-toast button { width:36px; height:36px; border-radius:50%; color:#c9d6ea; }
+html[data-experience='commercial'] .supernova-toast button:hover { background:#ffffff1a; color:#fff; }
+html[data-experience='commercial'][data-theme='dark'] .supernova-toast { background:#fff; color:#04122b; }
+html[data-experience='commercial'][data-theme='dark'] .supernova-toast button { color:#4a5d78; }
+html[data-experience='commercial'][data-theme='dark'] .supernova-toast button:hover { background:#04122b12; color:#04122b; }
+
+/* Pagination: round page numbers and pill arrows, like the category chips. */
+html[data-experience='commercial'] .catalog-pagination { border-top-color:var(--line); }
+html[data-experience='commercial'] .catalog-pagination button { min-width:44px; min-height:44px; border:0; border-radius:var(--r-pill); background:var(--panel); color:var(--text); font-weight:700; box-shadow:var(--card-shadow); }
+html[data-experience='commercial'] .catalog-pagination button:hover:not(:disabled) { background:var(--panel); color:var(--accent-strong); box-shadow:inset 0 0 0 1.5px var(--accent-strong),var(--card-shadow); }
+html[data-experience='commercial'] .catalog-pagination button[aria-current='page'] { background:var(--cta-bg); color:var(--cta-text); box-shadow:var(--card-shadow); }
+html[data-experience='commercial'] .catalog-pagination .pagination-arrow { padding-inline:16px; }
+html[data-experience='commercial'] .pagination-pages button { display:inline-grid; place-items:center; padding:0; font-variant-numeric:tabular-nums; }
+
+/* Skeleton: a soft sweep behind photos until they load (transform only, off with reduced motion). */
+html[data-experience='commercial'] :is(.event-cover,.featured-banner-art) { --skeleton:color-mix(in srgb,var(--surface-raised) 70%,var(--panel)); }
+html[data-experience='commercial'] .event-cover { background:var(--skeleton); }
+html[data-experience='commercial'] .event-cover::before { content:''; position:absolute; inset:0; background:linear-gradient(100deg,transparent 30%,color-mix(in srgb,#fff 38%,transparent) 50%,transparent 70%); transform:translateX(-100%); animation:orbita-skeleton 1.3s var(--ease-out) infinite; }
+html[data-experience='commercial'][data-theme='dark'] .event-cover::before { background:linear-gradient(100deg,transparent 30%,#ffffff14 50%,transparent 70%); }
+html[data-experience='commercial'] .event-cover:has(>img[data-loaded])::before { content:none; }
+@keyframes orbita-skeleton { to { transform:translateX(100%); } }
+@media (prefers-reduced-motion:reduce) { html[data-experience='commercial'] .event-cover::before { animation:none; transform:none; opacity:.4; } }
+
+/* Footer: one quiet row. */
+html[data-experience='commercial'] .site-footer { margin-top:56px; }
+html[data-experience='commercial'] .footer-main { padding:22px 0; border-bottom:0; }
+html[data-experience='commercial'] .footer-main>.brand { padding-left:0; border-left:0; }
+html[data-experience='commercial'] .footer-bottom { padding:0 0 28px; color:var(--muted); font-size:12px; }
+html[data-experience='commercial'] .footer-bottom>span:last-child { display:none; }
+html[data-experience='commercial'] .footer-bottom a { color:var(--accent-strong); font-weight:700; text-decoration:none; }
+html[data-experience='commercial'] .footer-bottom a:hover { text-decoration:underline; }
+
+/* Dark: the accent turns cyan, so text on accent fills goes navy to keep AA contrast. */
+html[data-experience='commercial'][data-theme='dark'] { --on-accent:#04122b; }
+html[data-experience='commercial'][data-theme='dark'] .commercial-count { color:#04122b; }
+html[data-experience='commercial'][data-theme='dark'] .category-row>button.active,
+html[data-experience='commercial'][data-theme='dark'] .category-row>button.active>svg { color:#04122b; }
+html[data-experience='commercial'][data-theme='dark'] .category-row>button.active .category-count { background:#04122b26; color:#04122b; }
+html[data-experience='commercial'][data-theme='dark'] .event-card .card-cta:hover { color:#04122b; }
+html[data-experience='commercial'][data-theme='dark'] :is(.search-field,.sort-field,.filter-toggle) { border-color:var(--line-strong); }
+html[data-experience='commercial'][data-theme='dark'] .event-card { background:color-mix(in srgb,var(--panel) 92%,#1eb2f5); }
+/* "Mi pase" on light cards: a deeper green keeps the label above 4.5:1 on its tint. */
+html[data-experience='commercial'][data-theme='light'] .event-card .card-cta.joined { color:#07745a; }

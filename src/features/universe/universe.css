@@ -56,8 +56,6 @@ html[data-theme] .app-shell[data-universe-enabled] { position:relative; z-index:
 .app-shell[data-universe-enabled] .compact-section-heading .dashboard-heading-actions { align-self:center; flex-wrap:wrap; }
 .app-shell[data-universe-enabled] .dashboard-heading.compact-section-heading.compact-ship-heading.planet-left { grid-template-columns:150px minmax(0,1fr); min-height:120px; }
 .app-shell[data-universe-enabled] .dashboard-heading.compact-section-heading.compact-ship-heading.planet-left>.universe-section-art { width:150px; height:120px; }
-.app-shell[data-universe-enabled] .my-events-summary { margin-bottom:14px; padding-block:12px; }
-.app-shell[data-universe-enabled] .favorites-toolbar { margin-bottom:16px; padding-block:10px; }
 .app-shell[data-universe-enabled] .profile-page-grid { margin-top:18px; }
 @media(min-width:701px) and (max-width:1100px) {
   .app-shell[data-universe-enabled] :is(.my-events .section-heading,.favorites-heading,.dashboard-heading,.profile-page-heading).compact-section-heading>.compact-heading-content { flex-direction:column; align-items:flex-start; gap:12px; }
@@ -69,7 +67,6 @@ html[data-theme] .app-shell[data-universe-enabled] { position:relative; z-index:
   .app-shell[data-universe-enabled] .dashboard-heading.compact-section-heading.compact-ship-heading.planet-left>.universe-section-art { height:110px; }
   .app-shell[data-universe-enabled] .compact-section-heading h1 { font-size:25px; }
   .app-shell[data-universe-enabled] .compact-section-heading p { display:none; }
-  .app-shell[data-universe-enabled] .my-events-summary { padding-block:10px; }
 }
 @media(max-width:700px) {
   .app-shell[data-universe-enabled] :is(.my-events,.favorites-page,.profile-page,.admin-dashboard.admin-panel) { padding-top:10px; }
@@ -87,7 +84,6 @@ html[data-theme] .app-shell[data-universe-enabled] { position:relative; z-index:
   .app-shell[data-universe-enabled] .compact-ship-heading .dashboard-heading-actions { grid-column:1 / -1; grid-row:2; display:flex; flex-wrap:nowrap; width:100%; gap:6px; }
   .app-shell[data-universe-enabled] .compact-ship-heading .dashboard-heading-actions>button { flex:1; min-width:0; min-height:44px; height:auto; white-space:normal; }
   .app-shell[data-universe-enabled] .profile-page-grid { margin-top:0; }
-  .app-shell[data-universe-enabled] .my-events-summary { font-size:11px; padding-block:10px; }
 }
 .app-shell[data-universe-enabled] :is(.collection-heading,.profile-page-heading,.section-heading,.empty-state) { position:relative; z-index:1; }
 .profile-motion-preference { display:flex; flex-direction:column; gap:16px; padding:20px 0; border-top:1px solid var(--line); }

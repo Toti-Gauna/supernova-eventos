@@ -88,7 +88,7 @@ for (const version of ['original', '3d', 'hibrida']) {
     expect(state.registrations.every(pass => !!pass.sessionSnapshot)).toBe(true);
     await modal.getByRole('button', { name: 'Cerrar inscripción' }).click();
     await page.getByRole('button', { name: /^Mis eventos/ }).click();
-    const cards = page.locator('.my-event');
+    const cards = page.locator('.agenda-ticket');
     await expect(cards).toHaveCount(2);
     await expect(cards.nth(0).locator('time')).toHaveAttribute('datetime', featured.sessions![0].date);
     await expect(cards.nth(1).locator('time')).toHaveAttribute('datetime', featured.sessions![1].date);
@@ -107,8 +107,11 @@ for (const version of ['original', '3d', 'hibrida']) {
     expect(afterCancel.event.registered).toBe(188);
     await page.reload();
     await page.getByRole('button', { name: /^Mis eventos/ }).click();
-    await expect(page.locator('.my-event')).toHaveCount(1);
-    await expect(page.locator('.my-event time')).toContainText('19:00 h');
+    // After a reload, Playwright's fixed clock keeps performance.now() counting from the first
+    // document, so Motion's page exit is delayed by that long.
+    test.setTimeout(120_000);
+    await expect(page.locator('.agenda-ticket')).toHaveCount(1, { timeout: 45_000 });
+    await expect(page.locator('.agenda-ticket time')).toContainText('19:00 h');
   });
 }
 
@@ -222,8 +225,8 @@ test('una inscripción antigua conserva su función al agregar una fecha anterio
   await added.getByLabel(/Cupo/).fill('20');
   await publishWizard(page);
   await page.getByRole('button', { name: /^Mis eventos/ }).click();
-  await expect(page.locator('.my-event')).toHaveCount(1);
-  await expect(page.locator('.my-event time')).toHaveAttribute('datetime', legacyEvent.date);
+  await expect(page.locator('.agenda-ticket')).toHaveCount(1);
+  await expect(page.locator('.agenda-ticket time')).toHaveAttribute('datetime', legacyEvent.date);
   await page.getByRole('button', { name: 'Ver mi pase', exact: true }).click();
   const modal = page.getByRole('dialog');
   await expect(modal.getByRole('heading', { name: 'Ya sos parte.' })).toBeVisible();

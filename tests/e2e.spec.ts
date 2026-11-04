@@ -51,7 +51,7 @@ test('la intro aparece en cada refresh, termina sola y libera navegación y foco
   await page.keyboard.press('Escape');
   await expect(page.getByRole('dialog', { name: 'Te damos la bienvenida a Órbita' })).toHaveCount(0);
   await page.getByRole('button', { name: /Mis eventos/ }).click();
-  await expect(page.getByRole('heading', { name: 'Tu próximo momento está esperando.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Tu agenda está libre.' })).toBeVisible();
   await page.getByRole('button', { name: 'Volver a vivir el inicio' }).click();
   await expect(page.getByRole('dialog', { name: 'Te damos la bienvenida a Órbita' })).toBeVisible();
   await page.keyboard.press('Escape');
@@ -126,12 +126,18 @@ test('inscripción con términos y acompañante persiste, descarga calendario y 
   await expect(page.getByRole('heading', { name: 'Órbita Fest', exact: true })).toBeVisible();
   await page.reload();
   await page.getByRole('button', { name: /Mis eventos/ }).click();
-  await page.getByRole('button', { name: 'Ver mi pase' }).click();
+  // After a reload, Playwright's fixed clock keeps performance.now() counting from the first
+  // document, so Motion's page exit is delayed by that long: wait for the ticket itself (the
+  // Explore banner also offers «Ver mi pase»).
+  test.setTimeout(120_000);
+  const ticket = page.getByRole('article', { name: 'Órbita Fest' });
+  await expect(ticket).toBeVisible({ timeout: 45_000 });
+  await ticket.getByRole('button', { name: 'Ver mi pase' }).click();
   await expect(page.getByRole('heading', { name: 'Ya sos parte.' })).toBeVisible();
   await page.getByRole('button', { name: 'No voy a poder asistir' }).click();
   await page.getByRole('button', { name: 'Sí, cancelar inscripción' }).click();
   await expect(page.getByRole('dialog')).toHaveCount(0);
-  await expect(page.getByRole('heading', { name: 'Tu próximo momento está esperando.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Tu agenda está libre.' })).toBeVisible();
   await page.getByRole('button', { name: 'Explorar experiencias', exact: true }).click();
   await page.getByRole('button', { name: 'Ver Órbita Fest', exact: true }).click();
   await expect(page.getByRole('dialog').getByText('54 lugares disponibles', { exact: true })).toBeVisible();
@@ -230,7 +236,7 @@ test('a 390px la navegación y el modal funcionan sin desbordamiento horizontal'
   expect(await horizontalOverflow()).toBe(false);
   await capture(page, testInfo, 'mobile-home.png', true);
   await page.getByRole('button', { name: /Mis eventos/ }).click();
-  await expect(page.getByRole('heading', { name: 'Tu próximo momento está esperando.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Tu agenda está libre.' })).toBeVisible();
   await page.getByRole('button', { name: 'Explorar', exact: true }).click();
   await page.getByRole('button', { name: 'Ver Órbita Fest', exact: true }).click();
   await expect(page.getByRole('dialog')).toBeVisible();
@@ -305,7 +311,7 @@ test('el diálogo nativo bloquea el fondo y devuelve el foco al cerrar', async (
 test('favoritos tiene vista propia, búsqueda y eliminación persistente', async ({ page }) => {
   await openDemo(page);
   await page.getByRole('button', { name: /^Favoritos/ }).click();
-  await expect(page.getByRole('heading', { name: 'Lo que te gusta, cerca.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Guardá lo que te interesa.' })).toBeVisible();
   await page.getByRole('button', { name: 'Descubrir experiencias' }).click();
   await page.getByRole('button', { name: 'Guardar Órbita Fest', exact: true }).click();
   await page.getByRole('button', { name: 'Guardar Un respiro para vos', exact: true }).click();
@@ -320,9 +326,10 @@ test('favoritos tiene vista propia, búsqueda y eliminación persistente', async
   await expect(page.locator('.favorites-grid article')).toHaveCount(1);
   await page.reload();
   await page.getByRole('button', { name: /^Favoritos/ }).click();
-  await expect(page.locator('.favorites-grid article')).toHaveCount(1);
+  // The fixed clock delays the page exit after a reload (see the registration test).
+  await expect(page.locator('.favorites-grid article')).toHaveCount(1, { timeout: 45_000 });
   await page.getByRole('button', { name: 'Quitar Un respiro para vos de favoritos', exact: true }).click();
-  await expect(page.getByRole('heading', { name: 'Lo que te gusta, cerca.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Guardá lo que te interesa.' })).toBeVisible();
 });
 
 test('header centrado en pantallas grandes y hero compacto en el primer viewport', async ({ page }) => {

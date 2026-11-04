@@ -94,7 +94,8 @@ test('QR usuario y admin en 320 px mantienen acciones y navegación con teclado'
   await expect(page.getByRole('button', { name: 'Ver mi QR', exact: true })).toBeFocused();
   await page.getByRole('button', { name: 'Cerrar inscripción', exact: true }).click();
   await page.getByRole('button', { name: 'Administrar', exact: true }).click();
-  await page.getByRole('button', { name: 'QR de Órbita Fest', exact: true }).click();
+  await page.getByRole('button', { name: 'Más acciones para Órbita Fest', exact: true }).click();
+  await page.getByRole('menuitem', { name: 'Compartir QR', exact: true }).click();
   const admin = page.getByRole('dialog', { name: 'QR de Órbita Fest', exact: true });
   const decoded = new URL(await decode(admin.locator('.qr-image'), true));
   expect(decoded.pathname).toBe('/original/');
@@ -105,7 +106,7 @@ test('QR usuario y admin en 320 px mantienen acciones y navegación con teclado'
   }));
   expect(actions).toEqual([true, true]);
   await page.keyboard.press('Escape');
-  await expect(page.getByRole('button', { name: 'QR de Órbita Fest', exact: true })).toBeFocused();
+  await expect(page.getByRole('button', { name: 'Más acciones para Órbita Fest', exact: true })).toBeFocused();
 });
 
 test('si falla el generador, el pase conserva su código, Escape y foco', async ({ page }) => {

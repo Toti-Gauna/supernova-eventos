@@ -27,7 +27,7 @@ test('el selector del header cambia las tres versiones y conserva pases y favori
   await page.getByRole('button', { name:'Confirmar mi lugar', exact:true }).click();
   await page.getByRole('button', { name:'Volver', exact:true }).click();
   for (const [name, path, experience] of [['2D + 3D','/hibrida/','hybrid'],['Original','/original/','original'],['3D','/3d/','3d']]) {
-    await page.getByRole('button', { name:'Cambiar versión', exact:true }).click();
+    await page.getByRole('button', { name:'Ajustes', exact:true }).click();
     await page.getByRole('navigation', { name:'Versiones de Órbita' }).getByRole('link', { name:new RegExp(`^${name.replace(/[+]/g, '\\+')} `) }).click();
     await expect(page).toHaveURL(new RegExp(`${path}$`));
     await expect(page.getByRole('dialog', { name:'Te damos la bienvenida a Órbita' })).toHaveCount(0);
@@ -67,7 +67,7 @@ test('las tres versiones tienen accesos independientes y la original no carga Th
   await expect(page.locator('.cosmos-art svg')).toBeVisible();
   expect(requests.filter(url => /UniverseExperience|HybridExperience|@react-three|three\.js/.test(url))).toEqual([]);
   await page.getByRole('button', { name:/^Mis eventos/ }).click();
-  await expect(page.getByRole('heading', { name:'Tu próximo momento está esperando.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name:'Tu agenda está libre.' })).toBeVisible();
   await page.getByRole('link', { name:'Ver versiones', exact:true }).click();
   await expect(page.getByRole('heading', { name:'Elegí tu universo.' })).toBeVisible();
   await expect(page.locator('.versions-grid>a')).toHaveCount(4);

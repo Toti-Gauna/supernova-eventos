@@ -1,0 +1,248 @@
+/* Header shell for every version.
+   One geometry for the top and the scrolled states: at the top the header is just its
+   content over the page; on scroll a capsule fades in behind the same layout, so nothing
+   moves. Colors come from variables: dark by default, light below, the spatial versions
+   keep light copy over space at the top, and Comercial sets its own palette in
+   src/versions/commercial/commercial-shell.css. Only transform and opacity animate. */
+
+.site-header {
+  --hdr-text:#eef5ff; --hdr-muted:#a9bdd3; --hdr-hover:#ffffff12; --hdr-divider:#bfe6ff26;
+  --hdr-track:#ffffff08; --hdr-track-line:#bfe6ff14;
+  --hdr-active-bg:#4ec5ff1f; --hdr-active-line:#4ec5ff4d; --hdr-active-text:#ffffff; --hdr-active-icon:#4ec5ff; --hdr-active-shadow:none;
+  --hdr-count-bg:#4ec5ff26; --hdr-count-text:#bfe9ff; --hdr-count-active-bg:#4ec5ff; --hdr-count-active-text:#03122b;
+  --hdr-capsule:#0a1530f0; --hdr-capsule-line:#bfe6ff26; --hdr-capsule-shadow:var(--shadow-2);
+  --hdr-dot:#ff6fae;
+  --nav-bg:#0a1530f5; --nav-solid:#0a1530; --nav-line:#bfe6ff29; --nav-text:#b4c4d9; --nav-active-bg:#4ec5ff29; --nav-active-text:#ffffff; --nav-active-icon:#4ec5ff; --nav-badge-bg:#4ec5ff; --nav-badge-text:#03122b;
+  --pop-bg:#0b1730; --pop-line:#bfe6ff29; --pop-raised:#ffffff0a; --pop-raised-line:#bfe6ff1f; --pop-text:#eef5ff; --pop-muted:#a9bdd3; --pop-hover:#ffffff0f; --pop-accent:#4ec5ff;
+  --pop-cta-bg:#4ec5ff; --pop-cta-text:#03122b; --pop-cta-hover:#8fdcff;
+  --switch-off:#30415f; --switch-on:#4ec5ff; --switch-knob:#ffffff;
+  position:fixed; z-index:40; inset:0 0 auto; width:100%; transform:none; padding:0 var(--page-gutter);
+  border:0; border-radius:0; background:none; box-shadow:none; backdrop-filter:none; transition:none;
+}
+.site-header.header-floating { top:0; width:100%; border:0; border-radius:0; background:none; box-shadow:none; backdrop-filter:none; }
+html[data-theme='light'] .site-header {
+  --hdr-text:#052c50; --hdr-muted:#4a5d78; --hdr-hover:#052c500b; --hdr-divider:#052c501f;
+  --hdr-track:#052c5008; --hdr-track-line:#052c500d;
+  --hdr-active-bg:#ffffff; --hdr-active-line:#2348de1f; --hdr-active-text:#1d35b8; --hdr-active-icon:#2348de; --hdr-active-shadow:var(--shadow-1);
+  --hdr-count-bg:#2348de14; --hdr-count-text:#2348de; --hdr-count-active-bg:#2348de; --hdr-count-active-text:#ffffff;
+  --hdr-capsule:#fffffff7; --hdr-capsule-line:#052c5012;
+  --hdr-dot:#cb437f;
+  --nav-bg:#fffffff5; --nav-solid:#ffffff; --nav-line:#052c5014; --nav-text:#4a5d78; --nav-active-bg:#2348de17; --nav-active-text:#1d35b8; --nav-active-icon:#2348de; --nav-badge-bg:#2348de; --nav-badge-text:#ffffff;
+  --pop-bg:#ffffff; --pop-line:#052c5014; --pop-raised:#f3f6fa; --pop-raised-line:#052c500f; --pop-text:#052c50; --pop-muted:#4a5d78; --pop-hover:#052c500a; --pop-accent:#2348de;
+  --pop-cta-bg:#04122b; --pop-cta-text:#ffffff; --pop-cta-hover:#2348de;
+  --switch-off:#c9d3e3; --switch-on:#2348de;
+}
+/* 3D and 2D + 3D keep black space in both themes: at the top the copy stays luminous. */
+html[data-theme='light'] .app-shell[data-universe-enabled] .site-header:not(.header-floating) {
+  --hdr-text:#eef5ff; --hdr-muted:#b4c4d6; --hdr-hover:#ffffff12; --hdr-divider:#bfe6ff26;
+  --hdr-track:#ffffff08; --hdr-track-line:#bfe6ff14;
+  --hdr-active-bg:#4ec5ff1f; --hdr-active-line:#4ec5ff4d; --hdr-active-text:#ffffff; --hdr-active-icon:#4ec5ff; --hdr-active-shadow:none;
+  --hdr-count-bg:#4ec5ff26; --hdr-count-text:#bfe9ff; --hdr-count-active-bg:#4ec5ff; --hdr-count-active-text:#03122b;
+}
+
+html[data-theme='light'] .app-shell[data-universe-enabled] .site-header:not(.header-floating) .brand>svg { color:#4ec5ff; }
+
+/* Geometry: brand · centred navigation · actions, identical in both states. */
+.site-header .header-inner,
+.site-header.header-floating .header-inner {
+  position:relative; isolation:isolate; width:min(var(--content-width),100%); height:76px; margin-inline:auto; padding:0;
+  display:grid; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); align-items:center; gap:16px;
+}
+.site-header .header-surface {
+  position:absolute; z-index:-1; inset:7px -14px; border:1px solid var(--hdr-capsule-line); border-radius:var(--r-pill);
+  background:var(--hdr-capsule); backdrop-filter:blur(22px) saturate(1.4); -webkit-backdrop-filter:blur(22px) saturate(1.4);
+  box-shadow:var(--hdr-capsule-shadow); pointer-events:none; transform-origin:50% 50%;
+}
+
+/* Brand */
+.site-header .brand-button { justify-self:start; display:flex; align-items:center; gap:0; min-width:0; min-height:44px; padding:0 8px 0 0; border:0; border-radius:var(--r-sm); background:none; overflow:visible; }
+.site-header .brand { gap:9px; }
+html[data-theme] .site-header .brand>svg { width:28px; height:28px; color:var(--accent); }
+html[data-theme] .site-header .wordmark { font:800 25px/1 var(--font-display); letter-spacing:-1.1px; color:var(--hdr-text); }
+html[data-theme] .site-header .brand-section { display:inline-block; margin:0 0 0 3px; padding:5px 0 5px 12px; border-left:1px solid var(--hdr-divider); color:var(--hdr-muted); font-size:9px; font-weight:800; letter-spacing:.18em; }
+
+/* Navigation: a quiet track with one clear active pill. */
+.site-header .main-nav {
+  position:relative; inset:auto; transform:none; display:flex; justify-content:center; gap:2px; width:auto; margin:0; padding:3px;
+  border:1px solid var(--hdr-track-line); border-radius:var(--r-pill); background:var(--hdr-track);
+}
+.site-header .main-nav>button {
+  position:relative; isolation:isolate; display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:44px; margin:0; padding:0 16px 0 14px;
+  border:0; border-radius:var(--r-pill); background:none; color:var(--hdr-muted); font-size:13px; font-weight:600; white-space:nowrap; overflow:visible;
+  transition:color var(--dur-fast) var(--ease-out);
+}
+.site-header .main-nav>button:hover { color:var(--hdr-text); }
+.site-header .main-nav>button.active { color:var(--hdr-active-text); font-weight:700; }
+.site-header .main-nav>button.mobile-admin-tab { display:none; }
+.site-header .nav-active-surface { position:absolute; z-index:-1; inset:0; border:1px solid var(--hdr-active-line); border-radius:var(--r-pill); background:var(--hdr-active-bg); box-shadow:var(--hdr-active-shadow); }
+/* On wide screens the icon wrapper dissolves so the count sits after the label. */
+.site-header .nav-icon { display:contents; }
+.site-header .nav-icon>svg { order:0; display:block; }
+.site-header .main-nav>button.active .nav-icon>svg { color:var(--hdr-active-icon); }
+.site-header .nav-label { order:1; }
+.site-header .nav-count { order:2; position:static; min-width:20px; height:20px; padding:0 6px; border:0; border-radius:var(--r-pill); background:var(--hdr-count-bg); color:var(--hdr-count-text); font-size:11px; font-weight:800; }
+.site-header .main-nav>button.active .nav-count { background:var(--hdr-count-active-bg); color:var(--hdr-count-active-text); }
+
+/* Actions: one pill for admin, then round icon buttons with the icon exactly centred. */
+.site-header .header-actions { justify-self:end; display:flex; align-items:center; gap:4px; min-width:0; }
+.site-header .admin-link {
+  display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:44px; margin:0; padding:0 15px 0 13px;
+  border:0; border-radius:var(--r-pill); background:none; color:var(--hdr-muted); font-size:13px; font-weight:600; white-space:nowrap; overflow:visible;
+}
+.site-header .admin-link:hover { background:var(--hdr-hover); color:var(--hdr-text); }
+.site-header .admin-link.active { background:var(--hdr-active-bg); color:var(--hdr-active-text); box-shadow:inset 0 0 0 1px var(--hdr-active-line),var(--hdr-active-shadow); }
+.site-header .admin-link.active>svg { color:var(--hdr-active-icon); }
+.site-header .header-divider { flex-shrink:0; width:1px; height:22px; margin:0 6px; background:var(--hdr-divider); }
+.site-header :is(.header-icon-button,.profile-button) {
+  position:relative; flex-shrink:0; display:inline-grid; place-items:center; gap:0; width:44px; height:44px; min-height:44px; margin:0; padding:0;
+  border:0; border-radius:50%; background:none; color:var(--hdr-muted); overflow:visible;
+}
+.site-header :is(.header-icon-button,.profile-button)>svg { display:block; }
+.site-header .header-icon-button:is(:hover,[aria-expanded='true']) { background:var(--hdr-hover); color:var(--hdr-text); }
+.site-header .notification-dot { position:absolute; top:10px; right:11px; width:8px; height:8px; border-radius:50%; background:var(--hdr-dot); box-shadow:0 0 0 2px color-mix(in srgb,var(--hdr-dot) 25%,transparent); }
+.site-header .account-avatar { width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg,#5fd0ff,#2348de); color:#ffffff; font:800 12px/1 var(--font-display); letter-spacing:.02em; }
+.site-header .profile-button .account-avatar { box-shadow:0 0 0 0 transparent; transition:box-shadow var(--dur-fast) var(--ease-out); }
+.site-header .profile-button:is(:hover,[aria-expanded='true']) .account-avatar { box-shadow:0 0 0 3px var(--hdr-hover),0 0 0 4px var(--hdr-active-line); }
+/* On Mi perfil the avatar is the active section: a ring in the accent. */
+.site-header .profile-button.is-current .account-avatar { outline:2px solid var(--accent); outline-offset:2px; }
+
+/* Popovers: one card language for notifications, profile and settings. */
+.site-header .header-popover {
+  position:fixed; inset:80px max(var(--page-gutter),calc((100% - var(--content-width))/2)) auto auto; width:344px; max-width:calc(100% - 24px); max-height:calc(100dvh - 96px);
+  margin:0; padding:8px; overflow:auto; overscroll-behavior:contain; border:1px solid var(--pop-line); border-radius:var(--r-lg);
+  background:var(--pop-bg); color:var(--pop-text); box-shadow:var(--shadow-3); scrollbar-width:thin;
+}
+.site-header .header-popover:popover-open { display:flex; flex-direction:column; align-items:stretch; gap:6px; animation:header-popover-in var(--dur-base) var(--ease-out); }
+@keyframes header-popover-in { from { opacity:0; transform:translateY(-6px) scale(.985); } to { opacity:1; transform:none; } }
+.site-header .header-popover :is(button,a):focus-visible { outline:2px solid var(--pop-accent); outline-offset:2px; }
+.site-header .popover-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:0; padding:4px 4px 2px 12px; }
+.site-header .popover-heading h2 { margin:0; color:var(--pop-text); font:800 16px/1.3 var(--font-display); letter-spacing:-.3px; }
+.site-header .popover-close { position:static; flex-shrink:0; width:40px; height:40px; min-height:40px; margin:0; border:0; border-radius:50%; background:none; color:var(--pop-muted); }
+.site-header .popover-close:hover { background:var(--pop-hover); color:var(--pop-text); }
+
+/* Next pass: a mini ticket with the date as a calendar page in the category color. */
+.site-header .popover-pass { --cat:var(--accent); display:grid; grid-template-columns:56px minmax(0,1fr); gap:12px 14px; margin:0; padding:14px; border:1px solid var(--pop-raised-line); border-radius:var(--r-md); background:var(--pop-raised); }
+.site-header .popover-pass.category-musica { --cat:var(--cat-musica); }
+.site-header .popover-pass.category-bienestar { --cat:var(--cat-bienestar); }
+.site-header .popover-pass.category-tecnologia { --cat:var(--cat-tecnologia); }
+.site-header .popover-pass.category-comunidad { --cat:var(--cat-comunidad); }
+.site-header .popover-pass.category-aprendizaje { --cat:var(--cat-aprendizaje); }
+.site-header .popover-pass-date { display:grid; align-content:center; justify-items:center; gap:3px; width:56px; height:62px; border-radius:var(--r-sm); background:#ffffff; color:#04122b; box-shadow:inset 0 4px var(--cat),var(--shadow-1); font-size:10px; font-weight:800; letter-spacing:.1em; }
+.site-header .popover-pass-date strong { padding-top:3px; font:800 23px/1 var(--font-display); letter-spacing:-.5px; }
+.site-header .popover-pass-copy { display:grid; align-content:center; gap:3px; min-width:0; }
+.site-header .popover-pass-copy small { color:var(--pop-accent); font-size:10px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+.site-header .popover-pass-copy strong { overflow:hidden; color:var(--pop-text); font:800 15px/1.3 var(--font-display); letter-spacing:-.2px; text-overflow:ellipsis; white-space:nowrap; }
+.site-header .popover-pass-copy span { display:flex; align-items:center; gap:6px; min-width:0; overflow:hidden; color:var(--pop-muted); font-size:12px; line-height:1.4; text-overflow:ellipsis; white-space:nowrap; }
+.site-header .popover-pass-copy span>svg { flex-shrink:0; color:var(--pop-accent); }
+.site-header .popover-cta {
+  grid-column:1 / -1; display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:44px; margin:0; padding:0 18px;
+  border:0; border-radius:var(--r-pill); background:var(--pop-cta-bg); color:var(--pop-cta-text); font-size:14px; font-weight:800;
+  transition:background-color var(--dur-fast),transform var(--dur-fast) var(--ease-out);
+}
+.site-header .popover-cta:hover { background:var(--pop-cta-hover); }
+.site-header .popover-cta:active { transform:scale(.98); }
+.site-header .popover-note { display:flex; align-items:center; gap:12px; padding:12px; border-radius:var(--r-md); background:var(--pop-raised); }
+.site-header .popover-note-icon { flex-shrink:0; display:grid; place-items:center; width:40px; height:40px; border-radius:50%; background:color-mix(in srgb,var(--pop-accent) 14%,transparent); color:var(--pop-accent); }
+.site-header .popover-note-icon>svg { display:block; }
+.site-header .popover-note strong { display:block; color:var(--pop-text); font-size:14px; font-weight:700; }
+.site-header .popover-note p { margin:3px 0 0; color:var(--pop-muted); font-size:12px; line-height:1.5; }
+
+/* Rows: direct actions, 48px tall. */
+.site-header .popover-links { display:grid; gap:2px; }
+.site-header .popover-links:empty { display:none; }
+.site-header .popover-row {
+  display:flex; align-items:center; justify-content:flex-start; gap:12px; width:100%; min-height:48px; margin:0; padding:0 12px;
+  border:0; border-radius:var(--r-sm); background:none; color:var(--pop-text); font-size:14px; font-weight:600; text-align:left;
+}
+.site-header .popover-row:hover { background:var(--pop-hover); }
+.site-header .popover-row>svg:first-child { color:var(--pop-accent); }
+.site-header .popover-row>svg:last-child:not(:first-child) { margin-left:auto; color:var(--pop-muted); }
+.site-header .popover-row-meta { margin-left:auto; min-width:22px; height:22px; padding:0 7px; border-radius:var(--r-pill); background:color-mix(in srgb,var(--pop-accent) 14%,transparent); color:var(--pop-accent); font-size:11px; font-weight:800; }
+.site-header .popover-row>.popover-row-meta+svg:last-child { margin-left:0; }
+.site-header .logout-action { margin-top:2px; border-top:1px solid var(--pop-line); border-radius:0 0 var(--r-sm) var(--r-sm); }
+
+/* Account chip: identity in a color block, like the banners. */
+.site-header .account-chip {
+  display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:12px; padding:14px 6px 14px 14px; border-radius:var(--r-md);
+  background:linear-gradient(120deg,#7fdcff,#1eb2f5); color:#04122b;
+}
+.site-header .account-chip.is-external { background:linear-gradient(120deg,#ffc2e6,#e98bdc); }
+.site-header .account-chip .account-avatar { width:48px; height:48px; background:#ffffff; color:#04122b; font-size:16px; box-shadow:0 6px 16px #04122b24; }
+.site-header .account-chip-copy { display:grid; gap:2px; min-width:0; }
+.site-header .account-chip-copy strong { overflow:hidden; font:800 16px/1.25 var(--font-display); letter-spacing:-.3px; text-overflow:ellipsis; white-space:nowrap; }
+.site-header .account-chip-copy>span { overflow:hidden; font-size:12px; line-height:1.45; text-overflow:ellipsis; white-space:nowrap; }
+.site-header .account-email { color:#04122bcc; }
+.site-header .account-access { color:#04122b; font-weight:600; }
+.site-header .account-kind { font-weight:800; }
+.site-header .account-chip .popover-close { align-self:start; color:#04122b; }
+.site-header .account-chip .popover-close:hover { background:#04122b14; color:#04122b; }
+.site-header .account-chip .popover-close:focus-visible { outline-color:#04122b; }
+
+@media (prefers-reduced-motion:reduce) {
+  .site-header .header-popover:popover-open { animation:none; }
+  .site-header .main-nav>button,.site-header .popover-cta,.site-header .profile-button .account-avatar { transition:none; }
+}
+
+/* Mid widths: the brand loses its section, admin becomes an icon, then the nav drops its icons
+   and finally its counts, so the three columns never overlap. */
+@media (max-width:1100px) {
+  html[data-theme] .site-header .brand-section { display:none; }
+  .site-header .admin-link { display:inline-grid; place-items:center; gap:0; width:44px; padding:0; }
+  .site-header .admin-link>span,.site-header .header-divider { display:none; }
+}
+@media (max-width:900px) and (min-width:701px) {
+  .site-header .header-inner,.site-header.header-floating .header-inner { gap:8px; }
+  .site-header .main-nav>button { padding-inline:12px; font-size:12px; }
+  .site-header .nav-icon>svg { display:none; }
+  .site-header .header-actions { gap:2px; }
+}
+@media (max-width:860px) and (min-width:701px) {
+  .site-header .nav-count { display:none; }
+}
+
+/* Phones: a light top bar and a floating bottom navigation with an indicator, counts and
+   the iOS safe area. Targets stay at 44px or more and nothing overlaps at 320px. */
+@media (max-width:700px) {
+  .site-header,.site-header.header-floating { padding:0 14px; }
+  .site-header .header-inner,.site-header.header-floating .header-inner { width:100%; height:64px; grid-template-columns:minmax(0,1fr) auto; grid-template-rows:1fr; gap:8px; }
+  .site-header .header-surface { inset:6px -6px; }
+  .site-header .brand-button,.site-header .header-actions { grid-row:1; }
+  html[data-theme] .site-header .wordmark { font-size:23px; }
+  html[data-theme] .site-header .brand>svg { width:26px; height:26px; }
+  .site-header .header-actions { gap:0; }
+  .site-header .header-actions .admin-link,.site-header .header-divider { display:none; }
+
+  .site-header .main-nav {
+    --hdr-text:var(--nav-active-text); --hdr-muted:var(--nav-text);
+    position:fixed; z-index:41; inset:auto 12px calc(8px + env(safe-area-inset-bottom,0px)) 12px; height:66px;
+    display:grid; grid-template-columns:repeat(var(--nav-tabs,4),minmax(0,1fr)); gap:2px; padding:5px;
+    border:1px solid var(--nav-line); border-radius:var(--r-lg); background:var(--nav-bg);
+    backdrop-filter:blur(22px) saturate(1.4); -webkit-backdrop-filter:blur(22px) saturate(1.4); box-shadow:var(--shadow-3);
+  }
+  .site-header .main-nav>button,.site-header.header-floating .main-nav>button {
+    flex-direction:column; justify-content:flex-start; gap:3px; min-width:0; min-height:54px; padding:4px 2px 2px; border-radius:var(--r-md);
+    color:var(--nav-text); font-size:11px; font-weight:600; line-height:1.15;
+  }
+  .site-header .main-nav>button.active { color:var(--nav-active-text); font-weight:800; }
+  .site-header .main-nav>button.mobile-admin-tab { display:flex; }
+  .site-header .nav-label { max-width:100%; overflow:hidden; text-overflow:ellipsis; }
+  .site-header .nav-icon { position:relative; display:grid; place-items:center; width:52px; height:30px; }
+  .site-header .nav-icon>svg,.site-header .main-nav>button.active .nav-icon>svg { width:20px; height:20px; }
+  .site-header .main-nav>button.active .nav-icon>svg { color:var(--nav-active-icon); }
+  /* Indicator: a pill behind the icon, on the same 4px top as the icon box, so the icon is
+     exactly centred in it (moves between tabs with layout animation). */
+  .site-header .nav-active-surface { inset:4px auto auto calc(50% - 26px); width:52px; height:30px; border:0; background:var(--nav-active-bg); box-shadow:none; }
+  .site-header .nav-count,.site-header .main-nav>button.active .nav-count {
+    position:absolute; top:-1px; left:calc(50% + 5px); min-width:19px; height:19px; padding:0 5px;
+    background:var(--nav-badge-bg); color:var(--nav-badge-text); font-size:10px; box-shadow:0 0 0 2px var(--nav-solid);
+  }
+  .site-header .header-popover,.site-header.header-floating .header-popover { inset:68px 10px auto auto; width:min(380px,calc(100% - 20px)); max-height:calc(100dvh - 160px - env(safe-area-inset-bottom,0px)); }
+}
+@media (max-width:360px) {
+  .site-header,.site-header.header-floating { padding:0 10px; }
+  html[data-theme] .site-header .wordmark { font-size:21px; }
+  html[data-theme] .site-header .brand>svg { width:24px; height:24px; }
+  .site-header .brand { gap:7px; }
+  .site-header .main-nav { inset:auto 8px calc(8px + env(safe-area-inset-bottom,0px)) 8px; }
+  .site-header .main-nav>button,.site-header.header-floating .main-nav>button { font-size:10.5px; }
+}

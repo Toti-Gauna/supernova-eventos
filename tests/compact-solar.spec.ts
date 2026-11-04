@@ -28,7 +28,7 @@ async function expectSettled(host: Locator, destination: string) {
   await expect(host).toHaveAttribute('data-universe-travelling', 'false');
   const viewSelectors: Record<string, string> = {
     'section:explore': '.hero-orbital', 'section:registrations': '.my-events',
-    'section:favorites': '.favorites-heading', 'section:profile': '.profile-page-heading',
+    'section:favorites': '.favorites-page .agenda-head', 'section:profile': '.profile-page-heading',
     'section:admin': '.dashboard-heading',
   };
   const selector = viewSelectors[destination];
@@ -60,13 +60,13 @@ async function openProfile(page: Page, host: Locator) {
   await expectSettled(host, 'section:profile');
 }
 
-async function expectArtSide(page: Page, headingSelector: string, side: 'left' | 'right') {
+async function expectArtSide(page: Page, headingSelector: string, side: 'left' | 'right', contentSelector: string) {
   const heading = page.locator(headingSelector);
   const surface = heading.locator('[data-universe-surface]');
   await expect(surface).toHaveAttribute('data-universe-side', side);
   await expect(surface).toHaveAttribute('data-universe-composition', 'section-compact');
   const art = await surface.boundingBox();
-  const content = await heading.locator('.compact-heading-content').boundingBox();
+  const content = await heading.locator(contentSelector).boundingBox();
   const header = await heading.boundingBox();
   expect(art).not.toBeNull();
   expect(content).not.toBeNull();
@@ -155,14 +155,14 @@ for (const version of ['hibrida', '3d'] as const) {
     await expect(canvas).toHaveAttribute('data-solar-body', 'jupiter');
     await expect(canvas).toHaveAttribute('data-solar-label', 'Júpiter');
     await expect(canvas).toHaveAttribute('data-solar-moon-count', '4');
-    await expectArtSide(page, '.my-events .compact-section-heading', 'left');
+    await expectArtSide(page, '.my-events .agenda-head', 'left', '.agenda-title');
     await expect(page.getByRole('button', { name: 'Ver mi pase', exact: true })).toBeInViewport();
     await page.getByRole('button', { name: /^Favoritos/ }).click();
     await expect(page.getByRole('heading', { name: 'Favoritos', exact: true })).toBeVisible();
     await expectSettled(host, 'section:favorites');
     await expect(canvas).toHaveAttribute('data-solar-body', 'saturn');
     await expect(canvas).toHaveAttribute('data-solar-label', 'Saturno');
-    await expectArtSide(page, '.favorites-heading', 'right');
+    await expectArtSide(page, '.favorites-page .agenda-head', 'right', '.agenda-tools');
     await expect(page.locator('.favorites-grid .event-card').first()).toBeInViewport();
     await expect(page.locator('canvas')).toHaveCount(1);
     expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);

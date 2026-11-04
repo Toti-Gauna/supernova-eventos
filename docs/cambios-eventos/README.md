@@ -1,6 +1,6 @@
 # Funciones, navegación y QR
 
-Las tres versiones conservan sus rutas independientes: `/original/`, `/3d/` y `/hibrida/`. El botón **Cambiar versión** del header permite elegir otra presentación. Los eventos, pases, favoritos y borradores se comparten en el navegador. No se publicó ni desplegó este cambio.
+Las tres versiones conservan sus rutas independientes: `/original/`, `/3d/` y `/hibrida/`. El menú **Ajustes** del header (antes, el botón **Cambiar versión**) permite elegir otra presentación. Los eventos, pases, favoritos y borradores se comparten en el navegador. No se publicó ni desplegó este cambio.
 
 ## Recorrido del usuario
 

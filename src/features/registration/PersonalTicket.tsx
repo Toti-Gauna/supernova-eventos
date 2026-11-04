@@ -1,11 +1,16 @@
 import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from 'motion/react';
 import { Check, MapPin, Ticket } from 'lucide-react';
 import type { PointerEvent } from 'react';
-import type { EventItem, Registration } from '../../types';
+import type { EventItem, EventSession, Registration } from '../../types';
 import Brand from '../../components/Brand';
 import { formatEventDate } from '../../lib/calendar';
+import { eventImageProps } from '../../lib/assets';
 import InlinePassQR from '../qr/InlinePassQR';
 import './ticket-qr.css';
+
+const companionsLabel = (pass: Registration) => pass.companions ? `Vos + ${pass.companions} acompañante${pass.companions > 1 ? 's' : ''}` : 'Pase individual';
+const hour = (date: string) => formatEventDate(date, { hour: '2-digit', minute: '2-digit', hour12: false });
+const capitalize = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
 
 export default function PersonalTicket({ event, pass }: { event: EventItem; pass: Registration }) {
   const reduced = useReducedMotion();
@@ -34,13 +39,46 @@ export default function PersonalTicket({ event, pass }: { event: EventItem; pass
       <div className="ticket-top"><Brand compact /><span className="ticket-confirmed"><Check size={12} /> CONFIRMADO</span></div>
       <div className="ticket-main"><span className="ticket-category">{event.category} <i /> {event.mode}</span><h3>{event.title}</h3>
         <div className="ticket-details-row"><div>
-          <div className="ticket-datetime"><span><small>FECHA</small><strong>{formatEventDate(event.date)}</strong></span><span><small>HORA</small><strong>{formatEventDate(event.date, { hour: '2-digit', minute: '2-digit', hour12: false })} h</strong></span></div>
+          <div className="ticket-datetime"><span><small>FECHA</small><strong>{formatEventDate(event.date)}</strong></span><span><small>HORA</small><strong>{hour(event.date)} h</strong></span></div>
           <span className="ticket-location"><MapPin size={14} />{event.location}</span>
         </div><InlinePassQR event={event} pass={pass} /></div>
       </div>
       <div className="ticket-tear" aria-hidden="true"><i /><span /><i /></div>
-      <div className="ticket-bottom"><div><span>ESTE MOMENTO ES PARA</span><strong>{pass.name}</strong><small>{pass.companions ? `Vos + ${pass.companions} acompañante${pass.companions > 1 ? 's' : ''}` : 'Pase individual'}</small></div><div className="ticket-code"><Ticket size={26} /><span>{pass.id}</span></div></div>
+      <div className="ticket-bottom"><div><span>ESTE MOMENTO ES PARA</span><strong>{pass.name}</strong><small>{companionsLabel(pass)}</small></div><div className="ticket-code"><Ticket size={26} /><span>{pass.id}</span></div></div>
       </motion.div>
     </motion.div>
   </div>;
+}
+
+/**
+ * Comercial pass: a real-looking entry ticket. Photo with the category block on one side,
+ * the facts in the middle and a perforated stub where the QR is the protagonist.
+ * `event` is already resolved to the pass's function.
+ */
+export function CommercialPassTicket({ event, pass, session }: { event: EventItem; pass: Registration; session?: EventSession }) {
+  const reduced = useReducedMotion();
+  const slug = event.category.toLowerCase().normalize('NFD').replace(/\p{M}/gu, '');
+  const day = capitalize(formatEventDate(event.date, { weekday: 'long', day: 'numeric', month: 'long' }));
+  return <motion.article className={`cx-ticket category-${slug}`} aria-label="Tu pase"
+    initial={reduced ? false : { opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reduced ? 0 : .5, delay: reduced ? 0 : .08, ease: [.22, 1, .36, 1] }}>
+    <div className="cx-ticket-media" aria-hidden="true">
+      <img {...eventImageProps(event.image, '(max-width: 760px) 100vw, 300px')} alt="" onError={image => { image.currentTarget.style.opacity = '0'; }} />
+      <span className="cx-ticket-block" />
+      <span className="cx-ticket-date"><strong>{formatEventDate(event.date, { day: '2-digit' })}</strong>{formatEventDate(event.date, { month: 'short' }).replace('.', '').toUpperCase()}</span>
+    </div>
+    <div className="cx-ticket-main">
+      <div className="cx-ticket-top"><span className="cx-ticket-status"><Check size={13} aria-hidden="true" />Confirmado</span><span className="cx-ticket-category">{event.category} · {event.mode}</span></div>
+      <h3>{event.title}</h3>
+      <dl className="cx-ticket-facts">
+        <div><dt>Fecha</dt><dd>{day}</dd></div>
+        <div><dt>Hora</dt><dd>{hour(event.date)} – {hour(event.endDate)} h{session?.doorsDate && <small>Puertas {hour(session.doorsDate)} h</small>}</dd></div>
+        <div className="cx-ticket-place"><dt>Lugar</dt><dd>{event.location}</dd></div>
+        <div className="cx-ticket-holder"><dt>Pase de</dt><dd>{pass.name}<small>{companionsLabel(pass)}</small></dd></div>
+      </dl>
+    </div>
+    <div className="cx-ticket-stub">
+      <InlinePassQR event={event} pass={pass} size={264} className="cx-ticket-qr" />
+      <span className="cx-ticket-code"><small>Código</small><code>{pass.id}</code></span>
+    </div>
+  </motion.article>;
 }

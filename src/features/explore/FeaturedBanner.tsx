@@ -1,15 +1,15 @@
 import { ArrowUpRight, CalendarDays, MapPin, Ticket, UsersRound } from 'lucide-react';
 import type { EventItem, EventSession } from '../../types';
 import { formatEventDate } from '../../lib/calendar';
-import { publicAssetUrl } from '../../lib/assets';
+import { eventImageProps } from '../../lib/assets';
 import { eventAccess } from '../../lib/events';
 import { eventForSession, getEventSessions } from '../../lib/eventSessions';
 import './featured-banner.css';
 
-interface Props { event: EventItem; session?: EventSession; joined: boolean; onOpen: () => void; label?: string; className?: string; headingId?: string }
+interface Props { event: EventItem; session?: EventSession; joined: boolean; onOpen: () => void; label?: string; className?: string; headingId?: string; priority?: boolean }
 
 /** Festival-style promo for the featured event, inspired by Personal's event banners. */
-export default function FeaturedBanner({ event, session, joined, onOpen, label = 'NO TE LO PIERDAS', className = 'section-container', headingId = 'featured-banner-title' }: Props) {
+export default function FeaturedBanner({ event, session, joined, onOpen, label = 'NO TE LO PIERDAS', className = 'section-container', headingId = 'featured-banner-title', priority = false }: Props) {
   const shown = eventForSession(event, session);
   const sessions = getEventSessions(event);
   const categoryClass = event.category.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -29,7 +29,7 @@ export default function FeaturedBanner({ event, session, joined, onOpen, label =
     </div>
     <div className="featured-banner-art" aria-hidden="true">
       <span className="featured-banner-block" />
-      <img src={publicAssetUrl(event.image)} alt="" loading="lazy" onError={image => { image.currentTarget.style.opacity = '0'; }} />
+      <img {...eventImageProps(event.image, '(max-width: 600px) 100vw, 45vw')} alt="" loading={priority ? 'eager' : 'lazy'} fetchPriority={priority ? 'high' : undefined} onError={image => { image.currentTarget.style.opacity = '0'; }} />
       <span className="featured-banner-date"><strong>{formatEventDate(shown.date, { day: '2-digit' })}</strong>{formatEventDate(shown.date, { month: 'short' }).replace('.', '').toUpperCase()}</span>
     </div>
   </section>;

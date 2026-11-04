@@ -1,5 +1,26 @@
 # Validación del frontend
 
+## Lotes premium 2 a 8, acceso dividido y modo oscuro · 4 de noviembre de 2026
+
+Detalle de cada lote en [orbita/plan-premium.md](orbita/plan-premium.md).
+
+- `npx tsc -b` y `npm run build` aprobados. El build genera las copias por versión; las de Original, Comercial y versiones dejan diferida la foto del fondo espacial.
+- **Suite E2E completa.** Primera corrida integrada: 173 de 176 en 21,7 minutos. Fallaron:
+  - dos casos de `a11y.spec.ts`: el contraste real de «SSO demo» (4,44:1, corregido) y una medición tomada mientras una vista se desvanecía (la prueba ahora espera que terminen los fundidos);
+  - la pausa con recarga de `universe.spec.ts`: con el reloj fijo de Playwright, después de `reload()` las transiciones arrancan tarde. Sola aprobó en 25 s; ahora espera hasta 45 s, igual que `e2e.spec.ts`.
+- **Segunda corrida completa, con todas las correcciones: 176 de 176 en 21,5 minutos.**
+- **Accesibilidad.** `tests/a11y.spec.ts` (axe, WCAG 2.1 A/AA, claro y oscuro) recorre home, inscripción, pase, Mis eventos, Favoritos, perfil, administración y acceso: sin violaciones graves ni críticas, 12 de 12 repitiéndolo tres veces.
+- **Centrado de íconos.** Auditoría automática (centro del ícono contra el centro del control) en Comercial y Original, 1440 × 900 y 390 × 844, claro y oscuro. El botón «volver» estaba 4 px corrido; quedó centrado.
+- **Una pantalla, medido con Chrome headless:**
+  - acceso: 1920 × 840, 1440 × 900, 1366 × 660, 390 × 844 y 360 × 740, en ambos temas y en Comercial, Original y 3D;
+  - inscripción y pase: 1440 × 900 y 1920 × 840;
+  - Registrar pase: ocupa exactamente 360 × 740 y 390 × 844.
+- **Lighthouse móvil** (mediana de tres corridas, build local con `vite preview`):
+  - home Comercial: 87 → 90 de rendimiento, 96 → 100 de accesibilidad, LCP 3,6 → 3,4 s, 359 → 318 KB;
+  - acceso: 90 → 94, LCP 3,3 → 2,8 s, 358 → 209 KB;
+  - el LCP sigue por encima de 2,5 s; queda como pendiente en el plan.
+- **Capturas revisadas** en claro y oscuro: Comercial en 1440 × 900 y 390 × 844 (home, Mis eventos con pases, Favoritos, menú de perfil, perfil, Ajustes y administración), 3D en 1440 × 900 y el acceso en todas las versiones.
+
 ## Lote 1 premium: Mis eventos, Favoritos y banda bajo el carrusel · 3 de noviembre de 2026
 
 - Corrida E2E integrada: **134 de 135 en 17,7 minutos**.

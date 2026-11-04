@@ -19,14 +19,19 @@ Cuarta versión de Órbita, en [`/comercial/`](http://127.0.0.1:5173/comercial/)
 
   La banda de novedades queda en título y botón, y el footer sin texto de relleno.
 - **Tu próximo pase.** Si la persona tiene una inscripción vigente, el carrusel muestra un atajo con el evento y la fecha que abre el pase en un toque. Sin pase, ese lugar es «Ver todas las experiencias».
-- **Estilo.** Header blanco con el wordmark en cian, cards blancas con sombra suave, CTA navy alineados al pie de cada card. Las reglas están en `src/commercial.css`, todas bajo `html[data-experience='commercial']`.
-- **Mis eventos y Favoritos.** Vistas propias (`src/versions/commercial/`):
+- **Estilo.** Wordmark en cian, cards blancas con sombra suave y CTA navy alineados al pie de cada card. Las reglas están en `src/commercial.css`, todas bajo `html[data-experience='commercial']`, y usan los tokens de `src/tokens.css`. Las etiquetas de categoría ya no llevan franja de color arriba.
+- **Header.** Sin barra arriba; al hacer scroll aparece la cápsula sin mover nada. El menú «Ajustes» junta modo oscuro y versiones. Notificaciones muestra el próximo pase con «Ver mi pase». En teléfono, navegación inferior con contadores.
+- **Mis eventos y Favoritos.** Vistas compartidas con las otras versiones (`src/features/agenda/`):
   - encabezado de una línea con título, contador y acción;
-  - los pases como tickets con estado, chips, línea troquelada, «Ver mi pase» y calendario;
+  - los pases como tickets con estado, chips, muescas recortadas, «Ver mi pase» y calendario;
   - los favoritos con búsqueda en el encabezado y, si están vacíos, tres planes para guardar con un toque.
+- **Inscripción y pase.** Inscripción en una pantalla con la tarjeta fija «Tu entrada». El pase es un ticket con el QR en un talón troquelado, más calendario, descarga, compartir y QR (estilos en `src/versions/commercial/commercial-registration.css`).
+- **Perfil.** Tarjeta de cuenta con atajos a pases y favoritos, y preferencias con switches grandes.
+- **Administración.** KPIs en tarjetas, tabla con menú de acciones por fila (cards en teléfono), creador con el acceso en el paso 1 y la vista previa del banner real. «Registrar pase» ocupa toda la pantalla en teléfono (`src/versions/commercial/commercial-admin.css` y `src/features/qr/pass-check-in.css`).
 - **Novedades.** La banda «Que nada te pase de largo» va como franja debajo del carrusel.
+- **Rendimiento.** Fotos WebP con `srcset`, banner con prioridad alta, inscripción cargada al primer uso y sin la descarga del fondo espacial.
 
-Próximos pasos: [plan por lotes](plan-premium.md).
+Estado de cada lote: [plan por lotes](plan-premium.md).
 
 ## Lo que comparte
 
@@ -43,4 +48,12 @@ Usa la app de la versión Original con `variant="commercial"`: mismos eventos, p
 - atajo «Tu próximo pase» que abre el pase y devuelve el foco;
 - cambio de versión conservando la sesión y los favoritos.
 
-`tests/access.spec.ts` verifica la pantalla de acceso también en `/comercial/`, y que entre sin scroll en 1366 × 660 y en 390 × 844 (con el selector de tarjetas).
+`tests/access.spec.ts` verifica la pantalla de acceso también en `/comercial/`: entra sin scroll en 1366 × 660 y en 390 × 844, y cambiar de puerta no mueve el título.
+
+Además:
+
+- `tests/commercial-registration.spec.ts`: inscripción y pase en una pantalla, funciones, términos, foco y Escape, lectura del QR, descargas, compartir y barra fija en teléfono.
+- `tests/commercial-admin.spec.ts`: dashboard, menú por fila, acceso en el paso 1 y vista previa del banner.
+- `tests/header-profile.spec.ts`: header sin saltos, menú Ajustes, popovers con teclado y perfil.
+- `tests/agenda-views.spec.ts`: Mis eventos y Favoritos compartidos en las cuatro versiones.
+- `tests/a11y.spec.ts`: axe en claro y oscuro sobre todas las vistas de Comercial.

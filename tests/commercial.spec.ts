@@ -28,7 +28,8 @@ test('Comercial no carga espacio, planetas ni intro y arranca en tema claro', as
   expect(errors).toEqual([]);
 
   // Its theme is its own: switching it does not change the shared preference of the other versions.
-  await page.getByRole('button', { name: 'Activar modo oscuro' }).click();
+  await page.getByRole('button', { name: 'Ajustes', exact: true }).click();
+  await page.getByRole('switch', { name: 'Modo oscuro' }).click();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   expect(await page.evaluate(() => localStorage.getItem('supernova-theme-v1'))).toBeNull();
   await page.reload();
@@ -141,10 +142,12 @@ test('el selector de versiones lleva a Comercial y conserva la sesión y los fav
   await page.goto('/original/');
   await expect(page.getByRole('heading', { name: /Salí de la rutina/ })).toBeVisible();
   await page.getByRole('button', { name: 'Guardar Órbita Fest', exact: true }).click();
-  await page.getByRole('button', { name: 'Cambiar versión', exact: true }).click();
+  await page.getByRole('button', { name: 'Ajustes', exact: true }).click();
   await page.getByRole('navigation', { name: 'Versiones de Órbita' }).getByRole('link', { name: /^Comercial / }).click();
   await expect(page).toHaveURL(/\/comercial\/$/);
-  await expect(page.getByRole('button', { name: 'Cambiar versión', exact: true })).toContainText('Comercial');
+  await page.getByRole('button', { name: 'Ajustes', exact: true }).click();
+  await expect(page.getByRole('navigation', { name: 'Versiones de Órbita' }).getByRole('link', { name: /^Comercial / })).toHaveAttribute('aria-current', 'page');
+  await page.keyboard.press('Escape');
   await expect(page.getByRole('button', { name: 'Abrir perfil de Alex García' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Quitar Órbita Fest de favoritos', exact: true })).toBeVisible();
 });

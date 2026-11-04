@@ -234,7 +234,7 @@ for (const theme of ['dark', 'light'] as const) {
   test(`el paginado móvil funciona con teclado, conserva foco y evita desbordamiento en modo ${theme}`, async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await openCatalog(page, false);
-    if (theme === 'light') await page.getByRole('button', { name: 'Activar modo claro', exact: true }).click();
+    if (theme === 'light') { await page.getByRole('button', { name: 'Ajustes', exact: true }).click(); await page.getByRole('switch', { name: 'Modo oscuro' }).click(); await page.keyboard.press('Escape'); }
     await expect(page.locator('html')).toHaveAttribute('data-theme', theme);
     for (const viewport of [{ width: 390, height: 844 }, { width: 320, height: 667 }]) {
       await page.setViewportSize(viewport);

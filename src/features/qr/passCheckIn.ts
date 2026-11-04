@@ -6,7 +6,7 @@ export const CHECK_IN_KEY = 'supernova-pass-check-ins-v1';
 export interface PassCheckIn { passId: string; eventId: string; sessionId: string; admittedAt: string; people: number }
 export type PassValidation =
   | { kind: 'invalid'; message: string }
-  | { kind: 'valid' | 'used'; message: string; pass: Registration; event: EventItem; session: EventSession; entry?: PassCheckIn };
+  | { kind: 'valid' | 'used'; message: string; pass: Registration; event: EventItem; session: EventSession; entry?: PassCheckIn; /** True only right after this dialog stored the entry. */ admitted?: boolean };
 
 export function readCheckIns(): PassCheckIn[] {
   const records = readStorage<unknown>(CHECK_IN_KEY, []);
@@ -58,7 +58,7 @@ export async function registerPassEntry(input: string, eventId: string, sessionI
     if (result.kind !== 'valid') return result;
     const entry: PassCheckIn = { passId: result.pass.id, eventId: result.event.id, sessionId: result.session.id, admittedAt: new Date().toISOString(), people: 1 + result.pass.companions };
     if (!writeStorage(CHECK_IN_KEY, [...entries, entry])) return { kind: 'invalid' as const, message: 'No pudimos guardar el ingreso en este navegador. Reintentá.' };
-    return { ...result, kind: 'used' as const, message: 'Ingreso registrado', entry };
+    return { ...result, kind: 'used' as const, message: 'Ingreso registrado', entry, admitted: true };
   };
   return navigator.locks ? navigator.locks.request('supernova-pass-check-in', register) : register();
 }

@@ -1,0 +1,11 @@
+/* Skeleton for lazy views: soft blocks with a sweep (transform only, static with reduced motion). */
+.page-skeleton { display:grid; gap:18px; min-height:60vh; padding-top:clamp(20px,3.4vh,36px); }
+.page-skeleton>span,.page-skeleton-tile { position:relative; overflow:hidden; display:block; border-radius:var(--r-lg); background:color-mix(in srgb,var(--surface-raised) 80%,transparent); }
+.page-skeleton-title { width:min(320px,60%); height:40px; border-radius:var(--r-pill) !important; }
+.page-skeleton-row { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
+.page-skeleton-tile { height:96px; }
+.page-skeleton-block { height:clamp(240px,40vh,420px); }
+.page-skeleton :is(span,.page-skeleton-tile)::after { content:''; position:absolute; inset:0; background:linear-gradient(100deg,transparent 30%,color-mix(in srgb,#fff 22%,transparent) 50%,transparent 70%); transform:translateX(-100%); animation:page-skeleton-sweep 1.3s var(--ease-out) infinite; }
+@keyframes page-skeleton-sweep { to { transform:translateX(100%); } }
+@media (max-width:700px) { .page-skeleton-row { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (prefers-reduced-motion:reduce) { .page-skeleton :is(span,.page-skeleton-tile)::after { animation:none; opacity:0; } }

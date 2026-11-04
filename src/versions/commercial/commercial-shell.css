@@ -1,0 +1,45 @@
+/* Comercial header, navigation and popovers: navy type, a navy active pill, cyan counts
+   and white cards, like the banners. Only palette; the geometry is in
+   src/components/header-shell.css. Everything is scoped to the Comercial version. */
+
+html[data-experience='commercial'] .site-header {
+  --hdr-text:#04122b; --hdr-muted:#3d5170; --hdr-hover:#04122b0b; --hdr-divider:#04122b1a;
+  --hdr-track:transparent; --hdr-track-line:transparent;
+  --hdr-active-bg:#04122b; --hdr-active-line:transparent; --hdr-active-text:#ffffff; --hdr-active-icon:#5fd0ff; --hdr-active-shadow:0 6px 16px #04122b2e;
+  --hdr-count-bg:#1eb2f5; --hdr-count-text:#04122b; --hdr-count-active-bg:#5fd0ff; --hdr-count-active-text:#04122b;
+  --hdr-capsule:#fffffff7; --hdr-capsule-line:#04122b0f; --hdr-capsule-shadow:var(--shadow-2);
+  --hdr-dot:#e0479e;
+  --nav-bg:#fffffff7; --nav-solid:#ffffff; --nav-line:#04122b12; --nav-text:#3d5170; --nav-active-bg:#04122b; --nav-active-text:#04122b; --nav-active-icon:#ffffff; --nav-badge-bg:#1eb2f5; --nav-badge-text:#04122b;
+  --pop-bg:#ffffff; --pop-line:#04122b12; --pop-raised:#f2f6fb; --pop-raised-line:#04122b0d; --pop-text:#04122b; --pop-muted:#3d5170; --pop-hover:#04122b0a; --pop-accent:#0b51df;
+  --pop-cta-bg:#04122b; --pop-cta-text:#ffffff; --pop-cta-hover:#0b51df;
+  --switch-off:#c5d0df; --switch-on:#0b51df;
+}
+html[data-experience='commercial'][data-theme='dark'] .site-header {
+  --hdr-text:#ffffff; --hdr-muted:#b8c7dc; --hdr-hover:#ffffff12; --hdr-divider:#ffffff24;
+  --hdr-active-bg:#4ec5ff; --hdr-active-text:#04122b; --hdr-active-icon:#04122b; --hdr-active-shadow:0 8px 22px #1eb2f540;
+  --hdr-count-bg:#4ec5ff; --hdr-count-text:#04122b; --hdr-count-active-bg:#04122b; --hdr-count-active-text:#ffffff;
+  --hdr-capsule:#0b1730f5; --hdr-capsule-line:#ffffff1a; --hdr-capsule-shadow:var(--shadow-2);
+  --hdr-dot:#ff6fae;
+  --nav-bg:#0b1730f7; --nav-solid:#0b1730; --nav-line:#ffffff1a; --nav-text:#b8c7dc; --nav-active-bg:#4ec5ff; --nav-active-text:#ffffff; --nav-active-icon:#04122b; --nav-badge-bg:#4ec5ff; --nav-badge-text:#04122b;
+  --pop-bg:#0e1b36; --pop-line:#ffffff1a; --pop-raised:#ffffff0a; --pop-raised-line:#ffffff14; --pop-text:#ffffff; --pop-muted:#b8c7dc; --pop-hover:#ffffff0f; --pop-accent:#4ec5ff;
+  --pop-cta-bg:#4ec5ff; --pop-cta-text:#04122b; --pop-cta-hover:#8fdcff;
+  --switch-off:#33486b; --switch-on:#4ec5ff; --switch-knob:#ffffff;
+}
+
+/* Lighter top: no bar, no border; the capsule appears only on scroll. */
+html[data-experience='commercial'] .site-header:not(.header-floating) { background:none; box-shadow:none; border:0; }
+html[data-experience='commercial'] .site-header .wordmark { color:var(--hdr-text); }
+html[data-experience='commercial'] .site-header .brand>svg { color:#1eb2f5; }
+html[data-experience='commercial'][data-theme='dark'] .site-header .brand>svg { color:#4ec5ff; }
+html[data-experience='commercial'] .site-header .main-nav>button:not(.active):hover { background:var(--hdr-hover); }
+html[data-experience='commercial'] .site-header .main-nav>button.active { font-weight:800; }
+html[data-experience='commercial'] .site-header .account-avatar { background:#04122b; color:#ffffff; }
+html[data-experience='commercial'][data-theme='dark'] .site-header .account-avatar { background:#4ec5ff; color:#04122b; }
+html[data-experience='commercial'] .site-header .account-chip .account-avatar { background:#ffffff; color:#04122b; }
+html[data-experience='commercial'] .site-header .header-popover { box-shadow:var(--shadow-3); }
+
+@media (max-width:700px) {
+  html[data-experience='commercial'] .site-header .main-nav>button.active { color:var(--nav-active-text); }
+  html[data-experience='commercial'] .site-header .main-nav>button.active .nav-count { box-shadow:0 0 0 2px var(--nav-solid); }
+  html[data-experience='commercial'] .site-header .nav-active-surface { box-shadow:var(--hdr-active-shadow); }
+}

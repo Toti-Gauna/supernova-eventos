@@ -97,6 +97,7 @@ test('celular: cámara sólo al tocar, QR real muestra datos locales y exige reg
   expect(constraints).toMatchObject({ audio:false, video:{ facingMode:{ ideal:'environment' } } });
   await expect(dialog.getByRole('combobox', { name:'Evento', exact:true })).toHaveValue(event.id);
   await expect(dialog.getByRole('combobox', { name:'Función', exact:true })).toHaveValue(friday.id);
+  await dialog.getByRole('tab', { name:'Código', exact:true }).click();
   await expect(dialog.getByRole('textbox', { name:'QR o código del pase', exact:true })).toHaveValue(payload);
   const details = dialog.locator('.pass-check-details');
   for (const value of [pass.name, pass.email, event.title, 'Viernes', '23 de octubre de 2026', '19:00 — 23:00 h', event.location, '1 acompañante', '2 lugares', pass.id, 'Ingreso pendiente', 'Todavía no registrado']) await expect(details).toContainText(value);
@@ -135,7 +136,9 @@ test('permiso rechazado ofrece reintento e imagen/código y no repite permisos a
   await dialog.getByRole('button', { name:'Abrir cámara', exact:true }).click();
   await expect(dialog.getByRole('alert')).toContainText('No tenemos permiso');
   await expect(dialog.locator('input[type="file"]')).toBeEnabled();
+  await dialog.getByRole('tab', { name:'Código', exact:true }).click();
   await expect(dialog.getByRole('textbox', { name:'QR o código del pase', exact:true })).toBeEnabled();
+  await dialog.getByRole('tab', { name:'Cámara', exact:true }).click();
   expect(await page.evaluate(() => (window as CameraWindow).__passCameraQA.requests.length)).toBe(1);
   await page.evaluate(() => { (window as CameraWindow).__passCameraQA.mode = 'good'; });
   await dialog.getByRole('button', { name:'Reintentar cámara', exact:true }).click();
@@ -159,6 +162,7 @@ test('HTTPS, navegador sin cámara y dispositivo ausente conservan alternativas 
   await dialog.getByRole('button', { name:'Reintentar cámara', exact:true }).click();
   await expect(dialog.getByRole('alert')).toContainText('no ofrece acceso');
   await expect(dialog.locator('input[type="file"]')).toBeEnabled();
+  await dialog.getByRole('button', { name:'Escribir el código', exact:true }).click();
   await dialog.getByRole('textbox', { name:'QR o código del pase', exact:true }).fill(pass.id);
   await dialog.getByRole('button', { name:'Validar pase', exact:true }).click();
   await expect(dialog.getByRole('heading', { name:'Pase válido', exact:true })).toBeVisible();

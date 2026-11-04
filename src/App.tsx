@@ -11,10 +11,12 @@ import Brand from './components/Brand';
 import AccessGate from './features/access/AccessGate';
 import { AccessContext, INTERNAL_DEMO_PROFILE, toViewer, useAccessSession } from './features/access/access';
 import EventExplorer from './features/explore/EventExplorer';
-import MyEvents from './features/registration/MyEvents';
-import Favorites from './features/favorites/Favorites';
+import MyEventsView from './features/agenda/MyEventsView';
+import FavoritesView from './features/agenda/FavoritesView';
+import UniverseSurface from './features/universe/UniverseSurface';
 import RegistrationModal from './features/registration/RegistrationModal';
 import Profile from './features/profile/Profile';
+import PageSkeleton from './components/ui/PageSkeleton';
 import SupernovaToast from './components/ui/SupernovaToast';
 import { useTheme } from './hooks/useTheme';
 import IntroLoading from './features/intro/IntroLoading';
@@ -193,13 +195,13 @@ export default function App({ variant = '3d' }: { variant?: '3d' | 'hybrid' }) {
   return <AccessContext.Provider value={access ?? INTERNAL_DEMO_PROFILE}><MotionConfig reducedMotion="user"><UniversePresentationProvider value={presentation}>
     <ExperienceHost introActive={showIntro} command={universe.command} favoriteSatellites={favoriteSatellites} reducedMotion={universe.reducedMotion} paused={universe.paused} quality="auto" onSettled={universe.onSettled} onStatusChange={universe.onStatusChange} status={universe.status} settled={universe.settled} settlementHistory={universe.settlementHistory} />
     <div data-experience={variant} data-universe-enabled="true" data-universe-status={universe.status} data-universe-event={String(!!selectedLiveEvent)} data-universe-reveal={String(introRevealed)} data-universe-paused={String(universe.paused)} className={`app-shell view-${view} ${showIntro ? 'intro-playing' : ''} ${sessionActive ? '' : 'signed-out'}`}><a className="skip-link" href="#main-content">Ir al contenido</a>
-    {sessionActive && !immersiveStudio && !selectedLiveEvent && <Header view={view} onNavigate={navigate} registrations={registrations} favoriteCount={visibleFavoriteCount} onLogout={logout} theme={theme} onThemeToggle={toggleTheme} />}
+    {sessionActive && !immersiveStudio && !selectedLiveEvent && <Header view={view} onNavigate={navigate} registrations={registrations} favoriteCount={visibleFavoriteCount} onLogout={logout} theme={theme} onThemeToggle={toggleTheme} events={events} onOpenEvent={openEvent} />}
     <main id="main-content" className={immersiveStudio ? 'studio-main' : !sessionActive ? 'session-main' : ''} tabIndex={-1}>{sessionActive ? <AnimatePresence mode="wait"><motion.div key={view} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: .2 }}>
       {view === 'explore' && <EventExplorer events={events} registrations={registrations} favorites={favorites} onFavorite={favorite} onOpen={openEvent} subscribed={subscribed} onSubscribe={subscribe} />}
-      {view === 'registrations' && <MyEvents events={events} registrations={registrations} onOpen={openEvent} onExplore={() => navigate('explore')} />}
-      {view === 'favorites' && <Favorites events={events} favorites={favorites} registrations={registrations} onFavorite={favorite} onOpen={openEvent} onExplore={() => navigate('explore')} />}
-      {view === 'profile' && <Profile subscribed={subscribed} registrations={registrations.length} favorites={visibleFavoriteCount} onSubscribe={subscribe} onLogout={logout} onBack={() => navigate('explore')} motionPaused={universe.userPaused} onMotionToggle={universe.toggleMotion} universeStatus={universe.status} onUniverseRetry={universe.retry} />}
-      {view === 'admin' && <div className={immersiveStudio ? 'studio-container' : 'section-container'}><Suspense fallback={<div className="page-loading"><span className="loading-star">✦</span><p>Preparando tu espacio de creación...</p></div>}><AdminPanel events={events} registrations={registrations} onCreate={create} onUpdate={update} onPreview={event => openEvent({ ...event, status: 'draft' })} notify={setToast} onWizardChange={wizardChanged} onBack={() => navigate('explore')} /></Suspense></div>}
+      {view === 'registrations' && <MyEventsView events={events} registrations={registrations} onOpen={openEvent} onExplore={() => navigate('explore')} art={<UniverseSurface side="left" compact />} />}
+      {view === 'favorites' && <FavoritesView events={events} favorites={favorites} registrations={registrations} onFavorite={favorite} onOpen={openEvent} onExplore={() => navigate('explore')} art={<UniverseSurface side="right" compact />} />}
+      {view === 'profile' && <Profile subscribed={subscribed} registrations={registrations.length} favorites={visibleFavoriteCount} onSubscribe={subscribe} onLogout={logout} onBack={() => navigate('explore')} onNavigate={navigate} motionPaused={universe.userPaused} onMotionToggle={universe.toggleMotion} universeStatus={universe.status} onUniverseRetry={universe.retry} />}
+      {view === 'admin' && <div className={immersiveStudio ? 'studio-container' : 'section-container'}><Suspense fallback={<PageSkeleton label="Preparando tu espacio de creación" />}><AdminPanel events={events} registrations={registrations} onCreate={create} onUpdate={update} onPreview={event => openEvent({ ...event, status: 'draft' })} notify={setToast} onWizardChange={wizardChanged} onBack={() => navigate('explore')} /></Suspense></div>}
     </motion.div></AnimatePresence> : <AccessGate onEnter={enter} signedOut={signedOut} />}</main>
     {sessionActive && !immersiveStudio && !selectedLiveEvent && <footer className={`site-footer section-container ${view === 'admin' ? 'compact-footer' : ''}`}><div className="footer-main"><Brand compact />{view !== 'admin' && <span>Un universo de experiencias.<br />Una nueva forma de conectar.</span>}<button onClick={replayIntro}><Play size={11} fill="currentColor" /> Volver a vivir el inicio <ArrowUpRight size={12} /></button></div><div className="footer-bottom"><span>© 2026 Órbita · Personal · <a className="version-access" href={versionHref('versions')}>Ver versiones</a></span><span>Experiencia de demostración · Datos guardados en este navegador</span><span>HECHO PARA CONECTAR <span>✦</span></span></div></footer>}
     <AnimatePresence>{selectedLiveEvent && <RegistrationModal key={selectedLiveEvent.id} event={selectedLiveEvent} initialSessionId={selectedSessionId} registrations={selectedLiveEvent.status === 'draft' ? [] : registrations} registration={selectedLiveEvent.status === 'draft' ? undefined : registrations.find(r => sameRegistrationSession(selectedLiveEvent, r, selectedSessionId))} onClose={closeModal} onRegister={register} onCancel={cancel} />}</AnimatePresence>

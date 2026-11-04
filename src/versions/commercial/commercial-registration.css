@@ -1,0 +1,330 @@
+/* Comercial · inscripción y pase. Buying an entry on one screen: the event banner with its
+   category block, functions as cards and a fixed summary with the CTA. The confirmed pass is
+   a real ticket with the QR as protagonist. Everything is scoped to the Comercial version. */
+
+html[data-experience='commercial'] .cx-modal {
+  --select:var(--accent-strong); --on-select:#fff; --on-danger:#fff;
+  --cx-cyan:linear-gradient(120deg,#5fcbff 0%,#1eb2f5 50%,#1d8fe8 100%);
+  background:var(--bg); color:var(--text); scrollbar-color:var(--line-strong) transparent;
+}
+html[data-experience='commercial'][data-theme='dark'] .cx-modal { --select:var(--accent); --on-select:#03122b; --on-danger:#03122b; }
+html[data-experience='commercial'] .native-dialog:has(>.cx-modal),
+html[data-experience='commercial'] .native-dialog:has(>.cx-modal)::backdrop { background:var(--bg); color:var(--text); }
+
+/* One color per category: the banner block (same as the home banner) and the ink. */
+html[data-experience='commercial'] :is(.cx-checkout,.cx-pass,.cx-ticket) { --block:#d94fd0; --cat:var(--cat-musica); }
+html[data-experience='commercial'] :is(.cx-checkout,.cx-pass,.cx-ticket).category-bienestar { --block:#18c39a; --cat:var(--cat-bienestar); }
+html[data-experience='commercial'] :is(.cx-checkout,.cx-pass,.cx-ticket).category-tecnologia { --block:#2348de; --cat:var(--cat-tecnologia); }
+html[data-experience='commercial'] :is(.cx-checkout,.cx-pass,.cx-ticket).category-comunidad { --block:#5a50f9; --cat:var(--cat-comunidad); }
+html[data-experience='commercial'] :is(.cx-checkout,.cx-pass,.cx-ticket).category-aprendizaje { --block:#4e26b1; --cat:var(--cat-aprendizaje); }
+html[data-experience='commercial'] :is(.cx-checkout,.cx-pass,.cx-ticket) { --cat-ink:color-mix(in srgb,var(--cat) 70%,var(--text)); --ok-ink:color-mix(in srgb,var(--green) 62%,var(--text)); }
+
+/* Top controls: back pill on the left, close on the right, both always in reach. */
+html[data-experience='commercial'] .cx-modal>.registration-back { position:fixed; z-index:21; top:20px; right:auto; bottom:auto; left:24px; width:auto; height:auto; min-height:44px; margin:0; padding:0 18px 0 14px; gap:8px; border:1px solid var(--line); border-radius:var(--r-pill); background:var(--panel); color:var(--text); font-size:13px; font-weight:700; box-shadow:var(--shadow-1); }
+html[data-experience='commercial'] .cx-modal>.registration-back>svg { width:16px; height:16px; }
+html[data-experience='commercial'] .cx-modal>.registration-back:hover { color:var(--accent-strong); border-color:var(--accent-strong); }
+html[data-experience='commercial'] .cx-modal>.modal-close { top:20px; right:24px; width:44px; height:44px; padding:0; border:1px solid var(--line); background:var(--panel); color:var(--text); box-shadow:var(--shadow-1); backdrop-filter:none; }
+html[data-experience='commercial'] .cx-modal>.modal-close:hover { color:var(--accent-strong); border-color:var(--accent-strong); background:var(--panel); }
+
+/* ---------- Inscripción ---------- */
+html[data-experience='commercial'] .cx-checkout { width:min(1240px,calc(100% - 96px)); min-height:100%; margin:0 auto; padding:84px 0 32px; display:grid; grid-template-columns:minmax(0,1fr) minmax(360px,404px); gap:24px; align-content:center; align-items:start; }
+html[data-experience='commercial'] .cx-checkout-main { min-width:0; display:grid; gap:20px; }
+
+/* Event banner: the home's cyan field with the category block cut diagonally. */
+html[data-experience='commercial'] .cx-event-banner { position:relative; isolation:isolate; overflow:hidden; display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); align-items:center; gap:18px; padding:28px 0 28px 32px; border-radius:var(--r-xl); color:#04122b; background:var(--cx-cyan); box-shadow:var(--shadow-2),inset 0 1px #ffffff59; }
+html[data-experience='commercial'] .cx-event-banner::before { content:''; position:absolute; inset:0; z-index:-1; background:linear-gradient(115deg,transparent 0 57%,var(--block) 57% 100%); opacity:.94; }
+html[data-experience='commercial'] .cx-event-banner::after { content:''; position:absolute; z-index:-1; width:300px; height:300px; right:-70px; bottom:-175px; border:34px solid #ffffff24; border-radius:50%; }
+html[data-experience='commercial'] .cx-event-copy { display:grid; justify-items:start; gap:10px; min-width:0; }
+html[data-experience='commercial'] .cx-event-eyebrow { display:inline-flex; align-items:center; gap:8px; padding:7px 12px; border-radius:var(--r-pill); background:#04122b; color:#fff; font-size:10px; font-weight:800; letter-spacing:.13em; }
+html[data-experience='commercial'] .cx-event-eyebrow>span { color:#4ec5ff; }
+html[data-experience='commercial'] .cx-event-banner h2 { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; margin:2px 0 0; padding-bottom:.06em; font:800 clamp(32px,3vw,48px)/1.02 var(--font-display); letter-spacing:-.045em; color:#04122b; text-wrap:balance; }
+html[data-experience='commercial'] .cx-event-copy>p { margin:0; font-size:15px; font-weight:600; color:#062a52; }
+html[data-experience='commercial'] .cx-event-facts { display:flex; flex-wrap:wrap; gap:6px; margin:4px 0 0; padding:0; list-style:none; }
+html[data-experience='commercial'] .cx-event-facts>li { display:inline-flex; align-items:center; gap:6px; min-height:32px; padding:6px 12px; border-radius:var(--r-pill); background:#ffffffe6; color:#04122b; font-size:12.5px; font-weight:700; box-shadow:0 2px 8px #04122b14; }
+html[data-experience='commercial'] .cx-event-facts svg { color:#0b51df; }
+html[data-experience='commercial'] .cx-event-art { position:relative; height:clamp(210px,30vh,280px); }
+html[data-experience='commercial'] .cx-event-block { position:absolute; inset:12px 28px 12px 22px; border-radius:var(--r-lg); background:#ffffff2e; transform:rotate(-4deg); }
+html[data-experience='commercial'] .cx-event-art>img { position:absolute; inset:0 30px 0 34px; width:calc(100% - 64px); height:100%; object-fit:cover; border-radius:var(--r-lg); border:4px solid #fff; box-shadow:0 22px 50px #04122b55; background:#0b51df; }
+html[data-experience='commercial'] .cx-event-date { position:absolute; left:10px; bottom:14px; display:grid; justify-items:center; min-width:62px; padding:8px 10px; border-radius:var(--r-md); background:#fff; color:#04122b; font-size:10px; font-weight:800; letter-spacing:.14em; box-shadow:0 12px 30px #04122b40; }
+html[data-experience='commercial'] .cx-event-date strong { font:800 26px/1 var(--font-display); letter-spacing:-.04em; }
+
+/* Functions as selectable cards: the chosen one gets the category date block and a check. */
+html[data-experience='commercial'] .cx-checkout .event-session-selector { margin:0; }
+html[data-experience='commercial'] .cx-checkout .event-session-selector legend { margin:0 0 12px; padding:0; font:800 19px/1.2 var(--font-display); letter-spacing:-.025em; color:var(--text); }
+html[data-experience='commercial'] .cx-checkout .event-session-options { grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:12px; }
+html[data-experience='commercial'] .cx-checkout .event-session-option { gap:14px; min-height:84px; padding:12px 14px 12px 12px; border:2px solid transparent; border-radius:var(--r-lg); background:var(--panel); color:var(--text); box-shadow:var(--shadow-1); transition:border-color var(--dur-fast) var(--ease-out),box-shadow var(--dur-fast) var(--ease-out); }
+html[data-experience='commercial'] .cx-checkout .event-session-option:hover { border-color:color-mix(in srgb,var(--select) 45%,transparent); background:var(--panel); }
+html[data-experience='commercial'] .cx-checkout .event-session-option.is-selected { border-color:var(--select); background:var(--panel); box-shadow:var(--shadow-2); }
+html[data-experience='commercial'] .cx-checkout .event-session-option:focus-within { outline:0; }
+html[data-experience='commercial'] .cx-checkout .event-session-option:has(input:focus-visible) { outline:3px solid var(--select); outline-offset:3px; }
+html[data-experience='commercial'] .cx-checkout .session-date { width:56px; min-height:58px; border:0; border-radius:var(--r-sm); background:var(--surface-raised); color:var(--text); transition:background var(--dur-fast),color var(--dur-fast); }
+html[data-experience='commercial'] .cx-checkout .is-selected .session-date { background:color-mix(in srgb,var(--block) 62%,#04122b); color:#fff; }
+html[data-experience='commercial'] .cx-checkout .session-date>strong { font:800 24px/1 var(--font-display); letter-spacing:-.03em; }
+html[data-experience='commercial'] .cx-checkout .session-date>span { margin-top:3px; font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+html[data-experience='commercial'] .cx-checkout .session-details { gap:5px; }
+html[data-experience='commercial'] .cx-checkout .session-name { font:800 15px/1.2 var(--font-display); }
+html[data-experience='commercial'] .cx-checkout .session-hours { flex-wrap:wrap; gap:2px 16px; }
+html[data-experience='commercial'] .cx-checkout .session-hours>span { flex-direction:row; align-items:baseline; gap:5px; }
+html[data-experience='commercial'] .cx-checkout .session-hours small { font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:none; color:var(--muted); }
+html[data-experience='commercial'] .cx-checkout .session-hours strong { font-size:14px; font-weight:800; }
+html[data-experience='commercial'] .cx-checkout .session-availability { font-size:12px; font-weight:700; color:var(--muted); }
+html[data-experience='commercial'] .cx-checkout .is-reserved .session-availability { color:var(--ok-ink); }
+html[data-experience='commercial'] .cx-checkout .is-unavailable { box-shadow:none; }
+html[data-experience='commercial'] .cx-checkout .is-unavailable:not(.is-selected) { background:transparent; border-color:var(--line); }
+html[data-experience='commercial'] .cx-checkout .session-check { width:26px; height:26px; border:2px solid var(--line-strong); color:var(--on-select); background:transparent; }
+html[data-experience='commercial'] .cx-checkout .session-check>svg { opacity:0; }
+html[data-experience='commercial'] .cx-checkout .is-selected .session-check { border-color:var(--select); background:var(--select); color:var(--on-select); }
+html[data-experience='commercial'] .cx-checkout .is-selected .session-check>svg { opacity:1; }
+
+html[data-experience='commercial'] .cx-event-about { border-radius:var(--r-lg); background:var(--panel); box-shadow:var(--shadow-1); }
+html[data-experience='commercial'] .cx-event-about>summary { display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:50px; padding:0 18px; border-radius:inherit; font-size:14px; font-weight:800; cursor:pointer; list-style:none; }
+html[data-experience='commercial'] .cx-event-about>summary::-webkit-details-marker { display:none; }
+html[data-experience='commercial'] .cx-event-about>summary>svg { color:var(--muted); transition:transform var(--dur-base) var(--ease-out); }
+html[data-experience='commercial'] .cx-event-about[open]>summary>svg { transform:rotate(180deg); }
+html[data-experience='commercial'] .cx-event-about>div { padding:0 18px 16px; }
+html[data-experience='commercial'] .cx-event-about p { margin:0 0 10px; color:var(--muted); font-size:14px; line-height:1.6; }
+html[data-experience='commercial'] .cx-event-about .cx-event-host { margin:0; font-weight:700; color:var(--text); }
+
+/* Summary: the receipt with the action. */
+html[data-experience='commercial'] .cx-summary { position:sticky; top:84px; display:grid; gap:16px; padding:22px 24px 24px; border:1px solid var(--line); border-radius:var(--r-xl); background:var(--panel); box-shadow:var(--shadow-2); }
+html[data-experience='commercial'] .cx-summary-head { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px 12px; }
+html[data-experience='commercial'] .cx-summary-head h3 { margin:0; font:800 24px/1.1 var(--font-display); letter-spacing:-.035em; }
+html[data-experience='commercial'] .cx-places { display:inline-flex; align-items:center; gap:8px; min-height:30px; padding:4px 12px 4px 10px; border-radius:var(--r-pill); background:var(--surface-raised); color:var(--text); font-size:12px; font-weight:800; }
+html[data-experience='commercial'] .cx-places>.live-dot { width:8px; height:8px; background:var(--green); box-shadow:0 0 0 3px color-mix(in srgb,var(--green) 24%,transparent); }
+html[data-experience='commercial'] .cx-places.is-low>.live-dot { background:#e7a52a; box-shadow:0 0 0 3px #e7a52a3d; }
+html[data-experience='commercial'] .cx-places.is-full>.live-dot { background:var(--danger); box-shadow:0 0 0 3px color-mix(in srgb,var(--danger) 24%,transparent); }
+html[data-experience='commercial'] .cx-form { display:grid; gap:14px; }
+html[data-experience='commercial'] .cx-form .identity-fields { display:grid; grid-template-columns:1fr; gap:12px; }
+html[data-experience='commercial'] .cx-form .identity-fields label { display:grid; gap:6px; color:var(--muted); font-size:12px; font-weight:700; }
+html[data-experience='commercial'] .cx-form .identity-fields input { min-height:var(--control-md); padding:0 14px; border:1px solid var(--line-strong); border-radius:var(--r-sm); background:var(--bg); color:var(--text); font-size:15px; font-weight:600; transition:border-color var(--dur-fast),background var(--dur-fast); }
+html[data-experience='commercial'] .cx-form .identity-fields input:focus { border-color:var(--select); background:var(--panel); }
+html[data-experience='commercial'] .cx-form .companion-field { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 10px 10px 14px; border-radius:var(--r-md); background:var(--surface-raised); color:var(--text); }
+html[data-experience='commercial'] .cx-form .companion-field>span { display:grid; grid-template-columns:auto 1fr; align-items:center; gap:0 8px; font-size:14px; font-weight:800; }
+html[data-experience='commercial'] .cx-form .companion-field>span>svg { color:var(--cat-ink); }
+html[data-experience='commercial'] .cx-form .companion-field small { grid-column:2; color:var(--muted); font-size:12px; font-weight:600; line-height:1.35; }
+html[data-experience='commercial'] .cx-form .companion-field>div { gap:6px; }
+html[data-experience='commercial'] .cx-form .companion-field>div button { display:grid; place-items:center; width:var(--control-sm); height:var(--control-sm); padding:0; border:1px solid var(--line-strong); border-radius:50%; background:var(--panel); color:var(--text); }
+html[data-experience='commercial'] .cx-form .companion-field>div button:hover:not(:disabled) { border-color:var(--select); color:var(--select); background:var(--panel); }
+html[data-experience='commercial'] .cx-form .companion-field>div button:disabled { opacity:.4; }
+html[data-experience='commercial'] .cx-form .companion-field strong { min-width:22px; font:800 18px/1 var(--font-display); font-variant-numeric:tabular-nums; text-align:center; }
+html[data-experience='commercial'] .cx-form .terms-field { margin:0; padding:0; border:0; }
+html[data-experience='commercial'] .cx-form .terms-field label { gap:10px; color:var(--text); font-size:13px; font-weight:600; line-height:1.45; }
+html[data-experience='commercial'] .cx-form .terms-field input[type='checkbox'] { width:22px; height:22px; margin:0; border:2px solid var(--line-strong); border-radius:7px; background:var(--panel); box-shadow:none; }
+html[data-experience='commercial'] .cx-form .terms-field input[type='checkbox']::after { left:6px; top:2px; width:5px; height:10px; border-color:var(--on-select); }
+html[data-experience='commercial'] .cx-form .terms-field input[type='checkbox']:checked { border-color:var(--select); background:var(--select); }
+html[data-experience='commercial'] .cx-form .terms-field input[type='checkbox']:focus-visible { outline:3px solid var(--select); outline-offset:3px; }
+html[data-experience='commercial'] .cx-form .terms-field details { margin:2px 0 0 32px; }
+html[data-experience='commercial'] .cx-form .terms-field summary { min-height:30px; color:var(--select); font-size:12px; font-weight:800; }
+html[data-experience='commercial'] .cx-form .terms-field details p { margin:0; padding:0 0 6px; color:var(--muted); font-size:12px; line-height:1.6; }
+html[data-experience='commercial'] .cx-summary-lines { display:grid; gap:6px; margin:0; padding-top:12px; border-top:2px dashed var(--line); }
+html[data-experience='commercial'] .cx-summary-lines>div { display:flex; justify-content:space-between; gap:12px; font-size:13px; }
+html[data-experience='commercial'] .cx-summary-lines dt { color:var(--muted); font-weight:600; }
+html[data-experience='commercial'] .cx-summary-lines dd { margin:0; color:var(--text); font-weight:800; text-align:right; }
+html[data-experience='commercial'] .cx-checkout-bar { display:grid; gap:12px; }
+html[data-experience='commercial'] .cx-total { display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin:0; }
+html[data-experience='commercial'] .cx-total>span { color:var(--muted); font-size:14px; font-weight:700; }
+html[data-experience='commercial'] .cx-total>strong { font:800 20px/1.1 var(--font-display); letter-spacing:-.02em; color:var(--text); }
+html[data-experience='commercial'] .cx-total>small { display:none; }
+html[data-experience='commercial'] .cx-modal .button.cx-cta { width:100%; min-height:var(--control-lg); margin:0; padding:0 22px 0 26px; justify-content:space-between; gap:12px; border:1px solid var(--cta-bg); border-radius:var(--r-pill); background:var(--cta-bg); color:var(--cta-text); font-size:15px; font-weight:800; box-shadow:0 12px 28px #04122b2e; }
+html[data-experience='commercial'] .cx-modal .button.cx-cta:hover { border-color:var(--accent-strong); background:var(--accent-strong); color:#fff; }
+html[data-experience='commercial'][data-theme='dark'] .cx-modal .button.cx-cta:hover { border-color:#8fdcff; background:#8fdcff; color:#03122b; }
+html[data-experience='commercial'] .cx-summary-note { display:flex; align-items:flex-start; gap:10px; margin:0; padding:14px 16px; border-radius:var(--r-md); background:var(--surface-raised); color:var(--text); font-size:14px; font-weight:600; line-height:1.5; }
+html[data-experience='commercial'] .cx-summary-note>svg { flex-shrink:0; margin-top:2px; color:var(--cat-ink); }
+html[data-experience='commercial'] .cx-summary-note.is-pass { display:grid; gap:12px; }
+html[data-experience='commercial'] .cx-summary-note.is-pass>p { margin:0; }
+
+/* ---------- Pase ---------- */
+html[data-experience='commercial'] .cx-pass { position:relative; width:min(1080px,calc(100% - 96px)); min-height:100%; margin:0 auto; padding:84px 0 28px; display:flex; flex-direction:column; justify-content:center; gap:20px; }
+html[data-experience='commercial'] .cx-pass-head { display:flex; align-items:center; gap:16px; }
+html[data-experience='commercial'] .cx-pass-emblem { position:relative; display:grid; place-items:center; flex-shrink:0; width:56px; height:56px; border-radius:50%; background:var(--green); color:#fff; box-shadow:0 0 0 6px color-mix(in srgb,var(--green) 20%,transparent),var(--shadow-1); }
+html[data-experience='commercial'][data-theme='dark'] .cx-pass-emblem { color:#03122b; }
+html[data-experience='commercial'] .cx-pass-emblem>span:first-child { display:grid; place-items:center; }
+html[data-experience='commercial'] .cx-pass-head h2 { margin:0; font:800 clamp(30px,2.6vw,40px)/1.05 var(--font-display); letter-spacing:-.045em; color:var(--text); }
+html[data-experience='commercial'] .cx-pass-head p { margin:4px 0 0; color:var(--muted); font-size:15px; font-weight:600; }
+
+/* Celebration: transform and opacity only; not rendered with reduced motion. */
+html[data-experience='commercial'] .cx-celebration { position:absolute; left:50%; top:50%; width:0; height:0; pointer-events:none; }
+html[data-experience='commercial'] .cx-confetti { position:absolute; left:-4px; top:-6px; width:8px; height:12px; border-radius:2px; background:var(--cat); opacity:0; }
+html[data-experience='commercial'] .cx-confetti-1 { background:var(--accent-strong); }
+html[data-experience='commercial'] .cx-confetti-2 { width:9px; height:9px; border-radius:50%; background:var(--block); }
+html[data-experience='commercial'] .cx-confetti-3 { width:6px; height:14px; background:var(--green); }
+
+/* The ticket: photo stub · facts · QR stub, with a perforated edge and two notches. */
+html[data-experience='commercial'] .cx-ticket { position:relative; display:grid; grid-template-columns:260px minmax(0,1fr) 312px; min-height:352px; overflow:hidden; border:1px solid var(--line); border-radius:var(--r-xl); background:var(--panel); box-shadow:var(--shadow-2); }
+html[data-experience='commercial'] .cx-ticket-media { position:relative; overflow:hidden; background:var(--block); }
+html[data-experience='commercial'] .cx-ticket-media>img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+html[data-experience='commercial'] .cx-ticket-block { position:absolute; inset:0; background:linear-gradient(155deg,transparent 0 60%,var(--block) 60% 100%); opacity:.94; }
+html[data-experience='commercial'] .cx-ticket-date { position:absolute; left:16px; bottom:16px; display:grid; justify-items:center; min-width:62px; padding:8px 10px; border-radius:var(--r-md); background:#fff; color:#04122b; font-size:10px; font-weight:800; letter-spacing:.14em; box-shadow:0 12px 30px #04122b40; }
+html[data-experience='commercial'] .cx-ticket-date strong { font:800 26px/1 var(--font-display); letter-spacing:-.04em; }
+html[data-experience='commercial'] .cx-ticket-main { display:flex; flex-direction:column; justify-content:center; gap:12px; min-width:0; padding:28px 32px; }
+html[data-experience='commercial'] .cx-ticket-top { display:flex; align-items:center; flex-wrap:wrap; gap:8px 12px; }
+html[data-experience='commercial'] .cx-ticket-status { display:inline-flex; align-items:center; gap:6px; min-height:28px; padding:4px 12px 4px 9px; border-radius:var(--r-pill); background:color-mix(in srgb,var(--green) 14%,var(--panel)); color:var(--ok-ink); font-size:12px; font-weight:800; }
+html[data-experience='commercial'] .cx-ticket-category { color:var(--cat-ink); font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+html[data-experience='commercial'] .cx-ticket h3 { margin:0; font:800 clamp(30px,2.7vw,42px)/1.04 var(--font-display); letter-spacing:-.04em; color:var(--text); overflow-wrap:anywhere; text-wrap:balance; }
+html[data-experience='commercial'] .cx-ticket-facts { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px 28px; margin:10px 0 0; }
+html[data-experience='commercial'] .cx-ticket-facts>div { display:grid; align-content:start; gap:3px; min-width:0; }
+html[data-experience='commercial'] .cx-ticket-facts dt { color:var(--muted); font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+html[data-experience='commercial'] .cx-ticket-facts dd { margin:0; color:var(--text); font-size:16px; font-weight:700; line-height:1.35; overflow-wrap:anywhere; }
+html[data-experience='commercial'] .cx-ticket-facts dd small { display:block; margin-top:2px; color:var(--muted); font-size:12.5px; font-weight:600; }
+html[data-experience='commercial'] .cx-ticket-stub { position:relative; display:grid; place-items:center; align-content:center; gap:14px; padding:22px; border-left:2px dashed var(--line-strong); background:var(--surface-raised); }
+html[data-experience='commercial'] .cx-ticket-stub::before,
+html[data-experience='commercial'] .cx-ticket-stub::after { content:''; position:absolute; left:-13px; width:24px; height:24px; border-radius:50%; background:var(--bg); }
+html[data-experience='commercial'] .cx-ticket-stub::before { top:-13px; }
+html[data-experience='commercial'] .cx-ticket-stub::after { bottom:-13px; }
+/* The QR always sits on white with its own quiet zone, in both themes. */
+html[data-experience='commercial'] .cx-ticket .cx-ticket-qr { position:static; width:264px; height:264px; border-radius:var(--r-md); background:#fff; box-shadow:var(--shadow-1); transform:none; }
+html[data-experience='commercial'] .cx-ticket .cx-ticket-qr img { width:100%; height:100%; image-rendering:pixelated; }
+html[data-experience='commercial'] .cx-ticket .cx-ticket-qr>span { color:#04122b; }
+html[data-experience='commercial'] .cx-ticket-code { display:flex; align-items:center; gap:8px; }
+html[data-experience='commercial'] .cx-ticket-code small { color:var(--muted); font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+html[data-experience='commercial'] .cx-ticket-code code { display:inline-grid; place-items:center; min-height:30px; padding:0 12px; border-radius:var(--r-pill); background:var(--panel); color:var(--text); font:800 13px/1 ui-monospace,SFMono-Regular,Consolas,monospace; letter-spacing:.06em; box-shadow:var(--shadow-1); }
+
+/* Actions: one navy CTA and three equal pills. */
+html[data-experience='commercial'] .cx-pass-actions { display:grid; grid-template-columns:1.35fr 1fr 1fr 1fr; gap:10px; }
+html[data-experience='commercial'] .cx-pass-actions .button { min-width:0; min-height:var(--control-lg); margin:0; padding:0 16px; gap:10px; justify-content:center; border-radius:var(--r-pill); font-size:14px; font-weight:800; white-space:nowrap; }
+html[data-experience='commercial'] .cx-pass-actions .button>svg { width:18px; height:18px; transform:none; }
+html[data-experience='commercial'] .cx-pass-actions .button.primary { border:1px solid var(--cta-bg); background:var(--cta-bg); color:var(--cta-text); box-shadow:0 12px 28px #04122b2e; }
+html[data-experience='commercial'] .cx-pass-actions .button.primary:hover { border-color:var(--accent-strong); background:var(--accent-strong); color:#fff; }
+html[data-experience='commercial'][data-theme='dark'] .cx-pass-actions .button.primary:hover { border-color:#8fdcff; background:#8fdcff; color:#03122b; }
+html[data-experience='commercial'] .cx-pass-actions .button.secondary { border:1px solid var(--line-strong); background:var(--panel); color:var(--text); box-shadow:var(--shadow-1); }
+html[data-experience='commercial'] .cx-pass-actions .button.secondary:hover { border-color:var(--select); color:var(--select); background:var(--panel); }
+html[data-experience='commercial'] .cx-label-short { display:none; }
+html[data-experience='commercial'] .cx-pass-foot { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px 20px; }
+html[data-experience='commercial'] .cx-pass-foot .demo-pass-note { max-width:none; margin:0; color:var(--muted); font-size:12px; line-height:1.5; }
+html[data-experience='commercial'] .cx-pass-foot .pass-footer-links { display:flex; align-items:center; flex-direction:row; gap:20px; }
+html[data-experience='commercial'] .cx-pass-foot :is(.pass-function-switch,.cancel-registration) { max-width:none; min-height:40px; padding:0; border:0; background:none; color:var(--text); font-size:13px; font-weight:700; line-height:1.2; text-align:left; text-decoration:underline; text-decoration-color:var(--line-strong); text-underline-offset:4px; white-space:nowrap; }
+html[data-experience='commercial'] .cx-pass-foot :is(.pass-function-switch,.cancel-registration):hover { color:var(--select); text-decoration-color:currentColor; }
+html[data-experience='commercial'] .cx-pass .cancel-confirm { gap:10px; padding:18px; border:1px solid var(--line); border-radius:var(--r-lg); background:var(--panel); box-shadow:var(--shadow-3); backdrop-filter:none; }
+html[data-experience='commercial'] .cx-pass .cancel-confirm>span { margin:0 0 2px; color:var(--text); font:800 17px/1.3 var(--font-display); }
+html[data-experience='commercial'] .cx-pass .cancel-confirm button { min-height:var(--control-md); border:1px solid var(--line-strong); border-radius:var(--r-pill); background:transparent; color:var(--text); font-size:13px; font-weight:800; }
+html[data-experience='commercial'] .cx-pass .cancel-confirm button:first-of-type { border-color:var(--danger); background:var(--danger); color:var(--on-danger); }
+
+/* Toasts clear the phone action bar. */
+html[data-experience='commercial'] .native-dialog:has(>.cx-modal) .supernova-toast { border-color:var(--line); background:var(--panel); color:var(--text); box-shadow:var(--shadow-3); backdrop-filter:none; }
+
+/* ---------- Medium screens ---------- */
+@media (max-width:1180px) {
+  html[data-experience='commercial'] .cx-checkout { width:calc(100% - 64px); grid-template-columns:minmax(0,1fr) 360px; }
+  html[data-experience='commercial'] .cx-pass { width:calc(100% - 64px); }
+  html[data-experience='commercial'] .cx-ticket { grid-template-columns:200px minmax(0,1fr) 248px; min-height:300px; }
+  html[data-experience='commercial'] .cx-ticket .cx-ticket-qr { width:200px; height:200px; }
+  html[data-experience='commercial'] .cx-pass-actions .button { padding-inline:12px; font-size:13px; }
+}
+/* Desktop screens that are short: keep everything on one screen. */
+@media (min-width:901px) and (max-height:760px) {
+  html[data-experience='commercial'] .cx-checkout,
+  html[data-experience='commercial'] .cx-pass { padding-top:76px; padding-bottom:20px; }
+  html[data-experience='commercial'] .cx-checkout-main { gap:14px; }
+  html[data-experience='commercial'] .cx-event-banner { padding-block:20px; }
+  html[data-experience='commercial'] .cx-event-art { height:180px; }
+  html[data-experience='commercial'] .cx-summary { top:76px; gap:12px; padding:18px 20px 20px; }
+  html[data-experience='commercial'] .cx-form { gap:11px; }
+  html[data-experience='commercial'] .cx-pass { gap:14px; }
+  html[data-experience='commercial'] .cx-ticket { min-height:0; grid-template-columns:220px minmax(0,1fr) 236px; }
+  html[data-experience='commercial'] .cx-ticket-stub { padding:16px; gap:10px; }
+  html[data-experience='commercial'] .cx-ticket .cx-ticket-qr { width:188px; height:188px; }
+}
+
+/* ---------- Tablets and phones: one column and a fixed action bar ---------- */
+@media (max-width:900px) {
+  html[data-experience='commercial'] .cx-modal>.registration-back { top:12px; left:16px; }
+  html[data-experience='commercial'] .cx-modal>.modal-close { top:12px; right:16px; }
+  html[data-experience='commercial'] .cx-checkout { width:min(680px,calc(100% - 32px)); grid-template-columns:minmax(0,1fr); gap:16px; padding:68px 0 calc(104px + env(safe-area-inset-bottom,0px)); align-content:start; }
+  html[data-experience='commercial'] .cx-checkout-main { gap:16px; }
+  html[data-experience='commercial'] .cx-summary { position:static; }
+  html[data-experience='commercial'] .cx-checkout-bar { position:fixed; z-index:22; left:0; right:0; bottom:0; display:flex; align-items:center; gap:14px; padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px)); border-top:1px solid var(--line); background:var(--panel); box-shadow:0 -12px 32px #04122b1f; }
+  html[data-experience='commercial'] .cx-total { display:grid; gap:2px; flex-shrink:0; }
+  html[data-experience='commercial'] .cx-total>span { display:none; }
+  html[data-experience='commercial'] .cx-total>strong { font-size:17px; }
+  html[data-experience='commercial'] .cx-total>small { display:block; color:var(--muted); font-size:12px; font-weight:700; }
+  html[data-experience='commercial'] .cx-modal .button.cx-cta { flex:1; width:auto; min-height:var(--control-md); padding:0 18px 0 22px; }
+  html[data-experience='commercial'] .native-dialog:has(.cx-checkout-bar) .supernova-toast { bottom:calc(92px + env(safe-area-inset-bottom,0px)); }
+
+  html[data-experience='commercial'] .cx-pass { width:min(620px,calc(100% - 32px)); padding:68px 0 20px; gap:14px; justify-content:safe center; }
+  html[data-experience='commercial'] .cx-ticket { grid-template-columns:minmax(0,1fr); min-height:0; }
+  html[data-experience='commercial'] .cx-ticket-media { height:88px; }
+  html[data-experience='commercial'] .cx-ticket-block { background:linear-gradient(165deg,transparent 0 66%,var(--block) 66% 100%); }
+  html[data-experience='commercial'] .cx-ticket-date { left:auto; right:14px; top:12px; bottom:auto; min-width:54px; padding:6px 8px; }
+  html[data-experience='commercial'] .cx-ticket-date strong { font-size:22px; }
+  html[data-experience='commercial'] .cx-ticket-main { padding:14px 18px 14px; gap:8px; }
+  html[data-experience='commercial'] .cx-ticket h3 { font-size:26px; }
+  html[data-experience='commercial'] .cx-ticket-facts { gap:10px 16px; margin-top:2px; }
+  html[data-experience='commercial'] .cx-ticket-facts dd { font-size:14px; }
+  html[data-experience='commercial'] .cx-ticket-facts dd small { font-size:12px; }
+  html[data-experience='commercial'] .cx-ticket-stub { grid-template-columns:auto minmax(0,1fr); justify-items:start; gap:16px; padding:16px 18px; border-left:0; border-top:2px dashed var(--line-strong); }
+  html[data-experience='commercial'] .cx-ticket-stub::before { top:-13px; left:-13px; }
+  html[data-experience='commercial'] .cx-ticket-stub::after { top:-13px; bottom:auto; left:auto; right:-13px; }
+  html[data-experience='commercial'] .cx-ticket .cx-ticket-qr { width:136px; height:136px; }
+  html[data-experience='commercial'] .cx-ticket-code { flex-direction:column; align-items:flex-start; gap:6px; }
+  html[data-experience='commercial'] .cx-pass-actions { grid-template-columns:1fr 1fr; gap:8px; }
+  html[data-experience='commercial'] .cx-pass-actions .button { min-height:48px; font-size:13px; }
+  html[data-experience='commercial'] .cx-pass-calendar .cx-label-full { display:none; }
+  html[data-experience='commercial'] .cx-pass-calendar .cx-label-short { display:inline; }
+}
+@media (min-width:601px) and (max-width:900px) {
+  html[data-experience='commercial'] .cx-ticket .cx-ticket-qr { width:184px; height:184px; }
+  html[data-experience='commercial'] .cx-ticket-media { height:120px; }
+}
+@media (max-width:600px) {
+  html[data-experience='commercial'] .cx-event-banner { grid-template-columns:1fr; gap:14px; padding:0 0 18px; border-radius:var(--r-lg); }
+  html[data-experience='commercial'] .cx-event-banner::before { background:linear-gradient(165deg,transparent 0 74%,var(--block) 74% 100%); }
+  html[data-experience='commercial'] .cx-event-art { order:-1; height:128px; }
+  html[data-experience='commercial'] .cx-event-block { display:none; }
+  html[data-experience='commercial'] .cx-event-art>img { inset:0; width:100%; border:0; border-radius:var(--r-lg) var(--r-lg) 0 0; box-shadow:none; }
+  html[data-experience='commercial'] .cx-event-date { left:auto; right:14px; bottom:-16px; min-width:56px; padding:7px 9px; }
+  html[data-experience='commercial'] .cx-event-date strong { font-size:22px; }
+  html[data-experience='commercial'] .cx-event-copy { padding:0 18px; gap:8px; }
+  html[data-experience='commercial'] .cx-event-banner h2 { font-size:30px; letter-spacing:-.04em; }
+  html[data-experience='commercial'] .cx-event-copy>p { font-size:14px; }
+  html[data-experience='commercial'] .cx-event-facts>li { min-height:30px; padding:5px 10px; font-size:12px; }
+  html[data-experience='commercial'] .cx-checkout .event-session-options { grid-template-columns:minmax(0,1fr); gap:10px; }
+  html[data-experience='commercial'] .cx-checkout .event-session-option { min-height:76px; }
+  html[data-experience='commercial'] .cx-summary { padding:18px 16px; border-radius:var(--r-lg); }
+  html[data-experience='commercial'] .cx-form .identity-fields input { font-size:16px; }
+  html[data-experience='commercial'] .cx-pass-head { gap:12px; }
+  html[data-experience='commercial'] .cx-pass-emblem { width:44px; height:44px; box-shadow:0 0 0 5px color-mix(in srgb,var(--green) 20%,transparent); }
+  html[data-experience='commercial'] .cx-pass-emblem svg { width:20px; height:20px; }
+  html[data-experience='commercial'] .cx-pass-head h2 { font-size:28px; }
+  html[data-experience='commercial'] .cx-pass-head p { margin-top:2px; font-size:14px; }
+  html[data-experience='commercial'] .cx-ticket { border-radius:var(--r-lg); }
+  html[data-experience='commercial'] .cx-pass-foot { flex-direction:column; align-items:flex-start; gap:2px; }
+  html[data-experience='commercial'] .cx-pass-foot .pass-footer-links { gap:18px; }
+}
+/* Short phones: a slim photo band, a smaller QR and the four actions in one row. */
+@media (max-width:600px) and (max-height:740px) {
+  html[data-experience='commercial'] .cx-modal>:is(.registration-back,.modal-close) { top:10px; }
+  html[data-experience='commercial'] .cx-pass { padding-top:62px; padding-bottom:12px; gap:10px; }
+  html[data-experience='commercial'] .cx-pass-emblem { width:38px; height:38px; box-shadow:0 0 0 4px color-mix(in srgb,var(--green) 20%,transparent); }
+  html[data-experience='commercial'] .cx-pass-emblem svg { width:18px; height:18px; }
+  html[data-experience='commercial'] .cx-pass-head h2 { font-size:24px; }
+  html[data-experience='commercial'] .cx-pass-head p { font-size:13px; }
+  html[data-experience='commercial'] .cx-ticket-media { height:56px; }
+  html[data-experience='commercial'] .cx-ticket-date { top:8px; min-width:46px; padding:4px 7px; font-size:9px; border-radius:var(--r-sm); }
+  html[data-experience='commercial'] .cx-ticket-date strong { font-size:18px; }
+  html[data-experience='commercial'] .cx-ticket-main { padding:12px 16px; gap:6px; }
+  html[data-experience='commercial'] .cx-ticket h3 { font-size:22px; }
+  html[data-experience='commercial'] .cx-ticket-facts { gap:6px 12px; }
+  html[data-experience='commercial'] .cx-ticket-facts dt { font-size:10px; }
+  html[data-experience='commercial'] .cx-ticket-facts dd { font-size:13px; }
+  html[data-experience='commercial'] .cx-ticket-facts dd small { font-size:11px; margin-top:0; }
+  html[data-experience='commercial'] .cx-ticket-stub { padding:12px 16px; }
+  html[data-experience='commercial'] .cx-ticket .cx-ticket-qr { width:112px; height:112px; }
+  html[data-experience='commercial'] .cx-pass-actions { grid-template-columns:repeat(4,minmax(0,1fr)); gap:6px; }
+  html[data-experience='commercial'] .cx-pass-actions .button { flex-direction:column; gap:4px; min-height:58px; padding:6px 4px; border-radius:var(--r-md); font-size:11.5px; }
+  html[data-experience='commercial'] .cx-pass-actions .cx-label-full { display:none; }
+  html[data-experience='commercial'] .cx-pass-actions .cx-label-short { display:inline; }
+  html[data-experience='commercial'] .cx-pass-foot .demo-pass-note { font-size:11px; }
+  html[data-experience='commercial'] .cx-pass-foot :is(.pass-function-switch,.cancel-registration) { min-height:34px; font-size:12px; }
+}
+@media (max-width:360px) {
+  html[data-experience='commercial'] .cx-ticket-facts { gap:8px 12px; }
+  html[data-experience='commercial'] .cx-ticket-facts dd { font-size:13px; }
+  html[data-experience='commercial'] .cx-ticket h3 { font-size:23px; }
+  html[data-experience='commercial'] .cx-ticket .cx-ticket-qr { width:120px; height:120px; }
+  html[data-experience='commercial'] .cx-pass-head h2 { font-size:25px; }
+  html[data-experience='commercial'] .cx-pass-actions .button { padding-inline:8px; gap:6px; font-size:12px; }
+  html[data-experience='commercial'] .cx-modal .button.cx-cta { padding:0 14px 0 16px; font-size:14px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  html[data-experience='commercial'] .cx-celebration { display:none; }
+}

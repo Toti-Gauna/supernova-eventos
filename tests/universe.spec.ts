@@ -50,10 +50,10 @@ async function stopObserving(host: Locator) {
   });
 }
 
-async function openProfile(page: Page) {
+async function openProfile(page: Page, timeout?: number) {
   await page.getByRole('button', { name: 'Abrir perfil de Alex García', exact: true }).click();
   await page.getByRole('button', { name: 'Ver mi perfil', exact: true }).click();
-  await expect(page.getByRole('heading', { name: 'Mi perfil', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Mi perfil', exact: true })).toBeVisible({ timeout });
 }
 
 async function observeCommands(host: Locator) {
@@ -139,7 +139,7 @@ test('movimiento reducido resuelve navegación sin activar vuelos y mantiene el 
   }
   expect(await stopObserving(host)).not.toContain('true');
   for (const theme of ['dark', 'light']) {
-    if (theme === 'light') await page.getByRole('button', { name: 'Activar modo claro', exact: true }).click();
+    if (theme === 'light') { await page.getByRole('button', { name: 'Ajustes', exact: true }).click(); await page.getByRole('switch', { name: 'Modo oscuro' }).click(); await page.keyboard.press('Escape'); }
     await expect(page.locator('html')).toHaveAttribute('data-theme', theme);
     // The DOM shell is transparent so the black WebGL/fallback layer remains visible.
     const backgrounds = await page.evaluate(() => [document.documentElement, document.body, document.querySelector('[data-universe-host]')!, document.querySelector('.app-shell')!].map(element => getComputedStyle(element).backgroundColor));
@@ -190,7 +190,7 @@ test('WebGL ausente conserva la app operativa y no deja solicitudes pendientes',
   const host = page.locator(hostSelector);
   await expect(host).toHaveAttribute('data-universe-status', 'fallback');
   await page.getByRole('button', { name: /^Mis eventos/ }).click();
-  await expect(page.getByRole('heading', { name: 'Tu próximo momento está esperando.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Tu agenda está libre.' })).toBeVisible();
   await expectSettled(host, 'section:registrations', 'fallback');
   await page.getByRole('button', { name: 'Explorar experiencias', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Ver Órbita Fest', exact: true })).toBeVisible();
@@ -214,7 +214,7 @@ test('perder el contexto WebGL libera la última navegación y conserva el Canva
   });
   test.skip(!supported, 'Este navegador no ofrece WEBGL_lose_context para provocar la pérdida real.');
   await page.getByRole('button', { name: /^Mis eventos/ }).click();
-  await expect(page.getByRole('heading', { name: 'Tu próximo momento está esperando.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Tu agenda está libre.' })).toBeVisible();
   await expect(host).toHaveAttribute('data-universe-destination', 'section:registrations');
   const requestId = await host.getAttribute('data-universe-request');
   await expect(host).toHaveAttribute('data-universe-settled', requestId!);
@@ -264,7 +264,7 @@ test('un chunk de intro tardío libera la app dentro del deadline y no reaparece
     expect(await page.locator('#root').evaluate(element => (element as HTMLElement).inert)).toBe(false);
     await expect(replay).toBeFocused();
     await page.getByRole('button', { name: /^Mis eventos/ }).click();
-    await expect(page.getByRole('heading', { name: 'Tu próximo momento está esperando.' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Tu agenda está libre.' })).toBeVisible();
     const response = page.waitForResponse(response => response.url().includes('/src/features/intro/CinematicIntro.tsx') && response.ok());
     release();
     await response;
@@ -291,7 +291,9 @@ test('la pausa voluntaria persiste y cambia destinos sin bloquear navegación', 
   await expect(page.getByRole('heading', { name: /Salí de la rutina/ })).toBeVisible();
   await expect(page.locator('.app-shell')).not.toHaveClass(/intro-playing/);
   await expectSettled(host, 'section:explore');
-  await openProfile(page);
+  // With Playwright's fixed clock, performance.now() keeps counting across reload() while the new
+  // page's animation timeline restarts, so view fades start late. Real browsers reset both.
+  await openProfile(page, 45_000);
   const resume = page.getByRole('button', { name: 'Reanudar movimiento', exact: true });
   await expect(resume).toHaveAttribute('aria-pressed', 'true');
   await resume.click();
@@ -528,7 +530,7 @@ test.describe('controles touch dentro del universo', () => {
     await expectSettled(host, 'section:explore');
     await expect(ticket).toBeFocused();
     await page.getByRole('button', { name: /^Mis eventos/ }).tap();
-    await expect(page.getByRole('heading', { name: 'Tu próximo momento está esperando.' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Tu agenda está libre.' })).toBeVisible();
     await expectSettled(host, 'section:registrations');
   });
 });

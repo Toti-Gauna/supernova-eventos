@@ -13,8 +13,8 @@ export default function PassQR({ event, pass, className = '' }: PassQRProps) {
   const session = getRegistrationSession(event, pass);
   const date = session?.date ?? event.date;
   return <>
-    <button type="button" className={`button secondary pass-qr-button ${className}`} onClick={() => setOpen(true)}><QrCode size={16} />Ver mi QR</button>
-    {open && <QRDialog title="Mi QR de acceso" subtitle={event.title} payload={passPayload(event, pass)} code={pass.id}
+    <button type="button" className={`button secondary pass-qr-button ${className}`.trim()} onClick={() => setOpen(true)}><QrCode size={16} aria-hidden="true" />Ver mi QR</button>
+    {open && <QRDialog title="Mi QR de acceso" subtitle={event.title} payload={passPayload(event, pass)} code={pass.id} category={event.category}
       fileName={qrDownloadName('pase', pass.id)} onClose={() => setOpen(false)}>
       <p className="qr-session-summary">{formatEventDate(date)} · {formatEventDate(date, { hour: '2-digit', minute: '2-digit', hour12: false })} h{session?.name && <span>{session.name}</span>}</p>
     </QRDialog>}

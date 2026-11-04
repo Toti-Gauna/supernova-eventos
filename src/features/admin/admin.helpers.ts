@@ -13,6 +13,18 @@ export const defaultEmail: EmailTemplate = {
   accentColor: '#1eb2f5',
 };
 
+/**
+ * Changes who can discover the event. The payroll is internal staff only, so an
+ * external-only event cannot keep a payroll audience: it falls back to everyone.
+ */
+export function withAccess(event: EventItem, access: NonNullable<EventItem['access']>): EventItem {
+  if (event.access === access) return event;
+  const dropPayroll = access === 'external' && event.audience?.mode === 'payroll';
+  return dropPayroll
+    ? { ...event, access, audience: { mode: 'all', people: [] }, isPrivate: false }
+    : { ...event, access };
+}
+
 export function clearSavedDraft(): void {
   try { localStorage.removeItem(DRAFT_KEY); }
   catch { /* Saving a session-only event still works when browser storage is unavailable. */ }

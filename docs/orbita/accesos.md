@@ -15,11 +15,16 @@
 
 Cerrar sesión vuelve a la pantalla de acceso, anuncia el cierre y lleva el foco al título.
 
-La pantalla entra completa en 1920 × 840, 1440 × 900, 1366 × 660, 390 × 844 y 360 × 740 sin scroll. En escritorio muestra las dos tarjetas a la vez; el formulario externo usa dos columnas. En teléfonos, un selector con `aria-pressed` alterna entre las dos tarjetas.
+La pantalla es dividida:
+
+- **Escenario de marca** a la izquierda: campo cian con un bloque azul en diagonal, collage de fotos de categorías y tres beneficios reales (pase con QR, calendario, abierto a invitados). En teléfonos es una franja.
+- **Panel de ingreso** a la derecha: «¿Cómo entrás hoy?» y dos tarjetas grandes con `aria-pressed` (Personal interno / Personal externo). Debajo se muestra solo la puerta elegida: la cuenta SSO de demostración o el formulario de invitación.
+
+Las dos puertas comparten la misma celda de la grilla, así que en escritorio cambiar de una a otra no mueve la pantalla. La pantalla entra completa, sin scroll, en 1920 × 840, 1440 × 900, 1366 × 660, 390 × 844 y 360 × 740, en tema claro y oscuro.
 
 ## Acceso por evento
 
-Cada evento declara `access: 'internal' | 'external' | 'all'`. Se elige en el paso **Audiencia** del creador («¿Quiénes pueden verlo?»), se muestra en la revisión y en la tabla de administración, y las cards del personal interno marcan «Abierto a invitados» o «Solo invitados externos».
+Cada evento declara `access: 'internal' | 'external' | 'all'`. En Original y Comercial se elige en el **paso 1** del creador, con un selector de tres opciones, y el paso **Audiencia** muestra su resumen con «Cambiar». En 3D y 2D + 3D sigue en el paso **Audiencia**. En todos los casos se muestra en la revisión y en la tabla de administración, y las cards del personal interno marcan «Abierto a invitados» o «Solo invitados externos».
 
 - Un evento sin `access`, guardado antes de este cambio, se trata como `internal`. Los eventos de ejemplo recuperan el acceso declarado en `src/data/events.ts` (`migrateStoredEvents`, que también actualiza los textos de marca vieja de los eventos de ejemplo guardados).
 - `access` se combina con la audiencia de invitaciones existente: un evento privado sigue exigiendo que el email esté en la lista.

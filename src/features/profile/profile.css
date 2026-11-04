@@ -1,0 +1,122 @@
+/* Mi perfil as an account card: identity in a color block, facts, shortcuts, large
+   switches and a clear sign out. Shared by every version; fits one screen at 1440 × 900
+   and 390 × 844. Palette from the theme variables; Comercial adjusts at the end. */
+.account-page {
+  --account-card:var(--panel); --account-raised:#ffffff08; --account-line:var(--line);
+  --switch-off:#30415f; --switch-on:#4ec5ff; --switch-knob:#ffffff;
+  padding-top:24px; padding-bottom:32px;
+}
+html[data-theme='light'] .account-page { --account-raised:#f3f6fa; --switch-off:#c9d3e3; --switch-on:#2348de; }
+
+.account-head { display:flex; align-items:center; gap:14px; margin:0 0 20px; }
+.account-head .back-button.icon-only { flex-shrink:0; width:44px; height:44px; margin:0; border:1px solid var(--account-line); border-radius:50%; background:var(--account-card); color:var(--text); box-shadow:var(--shadow-1); }
+.account-head .back-button.icon-only:hover { color:var(--accent); }
+.account-head h1 { margin:0; font:800 clamp(28px,2.6vw,36px)/1.1 var(--font-display); letter-spacing:-.04em; }
+
+.account-grid { display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); gap:20px; align-items:start; margin:0; }
+.account-card,.account-prefs { position:relative; min-width:0; margin:0; border:1px solid var(--account-line); border-radius:var(--r-xl); background:var(--account-card); color:var(--text); box-shadow:var(--shadow-2); }
+.account-card { overflow:hidden; padding:0 0 22px; }
+
+/* Identity: a color block like the banners, navy type for AA contrast. */
+.account-identity { display:flex; align-items:center; gap:16px; padding:24px; background:linear-gradient(120deg,#7fdcff,#1eb2f5); color:#04122b; }
+.account-card.is-external .account-identity { background:linear-gradient(120deg,#ffc2e6,#e98bdc); }
+.account-identity .account-avatar { flex-shrink:0; width:64px; height:64px; border-radius:50%; background:#ffffff; color:#04122b; font:800 22px/1 var(--font-display); box-shadow:0 8px 22px #04122b26; }
+.account-identity-copy { min-width:0; }
+.account-identity h2 { margin:0 0 9px; overflow-wrap:anywhere; color:#04122b; font:800 26px/1.15 var(--font-display); letter-spacing:-.03em; }
+.account-identity p { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:0; }
+.account-kind-pill,.account-org { display:inline-flex; align-items:center; min-height:28px; padding:0 12px; border-radius:var(--r-pill); font-size:12px; font-weight:800; }
+.account-kind-pill { background:#04122b; color:#ffffff; }
+.account-org { background:#ffffffd9; color:#04122b; }
+
+.account-facts { display:grid; margin:0; padding:6px 24px 0; }
+.account-facts>div { display:grid; grid-template-columns:auto minmax(0,1fr); align-items:center; gap:16px; min-height:50px; padding:8px 0; border-bottom:1px solid var(--account-line); }
+.account-facts dt { display:flex; align-items:center; gap:10px; color:var(--muted); font-size:13px; font-weight:600; }
+.account-facts dt>svg { flex-shrink:0; color:var(--accent); }
+.account-facts dd { margin:0; justify-self:end; min-width:0; overflow-wrap:anywhere; text-align:right; font-size:14px; font-weight:700; }
+
+/* Shortcuts to the passes and the favorites. */
+.account-stats { display:grid; grid-template-columns:1fr 1fr; gap:12px; padding:18px 24px 0; }
+.account-stat {
+  display:grid; grid-template-columns:auto auto minmax(0,1fr) auto; align-items:center; gap:10px; min-height:60px; margin:0; padding:0 16px;
+  border:1px solid var(--account-line); border-radius:var(--r-md); background:var(--account-raised); color:var(--text); text-align:left; overflow:visible;
+  transition:border-color var(--dur-fast),transform var(--dur-fast) var(--ease-out);
+}
+.account-stat>svg:first-child { color:var(--accent); }
+.account-stat>svg:last-child:not(:first-child) { color:var(--muted); }
+.account-stat strong { font:800 24px/1 var(--font-display); letter-spacing:-.03em; }
+.account-stat span { overflow:hidden; color:var(--muted); font-size:13px; font-weight:700; text-overflow:ellipsis; white-space:nowrap; }
+button.account-stat:hover { border-color:color-mix(in srgb,var(--accent) 55%,transparent); }
+button.account-stat:hover>svg:last-child { color:var(--accent); }
+button.account-stat:active { transform:scale(.98); }
+
+/* Preferences with large switches, then the sign out. */
+.account-prefs { display:grid; gap:12px; padding:22px 24px 24px; }
+.account-prefs h2 { margin:0 0 2px; font:800 20px/1.2 var(--font-display); letter-spacing:-.02em; }
+.account-pref { display:grid; grid-template-columns:40px minmax(0,1fr) auto; align-items:center; gap:14px; min-height:72px; margin:0; padding:12px 14px 12px 16px; border:1px solid var(--account-line); border-radius:var(--r-md); background:var(--account-raised); cursor:pointer; }
+.account-pref:has(.account-switch:focus-visible) { border-color:var(--accent); }
+.account-pref-icon { display:grid; place-items:center; width:40px; height:40px; border-radius:50%; background:color-mix(in srgb,var(--accent) 14%,transparent); color:var(--accent); }
+.account-pref-icon>svg { display:block; }
+.account-pref-copy { display:grid; gap:3px; min-width:0; }
+.account-pref-copy strong { font-size:14px; font-weight:700; }
+.account-pref-copy small { color:var(--muted); font-size:12px; line-height:1.45; }
+.account-switch { appearance:none; -webkit-appearance:none; position:relative; flex-shrink:0; width:52px; min-width:52px; height:32px; margin:0; padding:0; border:0; border-radius:var(--r-pill); background:var(--switch-off); cursor:pointer; transition:background-color var(--dur-base) var(--ease-out); }
+.account-switch::before { content:''; position:absolute; top:4px; left:4px; width:24px; height:24px; border-radius:50%; background:var(--switch-knob); box-shadow:0 2px 6px #04122b33; transition:transform var(--dur-base) var(--ease-out); }
+.account-switch::after { display:none; }
+.account-switch:checked { background:var(--switch-on); }
+.account-switch:checked::before { transform:translateX(20px); }
+.account-switch:focus-visible { outline:3px solid var(--accent-strong); outline-offset:3px; }
+.account-pref.account-motion { cursor:default; }
+.account-pref-action { display:inline-flex; align-items:center; justify-content:center; min-height:44px; margin:0; padding:0 16px; border:1px solid var(--line-strong); border-radius:var(--r-pill); background:var(--account-card); color:var(--text); font-size:13px; font-weight:700; white-space:nowrap; }
+.account-pref-action:hover { border-color:var(--accent); color:var(--accent); }
+.account-pref-action[aria-pressed='true'] { border-color:var(--accent); background:color-mix(in srgb,var(--accent) 14%,transparent); color:var(--accent); }
+.account-note { margin:0; color:var(--muted); font-size:12px; line-height:1.5; }
+.account-logout {
+  display:inline-flex; align-items:center; justify-content:center; gap:10px; width:100%; min-height:var(--control-md); margin:4px 0 0; padding:0 22px;
+  border:1.5px solid var(--line-strong); border-radius:var(--r-pill); background:transparent; color:var(--text); font-size:14px; font-weight:800;
+}
+.account-logout:hover { border-color:var(--danger); color:var(--danger); }
+
+/* Comercial: white cards on the light page, a navy-tinted card in dark, Personal colors. */
+html[data-experience='commercial'] .account-page { --account-line:#04122b0f; --switch-on:#0b51df; }
+html[data-experience='commercial'][data-theme='dark'] .account-page { --account-card:color-mix(in srgb,var(--panel) 92%,#1eb2f5); --account-line:#ffffff17; --switch-on:#4ec5ff; }
+html[data-experience='commercial'] .account-card,html[data-experience='commercial'] .account-prefs { border-color:transparent; box-shadow:var(--card-shadow,var(--shadow-2)); }
+html[data-experience='commercial'] .account-head .back-button.icon-only { border-color:transparent; box-shadow:var(--card-shadow,var(--shadow-1)); }
+html[data-experience='commercial'] .account-facts dt>svg,html[data-experience='commercial'] .account-stat>svg:first-child { color:var(--accent-strong); }
+html[data-experience='commercial'][data-theme='dark'] .account-facts dt>svg,html[data-experience='commercial'][data-theme='dark'] .account-stat>svg:first-child { color:var(--accent); }
+
+/* Spatial versions: the cards float over space, a touch of glass. */
+.app-shell[data-universe-enabled] .account-page .account-grid { margin-top:4px; }
+html[data-theme='dark'] .app-shell[data-universe-enabled] .account-page { --account-card:#0a1530e6; }
+
+@media (prefers-reduced-motion:reduce) {
+  .account-switch,.account-switch::before,.account-stat { transition:none; }
+}
+@media (max-width:900px) {
+  .account-grid { grid-template-columns:minmax(0,1fr); gap:14px; }
+}
+@media (max-width:700px) {
+  .account-page { padding-top:16px; padding-bottom:20px; }
+  .account-head { margin-bottom:14px; }
+  .account-head h1 { font-size:28px; }
+  .account-note { display:none; }
+  .account-grid { gap:12px; }
+  .account-card { padding-bottom:16px; border-radius:var(--r-lg); }
+  .account-prefs { gap:10px; padding:18px 16px 16px; border-radius:var(--r-lg); }
+  .account-identity { gap:14px; padding:18px 16px; }
+  .account-identity .account-avatar { width:52px; height:52px; font-size:18px; }
+  .account-identity h2 { margin-bottom:7px; font-size:21px; }
+  .account-kind-pill,.account-org { min-height:24px; padding:0 10px; font-size:11px; }
+  /* Icons carry the labels on phones; the terms stay for screen readers. */
+  .account-facts { padding:4px 16px 0; }
+  .account-facts>div { grid-template-columns:20px minmax(0,1fr); gap:12px; min-height:42px; padding:6px 0; }
+  .account-facts dt { font-size:0; gap:0; }
+  .account-facts dt>svg { width:18px; height:18px; }
+  .account-facts dd { justify-self:start; text-align:left; font-size:14px; }
+  .account-stats { gap:10px; padding:14px 16px 0; }
+  .account-stat { min-height:54px; padding:0 12px; gap:8px; }
+  .account-stat strong { font-size:21px; }
+  .account-pref { grid-template-columns:36px minmax(0,1fr) auto; gap:12px; min-height:64px; padding:10px 12px; }
+  .account-pref-icon { width:36px; height:36px; }
+  .account-pref.account-motion { grid-template-columns:36px minmax(0,1fr); }
+  .account-pref.account-motion .account-pref-action { grid-column:1 / -1; justify-self:start; }
+}

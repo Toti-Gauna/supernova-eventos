@@ -1,0 +1,22 @@
+/* Settings menu: theme switch and version list in one header popover. The card
+   language and the popover position come from src/components/header-shell.css. */
+.site-header .settings-popover { width:336px; }
+.site-header .settings-theme {
+  display:grid; grid-template-columns:40px minmax(0,1fr) auto; align-items:center; gap:12px; width:100%; min-height:64px; margin:0; padding:10px 12px;
+  border:1px solid var(--pop-raised-line); border-radius:var(--r-md); background:var(--pop-raised); color:var(--pop-text); text-align:left; overflow:visible;
+}
+.site-header .settings-theme:hover { border-color:color-mix(in srgb,var(--pop-accent) 40%,transparent); }
+.site-header .settings-theme-icon { display:grid; place-items:center; width:40px; height:40px; border-radius:50%; background:color-mix(in srgb,var(--pop-accent) 14%,transparent); color:var(--pop-accent); }
+.site-header .settings-theme-icon>svg { display:block; }
+.site-header .settings-theme-copy { display:grid; gap:2px; min-width:0; }
+.site-header .settings-theme-copy strong { font-size:14px; font-weight:700; }
+.site-header .settings-theme-copy small { color:var(--pop-muted); font-size:12px; font-weight:500; }
+/* Large switch: 52 × 32, the knob slides with transform only. */
+.site-header .settings-switch { position:relative; flex-shrink:0; width:52px; height:32px; border-radius:var(--r-pill); background:var(--switch-off); transition:background-color var(--dur-base) var(--ease-out); }
+.site-header .settings-switch>i { position:absolute; top:4px; left:4px; width:24px; height:24px; border-radius:50%; background:var(--switch-knob); box-shadow:0 2px 6px #04122b33; transition:transform var(--dur-base) var(--ease-out); }
+.site-header .settings-theme[aria-checked='true'] .settings-switch { background:var(--switch-on); }
+.site-header .settings-theme[aria-checked='true'] .settings-switch>i { transform:translateX(20px); }
+.site-header .settings-label { margin:8px 0 0; padding:0 12px; color:var(--pop-muted); font-size:11px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+@media (prefers-reduced-motion:reduce) {
+  .site-header .settings-switch,.site-header .settings-switch>i { transition:none; }
+}
